@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GestãoPro — Controle completo da sua operação em um único sistema</title>
+    <meta name="description" content="O GestãoPro reúne estoque, custos, equipe e processos operacionais em um único sistema modular. Reduza perdas, elimine planilhas e tenha controle real da sua operação.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <!-- ============ HEADER ============ -->
+    <header class="site-header" id="site-header">
+        <div class="header-inner">
+            <a href="#topo" class="brand">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name">GestãoPro</span>
+            </a>
+
+            <nav class="nav-desktop" aria-label="Navegação principal">
+                <a href="#produto">Produto</a>
+                <a href="#modulos">Módulos</a>
+                <a href="#diferenciais">Diferenciais</a>
+                <a href="#como-funciona">Como funciona</a>
+                <a href="#planos">Planos</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+
+            <div class="header-cta">
+                <button class="btn btn-primary btn-sm" type="button">Começar agora</button>
+            </div>
+
+            <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
+      <i data-lucide="menu" class="icon-open"></i>
+      <i data-lucide="x" class="icon-close"></i>
+    </button>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu" hidden>
+            <a href="#produto">Produto</a>
+            <a href="#modulos">Módulos</a>
+            <a href="#diferenciais">Diferenciais</a>
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#planos">Planos</a>
+            <a href="#faq">FAQ</a>
+            <button class="btn btn-primary" type="button">Começar agora</button>
+        </div>
+    </header>
+
+    <main id="conteudo">
+
+        <!-- ============ HERO ============ -->
+        <section class="hero section-anchor" id="topo">
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <span class="eyebrow">Gestão operacional inteligente</span>
+                    <h1 class="hero-title">Controle sua operação.<br>Reduza perdas.<br><span class="text-accent">Decida melhor.</span></h1>
+                    <p class="hero-subtitle">O GestãoPro reúne estoque, custos, equipe e processos operacionais em um único sistema modular — para sua empresa crescer com mais controle e menos retrabalho.</p>
+
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-lg" type="button">Começar agora</button>
+                        <a href="#produto" class="btn btn-ghost btn-lg">Conhecer o sistema</a>
+                    </div>
+
+                    <ul class="hero-trust" role="list">
+                        <li><i data-lucide="check-circle-2"></i>Acesso pelo celular e computador</li>
+                        <li><i data-lucide="check-circle-2"></i>Sistema modular</li>
+                    </ul>
+                </div>
+
+                <div class="hero-visual" aria-hidden="true">
+                    <img src="scr/destbord.png" alt="Tela do painel do GestãoPro" class="dash-mockup-img">
+
+                    <div class="float-chip chip-1"><i data-lucide="package-check"></i>Estoque atualizado</div>
+                    <div class="float-chip chip-2"><i data-lucide="triangle-alert"></i>Alerta de estoque baixo</div>
+                    <div class="float-chip chip-3"><i data-lucide="percent"></i>CMV: 28,4%</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PROBLEMA ============ -->
+        <section class="problem section-anchor" id="produto">
+            <div class="container">
+                <h2 class="section-title">Sua operação ainda depende de planilhas e controles espalhados?</h2>
+
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <i data-lucide="eye-off"></i>
+                        <h3>Falta de visibilidade</h3>
+                        <p>Informações espalhadas em planilhas e cadernos dificultam a tomada de decisão no dia a dia.</p>
+                    </div>
+                    <div class="problem-card">
+                        <i data-lucide="trending-down"></i>
+                        <h3>Perdas e desperdícios</h3>
+                        <p>Sem controle adequado, perdas de estoque e insumos podem passar despercebidas por meses.</p>
+                    </div>
+                    <div class="problem-card">
+                        <i data-lucide="repeat"></i>
+                        <h3>Processos manuais</h3>
+                        <p>Tarefas repetitivas e digitação manual consomem tempo que a equipe poderia usar na operação.</p>
+                    </div>
+                    <div class="problem-card">
+                        <i data-lucide="banknote"></i>
+                        <h3>Custos difíceis de acompanhar</h3>
+                        <p>Sem dados centralizados, fica mais difícil entender exatamente onde o dinheiro está sendo gasto.</p>
+                    </div>
+                </div>
+
+                <p class="problem-resolve">O <strong>GestãoPro</strong> centraliza tudo em um único lugar.</p>
+            </div>
+        </section>
+
+        <!-- ============ COMO FUNCIONA ============ -->
+        <section class="how section-anchor" id="como-funciona">
+            <div class="container">
+                <h2 class="section-title">Como funciona</h2>
+                <p class="section-subtitle">Três passos para colocar sua operação sob controle.</p>
+
+                <ol class="how-steps">
+                    <li class="how-step">
+                        <span class="how-index">01</span>
+                        <h3>Cadastre sua operação</h3>
+                        <p>Configure setores, produtos, usuários e processos de acordo com a realidade do seu negócio.</p>
+                    </li>
+                    <li class="how-step">
+                        <span class="how-index">02</span>
+                        <h3>Acompanhe em tempo real</h3>
+                        <p>Monitore estoque, custos, ocorrências e tarefas conforme acontecem, direto do painel.</p>
+                    </li>
+                    <li class="how-step">
+                        <span class="how-index">03</span>
+                        <h3>Tome decisões melhores</h3>
+                        <p>Use os dados da própria operação para reduzir perdas e melhorar resultados.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============ MÓDULOS ============ -->
+        <section class="modules section-anchor" id="modulos">
+            <div class="container">
+                <h2 class="section-title">Tudo o que sua operação precisa. Em um único lugar.</h2>
+                <p class="section-subtitle">Nove módulos integrados, organizados do jeito que sua equipe realmente trabalha.</p>
+
+                <div class="module-groups">
+                    <div class="module-group">
+                        <h3 class="module-group-title"><i data-lucide="layout-dashboard"></i>Gestão</h3>
+                        <div class="module-cards">
+                            <div class="module-card">
+                                <div class="module-icon"><i data-lucide="layout-dashboard"></i></div>
+                                <h4>Dashboard Inicial</h4>
+                                <p>Visão geral com indicadores em tempo real, resumo diário e acesso rápido a todos os módulos.</p>
+                            </div>
+                            <div class="module-card">
+                                <div class="module-icon"><i data-lucide="package"></i></div>
+                                <h4>Estoque</h4>
+                                <p>Contagem de itens, controle de quantidade mínima e importação de nota fiscal por foto ou PDF.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-group">
+                        <h3 class="module-group-title"><i data-lucide="calculator"></i>Custos</h3>
+                        <div class="module-cards">
+                            <div class="module-card">
+                                <div class="module-icon"><i data-lucide="calculator"></i></div>
+                                <h4>CMV</h4>
+                                <p>Ficha técnica por produto, cálculo automático do custo real e baixa automática de estoque.</p>
+                            </div>
+                            <div class="module-card">
+                                <div class="module-icon"><i data-lucide="users"></i></div>
+                                <h4>CMO</h4>
+                                <p>Lançamento de salários, encargos e benefícios, com meta de percentual sobre o faturamento.</p>
+                            </div>
+                            <div class="module-card">
+                                <div class="module-icon"><i data-lucide="credit-card"></i></div>
+                                <h4>CMC</h4>
+                                <p>Controle de custos de insumos e fornecedores, com análise do histórico de compras.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-group">
+                        <h3 class="module-group-title"><i data-lucide="clipboard-list"></i>Operação</h3>
+                        <div class="module-cards">
+                            <div class="module-card">
+                                <div class="module-icon"><i data-lucide="alert-circle"></i></div>
+                                <h4>Avarias &amp; Ocorrências</h4>
+                                <p>Registro de perdas com múltiplos itens, valor perdido, setor responsável e motivos sugeridos.</p>
+                            </div>
+                            <div class="module-card">
+                                <div class="module-icon"><i data-lucide="clipboard-check"></i></div>
+                                <h4>Checklists</h4>
+                                <p>Listas de tarefas por setor, com execução e confirmação por foto obrigatória.</p>
+                            </div>
+                            <div class="module-card">
+                                <div class="module-icon"><i data-lucide="sprout"></i></div>
+                                <h4>Beneficiamento</h4>
+                                <p>Controle de produção, perdas e aproveitamento de insumos, com confirmação fotográfica.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-group">
+                        <h3 class="module-group-title"><i data-lucide="wrench"></i>Manutenção</h3>
+                        <div class="module-cards module-cards-single">
+                            <div class="module-card">
+                                <div class="module-icon"><i data-lucide="wrench"></i></div>
+                                <h4>Requisição &amp; Manutenção</h4>
+                                <p>Pedidos de material e chamados de manutenção com foto do problema e histórico completo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demonstração com abas -->
+                <div class="demo">
+                    <div class="demo-copy">
+                        <span class="eyebrow">Demonstração</span>
+                        <h3>Tenha uma visão completa da sua operação</h3>
+                        <p>Alterne entre as áreas do sistema e veja como o GestãoPro organiza cada parte da sua operação em um único painel.</p>
+                        <div class="demo-tabs" role="tablist" aria-label="Áreas do sistema">
+                            <button class="demo-tab is-active" role="tab" aria-selected="true" aria-controls="demo-panel" data-tab="dashboard">Dashboard</button>
+                            <button class="demo-tab" role="tab" aria-selected="false" aria-controls="demo-panel" data-tab="estoque">Estoque</button>
+                            <button class="demo-tab" role="tab" aria-selected="false" aria-controls="demo-panel" data-tab="custos">Custos</button>
+                            <button class="demo-tab" role="tab" aria-selected="false" aria-controls="demo-panel" data-tab="operacao">Operação</button>
+                        </div>
+                    </div>
+
+                    <div class="demo-visual" id="demo-panel" role="tabpanel">
+                        <div class="demo-track">
+                            <div class="demo-screen" data-panel="dashboard">
+                                <img src="scr/destbord.png" alt="Tela do Dashboard do GestãoPro" class="demo-screen-img">
+                            </div>
+                            <div class="demo-screen" data-panel="estoque">
+                                <img src="scr/Estoque.png" alt="Tela de Estoque do GestãoPro" class="demo-screen-img">
+                            </div>
+                            <div class="demo-screen" data-panel="custos">
+                                <img src="scr/custo.png" alt="Tela de Custos do GestãoPro" class="demo-screen-img">
+                            </div>
+                            <div class="demo-screen" data-panel="operacao">
+                                <img src="scr/operaçao.png" alt="Tela de Operação do GestãoPro" class="demo-screen-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ DIFERENCIAIS ============ -->
+        <section class="differentiators section-anchor" id="diferenciais">
+            <div class="container">
+                <h2 class="section-title">Mais controle. Menos trabalho manual.</h2>
+
+                <div class="diff-layout">
+                    <div class="diff-feature">
+                        <div class="diff-icon"><i data-lucide="scan-text"></i></div>
+                        <h3>Leitura automática de notas fiscais</h3>
+                        <p>Envie uma foto ou PDF da nota fiscal e o sistema facilita o cadastro das informações, sem digitação manual.</p>
+                    </div>
+                    <div class="diff-card">
+                        <div class="diff-icon"><i data-lucide="camera"></i></div>
+                        <h3>Confirmação por foto</h3>
+                        <p>Tenha evidências visuais em processos críticos, como checklists e avarias.</p>
+                    </div>
+                    <div class="diff-card">
+                        <div class="diff-icon"><i data-lucide="smartphone"></i></div>
+                        <h3>Acesso em qualquer dispositivo</h3>
+                        <p>Use pelo celular, tablet ou computador, com a mesma experiência em qualquer lugar.</p>
+                    </div>
+                    <div class="diff-card diff-card-wide">
+                        <div class="diff-icon"><i data-lucide="radio"></i></div>
+                        <h3>Dados atualizados</h3>
+                        <p>Informações sempre em dia, para apoiar decisões mais rápidas sobre a operação.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ BENEFÍCIOS ============ -->
+        <section class="benefits">
+            <div class="container">
+                <h2 class="section-title">O que muda quando sua operação está sob controle?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit"><i data-lucide="trending-down"></i>
+                        <h3>Menos perdas</h3>
+                        <p>Ocorrências e avarias registradas e acompanhadas de perto.</p>
+                    </div>
+                    <div class="benefit"><i data-lucide="gauge"></i>
+                        <h3>Mais produtividade</h3>
+                        <p>Menos tempo em tarefas manuais e mais tempo na operação.</p>
+                    </div>
+                    <div class="benefit"><i data-lucide="boxes"></i>
+                        <h3>Mais controle de estoque</h3>
+                        <p>Quantidade, custo e movimentação sempre visíveis.</p>
+                    </div>
+                    <div class="benefit"><i data-lucide="zap"></i>
+                        <h3>Decisões mais rápidas</h3>
+                        <p>Dados centralizados, sem esperar planilhas serem atualizadas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SEGMENTOS ============ -->
+        <section class="segments">
+            <div class="container">
+                <h2 class="section-title">Para quem é o GestãoPro</h2>
+                <p class="section-subtitle">Uma plataforma modular para diferentes tipos de operações.</p>
+
+                <div class="segment-grid">
+                    <div class="segment-card"><i data-lucide="utensils"></i><span>Restaurantes</span></div>
+                    <div class="segment-card"><i data-lucide="bed-double"></i><span>Hotéis</span></div>
+                    <div class="segment-card"><i data-lucide="shopping-cart"></i><span>Mercados</span></div>
+                    <div class="segment-card"><i data-lucide="truck"></i><span>Distribuidoras</span></div>
+                    <div class="segment-card"><i data-lucide="cog"></i><span>Oficinas</span></div>
+                    <div class="segment-card"><i data-lucide="factory"></i><span>Cozinhas industriais</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PLANOS ============ -->
+        <section class="pricing section-anchor" id="planos">
+            <div class="container">
+                <h2 class="section-title">Planos simples e transparentes</h2>
+                <p class="section-subtitle">Escolha o plano certo para o tamanho da sua operação.</p>
+                <p class="pricing-note">* Valores de exemplo — a definir</p>
+
+                <div class="pricing-toggle" role="group" aria-label="Período de cobrança">
+                    <button class="toggle-option is-active" type="button" data-period="mensal">Mensal</button>
+                    <button class="toggle-option" type="button" data-period="anual">Anual</button>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="plan-card">
+                        <h3>Básico</h3>
+                        <p class="plan-desc">Para pequenos negócios</p>
+                        <div class="plan-price"><span class="price-value">R$ 000</span><span class="price-period" data-period-label>/mês</span></div>
+                        <button class="btn btn-ghost" type="button" style="width:100%">Começar agora</button>
+                        <ul class="plan-list">
+                            <li><i data-lucide="check"></i>Dashboard principal</li>
+                            <li><i data-lucide="check"></i>Gestão de estoque</li>
+                            <li><i data-lucide="check"></i>Até 3 usuários</li>
+                            <li class="is-off"><i data-lucide="minus"></i>Relatórios avançados</li>
+                            <li class="is-off"><i data-lucide="minus"></i>Leitura automática de NF</li>
+                        </ul>
+                    </div>
+
+                    <div class="plan-card plan-featured">
+                        <span class="plan-badge">Mais popular</span>
+                        <h3>Profissional</h3>
+                        <p class="plan-desc">Para empresas em crescimento</p>
+                        <div class="plan-price"><span class="price-value">R$ 000</span><span class="price-period" data-period-label>/mês</span></div>
+                        <button class="btn btn-primary" type="button" style="width:100%">Começar agora</button>
+                        <ul class="plan-list">
+                            <li><i data-lucide="check"></i>Todos os recursos do Básico</li>
+                            <li><i data-lucide="check"></i>CMV, CMO e CMC</li>
+                            <li><i data-lucide="check"></i>Até 10 usuários</li>
+                            <li><i data-lucide="check"></i>Relatórios avançados</li>
+                            <li><i data-lucide="check"></i>Leitura automática de NF</li>
+                        </ul>
+                    </div>
+
+                    <div class="plan-card">
+                        <h3>Empresarial</h3>
+                        <p class="plan-desc">Para operações maiores</p>
+                        <div class="plan-price"><span class="price-value">Sob consulta</span></div>
+                        <button class="btn btn-ghost" type="button" style="width:100%">Falar com consultor</button>
+                        <ul class="plan-list">
+                            <li><i data-lucide="check"></i>Todos os módulos</li>
+                            <li><i data-lucide="check"></i>Usuários ilimitados</li>
+                            <li><i data-lucide="check"></i>Suporte prioritário</li>
+                            <li><i data-lucide="check"></i>Personalizações</li>
+                            <li><i data-lucide="check"></i>Treinamento incluído</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CONFIANÇA (sem depoimentos fictícios) ============ -->
+        <section class="trust">
+            <div class="container trust-inner">
+                <h2>Construído para operações que precisam de mais controle</h2>
+                <p>Uma plataforma pensada para simplificar a gestão de estoque, custos e processos operacionais — do jeito que negócios reais funcionam.</p>
+            </div>
+        </section>
+
+        <!-- ============ FAQ ============ -->
+        <section class="faq section-anchor" id="faq">
+            <div class="container container-narrow">
+                <h2 class="section-title">Perguntas frequentes</h2>
+
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3><button class="faq-btn" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
+          O sistema funciona com qualquer tipo de negócio?
+          <i data-lucide="chevron-down" class="faq-icon"></i>
+        </button></h3>
+                        <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1" hidden>
+                            <p>Sim. O GestãoPro é modular e se adapta a diferentes operações — restaurantes, hotéis, mercados, oficinas, distribuidoras e cozinhas industriais, entre outros negócios que precisam controlar estoque, custos e operação.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3><button class="faq-btn" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
+          Posso usar no celular? Preciso instalar algo?
+          <i data-lucide="chevron-down" class="faq-icon"></i>
+        </button></h3>
+                        <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden>
+                            <p>Não é preciso instalar nada. O sistema funciona direto no navegador, com a mesma funcionalidade no celular, tablet ou computador.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3><button class="faq-btn" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
+          Como funciona a leitura automática de nota fiscal?
+          <i data-lucide="chevron-down" class="faq-icon"></i>
+        </button></h3>
+                        <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
+                            <p>Basta enviar uma foto ou o PDF da nota fiscal. O sistema lê os dados automaticamente e facilita o preenchimento do cadastro, reduzindo a digitação manual.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3><button class="faq-btn" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
+          Meus dados estão seguros?
+          <i data-lucide="chevron-down" class="faq-icon"></i>
+        </button></h3>
+                        <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden>
+                            <p>Sim. Os dados ficam armazenados de forma criptografada e com backup automático, com acesso restrito aos usuários da sua conta.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3><button class="faq-btn" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">
+          Como funcionam os planos e o cancelamento?
+          <i data-lucide="chevron-down" class="faq-icon"></i>
+        </button></h3>
+                        <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5" hidden>
+                            <p>Você escolhe o plano mensal ou anual de acordo com o tamanho da sua operação, sem contrato de fidelidade, podendo cancelar quando quiser.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3><button class="faq-btn" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">
+          Vocês oferecem suporte?
+          <i data-lucide="chevron-down" class="faq-icon"></i>
+        </button></h3>
+                        <div class="faq-answer" id="faq-a6" role="region" aria-labelledby="faq-q6" hidden>
+                            <p>Sim. O suporte funciona de segunda a sexta, por chat, e-mail e WhatsApp.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CTA FINAL ============ -->
+        <section class="final-cta">
+            <div class="container final-cta-inner">
+                <h2>Sua operação pode ser mais simples.</h2>
+                <p>Comece a organizar sua gestão com o GestãoPro.</p>
+                <button class="btn btn-white btn-lg" type="button">Começar agora</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#topo" class="brand">
+                    <span class="brand-mark" aria-hidden="true"></span>
+                    <span class="brand-name">GestãoPro</span>
+                </a>
+                <p>Gestão operacional inteligente para negócios que precisam de mais controle e menos planilhas.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Produto</h4>
+                <ul>
+                    <li><a href="#modulos">Módulos</a></li>
+                    <li><a href="#diferenciais">Diferenciais</a></li>
+                    <li><a href="#planos">Planos</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#topo">Sobre</a></li>
+                    <li><a href="#rodape-contato">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col" id="rodape-contato">
+                <h4>Suporte</h4>
+                <ul>
+                    <li><a href="#faq">Central de ajuda</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li class="footer-contact"><i data-lucide="mail"></i><a href="mailto:contato@gestaopro.com.br">contato@gestaopro.com.br</a></li>
+                    <li class="footer-contact"><i data-lucide="message-circle"></i><a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>© 2026 GestãoPro. Todos os direitos reservados.</p>
+            <p class="footer-legal">Política de Privacidade &middot; Termos de Uso</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
