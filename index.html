@@ -4,520 +4,576 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GestãoPro — Controle completo da sua operação em um único sistema</title>
-    <meta name="description" content="O GestãoPro reúne estoque, custos, equipe e processos operacionais em um único sistema modular. Reduza perdas, elimine planilhas e tenha controle real da sua operação.">
+    <title>Gestão Check | Gestão inteligente para sua operação</title>
+    <meta name="description" content="Gestão Check: uma plataforma para ajudar sua empresa a controlar estoque, custos, perdas e processos em um único ambiente.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Gestão Check | Gestão inteligente para sua operação">
+    <meta property="og:description" content="Centralize estoque, custos, perdas e processos da sua operação em uma única plataforma.">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gestão Check | Gestão inteligente para sua operação">
+    <meta name="twitter:description" content="Centralize estoque, custos, perdas e processos da sua operação em uma única plataforma.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="gc-body">
 
-    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-
-    <!-- ============ HEADER ============ -->
-    <header class="site-header" id="site-header">
-        <div class="header-inner">
-            <a href="#topo" class="brand">
-                <span class="brand-mark" aria-hidden="true"></span>
-                <span class="brand-name">GestãoPro</span>
-            </a>
-
-            <nav class="nav-desktop" aria-label="Navegação principal">
-                <a href="#produto">Produto</a>
-                <a href="#modulos">Módulos</a>
-                <a href="#diferenciais">Diferenciais</a>
+    <!-- ══════════ NAVBAR ══════════ -->
+    <nav id="navbar" class="gc-navbar">
+        <div class="gc-navbar-inner">
+            <div class="gc-navbar-logo">
+                <div class="gc-logo-icon"></div>
+                <span>Gestão Check</span>
+            </div>
+            <div class="gc-navbar-links">
+                <a href="#inicio">Início</a>
+                <a href="#funcionalidades">Funcionalidades</a>
                 <a href="#como-funciona">Como funciona</a>
+                <a href="#segmentos">Para quem é</a>
                 <a href="#planos">Planos</a>
                 <a href="#faq">FAQ</a>
-            </nav>
-
-            <div class="header-cta">
-                <button class="btn btn-primary btn-sm" type="button">Começar agora</button>
+                <a href="#contato">Contato</a>
             </div>
-
-            <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
-      <i data-lucide="menu" class="icon-open"></i>
-      <i data-lucide="x" class="icon-close"></i>
+            <a href="#" class="gc-btn gc-btn-primary gc-cta" data-cta="navbar">Solicitar demonstração</a>
+            <button id="mobileMenuBtn" class="gc-mobile-btn" aria-label="Abrir menu">
+      <i data-lucide="menu"></i>
     </button>
         </div>
-
-        <div id="mobile-menu" class="mobile-menu" hidden>
-            <a href="#produto">Produto</a>
-            <a href="#modulos">Módulos</a>
-            <a href="#diferenciais">Diferenciais</a>
+        <div id="mobileMenu" class="gc-mobile-menu">
+            <a href="#inicio">Início</a>
+            <a href="#funcionalidades">Funcionalidades</a>
             <a href="#como-funciona">Como funciona</a>
+            <a href="#segmentos">Para quem é</a>
             <a href="#planos">Planos</a>
             <a href="#faq">FAQ</a>
-            <button class="btn btn-primary" type="button">Começar agora</button>
+            <a href="#contato">Contato</a>
+            <a href="#" class="gc-btn gc-btn-primary gc-cta" data-cta="navbar-mobile">Solicitar demonstração</a>
         </div>
-    </header>
+    </nav>
 
-    <main id="conteudo">
-
-        <!-- ============ HERO ============ -->
-        <section class="hero section-anchor" id="topo">
-            <div class="hero-inner">
-                <div class="hero-copy">
-                    <span class="eyebrow">Gestão operacional inteligente</span>
-                    <h1 class="hero-title">Controle sua operação.<br>Reduza perdas.<br><span class="text-accent">Decida melhor.</span></h1>
-                    <p class="hero-subtitle">O GestãoPro reúne estoque, custos, equipe e processos operacionais em um único sistema modular — para sua empresa crescer com mais controle e menos retrabalho.</p>
-
-                    <div class="hero-actions">
-                        <button class="btn btn-primary btn-lg" type="button">Começar agora</button>
-                        <a href="#produto" class="btn btn-ghost btn-lg">Conhecer o sistema</a>
-                    </div>
-
-                    <ul class="hero-trust" role="list">
-                        <li><i data-lucide="check-circle-2"></i>Acesso pelo celular e computador</li>
-                        <li><i data-lucide="check-circle-2"></i>Sistema modular</li>
-                    </ul>
-                </div>
-
-                <div class="hero-visual" aria-hidden="true">
-                    <img src="scr/destbord.png" alt="Tela do painel do GestãoPro" class="dash-mockup-img">
-
-                    <div class="float-chip chip-1"><i data-lucide="package-check"></i>Estoque atualizado</div>
-                    <div class="float-chip chip-2"><i data-lucide="triangle-alert"></i>Alerta de estoque baixo</div>
-                    <div class="float-chip chip-3"><i data-lucide="percent"></i>CMV: 28,4%</div>
+    <!-- ══════════ HERO ══════════ -->
+    <section id="inicio" class="gc-hero section-anchor">
+        <div class="gc-hero-grid">
+            <div class="gc-hero-text">
+                <span class="gc-eyebrow gc-reveal">Plataforma de gestão operacional</span>
+                <h1 class="gc-reveal">Tenha controle total da sua operação.</h1>
+                <p class="gc-hero-sub gc-reveal">Reduza desperdícios, acompanhe custos e organize os processos da sua empresa em um único sistema.</p>
+                <p class="gc-hero-desc gc-reveal">O Gestão Check centraliza estoque, checklists, avarias, custos, requisições, manutenção e indicadores para ajudar sua equipe a trabalhar com mais organização e permitir que você tome decisões com mais segurança.</p>
+                <div class="gc-hero-buttons gc-reveal">
+                    <a href="#" class="gc-btn gc-btn-primary gc-btn-lg gc-cta" data-cta="hero-principal">Solicitar demonstração</a>
+                    <a href="#funcionalidades" class="gc-btn gc-btn-secondary gc-btn-lg">Conhecer funcionalidades</a>
                 </div>
             </div>
-        </section>
 
-        <!-- ============ PROBLEMA ============ -->
-        <section class="problem section-anchor" id="produto">
-            <div class="container">
-                <h2 class="section-title">Sua operação ainda depende de planilhas e controles espalhados?</h2>
-
-                <div class="problem-grid">
-                    <div class="problem-card">
-                        <i data-lucide="eye-off"></i>
-                        <h3>Falta de visibilidade</h3>
-                        <p>Informações espalhadas em planilhas e cadernos dificultam a tomada de decisão no dia a dia.</p>
+            <div class="gc-hero-visual gc-reveal">
+                <div class="gc-dash-mockup" id="dashMockup">
+                    <div class="gc-dm-sidebar">
+                        <div class="gc-dm-sidebar-logo"></div>
+                        <div class="gc-dm-sidebar-item gc-active"></div>
+                        <div class="gc-dm-sidebar-item"></div>
+                        <div class="gc-dm-sidebar-item"></div>
+                        <div class="gc-dm-sidebar-item"></div>
+                        <div class="gc-dm-sidebar-item"></div>
                     </div>
-                    <div class="problem-card">
-                        <i data-lucide="trending-down"></i>
-                        <h3>Perdas e desperdícios</h3>
-                        <p>Sem controle adequado, perdas de estoque e insumos podem passar despercebidas por meses.</p>
-                    </div>
-                    <div class="problem-card">
-                        <i data-lucide="repeat"></i>
-                        <h3>Processos manuais</h3>
-                        <p>Tarefas repetitivas e digitação manual consomem tempo que a equipe poderia usar na operação.</p>
-                    </div>
-                    <div class="problem-card">
-                        <i data-lucide="banknote"></i>
-                        <h3>Custos difíceis de acompanhar</h3>
-                        <p>Sem dados centralizados, fica mais difícil entender exatamente onde o dinheiro está sendo gasto.</p>
+                    <div class="gc-dm-main">
+                        <div class="gc-dm-topbar">
+                            <div class="gc-dm-topbar-title"></div>
+                            <div class="gc-dm-topbar-avatar"></div>
+                        </div>
+                        <div class="gc-dm-banner"></div>
+                        <div class="gc-dm-cards">
+                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-green"></span><span class="gc-dm-bar"></span></div>
+                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-orange"></span><span class="gc-dm-bar"></span></div>
+                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-blue"></span><span class="gc-dm-bar"></span></div>
+                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-purple"></span><span class="gc-dm-bar"></span></div>
+                        </div>
+                        <div class="gc-dm-chart">
+                            <svg viewBox="0 0 260 70" preserveAspectRatio="none">
+              <polyline points="0,55 30,42 60,48 90,28 120,32 150,16 180,20 210,8 240,14" fill="none" stroke="#6C63FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline points="0,55 30,42 60,48 90,28 120,32 150,16 180,20 210,8 240,14 240,70 0,70" fill="#6C63FF" opacity="0.08" />
+            </svg>
+                        </div>
                     </div>
                 </div>
-
-                <p class="problem-resolve">O <strong>GestãoPro</strong> centraliza tudo em um único lugar.</p>
+                <span class="gc-mockup-label">Representação ilustrativa do painel</span>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ============ COMO FUNCIONA ============ -->
-        <section class="how section-anchor" id="como-funciona">
-            <div class="container">
-                <h2 class="section-title">Como funciona</h2>
-                <p class="section-subtitle">Três passos para colocar sua operação sob controle.</p>
+    <!-- ══════════ PROBLEMAS ══════════ -->
+    <section class="gc-section gc-section-alt">
+        <div class="gc-container">
+            <div class="gc-section-head gc-reveal">
+                <h2>Sua empresa ainda enfrenta esses problemas?</h2>
+                <p>Quando informações importantes ficam espalhadas em planilhas, papéis e diferentes ferramentas, a operação perde eficiência e a gestão perde visibilidade.</p>
+            </div>
+            <div class="gc-grid gc-grid-3">
+                <div class="gc-problem-card gc-reveal">
+                    <div class="gc-problem-icon"><i data-lucide="package-x"></i></div>
+                    <h3>Estoque desatualizado</h3>
+                    <p>Sem visibilidade real do que tem disponível, faltas e excessos acontecem sem aviso.</p>
+                </div>
+                <div class="gc-problem-card gc-reveal">
+                    <div class="gc-problem-icon"><i data-lucide="trending-down"></i></div>
+                    <h3>Desperdícios sem controle</h3>
+                    <p>Perdas acontecem no dia a dia e ninguém sabe exatamente onde nem por quê.</p>
+                </div>
+                <div class="gc-problem-card gc-reveal">
+                    <div class="gc-problem-icon"><i data-lucide="clipboard-list"></i></div>
+                    <h3>Checklists feitos manualmente</h3>
+                    <p>Rotinas anotadas em papel, sem confirmação real de que foram cumpridas.</p>
+                </div>
+                <div class="gc-problem-card gc-reveal">
+                    <div class="gc-problem-icon"><i data-lucide="alert-triangle"></i></div>
+                    <h3>Avarias sem registro</h3>
+                    <p>Produtos danificados ou vencidos que nunca entram em nenhum controle.</p>
+                </div>
+                <div class="gc-problem-card gc-reveal">
+                    <div class="gc-problem-icon"><i data-lucide="bar-chart-3"></i></div>
+                    <h3>Dificuldade para acompanhar custos</h3>
+                    <p>Sem indicadores claros, fica difícil saber se a operação está saudável.</p>
+                </div>
+                <div class="gc-problem-card gc-reveal">
+                    <div class="gc-problem-icon"><i data-lucide="users"></i></div>
+                    <h3>Processos sem padronização</h3>
+                    <p>Cada setor faz do seu jeito, sem uma referência comum pra toda a equipe.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <ol class="how-steps">
-                    <li class="how-step">
-                        <span class="how-index">01</span>
+    <!-- ══════════ SOLUÇÃO ══════════ -->
+    <section class="gc-section">
+        <div class="gc-container gc-solucao-grid">
+            <div class="gc-reveal">
+                <span class="gc-eyebrow">A solução</span>
+                <h2>Uma plataforma para controlar toda a operação.</h2>
+                <p class="gc-lead">O Gestão Check reúne informações e processos importantes da sua operação em um único ambiente, permitindo que sua equipe trabalhe de forma mais organizada e que os gestores tenham uma visão mais clara do negócio.</p>
+            </div>
+            <div class="gc-reveal">
+                <div class="gc-dash-mockup gc-dash-mockup-lg">
+                    <div class="gc-dm-sidebar">
+                        <div class="gc-dm-sidebar-logo"></div>
+                        <div class="gc-dm-sidebar-item gc-active"></div>
+                        <div class="gc-dm-sidebar-item"></div>
+                        <div class="gc-dm-sidebar-item"></div>
+                        <div class="gc-dm-sidebar-item"></div>
+                    </div>
+                    <div class="gc-dm-main">
+                        <div class="gc-dm-topbar">
+                            <div class="gc-dm-topbar-title"></div>
+                            <div class="gc-dm-topbar-avatar"></div>
+                        </div>
+                        <div class="gc-dm-cards">
+                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-green"></span><span class="gc-dm-bar"></span></div>
+                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-orange"></span><span class="gc-dm-bar"></span></div>
+                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-blue"></span><span class="gc-dm-bar"></span></div>
+                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-purple"></span><span class="gc-dm-bar"></span></div>
+                        </div>
+                        <div class="gc-dm-chart">
+                            <svg viewBox="0 0 260 70" preserveAspectRatio="none">
+              <polyline points="0,50 30,38 60,44 90,24 120,30 150,14 180,18 210,6 240,12" fill="none" stroke="#6C63FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+                        </div>
+                    </div>
+                </div>
+                <span class="gc-mockup-label">Representação ilustrativa do painel</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ COMO FUNCIONA ══════════ -->
+    <section id="como-funciona" class="gc-section gc-section-alt section-anchor">
+        <div class="gc-container">
+            <div class="gc-section-head gc-reveal">
+                <h2>Como funciona</h2>
+            </div>
+            <div class="gc-timeline">
+                <div class="gc-timeline-item gc-reveal">
+                    <div class="gc-timeline-num">1</div>
+                    <div>
                         <h3>Cadastre sua operação</h3>
-                        <p>Configure setores, produtos, usuários e processos de acordo com a realidade do seu negócio.</p>
-                    </li>
-                    <li class="how-step">
-                        <span class="how-index">02</span>
-                        <h3>Acompanhe em tempo real</h3>
-                        <p>Monitore estoque, custos, ocorrências e tarefas conforme acontecem, direto do painel.</p>
-                    </li>
-                    <li class="how-step">
-                        <span class="how-index">03</span>
-                        <h3>Tome decisões melhores</h3>
-                        <p>Use os dados da própria operação para reduzir perdas e melhorar resultados.</p>
-                    </li>
-                </ol>
-            </div>
-        </section>
-
-        <!-- ============ MÓDULOS ============ -->
-        <section class="modules section-anchor" id="modulos">
-            <div class="container">
-                <h2 class="section-title">Tudo o que sua operação precisa. Em um único lugar.</h2>
-                <p class="section-subtitle">Nove módulos integrados, organizados do jeito que sua equipe realmente trabalha.</p>
-
-                <div class="module-groups">
-                    <div class="module-group">
-                        <h3 class="module-group-title"><i data-lucide="layout-dashboard"></i>Gestão</h3>
-                        <div class="module-cards">
-                            <div class="module-card">
-                                <div class="module-icon"><i data-lucide="layout-dashboard"></i></div>
-                                <h4>Dashboard Inicial</h4>
-                                <p>Visão geral com indicadores em tempo real, resumo diário e acesso rápido a todos os módulos.</p>
-                            </div>
-                            <div class="module-card">
-                                <div class="module-icon"><i data-lucide="package"></i></div>
-                                <h4>Estoque</h4>
-                                <p>Contagem de itens, controle de quantidade mínima e importação de nota fiscal por foto ou PDF.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="module-group">
-                        <h3 class="module-group-title"><i data-lucide="calculator"></i>Custos</h3>
-                        <div class="module-cards">
-                            <div class="module-card">
-                                <div class="module-icon"><i data-lucide="calculator"></i></div>
-                                <h4>CMV</h4>
-                                <p>Ficha técnica por produto, cálculo automático do custo real e baixa automática de estoque.</p>
-                            </div>
-                            <div class="module-card">
-                                <div class="module-icon"><i data-lucide="users"></i></div>
-                                <h4>CMO</h4>
-                                <p>Lançamento de salários, encargos e benefícios, com meta de percentual sobre o faturamento.</p>
-                            </div>
-                            <div class="module-card">
-                                <div class="module-icon"><i data-lucide="credit-card"></i></div>
-                                <h4>CMC</h4>
-                                <p>Controle de custos de insumos e fornecedores, com análise do histórico de compras.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="module-group">
-                        <h3 class="module-group-title"><i data-lucide="clipboard-list"></i>Operação</h3>
-                        <div class="module-cards">
-                            <div class="module-card">
-                                <div class="module-icon"><i data-lucide="alert-circle"></i></div>
-                                <h4>Avarias &amp; Ocorrências</h4>
-                                <p>Registro de perdas com múltiplos itens, valor perdido, setor responsável e motivos sugeridos.</p>
-                            </div>
-                            <div class="module-card">
-                                <div class="module-icon"><i data-lucide="clipboard-check"></i></div>
-                                <h4>Checklists</h4>
-                                <p>Listas de tarefas por setor, com execução e confirmação por foto obrigatória.</p>
-                            </div>
-                            <div class="module-card">
-                                <div class="module-icon"><i data-lucide="sprout"></i></div>
-                                <h4>Beneficiamento</h4>
-                                <p>Controle de produção, perdas e aproveitamento de insumos, com confirmação fotográfica.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="module-group">
-                        <h3 class="module-group-title"><i data-lucide="wrench"></i>Manutenção</h3>
-                        <div class="module-cards module-cards-single">
-                            <div class="module-card">
-                                <div class="module-icon"><i data-lucide="wrench"></i></div>
-                                <h4>Requisição &amp; Manutenção</h4>
-                                <p>Pedidos de material e chamados de manutenção com foto do problema e histórico completo.</p>
-                            </div>
-                        </div>
+                        <p>Configure sua empresa e comece a organizar os dados que importam.</p>
                     </div>
                 </div>
-
-                <!-- Demonstração com abas -->
-                <div class="demo">
-                    <div class="demo-copy">
-                        <span class="eyebrow">Demonstração</span>
-                        <h3>Tenha uma visão completa da sua operação</h3>
-                        <p>Alterne entre as áreas do sistema e veja como o GestãoPro organiza cada parte da sua operação em um único painel.</p>
-                        <div class="demo-tabs" role="tablist" aria-label="Áreas do sistema">
-                            <button class="demo-tab is-active" role="tab" aria-selected="true" aria-controls="demo-panel" data-tab="dashboard">Dashboard</button>
-                            <button class="demo-tab" role="tab" aria-selected="false" aria-controls="demo-panel" data-tab="estoque">Estoque</button>
-                            <button class="demo-tab" role="tab" aria-selected="false" aria-controls="demo-panel" data-tab="custos">Custos</button>
-                            <button class="demo-tab" role="tab" aria-selected="false" aria-controls="demo-panel" data-tab="operacao">Operação</button>
-                        </div>
+                <div class="gc-timeline-item gc-reveal">
+                    <div class="gc-timeline-num">2</div>
+                    <div>
+                        <h3>Organize seus setores e processos</h3>
+                        <p>Estruture o sistema de acordo com a realidade da sua operação.</p>
                     </div>
-
-                    <div class="demo-visual" id="demo-panel" role="tabpanel">
-                        <div class="demo-track">
-                            <div class="demo-screen" data-panel="dashboard">
-                                <img src="scr/destbord.png" alt="Tela do Dashboard do GestãoPro" class="demo-screen-img">
-                            </div>
-                            <div class="demo-screen" data-panel="estoque">
-                                <img src="scr/Estoque.png" alt="Tela de Estoque do GestãoPro" class="demo-screen-img">
-                            </div>
-                            <div class="demo-screen" data-panel="custos">
-                                <img src="scr/custo.png" alt="Tela de Custos do GestãoPro" class="demo-screen-img">
-                            </div>
-                            <div class="demo-screen" data-panel="operacao">
-                                <img src="scr/operaçao.png" alt="Tela de Operação do GestãoPro" class="demo-screen-img">
-                            </div>
-                        </div>
+                </div>
+                <div class="gc-timeline-item gc-reveal">
+                    <div class="gc-timeline-num">3</div>
+                    <div>
+                        <h3>Acompanhe informações e ocorrências</h3>
+                        <p>Registre o que acontece no dia a dia, em tempo real.</p>
+                    </div>
+                </div>
+                <div class="gc-timeline-item gc-reveal">
+                    <div class="gc-timeline-num">4</div>
+                    <div>
+                        <h3>Analise os resultados</h3>
+                        <p>Veja indicadores consolidados de todos os módulos.</p>
+                    </div>
+                </div>
+                <div class="gc-timeline-item gc-reveal">
+                    <div class="gc-timeline-num">5</div>
+                    <div>
+                        <h3>Tome decisões com mais segurança</h3>
+                        <p>Baseie suas escolhas em dados reais, não em suposições.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ============ DIFERENCIAIS ============ -->
-        <section class="differentiators section-anchor" id="diferenciais">
-            <div class="container">
-                <h2 class="section-title">Mais controle. Menos trabalho manual.</h2>
-
-                <div class="diff-layout">
-                    <div class="diff-feature">
-                        <div class="diff-icon"><i data-lucide="scan-text"></i></div>
-                        <h3>Leitura automática de notas fiscais</h3>
-                        <p>Envie uma foto ou PDF da nota fiscal e o sistema facilita o cadastro das informações, sem digitação manual.</p>
-                    </div>
-                    <div class="diff-card">
-                        <div class="diff-icon"><i data-lucide="camera"></i></div>
-                        <h3>Confirmação por foto</h3>
-                        <p>Tenha evidências visuais em processos críticos, como checklists e avarias.</p>
-                    </div>
-                    <div class="diff-card">
-                        <div class="diff-icon"><i data-lucide="smartphone"></i></div>
-                        <h3>Acesso em qualquer dispositivo</h3>
-                        <p>Use pelo celular, tablet ou computador, com a mesma experiência em qualquer lugar.</p>
-                    </div>
-                    <div class="diff-card diff-card-wide">
-                        <div class="diff-icon"><i data-lucide="radio"></i></div>
-                        <h3>Dados atualizados</h3>
-                        <p>Informações sempre em dia, para apoiar decisões mais rápidas sobre a operação.</p>
-                    </div>
-                </div>
+    <!-- ══════════ FUNCIONALIDADES ══════════ -->
+    <section id="funcionalidades" class="gc-section section-anchor">
+        <div class="gc-container">
+            <div class="gc-section-head gc-reveal">
+                <h2>Funcionalidades</h2>
+                <p>Organizadas por área da sua operação</p>
             </div>
-        </section>
 
-        <!-- ============ BENEFÍCIOS ============ -->
-        <section class="benefits">
-            <div class="container">
-                <h2 class="section-title">O que muda quando sua operação está sob controle?</h2>
-                <div class="benefits-grid">
-                    <div class="benefit"><i data-lucide="trending-down"></i>
-                        <h3>Menos perdas</h3>
-                        <p>Ocorrências e avarias registradas e acompanhadas de perto.</p>
-                    </div>
-                    <div class="benefit"><i data-lucide="gauge"></i>
-                        <h3>Mais produtividade</h3>
-                        <p>Menos tempo em tarefas manuais e mais tempo na operação.</p>
-                    </div>
-                    <div class="benefit"><i data-lucide="boxes"></i>
-                        <h3>Mais controle de estoque</h3>
-                        <p>Quantidade, custo e movimentação sempre visíveis.</p>
-                    </div>
-                    <div class="benefit"><i data-lucide="zap"></i>
-                        <h3>Decisões mais rápidas</h3>
-                        <p>Dados centralizados, sem esperar planilhas serem atualizadas.</p>
-                    </div>
-                </div>
+            <div class="gc-tabs gc-reveal" id="funcTabs">
+                <button class="gc-tab active" data-tab="operacional">Gestão Operacional</button>
+                <button class="gc-tab" data-tab="custos">Gestão de Custos</button>
+                <button class="gc-tab" data-tab="perdas">Controle de Perdas</button>
+                <button class="gc-tab" data-tab="processos">Gestão de Processos</button>
             </div>
-        </section>
 
-        <!-- ============ SEGMENTOS ============ -->
-        <section class="segments">
-            <div class="container">
-                <h2 class="section-title">Para quem é o GestãoPro</h2>
-                <p class="section-subtitle">Uma plataforma modular para diferentes tipos de operações.</p>
-
-                <div class="segment-grid">
-                    <div class="segment-card"><i data-lucide="utensils"></i><span>Restaurantes</span></div>
-                    <div class="segment-card"><i data-lucide="bed-double"></i><span>Hotéis</span></div>
-                    <div class="segment-card"><i data-lucide="shopping-cart"></i><span>Mercados</span></div>
-                    <div class="segment-card"><i data-lucide="truck"></i><span>Distribuidoras</span></div>
-                    <div class="segment-card"><i data-lucide="cog"></i><span>Oficinas</span></div>
-                    <div class="segment-card"><i data-lucide="factory"></i><span>Cozinhas industriais</span></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ PLANOS ============ -->
-        <section class="pricing section-anchor" id="planos">
-            <div class="container">
-                <h2 class="section-title">Planos simples e transparentes</h2>
-                <p class="section-subtitle">Escolha o plano certo para o tamanho da sua operação.</p>
-                <p class="pricing-note">* Valores de exemplo — a definir</p>
-
-                <div class="pricing-toggle" role="group" aria-label="Período de cobrança">
-                    <button class="toggle-option is-active" type="button" data-period="mensal">Mensal</button>
-                    <button class="toggle-option" type="button" data-period="anual">Anual</button>
-                </div>
-
-                <div class="pricing-grid">
-                    <div class="plan-card">
-                        <h3>Básico</h3>
-                        <p class="plan-desc">Para pequenos negócios</p>
-                        <div class="plan-price"><span class="price-value">R$ 000</span><span class="price-period" data-period-label>/mês</span></div>
-                        <button class="btn btn-ghost" type="button" style="width:100%">Começar agora</button>
-                        <ul class="plan-list">
-                            <li><i data-lucide="check"></i>Dashboard principal</li>
-                            <li><i data-lucide="check"></i>Gestão de estoque</li>
-                            <li><i data-lucide="check"></i>Até 3 usuários</li>
-                            <li class="is-off"><i data-lucide="minus"></i>Relatórios avançados</li>
-                            <li class="is-off"><i data-lucide="minus"></i>Leitura automática de NF</li>
-                        </ul>
-                    </div>
-
-                    <div class="plan-card plan-featured">
-                        <span class="plan-badge">Mais popular</span>
-                        <h3>Profissional</h3>
-                        <p class="plan-desc">Para empresas em crescimento</p>
-                        <div class="plan-price"><span class="price-value">R$ 000</span><span class="price-period" data-period-label>/mês</span></div>
-                        <button class="btn btn-primary" type="button" style="width:100%">Começar agora</button>
-                        <ul class="plan-list">
-                            <li><i data-lucide="check"></i>Todos os recursos do Básico</li>
-                            <li><i data-lucide="check"></i>CMV, CMO e CMC</li>
-                            <li><i data-lucide="check"></i>Até 10 usuários</li>
-                            <li><i data-lucide="check"></i>Relatórios avançados</li>
-                            <li><i data-lucide="check"></i>Leitura automática de NF</li>
-                        </ul>
-                    </div>
-
-                    <div class="plan-card">
-                        <h3>Empresarial</h3>
-                        <p class="plan-desc">Para operações maiores</p>
-                        <div class="plan-price"><span class="price-value">Sob consulta</span></div>
-                        <button class="btn btn-ghost" type="button" style="width:100%">Falar com consultor</button>
-                        <ul class="plan-list">
-                            <li><i data-lucide="check"></i>Todos os módulos</li>
-                            <li><i data-lucide="check"></i>Usuários ilimitados</li>
-                            <li><i data-lucide="check"></i>Suporte prioritário</li>
-                            <li><i data-lucide="check"></i>Personalizações</li>
-                            <li><i data-lucide="check"></i>Treinamento incluído</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ CONFIANÇA (sem depoimentos fictícios) ============ -->
-        <section class="trust">
-            <div class="container trust-inner">
-                <h2>Construído para operações que precisam de mais controle</h2>
-                <p>Uma plataforma pensada para simplificar a gestão de estoque, custos e processos operacionais — do jeito que negócios reais funcionam.</p>
-            </div>
-        </section>
-
-        <!-- ============ FAQ ============ -->
-        <section class="faq section-anchor" id="faq">
-            <div class="container container-narrow">
-                <h2 class="section-title">Perguntas frequentes</h2>
-
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <h3><button class="faq-btn" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
-          O sistema funciona com qualquer tipo de negócio?
-          <i data-lucide="chevron-down" class="faq-icon"></i>
-        </button></h3>
-                        <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1" hidden>
-                            <p>Sim. O GestãoPro é modular e se adapta a diferentes operações — restaurantes, hotéis, mercados, oficinas, distribuidoras e cozinhas industriais, entre outros negócios que precisam controlar estoque, custos e operação.</p>
+            <div class="gc-tab-panels">
+                <div class="gc-tab-panel active" data-panel="operacional">
+                    <div class="gc-grid gc-grid-4">
+                        <div class="gc-func-card"><i data-lucide="package"></i>
+                            <h4>Estoque</h4>
+                            <p>Controle de itens, quantidades e categorias.</p>
+                        </div>
+                        <div class="gc-func-card"><i data-lucide="clipboard-check"></i>
+                            <h4>Contagens</h4>
+                            <p>Conferência de estoque organizada por setor.</p>
+                        </div>
+                        <div class="gc-func-card"><i data-lucide="sprout"></i>
+                            <h4>Beneficiamento</h4>
+                            <p>Produção, perdas e aproveitamento de insumos.</p>
+                        </div>
+                        <div class="gc-func-card"><i data-lucide="file-text"></i>
+                            <h4>Requisições</h4>
+                            <p>Pedidos de material entre setores.</p>
                         </div>
                     </div>
-
-                    <div class="faq-item">
-                        <h3><button class="faq-btn" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
-          Posso usar no celular? Preciso instalar algo?
-          <i data-lucide="chevron-down" class="faq-icon"></i>
-        </button></h3>
-                        <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden>
-                            <p>Não é preciso instalar nada. O sistema funciona direto no navegador, com a mesma funcionalidade no celular, tablet ou computador.</p>
+                </div>
+                <div class="gc-tab-panel" data-panel="custos">
+                    <div class="gc-grid gc-grid-4">
+                        <div class="gc-func-card"><i data-lucide="calculator"></i>
+                            <h4>CMV</h4>
+                            <p>Custo da mercadoria vendida por produto.</p>
+                        </div>
+                        <div class="gc-func-card"><i data-lucide="users"></i>
+                            <h4>CMO</h4>
+                            <p>Custo de mão de obra e encargos.</p>
+                        </div>
+                        <div class="gc-func-card"><i data-lucide="credit-card"></i>
+                            <h4>CMC</h4>
+                            <p>Custo médio de compra e fornecedores.</p>
+                        </div>
+                        <div class="gc-func-card"><i data-lucide="line-chart"></i>
+                            <h4>Indicadores</h4>
+                            <p>Visão consolidada dos custos da operação.</p>
                         </div>
                     </div>
-
-                    <div class="faq-item">
-                        <h3><button class="faq-btn" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
-          Como funciona a leitura automática de nota fiscal?
-          <i data-lucide="chevron-down" class="faq-icon"></i>
-        </button></h3>
-                        <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
-                            <p>Basta enviar uma foto ou o PDF da nota fiscal. O sistema lê os dados automaticamente e facilita o preenchimento do cadastro, reduzindo a digitação manual.</p>
+                </div>
+                <div class="gc-tab-panel" data-panel="perdas">
+                    <div class="gc-grid gc-grid-3">
+                        <div class="gc-func-card"><i data-lucide="alert-circle"></i>
+                            <h4>Avarias</h4>
+                            <p>Registro de perdas com múltiplos itens e setor responsável.</p>
+                        </div>
+                        <div class="gc-func-card"><i data-lucide="message-square-warning"></i>
+                            <h4>Ocorrências</h4>
+                            <p>Registro rápido de problemas operacionais por setor.</p>
+                        </div>
+                        <div class="gc-func-card"><i data-lucide="trash-2"></i>
+                            <h4>Desperdícios</h4>
+                            <p>Visibilidade sobre onde a operação está perdendo recursos.</p>
                         </div>
                     </div>
-
-                    <div class="faq-item">
-                        <h3><button class="faq-btn" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
-          Meus dados estão seguros?
-          <i data-lucide="chevron-down" class="faq-icon"></i>
-        </button></h3>
-                        <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden>
-                            <p>Sim. Os dados ficam armazenados de forma criptografada e com backup automático, com acesso restrito aos usuários da sua conta.</p>
+                </div>
+                <div class="gc-tab-panel" data-panel="processos">
+                    <div class="gc-grid gc-grid-3">
+                        <div class="gc-func-card"><i data-lucide="clipboard-list"></i>
+                            <h4>Checklists</h4>
+                            <p>Rotinas com confirmação por foto, evitando registros falsos.</p>
                         </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3><button class="faq-btn" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">
-          Como funcionam os planos e o cancelamento?
-          <i data-lucide="chevron-down" class="faq-icon"></i>
-        </button></h3>
-                        <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5" hidden>
-                            <p>Você escolhe o plano mensal ou anual de acordo com o tamanho da sua operação, sem contrato de fidelidade, podendo cancelar quando quiser.</p>
+                        <div class="gc-func-card"><i data-lucide="wrench"></i>
+                            <h4>Manutenção</h4>
+                            <p>Abertura de chamados com descrição e foto do problema.</p>
                         </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3><button class="faq-btn" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">
-          Vocês oferecem suporte?
-          <i data-lucide="chevron-down" class="faq-icon"></i>
-        </button></h3>
-                        <div class="faq-answer" id="faq-a6" role="region" aria-labelledby="faq-q6" hidden>
-                            <p>Sim. O suporte funciona de segunda a sexta, por chat, e-mail e WhatsApp.</p>
+                        <div class="gc-func-card"><i data-lucide="bar-chart-2"></i>
+                            <h4>Relatórios</h4>
+                            <p>Visão geral de todos os módulos, filtrável por setor e período.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ============ CTA FINAL ============ -->
-        <section class="final-cta">
-            <div class="container final-cta-inner">
-                <h2>Sua operação pode ser mais simples.</h2>
-                <p>Comece a organizar sua gestão com o GestãoPro.</p>
-                <button class="btn btn-white btn-lg" type="button">Começar agora</button>
+    <!-- ══════════ BENEFÍCIOS ══════════ -->
+    <section class="gc-section gc-section-alt">
+        <div class="gc-container">
+            <div class="gc-section-head gc-reveal">
+                <h2>O que você ganha com o Gestão Check</h2>
             </div>
-        </section>
-
-    </main>
-
-    <!-- ============ FOOTER ============ -->
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <a href="#topo" class="brand">
-                    <span class="brand-mark" aria-hidden="true"></span>
-                    <span class="brand-name">GestãoPro</span>
-                </a>
-                <p>Gestão operacional inteligente para negócios que precisam de mais controle e menos planilhas.</p>
+            <div class="gc-grid gc-grid-3">
+                <div class="gc-benefit-card gc-reveal">
+                    <div class="gc-benefit-icon"><i data-lucide="trending-down"></i></div>
+                    <h3>Reduza desperdícios</h3>
+                    <p>Registre perdas e avarias e tenha mais visibilidade sobre onde sua empresa está desperdiçando recursos.</p>
+                </div>
+                <div class="gc-benefit-card gc-reveal">
+                    <div class="gc-benefit-icon"><i data-lucide="layout-grid"></i></div>
+                    <h3>Padronize processos</h3>
+                    <p>Transforme rotinas e checklists em processos organizados, facilitando o acompanhamento da equipe.</p>
+                </div>
+                <div class="gc-benefit-card gc-reveal">
+                    <div class="gc-benefit-icon"><i data-lucide="shield-check"></i></div>
+                    <h3>Tenha mais controle</h3>
+                    <p>Centralize informações importantes e acompanhe a operação com mais clareza.</p>
+                </div>
+                <div class="gc-benefit-card gc-reveal">
+                    <div class="gc-benefit-icon"><i data-lucide="brain-circuit"></i></div>
+                    <h3>Decisões baseadas em dados</h3>
+                    <p>Transforme informações operacionais em indicadores que ajudam sua empresa a decidir melhor.</p>
+                </div>
+                <div class="gc-benefit-card gc-reveal">
+                    <div class="gc-benefit-icon"><i data-lucide="layers"></i></div>
+                    <h3>Centralize sua gestão</h3>
+                    <p>Tenha diferentes processos e informações reunidos em uma única plataforma.</p>
+                </div>
+                <div class="gc-benefit-card gc-reveal">
+                    <div class="gc-benefit-icon"><i data-lucide="smartphone"></i></div>
+                    <h3>Acesso de qualquer lugar</h3>
+                    <p>Use pelo navegador, no computador ou no celular, sem instalar nada.</p>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="footer-col">
+    <!-- ══════════ DEMONSTRAÇÃO ══════════ -->
+    <section class="gc-section gc-demo-section">
+        <div class="gc-container gc-demo-inner gc-reveal">
+            <h2>Veja o Gestão Check na prática.</h2>
+            <p>Conheça os recursos do Gestão Check e descubra como a plataforma pode se adaptar às necessidades da sua operação.</p>
+            <div class="gc-video-placeholder">
+                <i data-lucide="play-circle"></i>
+                <span>Vídeo de demonstração em breve</span>
+            </div>
+            <a href="#" class="gc-btn gc-btn-primary gc-btn-lg gc-cta" data-cta="demonstracao">Solicitar demonstração</a>
+        </div>
+    </section>
+
+    <!-- ══════════ SEGURANÇA ══════════ -->
+    <section class="gc-section gc-section-alt">
+        <div class="gc-container gc-seguranca-grid">
+            <div class="gc-reveal">
+                <span class="gc-eyebrow">Segurança</span>
+                <h2>Segurança e controle para sua operação.</h2>
+                <p class="gc-lead">O acesso ao Gestão Check é feito por login individual, garantindo que cada usuário tenha sua própria conta dentro do sistema.</p>
+            </div>
+            <div class="gc-grid gc-grid-1 gc-reveal">
+                <div class="gc-security-item">
+                    <i data-lucide="log-in"></i>
+                    <div>
+                        <h4>Autenticação por conta</h4>
+                        <p>Cada pessoa acessa com seu próprio usuário e senha.</p>
+                    </div>
+                </div>
+                <div class="gc-security-item">
+                    <i data-lucide="lock"></i>
+                    <div>
+                        <h4>Acesso controlado</h4>
+                        <p>Apenas usuários cadastrados conseguem entrar no sistema.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ SEGMENTOS ══════════ -->
+    <section id="segmentos" class="gc-section section-anchor">
+        <div class="gc-container">
+            <div class="gc-section-head gc-reveal">
+                <h2>Feito para operações que precisam de mais controle.</h2>
+            </div>
+            <div class="gc-grid gc-grid-3">
+                <div class="gc-segment-card gc-reveal"><span class="gc-segment-emoji">🍕</span>
+                    <h3>Pizzarias</h3>
+                </div>
+                <div class="gc-segment-card gc-reveal"><span class="gc-segment-emoji">🍽️</span>
+                    <h3>Restaurantes</h3>
+                </div>
+                <div class="gc-segment-card gc-reveal"><span class="gc-segment-emoji">🥐</span>
+                    <h3>Padarias</h3>
+                </div>
+                <div class="gc-segment-card gc-reveal"><span class="gc-segment-emoji">🍺</span>
+                    <h3>Bares</h3>
+                </div>
+                <div class="gc-segment-card gc-reveal"><span class="gc-segment-emoji">🏨</span>
+                    <h3>Hotéis</h3>
+                </div>
+                <div class="gc-segment-card gc-reveal"><span class="gc-segment-emoji">🏢</span>
+                    <h3>Empresas de alimentação</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ PLANOS ══════════ -->
+    <section id="planos" class="gc-section gc-section-alt section-anchor">
+        <div class="gc-container gc-planos-inner gc-reveal">
+            <h2>Encontre a solução ideal para sua operação.</h2>
+            <p>Cada empresa possui necessidades diferentes. Entre em contato com nossa equipe para conhecer o Gestão Check e entender a melhor solução para a sua operação.</p>
+            <a href="#" class="gc-btn gc-btn-primary gc-btn-lg gc-cta" data-cta="planos">Solicitar orçamento</a>
+        </div>
+    </section>
+
+    <!-- ══════════ FAQ ══════════ -->
+    <section id="faq" class="gc-section section-anchor">
+        <div class="gc-container gc-faq-container">
+            <div class="gc-section-head gc-reveal">
+                <h2>Perguntas Frequentes</h2>
+            </div>
+            <div class="gc-faq-list gc-reveal">
+
+                <div class="gc-faq-item">
+                    <button class="gc-faq-btn"><span>O que é o Gestão Check?</span><i data-lucide="chevron-down"></i></button>
+                    <div class="gc-faq-answer">
+                        <p>É uma plataforma de gestão operacional que centraliza estoque, custos, perdas e processos da sua empresa em um único ambiente.</p>
+                    </div>
+                </div>
+
+                <div class="gc-faq-item">
+                    <button class="gc-faq-btn"><span>Para quais empresas o Gestão Check é indicado?</span><i data-lucide="chevron-down"></i></button>
+                    <div class="gc-faq-answer">
+                        <p>Para operações que precisam de mais controle sobre estoque, custos e processos — com foco especial em negócios de alimentação, como restaurantes, pizzarias, padarias, bares e hotéis.</p>
+                    </div>
+                </div>
+
+                <div class="gc-faq-item">
+                    <button class="gc-faq-btn"><span>O Gestão Check funciona no celular?</span><i data-lucide="chevron-down"></i></button>
+                    <div class="gc-faq-answer">
+                        <p>Sim. O sistema é acessado pelo navegador e se adapta a computadores, tablets e celulares.</p>
+                    </div>
+                </div>
+
+                <div class="gc-faq-item">
+                    <button class="gc-faq-btn"><span>Preciso instalar algum programa?</span><i data-lucide="chevron-down"></i></button>
+                    <div class="gc-faq-answer">
+                        <p>Não. O acesso é feito diretamente pelo navegador, sem necessidade de instalação.</p>
+                    </div>
+                </div>
+
+                <div class="gc-faq-item">
+                    <button class="gc-faq-btn"><span>O sistema possui controle de usuários?</span><i data-lucide="chevron-down"></i></button>
+                    <div class="gc-faq-answer">
+                        <p>Sim, o acesso é feito por conta individual, com login e senha próprios para cada usuário.</p>
+                    </div>
+                </div>
+
+                <div class="gc-faq-item">
+                    <button class="gc-faq-btn"><span>Como funciona a demonstração?</span><i data-lucide="chevron-down"></i></button>
+                    <div class="gc-faq-answer">
+                        <p>Basta solicitar contato através dos botões do site. Nossa equipe vai te mostrar a plataforma e entender as necessidades da sua operação.</p>
+                    </div>
+                </div>
+
+                <div class="gc-faq-item">
+                    <button class="gc-faq-btn"><span>O Gestão Check possui período de teste grátis?</span><i data-lucide="chevron-down"></i></button>
+                    <div class="gc-faq-answer">
+                        <p>Atualmente, o Gestão Check não oferece período de teste grátis. Entre em contato com nossa equipe para solicitar uma demonstração e conhecer melhor a plataforma.</p>
+                    </div>
+                </div>
+
+                <div class="gc-faq-item">
+                    <button class="gc-faq-btn"><span>Como faço para contratar?</span><i data-lucide="chevron-down"></i></button>
+                    <div class="gc-faq-answer">
+                        <p>Entre em contato através do WhatsApp ou dos botões de "Solicitar demonstração" espalhados pelo site. Nossa equipe vai te orientar sobre os próximos passos.</p>
+                    </div>
+                </div>
+
+                <div class="gc-faq-item">
+                    <button class="gc-faq-btn"><span>O sistema oferece suporte?</span><i data-lucide="chevron-down"></i></button>
+                    <div class="gc-faq-answer">
+                        <p>Sim, oferecemos suporte técnico para ajudar sua equipe a utilizar a plataforma.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ CTA FINAL ══════════ -->
+    <section class="gc-cta-final">
+        <div class="gc-container gc-reveal">
+            <h2>Sua empresa merece uma gestão mais inteligente.</h2>
+            <p>Centralize processos, tenha mais controle sobre sua operação e transforme informações em decisões melhores.</p>
+            <div class="gc-hero-buttons" style="justify-content:center;">
+                <a href="#" class="gc-btn gc-btn-white gc-btn-lg gc-cta" data-cta="final-1">Solicitar demonstração</a>
+                <a href="#" class="gc-btn gc-btn-outline-white gc-btn-lg gc-cta" data-cta="final-2">Falar com nossa equipe</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ FOOTER ══════════ -->
+    <footer id="contato" class="gc-footer section-anchor">
+        <div class="gc-container gc-footer-grid">
+            <div>
+                <div class="gc-navbar-logo" style="margin-bottom:14px;">
+                    <div class="gc-logo-icon"></div>
+                    <span style="color:#fff;">Gestão Check</span>
+                </div>
+                <p class="gc-footer-desc">Gestão inteligente para operações mais organizadas, eficientes e controladas.</p>
+            </div>
+            <div>
                 <h4>Produto</h4>
                 <ul>
-                    <li><a href="#modulos">Módulos</a></li>
-                    <li><a href="#diferenciais">Diferenciais</a></li>
-                    <li><a href="#planos">Planos</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Empresa</h4>
-                <ul>
-                    <li><a href="#topo">Sobre</a></li>
-                    <li><a href="#rodape-contato">Contato</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col" id="rodape-contato">
-                <h4>Suporte</h4>
-                <ul>
-                    <li><a href="#faq">Central de ajuda</a></li>
+                    <li><a href="#funcionalidades">Funcionalidades</a></li>
+                    <li><a href="#como-funciona">Como funciona</a></li>
                     <li><a href="#faq">FAQ</a></li>
-                    <li class="footer-contact"><i data-lucide="mail"></i><a href="mailto:contato@gestaopro.com.br">contato@gestaopro.com.br</a></li>
-                    <li class="footer-contact"><i data-lucide="message-circle"></i><a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp</a></li>
+                    <li><a href="#contato">Contato</a></li>
                 </ul>
             </div>
+            <div>
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contato</h4>
+                <div class="gc-footer-social">
+                    <a href="#" class="gc-cta" data-cta="footer-whatsapp" title="WhatsApp"><i data-lucide="message-circle"></i></a>
+                    <a href="#" title="E-mail"><i data-lucide="mail"></i></a>
+                    <a href="#" title="Instagram"><i data-lucide="instagram"></i></a>
+                    <a href="#" title="LinkedIn"><i data-lucide="linkedin"></i></a>
+                </div>
+            </div>
         </div>
-
-        <div class="container footer-bottom">
-            <p>© 2026 GestãoPro. Todos os direitos reservados.</p>
-            <p class="footer-legal">Política de Privacidade &middot; Termos de Uso</p>
-        </div>
+        <div class="gc-footer-bottom">© 2026 Gestão Check. Todos os direitos reservados.</div>
     </footer>
 
     <script src="script.js"></script>
