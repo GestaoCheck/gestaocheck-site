@@ -27,11 +27,15 @@
                 <div class="logo-icon"><i class="fas fa-check-double"></i></div>
                 Gestão<span style="color: var(--secondary)">Check</span>
             </a>
-            <ul class="nav-links">
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+<i class="fas fa-bars"></i>
+</button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#problemas">Problemas</a></li>
                 <li><a href="#funcionalidades">Funcionalidades</a></li>
                 <li><a href="#seguranca">Segurança</a></li>
                 <li><a href="#diferenciais">Diferenciais</a></li>
+                <li><a href="#sobre">Nossa história</a></li>
                 <li><a href="#contato" class="btn btn-primary" style="padding: 8px 20px;">Falar com Especialista</a></li>
             </ul>
         </div>
@@ -43,7 +47,7 @@
                 <h1>Controle total da sua empresa em um único sistema.</h1>
                 <p>Gerencie estoque, custos, produção, equipe, ocorrências, checklists e indicadores em tempo real.</p>
                 <div class="hero-buttons">
-                    <a href="#" class="btn btn-primary">Começar demonstração <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://wa.me/5585999999999?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="btn btn-primary">Começar demonstração <i class="fas fa-arrow-right"></i></a>
                     <a href="#contato" class="btn btn-secondary">Solicitar apresentação</a>
                 </div>
             </div>
@@ -273,21 +277,6 @@
             </div>
         </div>
     </section>
-    <!-- PERMISSIONS -->
-    <section class="permissions">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="tag">Permissões</span>
-                <h2>Cada um enxerga apenas o que pode acessar.</h2>
-                <p>Hierarquia de usuários estruturada para proteger dados sensíveis e manter a organização.</p>
-            </div>
-            <div class="hierarchy-flow reveal">
-                <div class="role-card">Colaborador <i class="fas fa-arrow-down" style="display:block; margin-top:10px; color:var(--border)"></i></div>
-                <div class="role-card">Gerente <i class="fas fa-arrow-down" style="display:block; margin-top:10px; color:var(--border)"></i></div>
-                <div class="role-card">Dono</div>
-            </div>
-        </div>
-    </section>
     <!-- COMPATIBILITY -->
     <section class="bg-gray">
         <div class="container">
@@ -404,13 +393,134 @@
             </div>
         </div>
     </section>
+    <!-- SOBRE / NOSSA HISTÓRIA -->
+    <section id="sobre" class="bg-gray about-history">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Nossa história</span>
+                <h2>De uma dor real para uma solução completa</h2>
+            </div>
+            <div class="story-layout">
+                <div class="story-text reveal">
+                    <p class="story-lead">O GestãoCheck começou dentro de uma pizzaria — não em uma sala de reunião.</p>
+                    <p>Jarbas Jamysson, um dos fundadores, vivenciou na prática as dificuldades de administrar uma operação sem as ferramentas certas. A experiência se repetiu em outros lugares onde ele trabalhou, e ficou evidente que o problema não era
+                        só dele: muitos negócios enfrentam os mesmos desafios no dia a dia da gestão operacional.</p>
+                    <p>Foi a partir dessa experiência que surgiu a ideia de criar uma solução que não resolvesse apenas o problema de uma pizzaria, mas que pudesse se adaptar à realidade de diferentes empresas — de restaurantes a oficinas, mercados, distribuidoras,
+                        hotéis, cozinhas industriais e postos de combustível. O projeto passou a ser desenvolvido por <strong>Jarbas Jamysson</strong>, <strong>Antonio Neto</strong> e <strong>Carlos Eduardo</strong>.</p>
+                </div>
+                <div class="story-problems reveal">
+                    <div class="story-problem-item"><i class="fas fa-diagram-project"></i> Informações espalhadas</div>
+                    <div class="story-problem-item"><i class="fas fa-boxes-stacked"></i> Dificuldade para controlar estoque</div>
+                    <div class="story-problem-item"><i class="fas fa-droplet-slash"></i> Perdas e desperdícios</div>
+                    <div class="story-problem-item"><i class="fas fa-pen"></i> Processos manuais</div>
+                    <div class="story-problem-item"><i class="fas fa-sack-dollar"></i> Dificuldade para acompanhar custos</div>
+                    <div class="story-problem-item"><i class="fas fa-comment-slash"></i> Falta de comunicação entre setores</div>
+                    <div class="story-problem-item"><i class="fas fa-magnifying-glass"></i> Dificuldade para entender a operação</div>
+                    <div class="story-problem-item"><i class="fas fa-table-list"></i> Dependência de planilhas e anotações</div>
+                </div>
+            </div>
+            <div class="story-highlight reveal">
+                <i class="fas fa-quote-left"></i>
+                <p>O GestãoCheck nasceu de uma necessidade real. A experiência mostrou o problema, e a tecnologia se tornou o caminho para construir uma solução que pudesse ajudar outras empresas a enfrentarem o mesmo desafio.</p>
+            </div>
+        </div>
+    </section>
+    <!-- NOSSO PROPÓSITO -->
+    <section class="bg-white">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Nosso propósito</span>
+                <h2>Missão, visão e valores que guiam cada decisão</h2>
+                <p>Os princípios que orientam como construímos um sistema de gestão empresarial pensado para o dia a dia real das empresas.</p>
+            </div>
+            <div class="purpose-grid">
+                <div class="purpose-card reveal">
+                    <div class="purpose-icon"><i class="fas fa-compass"></i></div>
+                    <h3>Missão</h3>
+                    <p>Facilitar a gestão das empresas por meio de tecnologia acessível, integrada e inteligente, transformando processos complexos e controles manuais em informações organizadas que ajudam as pessoas a tomar decisões melhores.</p>
+                </div>
+                <div class="purpose-card reveal">
+                    <div class="purpose-icon"><i class="fas fa-eye"></i></div>
+                    <h3>Visão</h3>
+                    <p>Ser uma plataforma de gestão reconhecida por transformar a maneira como empresas organizam suas operações, tornando a gestão mais simples, eficiente, integrada e orientada por dados.</p>
+                </div>
+            </div>
+            <div class="values-grid">
+                <div class="value-card reveal">
+                    <div class="value-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                    <h4>Simplicidade</h4>
+                    <p>Transformar processos complexos em experiências simples e fáceis de entender.</p>
+                </div>
+                <div class="value-card reveal">
+                    <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h4>Inovação</h4>
+                    <p>Buscar constantemente novas formas de resolver problemas reais por meio da tecnologia.</p>
+                </div>
+                <div class="value-card reveal">
+                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                    <h4>Confiança</h4>
+                    <p>Construir uma plataforma na qual empresas possam confiar para organizar suas informações e operações.</p>
+                </div>
+                <div class="value-card reveal">
+                    <div class="value-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>Eficiência</h4>
+                    <p>Reduzir desperdícios, retrabalho e processos desnecessários.</p>
+                </div>
+                <div class="value-card reveal">
+                    <div class="value-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <h4>Adaptabilidade</h4>
+                    <p>Entender que cada empresa possui uma realidade diferente e oferecer uma solução capaz de se adaptar a ela.</p>
+                </div>
+                <div class="value-card reveal">
+                    <div class="value-icon"><i class="fas fa-bullseye"></i></div>
+                    <h4>Foco no problema real</h4>
+                    <p>Não criar tecnologia apenas por criar. Cada recurso deve existir para resolver uma necessidade concreta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FUNDADORES -->
+    <section class="bg-gray">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Quem está por trás do GestãoCheck</span>
+                <h2>Três pessoas, uma ideia, uma solução.</h2>
+                <p>O GestãoCheck é construído por três pessoas que acreditam que tecnologia deve resolver problemas reais.</p>
+            </div>
+            <div class="founders-grid reveal">
+                <div class="founder-card">
+                    <div class="founder-initial">J</div>
+                    <div class="founder-name">Jarbas Jamysson</div>
+                    <div class="founder-role">Fundador</div>
+                    <!-- Placeholder: substituir pelo link real do LinkedIn -->
+                    <a href="[LINKEDIN_JARBAS]" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-initial">A</div>
+                    <div class="founder-name">Antonio Neto</div>
+                    <div class="founder-role">Fundador</div>
+                    <!-- Placeholder: substituir pelo link real do LinkedIn -->
+                    <a href="[LINKEDIN_ANTONIO]" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-initial">C</div>
+                    <div class="founder-name">Carlos Eduardo</div>
+                    <div class="founder-role">Fundador</div>
+                    <!-- Placeholder: substituir pelo link real do LinkedIn -->
+                    <a href="[LINKEDIN_CARLOS]" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="closing-quote reveal">
+                <p>Uma dor real nos uniu. A tecnologia nos deu o caminho para transformá-la em solução.</p>
+            </div>
+        </div>
+    </section>
     <!-- FINAL CTA -->
     <section id="contato" class="final-cta">
         <div class="container reveal">
             <h2>Pronto para transformar a gestão da sua empresa?</h2>
             <div class="cta-buttons">
-                <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 20px 40px;">Solicitar Demonstração <i class="fas fa-arrow-right"></i></a>
-                <a href="#" class="btn btn-outline-white" style="font-size: 1.1rem; padding: 20px 40px;">Falar com um Especialista</a>
+                <a href="https://wa.me/5585999999999?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 1.1rem; padding: 20px 40px;">Solicitar Demonstração <i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </section>
@@ -438,7 +548,7 @@
                     <h4>Empresa</h4>
                     <ul>
                         <li><a href="#contato">Contato</a></li>
-                        <li><a href="#">Sobre nós</a></li>
+                        <li><a href="#sobre">Sobre nós</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
