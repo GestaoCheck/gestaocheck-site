@@ -4,578 +4,456 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestão Check | Gestão inteligente para sua operação</title>
-    <meta name="description" content="Gestão Check: uma plataforma para ajudar sua empresa a controlar estoque, custos, perdas e processos em um único ambiente.">
-
+    <title>GestãoCheck - Controle total da sua empresa em um único sistema</title>
+    <meta name="description" content="Software SaaS de gestão empresarial para restaurantes, bares, padarias, pizzarias e mercados. Controle de estoque, custos, CMV, produção e processos em tempo real.">
+    <meta name="keywords" content="gestão empresarial, software de estoque, CMV, restaurante, padaria, sistema SaaS, GestãoCheck">
     <!-- Open Graph -->
-    <meta property="og:title" content="Gestão Check | Gestão inteligente para sua operação">
-    <meta property="og:description" content="Centralize estoque, custos, perdas e processos da sua operação em uma única plataforma.">
+    <meta property="og:title" content="GestãoCheck - Gestão Profissional para sua Empresa">
+    <meta property="og:description" content="Gerencie estoque, custos, produção, equipe e indicadores em tempo real.">
     <meta property="og:type" content="website">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Gestão Check | Gestão inteligente para sua operação">
-    <meta name="twitter:description" content="Centralize estoque, custos, perdas e processos da sua operação em uma única plataforma.">
-
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="gc-body">
-
-    <!-- ══════════ NAVBAR ══════════ -->
-    <nav id="navbar" class="gc-navbar">
-        <div class="gc-navbar-inner">
-            <div class="gc-navbar-logo">
-                <div class="gc-logo-icon"></div>
-                <span>Gestão Check</span>
-            </div>
-            <div class="gc-navbar-links">
-                <a href="#inicio">Início</a>
-                <a href="#funcionalidades">Funcionalidades</a>
-                <a href="#como-funciona">Como funciona</a>
-                <a href="#segmentos">Para quem é</a>
-                <a href="#planos">Planos</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contato">Contato</a>
-            </div>
-            <a href="#" class="gc-btn gc-btn-primary gc-cta" data-cta="navbar">Solicitar demonstração</a>
-            <button id="mobileMenuBtn" class="gc-mobile-btn" aria-label="Abrir menu">
-      <i data-lucide="menu"></i>
-    </button>
+<body>
+    <!-- HEADER -->
+    <header id="header">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fas fa-check-double"></i></div>
+                Gestão<span style="color: var(--secondary)">Check</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#problemas">Problemas</a></li>
+                <li><a href="#funcionalidades">Funcionalidades</a></li>
+                <li><a href="#seguranca">Segurança</a></li>
+                <li><a href="#diferenciais">Diferenciais</a></li>
+                <li><a href="#contato" class="btn btn-primary" style="padding: 8px 20px;">Falar com Especialista</a></li>
+            </ul>
         </div>
-        <div id="mobileMenu" class="gc-mobile-menu">
-            <a href="#inicio">Início</a>
-            <a href="#funcionalidades">Funcionalidades</a>
-            <a href="#como-funciona">Como funciona</a>
-            <a href="#segmentos">Para quem é</a>
-            <a href="#planos">Planos</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contato">Contato</a>
-            <a href="#" class="gc-btn gc-btn-primary gc-cta" data-cta="navbar-mobile">Solicitar demonstração</a>
-        </div>
-    </nav>
-
-    <!-- ══════════ HERO ══════════ -->
-    <section id="inicio" class="gc-hero section-anchor">
-        <div class="gc-hero-grid">
-            <div class="gc-hero-text">
-                <span class="gc-eyebrow gc-reveal">Plataforma de gestão operacional</span>
-                <h1 class="gc-reveal">Tenha controle total da sua operação.</h1>
-                <p class="gc-hero-sub gc-reveal">Reduza desperdícios, acompanhe custos e organize os processos da sua empresa em um único sistema.</p>
-                <p class="gc-hero-desc gc-reveal">O Gestão Check centraliza estoque, checklists, avarias, custos, requisições, manutenção e indicadores para ajudar sua equipe a trabalhar com mais organização e permitir que você tome decisões com mais segurança.</p>
-                <div class="gc-hero-buttons gc-reveal">
-                    <a href="#" class="gc-btn gc-btn-primary gc-btn-lg gc-cta" data-cta="hero-principal">Solicitar demonstração</a>
-                    <a href="#funcionalidades" class="gc-btn gc-btn-secondary gc-btn-lg">Conhecer funcionalidades</a>
+    </header>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="reveal active">
+                <h1>Controle total da sua empresa em um único sistema.</h1>
+                <p>Gerencie estoque, custos, produção, equipe, ocorrências, checklists e indicadores em tempo real.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Começar demonstração <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contato" class="btn btn-secondary">Solicitar apresentação</a>
                 </div>
             </div>
-
-            <div class="gc-hero-visual gc-reveal">
-                <div class="gc-dash-mockup" id="dashMockup">
-                    <div class="gc-dm-sidebar">
-                        <div class="gc-dm-sidebar-logo"></div>
-                        <div class="gc-dm-sidebar-item gc-active"></div>
-                        <div class="gc-dm-sidebar-item"></div>
-                        <div class="gc-dm-sidebar-item"></div>
-                        <div class="gc-dm-sidebar-item"></div>
-                        <div class="gc-dm-sidebar-item"></div>
+            <!-- DASHBOARD MOCKUP -->
+            <div class="dashboard-mockup reveal">
+                <div class="mockup-topbar">
+                    <div class="mockup-dot"></div>
+                    <div class="mockup-dot"></div>
+                    <div class="mockup-dot"></div>
+                </div>
+                <div class="mockup-content">
+                    <div class="mockup-sidebar">
+                        <div class="mockup-sidebar-item active"><i class="fas fa-chart-line"></i> Dashboard</div>
+                        <div class="mockup-sidebar-item"><i class="fas fa-boxes"></i> Estoque</div>
+                        <div class="mockup-sidebar-item"><i class="fas fa-calculator"></i> CMV &amp; CMO</div>
+                        <div class="mockup-sidebar-item"><i class="fas fa-exclamation-triangle"></i> Ocorrências</div>
+                        <div class="mockup-sidebar-item"><i class="fas fa-clipboard-check"></i> Checklists</div>
+                        <div class="mockup-sidebar-item"><i class="fas fa-cog"></i> Configurações</div>
                     </div>
-                    <div class="gc-dm-main">
-                        <div class="gc-dm-topbar">
-                            <div class="gc-dm-topbar-title"></div>
-                            <div class="gc-dm-topbar-avatar"></div>
+                    <div class="mockup-main">
+                        <div class="mockup-cards">
+                            <div class="mockup-stat">
+                                <div class="mockup-stat-label">Faturamento</div>
+                                <div class="mockup-stat-value">R$ 84.500</div>
+                            </div>
+                            <div class="mockup-stat">
+                                <div class="mockup-stat-label">CMV Atual</div>
+                                <div class="mockup-stat-value" style="color: var(--secondary)">28.4%</div>
+                            </div>
+                            <div class="mockup-stat">
+                                <div class="mockup-stat-label">Itens em Falta</div>
+                                <div class="mockup-stat-value">12</div>
+                            </div>
+                            <div class="mockup-stat">
+                                <div class="mockup-stat-label">Avarias</div>
+                                <div class="mockup-stat-value">3</div>
+                            </div>
                         </div>
-                        <div class="gc-dm-banner"></div>
-                        <div class="gc-dm-cards">
-                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-green"></span><span class="gc-dm-bar"></span></div>
-                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-orange"></span><span class="gc-dm-bar"></span></div>
-                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-blue"></span><span class="gc-dm-bar"></span></div>
-                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-purple"></span><span class="gc-dm-bar"></span></div>
-                        </div>
-                        <div class="gc-dm-chart">
-                            <svg viewBox="0 0 260 70" preserveAspectRatio="none">
-              <polyline points="0,55 30,42 60,48 90,28 120,32 150,16 180,20 210,8 240,14" fill="none" stroke="#6C63FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-              <polyline points="0,55 30,42 60,48 90,28 120,32 150,16 180,20 210,8 240,14 240,70 0,70" fill="#6C63FF" opacity="0.08" />
-            </svg>
-                        </div>
-                    </div>
-                </div>
-                <span class="gc-mockup-label">Representação ilustrativa do painel</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ══════════ PROBLEMAS ══════════ -->
-    <section class="gc-section gc-section-alt">
-        <div class="gc-container">
-            <div class="gc-section-head gc-reveal">
-                <h2>Sua empresa ainda enfrenta esses problemas?</h2>
-                <p>Quando informações importantes ficam espalhadas em planilhas, papéis e diferentes ferramentas, a operação perde eficiência e a gestão perde visibilidade.</p>
-            </div>
-            <div class="gc-grid gc-grid-3">
-                <div class="gc-problem-card gc-reveal">
-                    <div class="gc-problem-icon"><i data-lucide="package-x"></i></div>
-                    <h3>Estoque desatualizado</h3>
-                    <p>Sem visibilidade real do que tem disponível, faltas e excessos acontecem sem aviso.</p>
-                </div>
-                <div class="gc-problem-card gc-reveal">
-                    <div class="gc-problem-icon"><i data-lucide="trending-down"></i></div>
-                    <h3>Desperdícios sem controle</h3>
-                    <p>Perdas acontecem no dia a dia e ninguém sabe exatamente onde nem por quê.</p>
-                </div>
-                <div class="gc-problem-card gc-reveal">
-                    <div class="gc-problem-icon"><i data-lucide="clipboard-list"></i></div>
-                    <h3>Checklists feitos manualmente</h3>
-                    <p>Rotinas anotadas em papel, sem confirmação real de que foram cumpridas.</p>
-                </div>
-                <div class="gc-problem-card gc-reveal">
-                    <div class="gc-problem-icon"><i data-lucide="alert-triangle"></i></div>
-                    <h3>Avarias sem registro</h3>
-                    <p>Produtos danificados ou vencidos que nunca entram em nenhum controle.</p>
-                </div>
-                <div class="gc-problem-card gc-reveal">
-                    <div class="gc-problem-icon"><i data-lucide="bar-chart-3"></i></div>
-                    <h3>Dificuldade para acompanhar custos</h3>
-                    <p>Sem indicadores claros, fica difícil saber se a operação está saudável.</p>
-                </div>
-                <div class="gc-problem-card gc-reveal">
-                    <div class="gc-problem-icon"><i data-lucide="users"></i></div>
-                    <h3>Processos sem padronização</h3>
-                    <p>Cada setor faz do seu jeito, sem uma referência comum pra toda a equipe.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ══════════ SOLUÇÃO ══════════ -->
-    <section class="gc-section">
-        <div class="gc-container gc-solucao-grid">
-            <div class="gc-reveal">
-                <span class="gc-eyebrow">A solução</span>
-                <h2>Uma plataforma para controlar toda a operação.</h2>
-                <p class="gc-lead">O Gestão Check reúne informações e processos importantes da sua operação em um único ambiente, permitindo que sua equipe trabalhe de forma mais organizada e que os gestores tenham uma visão mais clara do negócio.</p>
-            </div>
-            <div class="gc-reveal">
-                <div class="gc-dash-mockup gc-dash-mockup-lg">
-                    <div class="gc-dm-sidebar">
-                        <div class="gc-dm-sidebar-logo"></div>
-                        <div class="gc-dm-sidebar-item gc-active"></div>
-                        <div class="gc-dm-sidebar-item"></div>
-                        <div class="gc-dm-sidebar-item"></div>
-                        <div class="gc-dm-sidebar-item"></div>
-                    </div>
-                    <div class="gc-dm-main">
-                        <div class="gc-dm-topbar">
-                            <div class="gc-dm-topbar-title"></div>
-                            <div class="gc-dm-topbar-avatar"></div>
-                        </div>
-                        <div class="gc-dm-cards">
-                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-green"></span><span class="gc-dm-bar"></span></div>
-                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-orange"></span><span class="gc-dm-bar"></span></div>
-                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-blue"></span><span class="gc-dm-bar"></span></div>
-                            <div class="gc-dm-card"><span class="gc-dm-dot gc-dot-purple"></span><span class="gc-dm-bar"></span></div>
-                        </div>
-                        <div class="gc-dm-chart">
-                            <svg viewBox="0 0 260 70" preserveAspectRatio="none">
-              <polyline points="0,50 30,38 60,44 90,24 120,30 150,14 180,18 210,6 240,12" fill="none" stroke="#6C63FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-                        </div>
-                    </div>
-                </div>
-                <span class="gc-mockup-label">Representação ilustrativa do painel</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ══════════ COMO FUNCIONA ══════════ -->
-    <section id="como-funciona" class="gc-section gc-section-alt section-anchor">
-        <div class="gc-container">
-            <div class="gc-section-head gc-reveal">
-                <h2>Como funciona</h2>
-            </div>
-            <div class="gc-timeline">
-                <div class="gc-timeline-item gc-reveal">
-                    <div class="gc-timeline-num">1</div>
-                    <div>
-                        <h3>Cadastre sua operação</h3>
-                        <p>Configure sua empresa e comece a organizar os dados que importam.</p>
-                    </div>
-                </div>
-                <div class="gc-timeline-item gc-reveal">
-                    <div class="gc-timeline-num">2</div>
-                    <div>
-                        <h3>Organize seus setores e processos</h3>
-                        <p>Estruture o sistema de acordo com a realidade da sua operação.</p>
-                    </div>
-                </div>
-                <div class="gc-timeline-item gc-reveal">
-                    <div class="gc-timeline-num">3</div>
-                    <div>
-                        <h3>Acompanhe informações e ocorrências</h3>
-                        <p>Registre o que acontece no dia a dia, em tempo real.</p>
-                    </div>
-                </div>
-                <div class="gc-timeline-item gc-reveal">
-                    <div class="gc-timeline-num">4</div>
-                    <div>
-                        <h3>Analise os resultados</h3>
-                        <p>Veja indicadores consolidados de todos os módulos.</p>
-                    </div>
-                </div>
-                <div class="gc-timeline-item gc-reveal">
-                    <div class="gc-timeline-num">5</div>
-                    <div>
-                        <h3>Tome decisões com mais segurança</h3>
-                        <p>Baseie suas escolhas em dados reais, não em suposições.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ══════════ FUNCIONALIDADES ══════════ -->
-    <section id="funcionalidades" class="gc-section section-anchor">
-        <div class="gc-container">
-            <div class="gc-section-head gc-reveal">
-                <h2>Funcionalidades</h2>
-                <p>Organizadas por área da sua operação</p>
-            </div>
-
-            <div class="gc-tabs gc-reveal" id="funcTabs">
-                <button class="gc-tab active" data-tab="operacional">Gestão Operacional</button>
-                <button class="gc-tab" data-tab="custos">Gestão de Custos</button>
-                <button class="gc-tab" data-tab="perdas">Controle de Perdas</button>
-                <button class="gc-tab" data-tab="processos">Gestão de Processos</button>
-            </div>
-
-            <div class="gc-tab-panels">
-                <div class="gc-tab-panel active" data-panel="operacional">
-                    <div class="gc-grid gc-grid-4">
-                        <div class="gc-func-card"><i data-lucide="package"></i>
-                            <h4>Estoque</h4>
-                            <p>Controle de itens, quantidades e categorias.</p>
-                        </div>
-                        <div class="gc-func-card"><i data-lucide="clipboard-check"></i>
-                            <h4>Contagens</h4>
-                            <p>Conferência de estoque organizada por setor.</p>
-                        </div>
-                        <div class="gc-func-card"><i data-lucide="sprout"></i>
-                            <h4>Beneficiamento</h4>
-                            <p>Produção, perdas e aproveitamento de insumos.</p>
-                        </div>
-                        <div class="gc-func-card"><i data-lucide="file-text"></i>
-                            <h4>Requisições</h4>
-                            <p>Pedidos de material entre setores.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gc-tab-panel" data-panel="custos">
-                    <div class="gc-grid gc-grid-4">
-                        <div class="gc-func-card"><i data-lucide="calculator"></i>
-                            <h4>CMV</h4>
-                            <p>Custo da mercadoria vendida por produto.</p>
-                        </div>
-                        <div class="gc-func-card"><i data-lucide="users"></i>
-                            <h4>CMO</h4>
-                            <p>Custo de mão de obra e encargos.</p>
-                        </div>
-                        <div class="gc-func-card"><i data-lucide="credit-card"></i>
-                            <h4>CMC</h4>
-                            <p>Custo médio de compra e fornecedores.</p>
-                        </div>
-                        <div class="gc-func-card"><i data-lucide="line-chart"></i>
-                            <h4>Indicadores</h4>
-                            <p>Visão consolidada dos custos da operação.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gc-tab-panel" data-panel="perdas">
-                    <div class="gc-grid gc-grid-3">
-                        <div class="gc-func-card"><i data-lucide="alert-circle"></i>
-                            <h4>Avarias</h4>
-                            <p>Registro de perdas com múltiplos itens e setor responsável.</p>
-                        </div>
-                        <div class="gc-func-card"><i data-lucide="message-square-warning"></i>
-                            <h4>Ocorrências</h4>
-                            <p>Registro rápido de problemas operacionais por setor.</p>
-                        </div>
-                        <div class="gc-func-card"><i data-lucide="trash-2"></i>
-                            <h4>Desperdícios</h4>
-                            <p>Visibilidade sobre onde a operação está perdendo recursos.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gc-tab-panel" data-panel="processos">
-                    <div class="gc-grid gc-grid-3">
-                        <div class="gc-func-card"><i data-lucide="clipboard-list"></i>
-                            <h4>Checklists</h4>
-                            <p>Rotinas com confirmação por foto, evitando registros falsos.</p>
-                        </div>
-                        <div class="gc-func-card"><i data-lucide="wrench"></i>
-                            <h4>Manutenção</h4>
-                            <p>Abertura de chamados com descrição e foto do problema.</p>
-                        </div>
-                        <div class="gc-func-card"><i data-lucide="bar-chart-2"></i>
-                            <h4>Relatórios</h4>
-                            <p>Visão geral de todos os módulos, filtrável por setor e período.</p>
+                        <div class="mockup-charts">
+                            <div class="mockup-chart">
+                                <div class="mockup-stat-label">Vendas x Custos</div>
+                                <div class="chart-bars">
+                                    <div class="chart-bar" style="height: 40%"></div>
+                                    <div class="chart-bar" style="height: 60%"></div>
+                                    <div class="chart-bar" style="height: 45%"></div>
+                                    <div class="chart-bar" style="height: 80%"></div>
+                                    <div class="chart-bar" style="height: 55%"></div>
+                                    <div class="chart-bar" style="height: 70%"></div>
+                                </div>
+                            </div>
+                            <div class="mockup-chart">
+                                <div class="mockup-stat-label">Notificações</div>
+                                <div style="margin-top: 16px;">
+                                    <div style="background:var(--bg-white); padding:8px; border-radius:6px; margin-bottom:8px; font-size:0.75rem; border-left:3px solid var(--secondary);">Estoque baixo: Farinha</div>
+                                    <div style="background:var(--bg-white); padding:8px; border-radius:6px; margin-bottom:8px; font-size:0.75rem; border-left:3px solid var(--primary);">CMV acima da meta</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- ══════════ BENEFÍCIOS ══════════ -->
-    <section class="gc-section gc-section-alt">
-        <div class="gc-container">
-            <div class="gc-section-head gc-reveal">
-                <h2>O que você ganha com o Gestão Check</h2>
+    <!-- PROBLEMS -->
+    <section id="problemas" class="problems">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">O Desafio</span>
+                <h2>O caos não aparece no lucro. Mas ele consome o seu lucro.</h2>
+                <p>Acompanhar o dia a dia da operação sem ferramentas inteligentes gera prejuízos silenciosos.</p>
             </div>
-            <div class="gc-grid gc-grid-3">
-                <div class="gc-benefit-card gc-reveal">
-                    <div class="gc-benefit-icon"><i data-lucide="trending-down"></i></div>
-                    <h3>Reduza desperdícios</h3>
-                    <p>Registre perdas e avarias e tenha mais visibilidade sobre onde sua empresa está desperdiçando recursos.</p>
+            <div class="problems-grid">
+                <div class="problem-card reveal">
+                    <div class="problem-icon"><i class="fas fa-warehouse"></i></div>
+                    <h3>Estoque Desorganizado</h3>
                 </div>
-                <div class="gc-benefit-card gc-reveal">
-                    <div class="gc-benefit-icon"><i data-lucide="layout-grid"></i></div>
-                    <h3>Padronize processos</h3>
-                    <p>Transforme rotinas e checklists em processos organizados, facilitando o acompanhamento da equipe.</p>
+                <div class="problem-card reveal">
+                    <div class="problem-icon"><i class="fas fa-eye-slash"></i></div>
+                    <h3>Perdas Invisíveis</h3>
                 </div>
-                <div class="gc-benefit-card gc-reveal">
-                    <div class="gc-benefit-icon"><i data-lucide="shield-check"></i></div>
-                    <h3>Tenha mais controle</h3>
-                    <p>Centralize informações importantes e acompanhe a operação com mais clareza.</p>
+                <div class="problem-card reveal">
+                    <div class="problem-icon"><i class="fas fa-balance-scale"></i></div>
+                    <h3>Falta de Controle</h3>
                 </div>
-                <div class="gc-benefit-card gc-reveal">
-                    <div class="gc-benefit-icon"><i data-lucide="brain-circuit"></i></div>
-                    <h3>Decisões baseadas em dados</h3>
-                    <p>Transforme informações operacionais em indicadores que ajudam sua empresa a decidir melhor.</p>
+                <div class="problem-card reveal">
+                    <div class="problem-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>Compras sem Planejamento</h3>
                 </div>
-                <div class="gc-benefit-card gc-reveal">
-                    <div class="gc-benefit-icon"><i data-lucide="layers"></i></div>
-                    <h3>Centralize sua gestão</h3>
-                    <p>Tenha diferentes processos e informações reunidos em uma única plataforma.</p>
+                <div class="problem-card reveal">
+                    <div class="problem-icon"><i class="fas fa-users-slash"></i></div>
+                    <h3>Equipe sem Acompanhamento</h3>
                 </div>
-                <div class="gc-benefit-card gc-reveal">
-                    <div class="gc-benefit-icon"><i data-lucide="smartphone"></i></div>
-                    <h3>Acesso de qualquer lugar</h3>
-                    <p>Use pelo navegador, no computador ou no celular, sem instalar nada.</p>
+            </div>
+            <div class="arrow-down reveal"><i class="fas fa-chevron-down"></i></div>
+            <div class="solution-banner reveal">
+                Tudo isso acaba com o <span>GestãoCheck</span>.
+            </div>
+        </div>
+    </section>
+    <!-- FEATURES -->
+    <section id="funcionalidades" class="bg-gray">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">A Solução</span>
+                <h2>Funcionalidades que entregam resultado real</h2>
+                <p>Um ecossistema completo para gerir, medir e otimizar cada centavo e cada processo da sua empresa.</p>
+            </div>
+            <div class="features-grid">
+                <!-- Card 1 -->
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-boxes-stacked"></i></div>
+                    <h3>Estoque Inteligente</h3>
+                    <p>Controle absoluto de insumos com automação e precisão.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Contagem por setores configuráveis</li>
+                        <li><i class="fas fa-check"></i> OCR para importar nota fiscal</li>
+                        <li><i class="fas fa-check"></i> Conversão automática de unidades</li>
+                        <li><i class="fas fa-check"></i> Transferência automática</li>
+                        <li><i class="fas fa-check"></i> Fila de verificação e itens faltantes</li>
+                        <li><i class="fas fa-check"></i> Exportação Excel</li>
+                    </ul>
+                </div>
+                <!-- Card 2 -->
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-percent"></i></div>
+                    <h3>CMV</h3>
+                    <p>Custo de Mercadoria Vendida integrado ao estoque.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Baixa automática do estoque</li>
+                        <li><i class="fas fa-check"></i> Ficha técnica integrada</li>
+                        <li><i class="fas fa-check"></i> Importação de vendas</li>
+                        <li><i class="fas fa-check"></i> DRE e Indicadores</li>
+                        <li><i class="fas fa-check"></i> Alertas de insumos</li>
+                    </ul>
+                </div>
+                <!-- Card 3 -->
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-money-check-alt"></i></div>
+                    <h3>CMO</h3>
+                    <p>Custo de Mão de Obra sob controle direto.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Folha de pagamento</li>
+                        <li><i class="fas fa-check"></i> Meta de faturamento</li>
+                        <li><i class="fas fa-check"></i> Percentual da folha</li>
+                        <li><i class="fas fa-check"></i> Alertas automáticos</li>
+                    </ul>
+                </div>
+                <!-- Card 4 -->
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-shopping-basket"></i></div>
+                    <h3>CMC</h3>
+                    <p>Custo de Mercadoria Comprada estratégico.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Controle de compras</li>
+                        <li><i class="fas fa-check"></i> Gestão de fornecedores</li>
+                        <li><i class="fas fa-check"></i> Categorias e metas</li>
+                        <li><i class="fas fa-check"></i> Resumo por período</li>
+                    </ul>
+                </div>
+                <!-- Card 5 -->
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-industry"></i></div>
+                    <h3>Beneficiamento</h3>
+                    <p>Gestão de transformação de matéria-prima.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Cálculo automático</li>
+                        <li><i class="fas fa-check"></i> Custo por porção</li>
+                        <li><i class="fas fa-check"></i> Produção em múltiplos níveis</li>
+                        <li><i class="fas fa-check"></i> Controle completo dos insumos</li>
+                    </ul>
+                </div>
+                <!-- Card 6 -->
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-exclamation-circle"></i></div>
+                    <h3>Ocorrências</h3>
+                    <p>Centralize problemas e resolva rápido.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Registro de avarias</li>
+                        <li><i class="fas fa-check"></i> Fotos obrigatórias</li>
+                        <li><i class="fas fa-check"></i> Comentários e checklists</li>
+                        <li><i class="fas fa-check"></i> Manutenção</li>
+                    </ul>
+                </div>
+                <!-- Card 7 -->
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-hand-holding"></i></div>
+                    <h3>Requisições</h3>
+                    <p>Fluxo de solicitações entre setores.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Solicitação entre setores</li>
+                        <li><i class="fas fa-check"></i> Aprovação e histórico</li>
+                        <li><i class="fas fa-check"></i> Comentários</li>
+                        <li><i class="fas fa-check"></i> Controle completo</li>
+                    </ul>
+                </div>
+                <!-- Card 8 -->
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-file-invoice"></i></div>
+                    <h3>Relatórios</h3>
+                    <p>Inteligência de dados para decisões.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Dashboard inteligente</li>
+                        <li><i class="fas fa-check"></i> Indicadores e gráficos</li>
+                        <li><i class="fas fa-check"></i> Filtros dinâmicos</li>
+                        <li><i class="fas fa-check"></i> Exportações</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- ══════════ DEMONSTRAÇÃO ══════════ -->
-    <section class="gc-section gc-demo-section">
-        <div class="gc-container gc-demo-inner gc-reveal">
-            <h2>Veja o Gestão Check na prática.</h2>
-            <p>Conheça os recursos do Gestão Check e descubra como a plataforma pode se adaptar às necessidades da sua operação.</p>
-            <div class="gc-video-placeholder">
-                <i data-lucide="play-circle"></i>
-                <span>Vídeo de demonstração em breve</span>
+    <!-- SECURITY -->
+    <section id="seguranca" class="security">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag" style="background: rgba(255,107,107,0.2); color: var(--secondary);">Segurança</span>
+                <h2>Sua empresa protegida.</h2>
+                <p style="color: rgba(255,255,255,0.7);">Infraestrutura de nível corporativo para garantir que seus dados estejam sempre seguros e disponíveis.</p>
             </div>
-            <a href="#" class="gc-btn gc-btn-primary gc-btn-lg gc-cta" data-cta="demonstracao">Solicitar demonstração</a>
-        </div>
-    </section>
-
-    <!-- ══════════ SEGURANÇA ══════════ -->
-    <section class="gc-section gc-section-alt">
-        <div class="gc-container gc-seguranca-grid">
-            <div class="gc-reveal">
-                <span class="gc-eyebrow">Segurança</span>
-                <h2>Segurança e controle para sua operação.</h2>
-                <p class="gc-lead">O acesso ao Gestão Check é feito por login individual, garantindo que cada usuário tenha sua própria conta dentro do sistema.</p>
-            </div>
-            <div class="gc-grid gc-grid-1 gc-reveal">
-                <div class="gc-security-item">
-                    <i data-lucide="log-in"></i>
-                    <div>
-                        <h4>Autenticação por conta</h4>
-                        <p>Cada pessoa acessa com seu próprio usuário e senha.</p>
-                    </div>
-                </div>
-                <div class="gc-security-item">
-                    <i data-lucide="lock"></i>
-                    <div>
-                        <h4>Acesso controlado</h4>
-                        <p>Apenas usuários cadastrados conseguem entrar no sistema.</p>
-                    </div>
-                </div>
+            <div class="security-grid">
+                <div class="security-card reveal"><i class="fas fa-lock"></i> Login seguro</div>
+                <div class="security-card reveal"><i class="fas fa-shield-alt"></i> Bloqueio contra ataques</div>
+                <div class="security-card reveal"><i class="fas fa-key"></i> Hash de senha</div>
+                <div class="security-card reveal"><i class="fas fa-laptop-house"></i> Sessões remotas</div>
+                <div class="security-card reveal"><i class="fas fa-search-location"></i> Auditoria completa</div>
+                <div class="security-card reveal"><i class="fas fa-database"></i> Banco isolado por cliente</div>
+                <div class="security-card reveal"><i class="fas fa-bug-slash"></i> Monitoramento de vulnerabilidades</div>
             </div>
         </div>
     </section>
-
-    <!-- ══════════ SEGMENTOS ══════════ -->
-    <section id="segmentos" class="gc-section section-anchor">
-        <div class="gc-container">
-            <div class="gc-section-head gc-reveal">
-                <h2>Feito para operações que precisam de mais controle.</h2>
+    <!-- PERMISSIONS -->
+    <section class="permissions">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Permissões</span>
+                <h2>Cada um enxerga apenas o que pode acessar.</h2>
+                <p>Hierarquia de usuários estruturada para proteger dados sensíveis e manter a organização.</p>
             </div>
-            <div class="gc-grid gc-grid-3">
-                <div class="gc-segment-card gc-reveal"><span class="gc-segment-emoji">🍕</span>
-                    <h3>Pizzarias</h3>
+            <div class="hierarchy-flow reveal">
+                <div class="role-card">Colaborador <i class="fas fa-arrow-down" style="display:block; margin-top:10px; color:var(--border)"></i></div>
+                <div class="role-card">Gerente <i class="fas fa-arrow-down" style="display:block; margin-top:10px; color:var(--border)"></i></div>
+                <div class="role-card">Dono</div>
+            </div>
+        </div>
+    </section>
+    <!-- COMPATIBILITY -->
+    <section class="bg-gray">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Compatibilidade</span>
+                <h2>Acesse de qualquer lugar, em qualquer dispositivo.</h2>
+            </div>
+            <div class="compatibility-grid">
+                <div class="compat-item reveal"><i class="fas fa-desktop"></i> Desktop</div>
+                <div class="compat-item reveal"><i class="fas fa-laptop"></i> Notebook</div>
+                <div class="compat-item reveal"><i class="fas fa-tablet-alt"></i> Tablet</div>
+                <div class="compat-item reveal"><i class="fas fa-mobile-alt"></i> Celular</div>
+                <div class="compat-item reveal"><i class="fas fa-sun"></i> Tema Claro</div>
+                <div class="compat-item reveal"><i class="fas fa-moon"></i> Tema Escuro</div>
+                <div class="compat-item reveal"><i class="fas fa-bell"></i> Notificações em Tempo Real</div>
+            </div>
+        </div>
+    </section>
+    <!-- DIFFERENTIALS -->
+    <section id="diferenciais" class="differentials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Por que GestãoCheck?</span>
+                <h2>Mais do que um sistema, um diferencial competitivo</h2>
+            </div>
+            <div class="diff-table reveal">
+                <div class="diff-row header">
+                    <div>Funcionalidade</div>
+                    <div>GestãoCheck</div>
                 </div>
-                <div class="gc-segment-card gc-reveal"><span class="gc-segment-emoji">🍽️</span>
-                    <h3>Restaurantes</h3>
+                <div class="diff-row">
+                    <div>OCR em notas fiscais</div>
+                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
                 </div>
-                <div class="gc-segment-card gc-reveal"><span class="gc-segment-emoji">🥐</span>
-                    <h3>Padarias</h3>
+                <div class="diff-row">
+                    <div>Conversão automática de unidades</div>
+                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
                 </div>
-                <div class="gc-segment-card gc-reveal"><span class="gc-segment-emoji">🍺</span>
-                    <h3>Bares</h3>
+                <div class="diff-row">
+                    <div>Banco isolado por cliente</div>
+                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
                 </div>
-                <div class="gc-segment-card gc-reveal"><span class="gc-segment-emoji">🏨</span>
-                    <h3>Hotéis</h3>
+                <div class="diff-row">
+                    <div>Controle por setores</div>
+                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
                 </div>
-                <div class="gc-segment-card gc-reveal"><span class="gc-segment-emoji">🏢</span>
-                    <h3>Empresas de alimentação</h3>
+                <div class="diff-row">
+                    <div>Gestão de CMV, CMO e CMC</div>
+                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
+                </div>
+                <div class="diff-row">
+                    <div>Beneficiamento de insumos</div>
+                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
+                </div>
+                <div class="diff-row">
+                    <div>Checklists e Auditoria</div>
+                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
+                </div>
+                <div class="diff-row">
+                    <div>Segurança avançada e Dashboard inteligente</div>
+                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- ══════════ PLANOS ══════════ -->
-    <section id="planos" class="gc-section gc-section-alt section-anchor">
-        <div class="gc-container gc-planos-inner gc-reveal">
-            <h2>Encontre a solução ideal para sua operação.</h2>
-            <p>Cada empresa possui necessidades diferentes. Entre em contato com nossa equipe para conhecer o Gestão Check e entender a melhor solução para a sua operação.</p>
-            <a href="#" class="gc-btn gc-btn-primary gc-btn-lg gc-cta" data-cta="planos">Solicitar orçamento</a>
-        </div>
-    </section>
-
-    <!-- ══════════ FAQ ══════════ -->
-    <section id="faq" class="gc-section section-anchor">
-        <div class="gc-container gc-faq-container">
-            <div class="gc-section-head gc-reveal">
-                <h2>Perguntas Frequentes</h2>
+    <!-- TESTIMONIALS -->
+    <section class="bg-white">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Depoimentos</span>
+                <h2>Quem usa, recomenda</h2>
+                <p>Empresários que recuperaram o controle de suas operações.</p>
             </div>
-            <div class="gc-faq-list gc-reveal">
-
-                <div class="gc-faq-item">
-                    <button class="gc-faq-btn"><span>O que é o Gestão Check?</span><i data-lucide="chevron-down"></i></button>
-                    <div class="gc-faq-answer">
-                        <p>É uma plataforma de gestão operacional que centraliza estoque, custos, perdas e processos da sua empresa em um único ambiente.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"O GestãoCheck acabou com as perdas invisíveis na minha padaria. O controle de CMV salvou meu lucro."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JS</div>
+                        <div>
+                            <div class="author-name">João Silva</div>
+                            <div class="author-role">Dono de Padaria</div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="gc-faq-item">
-                    <button class="gc-faq-btn"><span>Para quais empresas o Gestão Check é indicado?</span><i data-lucide="chevron-down"></i></button>
-                    <div class="gc-faq-answer">
-                        <p>Para operações que precisam de mais controle sobre estoque, custos e processos — com foco especial em negócios de alimentação, como restaurantes, pizzarias, padarias, bares e hotéis.</p>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"A importação de notas com OCR é mágica. Economizo horas de trabalho manual lançando estoque."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div>
+                            <div class="author-name">Mariana Rocha</div>
+                            <div class="author-role">Gestora de Restaurante</div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="gc-faq-item">
-                    <button class="gc-faq-btn"><span>O Gestão Check funciona no celular?</span><i data-lucide="chevron-down"></i></button>
-                    <div class="gc-faq-answer">
-                        <p>Sim. O sistema é acessado pelo navegador e se adapta a computadores, tablets e celulares.</p>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Finalmente um sistema que entende o beneficiamento de massa para pizza. Custo exato por porção!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">CL</div>
+                        <div>
+                            <div class="author-name">Carlos Lima</div>
+                            <div class="author-role">Proprietário de Pizzaria</div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="gc-faq-item">
-                    <button class="gc-faq-btn"><span>Preciso instalar algum programa?</span><i data-lucide="chevron-down"></i></button>
-                    <div class="gc-faq-answer">
-                        <p>Não. O acesso é feito diretamente pelo navegador, sem necessidade de instalação.</p>
-                    </div>
-                </div>
-
-                <div class="gc-faq-item">
-                    <button class="gc-faq-btn"><span>O sistema possui controle de usuários?</span><i data-lucide="chevron-down"></i></button>
-                    <div class="gc-faq-answer">
-                        <p>Sim, o acesso é feito por conta individual, com login e senha próprios para cada usuário.</p>
-                    </div>
-                </div>
-
-                <div class="gc-faq-item">
-                    <button class="gc-faq-btn"><span>Como funciona a demonstração?</span><i data-lucide="chevron-down"></i></button>
-                    <div class="gc-faq-answer">
-                        <p>Basta solicitar contato através dos botões do site. Nossa equipe vai te mostrar a plataforma e entender as necessidades da sua operação.</p>
-                    </div>
-                </div>
-
-                <div class="gc-faq-item">
-                    <button class="gc-faq-btn"><span>O Gestão Check possui período de teste grátis?</span><i data-lucide="chevron-down"></i></button>
-                    <div class="gc-faq-answer">
-                        <p>Atualmente, o Gestão Check não oferece período de teste grátis. Entre em contato com nossa equipe para solicitar uma demonstração e conhecer melhor a plataforma.</p>
-                    </div>
-                </div>
-
-                <div class="gc-faq-item">
-                    <button class="gc-faq-btn"><span>Como faço para contratar?</span><i data-lucide="chevron-down"></i></button>
-                    <div class="gc-faq-answer">
-                        <p>Entre em contato através do WhatsApp ou dos botões de "Solicitar demonstração" espalhados pelo site. Nossa equipe vai te orientar sobre os próximos passos.</p>
-                    </div>
-                </div>
-
-                <div class="gc-faq-item">
-                    <button class="gc-faq-btn"><span>O sistema oferece suporte?</span><i data-lucide="chevron-down"></i></button>
-                    <div class="gc-faq-answer">
-                        <p>Sim, oferecemos suporte técnico para ajudar sua equipe a utilizar a plataforma.</p>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
-
-    <!-- ══════════ CTA FINAL ══════════ -->
-    <section class="gc-cta-final">
-        <div class="gc-container gc-reveal">
-            <h2>Sua empresa merece uma gestão mais inteligente.</h2>
-            <p>Centralize processos, tenha mais controle sobre sua operação e transforme informações em decisões melhores.</p>
-            <div class="gc-hero-buttons" style="justify-content:center;">
-                <a href="#" class="gc-btn gc-btn-white gc-btn-lg gc-cta" data-cta="final-1">Solicitar demonstração</a>
-                <a href="#" class="gc-btn gc-btn-outline-white gc-btn-lg gc-cta" data-cta="final-2">Falar com nossa equipe</a>
+    <!-- FINAL CTA -->
+    <section id="contato" class="final-cta">
+        <div class="container reveal">
+            <h2>Pronto para transformar a gestão da sua empresa?</h2>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 20px 40px;">Solicitar Demonstração <i class="fas fa-arrow-right"></i></a>
+                <a href="#" class="btn btn-outline-white" style="font-size: 1.1rem; padding: 20px 40px;">Falar com um Especialista</a>
             </div>
         </div>
     </section>
-
-    <!-- ══════════ FOOTER ══════════ -->
-    <footer id="contato" class="gc-footer section-anchor">
-        <div class="gc-container gc-footer-grid">
-            <div>
-                <div class="gc-navbar-logo" style="margin-bottom:14px;">
-                    <div class="gc-logo-icon"></div>
-                    <span style="color:#fff;">Gestão Check</span>
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <a href="#" class="logo footer-logo">
+                        <div class="logo-icon"><i class="fas fa-check-double"></i></div>
+                        Gestão<span>Check</span>
+                    </a>
+                    <p>Gestão e Acompanhamento de Processos.</p>
+                    <p style="margin-top: 16px; font-size: 0.9rem;">Tecnologia de ponta para restaurantes, bares, padarias, pizzarias e mercados.</p>
                 </div>
-                <p class="gc-footer-desc">Gestão inteligente para operações mais organizadas, eficientes e controladas.</p>
-            </div>
-            <div>
-                <h4>Produto</h4>
-                <ul>
-                    <li><a href="#funcionalidades">Funcionalidades</a></li>
-                    <li><a href="#como-funciona">Como funciona</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Política de Privacidade</a></li>
-                    <li><a href="#">Termos de Uso</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Contato</h4>
-                <div class="gc-footer-social">
-                    <a href="#" class="gc-cta" data-cta="footer-whatsapp" title="WhatsApp"><i data-lucide="message-circle"></i></a>
-                    <a href="#" title="E-mail"><i data-lucide="mail"></i></a>
-                    <a href="#" title="Instagram"><i data-lucide="instagram"></i></a>
-                    <a href="#" title="LinkedIn"><i data-lucide="linkedin"></i></a>
+                <div class="footer-col">
+                    <h4>Produto</h4>
+                    <ul>
+                        <li><a href="#funcionalidades">Funcionalidades</a></li>
+                        <li><a href="#seguranca">Segurança</a></li>
+                        <li><a href="#diferenciais">Diferenciais</a></li>
+                    </ul>
                 </div>
+                <div class="footer-col">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#">Sobre nós</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="ano-atual"></span> GestãoCheck. Todos os direitos reservados.</p>
             </div>
         </div>
-        <div class="gc-footer-bottom">© 2026 Gestão Check. Todos os direitos reservados.</div>
     </footer>
-
     <script src="script.js"></script>
 </body>
 
