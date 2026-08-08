@@ -4,18 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GestãoCheck - Controle total da sua empresa em um único sistema</title>
-    <meta name="description" content="Software SaaS de gestão empresarial para restaurantes, bares, padarias, pizzarias e mercados. Controle de estoque, custos, CMV, produção e processos em tempo real.">
-    <meta name="keywords" content="gestão empresarial, software de estoque, CMV, restaurante, padaria, sistema SaaS, GestãoCheck">
+    <title>GestãoCheck — Gestão e Acompanhamento de Processos</title>
+    <meta name="description" content="GestãoCheck: controle estoque, custos, produção, compras, ocorrências e indicadores da sua empresa em um único sistema.">
+    <meta name="keywords" content="gestão empresarial, software de estoque, CMV, controle de custos, gestão operacional, sistema SaaS, GestãoCheck">
     <!-- Open Graph -->
-    <meta property="og:title" content="GestãoCheck - Gestão Profissional para sua Empresa">
-    <meta property="og:description" content="Gerencie estoque, custos, produção, equipe e indicadores em tempo real.">
+    <meta property="og:title" content="GestãoCheck — Gestão e Acompanhamento de Processos">
+    <meta property="og:description" content="Controle estoque, custos, produção, compras, ocorrências e indicadores da sua empresa em um único sistema.">
+    <meta property="og:image" content="assets/logo.png">
     <meta property="og:type" content="website">
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="scr/icone-colorido.svg">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -24,19 +26,18 @@
     <header id="header">
         <div class="container nav-content">
             <a href="#" class="logo">
-                <div class="logo-icon"><i class="fas fa-check-double"></i></div>
-                Gestão<span style="color: var(--secondary)">Check</span>
+                <img src="scr/logo.png" alt="GestãoCheck" class="logo-img">
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
 <i class="fas fa-bars"></i>
 </button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#problemas">Problemas</a></li>
                 <li><a href="#funcionalidades">Funcionalidades</a></li>
+                <li><a href="#como-funciona">Como funciona</a></li>
                 <li><a href="#seguranca">Segurança</a></li>
-                <li><a href="#diferenciais">Diferenciais</a></li>
+                <li><a href="#paraquem">Para quem é</a></li>
                 <li><a href="#sobre">Nossa história</a></li>
-                <li><a href="#contato" class="btn btn-primary" style="padding: 8px 20px;">Falar com Especialista</a></li>
+                <li><a href="#contato" class="btn btn-primary" style="padding: 8px 20px;">Solicitar demonstração</a></li>
             </ul>
         </div>
     </header>
@@ -44,11 +45,11 @@
     <section class="hero">
         <div class="container">
             <div class="reveal active">
-                <h1>Controle total da sua empresa em um único sistema.</h1>
-                <p>Gerencie estoque, custos, produção, equipe, ocorrências, checklists e indicadores em tempo real.</p>
+                <h1>Pare de perder dinheiro sem saber onde.</h1>
+                <p>O GestãoCheck conecta estoque, produção, compras, custos e operação para você entender exatamente o que está acontecendo na sua empresa.</p>
                 <div class="hero-buttons">
-                    <a href="https://wa.me/5585999999999?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="btn btn-primary">Começar demonstração <i class="fas fa-arrow-right"></i></a>
-                    <a href="#contato" class="btn btn-secondary">Solicitar apresentação</a>
+                    <a href="https://wa.me/8599817221?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="btn btn-primary">Solicitar demonstração <i class="fas fa-arrow-right"></i></a>
+                    <a href="#funcionalidades" class="btn btn-secondary">Conhecer o GestãoCheck</a>
                 </div>
             </div>
             <!-- DASHBOARD MOCKUP -->
@@ -108,6 +109,22 @@
                         </div>
                     </div>
                 </div>
+                <p class="mockup-caption">Interface ilustrativa do sistema — dados demonstrativos</p>
+            </div>
+        </div>
+    </section>
+    <!-- MODULE STRIP -->
+    <section id="funcionalidades" class="module-strip">
+        <div class="container">
+            <div class="module-strip-inner reveal">
+                <span class="module-chip"><i class="fas fa-boxes-stacked"></i> Estoque</span>
+                <span class="module-chip"><i class="fas fa-percent"></i> CMV</span>
+                <span class="module-chip"><i class="fas fa-money-check-alt"></i> CMO</span>
+                <span class="module-chip"><i class="fas fa-shopping-basket"></i> CMC</span>
+                <span class="module-chip"><i class="fas fa-industry"></i> Produção</span>
+                <span class="module-chip"><i class="fas fa-exclamation-circle"></i> Ocorrências</span>
+                <span class="module-chip"><i class="fas fa-hand-holding"></i> Requisições</span>
+                <span class="module-chip"><i class="fas fa-file-invoice"></i> Relatórios</span>
             </div>
         </div>
     </section>
@@ -115,146 +132,325 @@
     <section id="problemas" class="problems">
         <div class="container">
             <div class="section-header reveal">
-                <span class="tag">O Desafio</span>
-                <h2>O caos não aparece no lucro. Mas ele consome o seu lucro.</h2>
+                <span class="tag">O Problema</span>
+                <h2>Os maiores prejuízos muitas vezes estão onde você não consegue enxergar.</h2>
                 <p>Acompanhar o dia a dia da operação sem ferramentas inteligentes gera prejuízos silenciosos.</p>
             </div>
             <div class="problems-grid">
                 <div class="problem-card reveal">
                     <div class="problem-icon"><i class="fas fa-warehouse"></i></div>
-                    <h3>Estoque Desorganizado</h3>
+                    <h3>Estoque desorganizado</h3>
                 </div>
                 <div class="problem-card reveal">
                     <div class="problem-icon"><i class="fas fa-eye-slash"></i></div>
-                    <h3>Perdas Invisíveis</h3>
-                </div>
-                <div class="problem-card reveal">
-                    <div class="problem-icon"><i class="fas fa-balance-scale"></i></div>
-                    <h3>Falta de Controle</h3>
+                    <h3>Perdas que passam despercebidas</h3>
                 </div>
                 <div class="problem-card reveal">
                     <div class="problem-icon"><i class="fas fa-shopping-cart"></i></div>
-                    <h3>Compras sem Planejamento</h3>
+                    <h3>Compras sem planejamento</h3>
                 </div>
                 <div class="problem-card reveal">
-                    <div class="problem-icon"><i class="fas fa-users-slash"></i></div>
-                    <h3>Equipe sem Acompanhamento</h3>
+                    <div class="problem-icon"><i class="fas fa-balance-scale"></i></div>
+                    <h3>Falta de controle dos custos</h3>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-icon"><i class="fas fa-diagram-project"></i></div>
+                    <h3>Informações espalhadas</h3>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-icon"><i class="fas fa-magnifying-glass"></i></div>
+                    <h3>Dificuldade para acompanhar a operação</h3>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Falta de indicadores confiáveis</h3>
                 </div>
             </div>
             <div class="arrow-down reveal"><i class="fas fa-chevron-down"></i></div>
             <div class="solution-banner reveal">
-                Tudo isso acaba com o <span>GestãoCheck</span>.
+                Centralize sua operação, acompanhe seus custos e tome decisões com informações reais — com o <span>GestãoCheck</span>.
             </div>
         </div>
     </section>
-    <!-- FEATURES -->
-    <section id="funcionalidades" class="bg-gray">
+    <!-- COMO FUNCIONA -->
+    <section id="como-funciona" class="bg-gray">
         <div class="container">
             <div class="section-header reveal">
-                <span class="tag">A Solução</span>
-                <h2>Funcionalidades que entregam resultado real</h2>
-                <p>Um ecossistema completo para gerir, medir e otimizar cada centavo e cada processo da sua empresa.</p>
+                <span class="tag">Como funciona</span>
+                <h2>Do cadastro à decisão, em quatro passos</h2>
             </div>
-            <div class="features-grid">
-                <!-- Card 1 -->
+            <div class="steps-grid reveal">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h3>Cadastre sua operação</h3>
+                    <p>Setores, produtos, categorias, funcionários e permissões.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3>Controle o estoque</h3>
+                    <p>Entradas, saídas, transferências, notas fiscais, contagens e movimentações.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3>Acompanhe seus custos</h3>
+                    <p>CMV, CMO, CMC, produção e perdas.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <h3>Tome decisões melhores</h3>
+                    <p>Dashboards, alertas e relatórios ajudam a identificar problemas e oportunidades.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ESTOQUE INTELIGENTE -->
+    <section id="estoque" class="bg-white deepdive">
+        <div class="container">
+            <div class="deepdive-grid">
+                <div class="deepdive-text reveal">
+                    <span class="tag">Estoque Inteligente</span>
+                    <h2>Seu estoque sob controle, setor por setor.</h2>
+                    <p>Chega de digitar notas manualmente. Fotografe ou envie sua nota fiscal e o GestãoCheck identifica os produtos automaticamente usando OCR — e ainda converte as unidades sozinho.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Contagem de estoque por setor, com setores e categorias configuráveis</li>
+                        <li><i class="fas fa-check"></i> Estoque principal separado dos setores, com transferência entre eles</li>
+                        <li><i class="fas fa-check"></i> Entrada, saída, origem e destino de cada movimentação</li>
+                        <li><i class="fas fa-check"></i> Importação de nota fiscal por PDF, foto ou OCR</li>
+                        <li><i class="fas fa-check"></i> Fila de verificação para novos itens e aprovação de mudança de preço</li>
+                        <li><i class="fas fa-check"></i> Foto por item e exportação em Excel/CSV</li>
+                        <li><i class="fas fa-check"></i> Identificação automática de itens faltantes</li>
+                    </ul>
+                </div>
+                <div class="deepdive-visual reveal">
+                    <div class="mini-mockup">
+                        <div class="mini-mockup-row">
+                            <span>Farinha de trigo</span>
+                            <span class="mini-badge mini-badge-warn">Estoque baixo</span>
+                        </div>
+                        <div class="mini-mockup-row">
+                            <span>Queijo muçarela</span>
+                            <span class="mini-badge">Câmara fria</span>
+                        </div>
+                        <div class="mini-mockup-row">
+                            <span>Molho de tomate</span>
+                            <span class="mini-badge">Estoque principal</span>
+                        </div>
+                        <div class="mini-mockup-row">
+                            <span>Nota fiscal #4521</span>
+                            <span class="mini-badge mini-badge-ok"><i class="fas fa-camera"></i> Lida por OCR</span>
+                        </div>
+                    </div>
+                    <p class="mockup-caption">Dados demonstrativos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CMV -->
+    <section class="bg-gray deepdive">
+        <div class="container">
+            <div class="deepdive-grid reverse">
+                <div class="deepdive-visual reveal">
+                    <div class="mini-mockup">
+                        <div class="mini-mockup-title">Ficha técnica — Pizza Margherita</div>
+                        <div class="mini-mockup-row"><span>Farinha, queijo, molho</span><span>R$ 9,80</span></div>
+                        <div class="mini-mockup-row"><span>Custo total</span><span>R$ 9,80</span></div>
+                        <div class="mini-mockup-row"><span>Preço de venda</span><span>R$ 39,90</span></div>
+                        <div class="mini-mockup-row mini-mockup-highlight"><span>Margem</span><span>75,4%</span></div>
+                    </div>
+                    <p class="mockup-caption">Dados demonstrativos</p>
+                </div>
+                <div class="deepdive-text reveal">
+                    <span class="tag">CMV</span>
+                    <h2>Saiba quanto realmente custa aquilo que você vende.</h2>
+                    <p>Entenda o custo real dos produtos vendidos e descubra onde sua margem está sendo perdida — com a ficha técnica ligada aos itens reais do seu estoque.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Ficha técnica ligada aos itens reais do estoque</li>
+                        <li><i class="fas fa-check"></i> Registro de vendas com baixa automática de estoque</li>
+                        <li><i class="fas fa-check"></i> Importação de vendas por nota fiscal</li>
+                        <li><i class="fas fa-check"></i> Categorias de venda e DRE</li>
+                        <li><i class="fas fa-check"></i> Evolução de faturamento e alertas de insumos faltantes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CMO -->
+    <section class="bg-white deepdive">
+        <div class="container">
+            <div class="deepdive-grid">
+                <div class="deepdive-text reveal">
+                    <span class="tag">CMO</span>
+                    <h2>Entenda quanto sua equipe representa no faturamento.</h2>
+                    <p>Defina uma meta de percentual da folha sobre o faturamento e receba alertas automáticos sempre que esse limite for ultrapassado.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Cadastro de funcionários e folha de pagamento</li>
+                        <li><i class="fas fa-check"></i> Cálculo de quanto é preciso faturar para pagar a equipe</li>
+                        <li><i class="fas fa-check"></i> Meta de percentual do faturamento</li>
+                        <li><i class="fas fa-check"></i> Alertas quando o limite é ultrapassado</li>
+                    </ul>
+                </div>
+                <div class="deepdive-visual reveal">
+                    <div class="mini-mockup">
+                        <div class="mini-mockup-title">Meta de folha</div>
+                        <div class="mini-mockup-row"><span>Meta definida</span><span>28% do faturamento</span></div>
+                        <div class="mini-mockup-row"><span>Folha atual</span><span>24,6%</span></div>
+                        <div class="mini-progress">
+                            <div class="mini-progress-bar" style="width: 24.6%"></div>
+                        </div>
+                        <div class="mini-mockup-row mini-mockup-highlight"><span>Situação</span><span>Dentro da meta</span></div>
+                    </div>
+                    <p class="mockup-caption">Dados demonstrativos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CMC -->
+    <section class="bg-gray deepdive">
+        <div class="container">
+            <div class="deepdive-grid reverse">
+                <div class="deepdive-visual reveal">
+                    <div class="mini-mockup">
+                        <div class="mini-mockup-title">Compras do mês</div>
+                        <div class="mini-mockup-row"><span>Fornecedor Distribuidora Sul</span><span>R$ 6.240</span></div>
+                        <div class="mini-mockup-row"><span>Fornecedor Laticínios MG</span><span>R$ 3.180</span></div>
+                        <div class="mini-mockup-row mini-mockup-highlight"><span>Total do período</span><span>R$ 9.420</span></div>
+                    </div>
+                    <p class="mockup-caption">Dados demonstrativos</p>
+                </div>
+                <div class="deepdive-text reveal">
+                    <span class="tag">CMC</span>
+                    <h2>Compre melhor sabendo quanto sua operação realmente está pagando.</h2>
+                    <p>Acompanhe compras e fornecedores integrados às notas já importadas no estoque, com metas e resumo por período.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Controle de compras e fornecedores</li>
+                        <li><i class="fas fa-check"></i> Categorias de compra</li>
+                        <li><i class="fas fa-check"></i> Integração com notas importadas no estoque</li>
+                        <li><i class="fas fa-check"></i> Metas e resumo por período</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CMV + CMO + CMC -->
+    <section class="bg-white">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Visão completa</span>
+                <h2>Três indicadores para enxergar a saúde da sua operação.</h2>
+            </div>
+            <div class="indicators-grid">
+                <div class="indicator-card reveal">
+                    <div class="indicator-letter">CMV</div>
+                    <p>Custo da mercadoria vendida.</p>
+                </div>
+                <div class="indicator-card reveal">
+                    <div class="indicator-letter">CMO</div>
+                    <p>Custo da mão de obra.</p>
+                </div>
+                <div class="indicator-card reveal">
+                    <div class="indicator-letter">CMC</div>
+                    <p>Custo médio de compra.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- BENEFICIAMENTO -->
+    <section id="funcionalidades-beneficiamento" class="bg-gray">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Beneficiamento</span>
+                <h2>Transforme matéria-prima em produção com controle de custos.</h2>
+            </div>
+            <div class="flow-row reveal">
+                <span class="flow-step">Farinha + água + fermento</span>
+                <i class="fas fa-arrow-right flow-arrow"></i>
+                <span class="flow-step">Massa pronta</span>
+                <i class="fas fa-arrow-right flow-arrow"></i>
+                <span class="flow-step">Porções</span>
+                <i class="fas fa-arrow-right flow-arrow"></i>
+                <span class="flow-step flow-step-final">Produto final</span>
+            </div>
+            <div class="features-grid" style="margin-top: 48px;">
                 <div class="feature-card reveal">
                     <div class="feature-icon"><i class="fas fa-boxes-stacked"></i></div>
-                    <h3>Estoque Inteligente</h3>
-                    <p>Controle absoluto de insumos com automação e precisão.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Contagem por setores configuráveis</li>
-                        <li><i class="fas fa-check"></i> OCR para importar nota fiscal</li>
-                        <li><i class="fas fa-check"></i> Conversão automática de unidades</li>
-                        <li><i class="fas fa-check"></i> Transferência automática</li>
-                        <li><i class="fas fa-check"></i> Fila de verificação e itens faltantes</li>
-                        <li><i class="fas fa-check"></i> Exportação Excel</li>
-                    </ul>
+                    <h3>Matéria-prima real</h3>
+                    <p>O desconto dos ingredientes acontece somente na confirmação da produção, direto do estoque real.</p>
                 </div>
-                <!-- Card 2 -->
                 <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-percent"></i></div>
-                    <h3>CMV</h3>
-                    <p>Custo de Mercadoria Vendida integrado ao estoque.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Baixa automática do estoque</li>
-                        <li><i class="fas fa-check"></i> Ficha técnica integrada</li>
-                        <li><i class="fas fa-check"></i> Importação de vendas</li>
-                        <li><i class="fas fa-check"></i> DRE e Indicadores</li>
-                        <li><i class="fas fa-check"></i> Alertas de insumos</li>
-                    </ul>
+                    <div class="feature-icon"><i class="fas fa-scale-balanced"></i></div>
+                    <h3>Rendimento e custo</h3>
+                    <p>Cálculo automático de rendimento e custo por porção produzida.</p>
                 </div>
-                <!-- Card 3 -->
                 <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-money-check-alt"></i></div>
-                    <h3>CMO</h3>
-                    <p>Custo de Mão de Obra sob controle direto.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Folha de pagamento</li>
-                        <li><i class="fas fa-check"></i> Meta de faturamento</li>
-                        <li><i class="fas fa-check"></i> Percentual da folha</li>
-                        <li><i class="fas fa-check"></i> Alertas automáticos</li>
-                    </ul>
+                    <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>Múltiplos níveis</h3>
+                    <p>Produção em múltiplos níveis, da matéria-prima ao produto final.</p>
                 </div>
-                <!-- Card 4 -->
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-shopping-basket"></i></div>
-                    <h3>CMC</h3>
-                    <p>Custo de Mercadoria Comprada estratégico.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Controle de compras</li>
-                        <li><i class="fas fa-check"></i> Gestão de fornecedores</li>
-                        <li><i class="fas fa-check"></i> Categorias e metas</li>
-                        <li><i class="fas fa-check"></i> Resumo por período</li>
-                    </ul>
+            </div>
+        </div>
+    </section>
+    <!-- AVARIAS E OCORRÊNCIAS -->
+    <section class="bg-white">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Avarias e ocorrências</span>
+                <h2>Registre perdas antes que elas desapareçam nos números.</h2>
+            </div>
+            <div class="security-grid">
+                <div class="security-card reveal" style="background: var(--bg-gray); border-color: var(--border); color: var(--text-main);"><i class="fas fa-camera" style="color: var(--secondary);"></i> Registro de avarias com foto obrigatória</div>
+                <div class="security-card reveal" style="background: var(--bg-gray); border-color: var(--border); color: var(--text-main);"><i class="fas fa-comment" style="color: var(--secondary);"></i> Comentários por ocorrência</div>
+                <div class="security-card reveal" style="background: var(--bg-gray); border-color: var(--border); color: var(--text-main);"><i class="fas fa-bell" style="color: var(--secondary);"></i> Central de ocorrências com alertas automáticos</div>
+                <div class="security-card reveal" style="background: var(--bg-gray); border-color: var(--border); color: var(--text-main);"><i class="fas fa-clipboard-check" style="color: var(--secondary);"></i> Checklist de rotina</div>
+                <div class="security-card reveal" style="background: var(--bg-gray); border-color: var(--border); color: var(--text-main);"><i class="fas fa-screwdriver-wrench" style="color: var(--secondary);"></i> Manutenção de equipamentos</div>
+            </div>
+        </div>
+    </section>
+    <!-- REQUISIÇÕES -->
+    <section class="bg-gray">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Requisições</span>
+                <h2>Cada setor pede. O estoque atende. Tudo fica organizado.</h2>
+            </div>
+            <div class="flow-row reveal">
+                <span class="flow-step">Setor solicita</span>
+                <i class="fas fa-arrow-right flow-arrow"></i>
+                <span class="flow-step">Estoque recebe</span>
+                <i class="fas fa-arrow-right flow-arrow"></i>
+                <span class="flow-step">Atendimento</span>
+                <i class="fas fa-arrow-right flow-arrow"></i>
+                <span class="flow-step flow-step-final">Histórico</span>
+            </div>
+            <p class="flow-footnote reveal">Com comentários, edição, histórico completo e acompanhamento em tempo real.</p>
+        </div>
+    </section>
+    <!-- RELATÓRIOS -->
+    <section class="bg-white">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Relatórios</span>
+                <h2>Transforme dados da operação em decisões.</h2>
+            </div>
+            <div class="mockup-cards" style="max-width: 900px; margin: 0 auto 24px;">
+                <div class="mockup-stat" style="border-radius:12px;">
+                    <div class="mockup-stat-label">Estoque</div>
+                    <div class="mockup-stat-value">Sob controle</div>
                 </div>
-                <!-- Card 5 -->
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-industry"></i></div>
-                    <h3>Beneficiamento</h3>
-                    <p>Gestão de transformação de matéria-prima.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Cálculo automático</li>
-                        <li><i class="fas fa-check"></i> Custo por porção</li>
-                        <li><i class="fas fa-check"></i> Produção em múltiplos níveis</li>
-                        <li><i class="fas fa-check"></i> Controle completo dos insumos</li>
-                    </ul>
+                <div class="mockup-stat" style="border-radius:12px;">
+                    <div class="mockup-stat-label">CMV / CMO / CMC</div>
+                    <div class="mockup-stat-value" style="color: var(--secondary)">Integrados</div>
                 </div>
-                <!-- Card 6 -->
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-exclamation-circle"></i></div>
-                    <h3>Ocorrências</h3>
-                    <p>Centralize problemas e resolva rápido.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Registro de avarias</li>
-                        <li><i class="fas fa-check"></i> Fotos obrigatórias</li>
-                        <li><i class="fas fa-check"></i> Comentários e checklists</li>
-                        <li><i class="fas fa-check"></i> Manutenção</li>
-                    </ul>
+                <div class="mockup-stat" style="border-radius:12px;">
+                    <div class="mockup-stat-label">Faturamento</div>
+                    <div class="mockup-stat-value">Em tempo real</div>
                 </div>
-                <!-- Card 7 -->
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-hand-holding"></i></div>
-                    <h3>Requisições</h3>
-                    <p>Fluxo de solicitações entre setores.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Solicitação entre setores</li>
-                        <li><i class="fas fa-check"></i> Aprovação e histórico</li>
-                        <li><i class="fas fa-check"></i> Comentários</li>
-                        <li><i class="fas fa-check"></i> Controle completo</li>
-                    </ul>
+                <div class="mockup-stat" style="border-radius:12px;">
+                    <div class="mockup-stat-label">Avarias / Produção</div>
+                    <div class="mockup-stat-value">Rastreados</div>
                 </div>
-                <!-- Card 8 -->
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-file-invoice"></i></div>
-                    <h3>Relatórios</h3>
-                    <p>Inteligência de dados para decisões.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Dashboard inteligente</li>
-                        <li><i class="fas fa-check"></i> Indicadores e gráficos</li>
-                        <li><i class="fas fa-check"></i> Filtros dinâmicos</li>
-                        <li><i class="fas fa-check"></i> Exportações</li>
-                    </ul>
-                </div>
+            </div>
+            <div class="evolving-note reveal">
+                <i class="fas fa-arrows-rotate"></i> Novos relatórios e gráficos estão chegando. Essa parte do GestãoCheck ainda está em evolução.
             </div>
         </div>
     </section>
@@ -263,25 +459,66 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="tag" style="background: rgba(255,107,107,0.2); color: var(--secondary);">Segurança</span>
-                <h2>Sua empresa protegida.</h2>
-                <p style="color: rgba(255,255,255,0.7);">Infraestrutura de nível corporativo para garantir que seus dados estejam sempre seguros e disponíveis.</p>
+                <h2>Segurança pensada para proteger sua operação.</h2>
+                <p style="color: rgba(255,255,255,0.7);">Infraestrutura pensada para manter os dados da sua empresa protegidos e disponíveis.</p>
             </div>
             <div class="security-grid">
-                <div class="security-card reveal"><i class="fas fa-lock"></i> Login seguro</div>
-                <div class="security-card reveal"><i class="fas fa-shield-alt"></i> Bloqueio contra ataques</div>
-                <div class="security-card reveal"><i class="fas fa-key"></i> Hash de senha</div>
-                <div class="security-card reveal"><i class="fas fa-laptop-house"></i> Sessões remotas</div>
-                <div class="security-card reveal"><i class="fas fa-search-location"></i> Auditoria completa</div>
-                <div class="security-card reveal"><i class="fas fa-database"></i> Banco isolado por cliente</div>
-                <div class="security-card reveal"><i class="fas fa-bug-slash"></i> Monitoramento de vulnerabilidades</div>
+                <div class="security-card reveal"><i class="fas fa-lock"></i> Bloqueio progressivo de login</div>
+                <div class="security-card reveal"><i class="fas fa-shield-alt"></i> Proteção contra padrões de ataque</div>
+                <div class="security-card reveal"><i class="fas fa-key"></i> Políticas de senha seguras</div>
+                <div class="security-card reveal"><i class="fas fa-laptop-house"></i> Sessão revogável remotamente</div>
+                <div class="security-card reveal"><i class="fas fa-fingerprint"></i> Hash seguro de senha</div>
+                <div class="security-card reveal"><i class="fas fa-bug-slash"></i> Dependências monitoradas contra vulnerabilidades conhecidas</div>
+                <div class="security-card reveal"><i class="fas fa-database"></i> Banco de dados isolado por cliente</div>
             </div>
         </div>
     </section>
-    <!-- COMPATIBILITY -->
+    <!-- PARA QUEM É -->
+    <section id="paraquem" class="bg-gray">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Para quem é</span>
+                <h2>Feito para operações que precisam de controle.</h2>
+                <p>O primeiro caso de uso surgiu em uma pizzaria, mas o GestãoCheck não é exclusivo para restaurantes.</p>
+            </div>
+            <div class="segments-grid">
+                <div class="segment-card reveal"><span class="segment-emoji">🍕</span> Pizzarias</div>
+                <div class="segment-card reveal"><span class="segment-emoji">🍔</span> Restaurantes</div>
+                <div class="segment-card reveal"><span class="segment-emoji">🥖</span> Padarias</div>
+                <div class="segment-card reveal"><span class="segment-emoji">🍺</span> Bares</div>
+                <div class="segment-card reveal"><span class="segment-emoji">🏪</span> Mercados</div>
+                <div class="segment-card reveal"><span class="segment-emoji">🏢</span> Outras empresas</div>
+            </div>
+        </div>
+    </section>
+    <!-- DIFFERENTIALS -->
+    <section id="diferenciais" class="bg-white">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Por que GestãoCheck?</span>
+                <h2>Mais do que um sistema, um diferencial competitivo</h2>
+            </div>
+            <div class="diff-chips reveal">
+                <span class="diff-chip"><i class="fas fa-check-circle"></i> Estoque por setor</span>
+                <span class="diff-chip"><i class="fas fa-check-circle"></i> OCR de notas fiscais</span>
+                <span class="diff-chip"><i class="fas fa-check-circle"></i> Conversão automática de unidades</span>
+                <span class="diff-chip"><i class="fas fa-check-circle"></i> CMV</span>
+                <span class="diff-chip"><i class="fas fa-check-circle"></i> CMO</span>
+                <span class="diff-chip"><i class="fas fa-check-circle"></i> CMC</span>
+                <span class="diff-chip"><i class="fas fa-check-circle"></i> Beneficiamento</span>
+                <span class="diff-chip"><i class="fas fa-check-circle"></i> Ocorrências</span>
+                <span class="diff-chip"><i class="fas fa-check-circle"></i> Checklists</span>
+                <span class="diff-chip"><i class="fas fa-check-circle"></i> Requisições</span>
+                <span class="diff-chip"><i class="fas fa-check-circle"></i> Banco isolado por cliente</span>
+                <span class="diff-chip"><i class="fas fa-check-circle"></i> Dashboard gerencial</span>
+            </div>
+        </div>
+    </section>
+    <!-- EXPERIÊNCIA MULTIDISPOSITIVO -->
     <section class="bg-gray">
         <div class="container">
             <div class="section-header reveal">
-                <span class="tag">Compatibilidade</span>
+                <span class="tag">Experiência</span>
                 <h2>Acesse de qualquer lugar, em qualquer dispositivo.</h2>
             </div>
             <div class="compatibility-grid">
@@ -292,104 +529,7 @@
                 <div class="compat-item reveal"><i class="fas fa-sun"></i> Tema Claro</div>
                 <div class="compat-item reveal"><i class="fas fa-moon"></i> Tema Escuro</div>
                 <div class="compat-item reveal"><i class="fas fa-bell"></i> Notificações em Tempo Real</div>
-            </div>
-        </div>
-    </section>
-    <!-- DIFFERENTIALS -->
-    <section id="diferenciais" class="differentials">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="tag">Por que GestãoCheck?</span>
-                <h2>Mais do que um sistema, um diferencial competitivo</h2>
-            </div>
-            <div class="diff-table reveal">
-                <div class="diff-row header">
-                    <div>Funcionalidade</div>
-                    <div>GestãoCheck</div>
-                </div>
-                <div class="diff-row">
-                    <div>OCR em notas fiscais</div>
-                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
-                </div>
-                <div class="diff-row">
-                    <div>Conversão automática de unidades</div>
-                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
-                </div>
-                <div class="diff-row">
-                    <div>Banco isolado por cliente</div>
-                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
-                </div>
-                <div class="diff-row">
-                    <div>Controle por setores</div>
-                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
-                </div>
-                <div class="diff-row">
-                    <div>Gestão de CMV, CMO e CMC</div>
-                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
-                </div>
-                <div class="diff-row">
-                    <div>Beneficiamento de insumos</div>
-                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
-                </div>
-                <div class="diff-row">
-                    <div>Checklists e Auditoria</div>
-                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
-                </div>
-                <div class="diff-row">
-                    <div>Segurança avançada e Dashboard inteligente</div>
-                    <div class="diff-check"><i class="fas fa-check-circle"></i></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- TESTIMONIALS -->
-    <section class="bg-white">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="tag">Depoimentos</span>
-                <h2>Quem usa, recomenda</h2>
-                <p>Empresários que recuperaram o controle de suas operações.</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"O GestãoCheck acabou com as perdas invisíveis na minha padaria. O controle de CMV salvou meu lucro."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">JS</div>
-                        <div>
-                            <div class="author-name">João Silva</div>
-                            <div class="author-role">Dono de Padaria</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"A importação de notas com OCR é mágica. Economizo horas de trabalho manual lançando estoque."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MR</div>
-                        <div>
-                            <div class="author-name">Mariana Rocha</div>
-                            <div class="author-role">Gestora de Restaurante</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"Finalmente um sistema que entende o beneficiamento de massa para pizza. Custo exato por porção!"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">CL</div>
-                        <div>
-                            <div class="author-name">Carlos Lima</div>
-                            <div class="author-role">Proprietário de Pizzaria</div>
-                        </div>
-                    </div>
-                </div>
+                <div class="compat-item reveal"><i class="fas fa-headset"></i> Central de Suporte</div>
             </div>
         </div>
     </section>
@@ -492,22 +632,19 @@
                     <div class="founder-initial">J</div>
                     <div class="founder-name">Jarbas Jamysson</div>
                     <div class="founder-role">Fundador</div>
-                    <!-- Placeholder: substituir pelo link real do LinkedIn -->
-                    <a href="[LINKEDIN_JARBAS]" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://www.linkedin.com/in/jarbas-jamysson-388a41264?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
                 </div>
                 <div class="founder-card">
                     <div class="founder-initial">A</div>
                     <div class="founder-name">Antonio Neto</div>
-                    <div class="founder-role">Fundador</div>
-                    <!-- Placeholder: substituir pelo link real do LinkedIn -->
+                    <div class="founder-role">Fundador/Desenvolvedor</div>
                     <a href="[LINKEDIN_ANTONIO]" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
                 </div>
                 <div class="founder-card">
                     <div class="founder-initial">C</div>
                     <div class="founder-name">Carlos Eduardo</div>
-                    <div class="founder-role">Fundador</div>
-                    <!-- Placeholder: substituir pelo link real do LinkedIn -->
-                    <a href="[LINKEDIN_CARLOS]" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <div class="founder-role">Fundador/Desenvolvedor</div>
+                    <a href="https://www.linkedin.com/in/carlos-eduardo-408087230" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
             <div class="closing-quote reveal">
@@ -518,9 +655,11 @@
     <!-- FINAL CTA -->
     <section id="contato" class="final-cta">
         <div class="container reveal">
-            <h2>Pronto para transformar a gestão da sua empresa?</h2>
+            <h2>Tenha uma visão completa da sua operação.</h2>
+            <p class="final-cta-text">Conheça o GestãoCheck e descubra como transformar dados da sua empresa em decisões melhores.</p>
             <div class="cta-buttons">
-                <a href="https://wa.me/5585999999999?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 1.1rem; padding: 20px 40px;">Solicitar Demonstração <i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/5585991799221?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 1.1rem; padding: 20px 40px;">Solicitar demonstração <i class="fab fa-whatsapp"></i></a>
+                <a href="#funcionalidades" class="btn btn-outline-white" style="font-size: 1.1rem; padding: 20px 40px;">Conhecer o sistema</a>
             </div>
         </div>
     </section>
@@ -530,25 +669,24 @@
             <div class="footer-content">
                 <div>
                     <a href="#" class="logo footer-logo">
-                        <div class="logo-icon"><i class="fas fa-check-double"></i></div>
-                        Gestão<span>Check</span>
+                        <img src="scr/logo.png" alt="GestãoCheck" class="logo-img">
                     </a>
                     <p>Gestão e Acompanhamento de Processos.</p>
-                    <p style="margin-top: 16px; font-size: 0.9rem;">Tecnologia de ponta para restaurantes, bares, padarias, pizzarias e mercados.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Produto</h4>
                     <ul>
                         <li><a href="#funcionalidades">Funcionalidades</a></li>
+                        <li><a href="#como-funciona">Como funciona</a></li>
                         <li><a href="#seguranca">Segurança</a></li>
-                        <li><a href="#diferenciais">Diferenciais</a></li>
+                        <li><a href="#contato">Contato</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Empresa</h4>
                     <ul>
-                        <li><a href="#contato">Contato</a></li>
                         <li><a href="#sobre">Sobre nós</a></li>
+                        <li><a href="#paraquem">Para quem é</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
