@@ -10,14 +10,14 @@
     <!-- Open Graph -->
     <meta property="og:title" content="GestãoCheck — Gestão e Acompanhamento de Processos">
     <meta property="og:description" content="Controle estoque, custos, produção, compras, ocorrências e indicadores da sua empresa em um único sistema.">
-    <meta property="og:image" content="assets/logo.png">
+    <meta property="og:image" content="scr/assets/logo/logo-vertical-completo.svg">
     <meta property="og:type" content="website">
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="icon" href="scr/icone-colorido.svg">
+    <link rel="icon" type="image/svg+xml" href="scr/assets/logo/favicon-circulo-contorno.svg">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -26,7 +26,7 @@
     <header id="header">
         <div class="container nav-content">
             <a href="#" class="logo">
-                <img src="scr/logo.png" alt="GestãoCheck" class="logo-img">
+                <img src="scr/assets/logo/logo-horizontal.svg" alt="GestãoCheck" class="logo-img">
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
 <i class="fas fa-bars"></i>
@@ -48,7 +48,7 @@
                 <h1>Pare de perder dinheiro sem saber onde.</h1>
                 <p>O GestãoCheck conecta estoque, produção, compras, custos e operação para você entender exatamente o que está acontecendo na sua empresa.</p>
                 <div class="hero-buttons">
-                    <a href="https://wa.me/8599817221?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="btn btn-primary">Solicitar demonstração <i class="fas fa-arrow-right"></i></a>
+                    <button type="button" class="btn btn-primary" data-modal-open="contactModal">Solicitar demonstração <i class="fas fa-arrow-right"></i></button>
                     <a href="#funcionalidades" class="btn btn-secondary">Conhecer o GestãoCheck</a>
                 </div>
             </div>
@@ -91,12 +91,12 @@
                             <div class="mockup-chart">
                                 <div class="mockup-stat-label">Vendas x Custos</div>
                                 <div class="chart-bars">
-                                    <div class="chart-bar" style="height: 40%"></div>
-                                    <div class="chart-bar" style="height: 60%"></div>
-                                    <div class="chart-bar" style="height: 45%"></div>
-                                    <div class="chart-bar" style="height: 80%"></div>
-                                    <div class="chart-bar" style="height: 55%"></div>
-                                    <div class="chart-bar" style="height: 70%"></div>
+                                    <div class="chart-bar" style="--bar-h: 40%"></div>
+                                    <div class="chart-bar" style="--bar-h: 60%"></div>
+                                    <div class="chart-bar" style="--bar-h: 45%"></div>
+                                    <div class="chart-bar" style="--bar-h: 80%"></div>
+                                    <div class="chart-bar" style="--bar-h: 55%"></div>
+                                    <div class="chart-bar" style="--bar-h: 70%"></div>
                                 </div>
                             </div>
                             <div class="mockup-chart">
@@ -295,7 +295,7 @@
                         <div class="mini-mockup-row"><span>Meta definida</span><span>28% do faturamento</span></div>
                         <div class="mini-mockup-row"><span>Folha atual</span><span>24,6%</span></div>
                         <div class="mini-progress">
-                            <div class="mini-progress-bar" style="width: 24.6%"></div>
+                            <div class="mini-progress-bar" style="--bar-w: 24.6%"></div>
                         </div>
                         <div class="mini-mockup-row mini-mockup-highlight"><span>Situação</span><span>Dentro da meta</span></div>
                     </div>
@@ -396,12 +396,12 @@
                 <span class="tag">Avarias e ocorrências</span>
                 <h2>Registre perdas antes que elas desapareçam nos números.</h2>
             </div>
-            <div class="security-grid">
-                <div class="security-card reveal" style="background: var(--bg-gray); border-color: var(--border); color: var(--text-main);"><i class="fas fa-camera" style="color: var(--secondary);"></i> Registro de avarias com foto obrigatória</div>
-                <div class="security-card reveal" style="background: var(--bg-gray); border-color: var(--border); color: var(--text-main);"><i class="fas fa-comment" style="color: var(--secondary);"></i> Comentários por ocorrência</div>
-                <div class="security-card reveal" style="background: var(--bg-gray); border-color: var(--border); color: var(--text-main);"><i class="fas fa-bell" style="color: var(--secondary);"></i> Central de ocorrências com alertas automáticos</div>
-                <div class="security-card reveal" style="background: var(--bg-gray); border-color: var(--border); color: var(--text-main);"><i class="fas fa-clipboard-check" style="color: var(--secondary);"></i> Checklist de rotina</div>
-                <div class="security-card reveal" style="background: var(--bg-gray); border-color: var(--border); color: var(--text-main);"><i class="fas fa-screwdriver-wrench" style="color: var(--secondary);"></i> Manutenção de equipamentos</div>
+            <div class="light-grid">
+                <div class="light-card reveal"><i class="fas fa-camera"></i> Registro de avarias com foto obrigatória</div>
+                <div class="light-card reveal"><i class="fas fa-comment"></i> Comentários por ocorrência</div>
+                <div class="light-card reveal"><i class="fas fa-bell"></i> Central de ocorrências com alertas automáticos</div>
+                <div class="light-card reveal"><i class="fas fa-clipboard-check"></i> Checklist de rotina</div>
+                <div class="light-card reveal"><i class="fas fa-screwdriver-wrench"></i> Manutenção de equipamentos</div>
             </div>
         </div>
     </section>
@@ -629,22 +629,31 @@
             </div>
             <div class="founders-grid reveal">
                 <div class="founder-card">
-                    <div class="founder-initial">J</div>
+                    <div class="founder-avatar"><div class="founder-initial">J</div></div>
                     <div class="founder-name">Jarbas Jamysson</div>
                     <div class="founder-role">Fundador</div>
-                    <a href="https://www.linkedin.com/in/jarbas-jamysson-388a41264?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <div class="founder-actions">
+                        <a href="https://wa.me/5585992029592?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="founder-whatsapp" aria-label="Falar com Jarbas no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.linkedin.com/in/jarbas-jamysson-388a41264?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    </div>
                 </div>
                 <div class="founder-card">
-                    <div class="founder-initial">A</div>
+                    <div class="founder-avatar"><img class="founder-photo" src="scr/assets/equipe/antonio.jpg" alt="Antonio Neto"></div>
                     <div class="founder-name">Antonio Neto</div>
                     <div class="founder-role">Fundador/Desenvolvedor</div>
-                    <a href="[LINKEDIN_ANTONIO]" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <div class="founder-actions">
+                        <a href="https://wa.me/5585999817221?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="founder-whatsapp" aria-label="Falar com Antonio no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.linkedin.com/in/antonio-neto-39bb72268/" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    </div>
                 </div>
                 <div class="founder-card">
-                    <div class="founder-initial">C</div>
+                    <div class="founder-avatar"><img class="founder-photo" src="scr/assets/equipe/carlos.jpg" alt="Carlos Eduardo"></div>
                     <div class="founder-name">Carlos Eduardo</div>
                     <div class="founder-role">Fundador/Desenvolvedor</div>
-                    <a href="https://www.linkedin.com/in/carlos-eduardo-408087230" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <div class="founder-actions">
+                        <a href="https://wa.me/5585991799221?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="founder-whatsapp" aria-label="Falar com Carlos no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.linkedin.com/in/carlos-eduardo-408087230" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="closing-quote reveal">
@@ -658,7 +667,7 @@
             <h2>Tenha uma visão completa da sua operação.</h2>
             <p class="final-cta-text">Conheça o GestãoCheck e descubra como transformar dados da sua empresa em decisões melhores.</p>
             <div class="cta-buttons">
-                <a href="https://wa.me/5585991799221?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 1.1rem; padding: 20px 40px;">Solicitar demonstração <i class="fab fa-whatsapp"></i></a>
+                <button type="button" class="btn btn-primary" style="font-size: 1.1rem; padding: 20px 40px;" data-modal-open="contactModal">Solicitar demonstração <i class="fab fa-whatsapp"></i></button>
                 <a href="#funcionalidades" class="btn btn-outline-white" style="font-size: 1.1rem; padding: 20px 40px;">Conhecer o sistema</a>
             </div>
         </div>
@@ -669,7 +678,7 @@
             <div class="footer-content">
                 <div>
                     <a href="#" class="logo footer-logo">
-                        <img src="scr/logo.png" alt="GestãoCheck" class="logo-img">
+                        <img src="scr/assets/logo/logo-horizontal.svg" alt="GestãoCheck" class="logo-img">
                     </a>
                     <p>Gestão e Acompanhamento de Processos.</p>
                 </div>
@@ -702,6 +711,32 @@
             </div>
         </div>
     </footer>
+    <!-- MODAL DE CONTATO -->
+    <div class="contact-modal" id="contactModal" aria-hidden="true">
+        <div class="contact-modal-backdrop" data-modal-close></div>
+        <div class="contact-modal-card">
+            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+            <h3>Com quem você quer falar?</h3>
+            <p>Escolha um dos fundadores pra tirar dúvidas ou pedir uma demonstração.</p>
+            <div class="contact-modal-list">
+                <a href="https://wa.me/5585992029592?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="contact-option">
+                    <span class="contact-option-avatar"><div class="founder-initial">J</div></span>
+                    <span class="contact-option-info"><strong>Jarbas Jamysson</strong><span>Fundador — Vendas</span></span>
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://wa.me/5585999817221?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="contact-option">
+                    <span class="contact-option-avatar"><img src="scr/assets/equipe/antonio.jpg" alt="Antonio Neto"></span>
+                    <span class="contact-option-info"><strong>Antonio Neto</strong><span>Fundador — Desenvolvedor</span></span>
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://wa.me/5585991799221?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="contact-option">
+                    <span class="contact-option-avatar"><img src="scr/assets/equipe/carlos.jpg" alt="Carlos Eduardo"></span>
+                    <span class="contact-option-info"><strong>Carlos Eduardo</strong><span>Fundador — Desenvolvedor</span></span>
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 

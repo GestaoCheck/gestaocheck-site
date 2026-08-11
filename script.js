@@ -49,3 +49,34 @@ if (navToggle && navLinks) {
         });
     });
 }
+
+// Modal "com quem você quer falar" (Solicitar demonstração)
+const abrirModal = (id) => {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+};
+
+const fecharModal = (modal) => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+};
+
+document.querySelectorAll('[data-modal-open]').forEach((trigger) => {
+    trigger.addEventListener('click', () => abrirModal(trigger.getAttribute('data-modal-open')));
+});
+
+document.querySelectorAll('[data-modal-close]').forEach((el) => {
+    el.addEventListener('click', () => {
+        const modal = el.closest('.contact-modal');
+        if (modal) fecharModal(modal);
+    });
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.contact-modal.open').forEach(fecharModal);
+});

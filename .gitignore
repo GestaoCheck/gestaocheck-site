@@ -1,0 +1,13 @@
+# Config local de preview/dev (launch.json etc) - pessoal de cada maquina,
+# nao faz parte do site em si.
+.claude/
+
+# Arquivos de SO/editor.
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# Caso algum dia rode algo via npm/npx que baixe dependencias localmente.
+node_modules/
