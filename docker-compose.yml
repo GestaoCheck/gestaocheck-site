@@ -1,0 +1,18 @@
+# Sobe o site de vendas na mesma VPS/Traefik que ja roda os clientes
+# (ver docs/DEPLOY_VPS.md do repositorio principal - mesmo padrao de
+# labels que ja funciona em producao, so trocando dominio/nome do router).
+#
+# Uso na VPS: docker compose up -d --build
+
+services:
+  site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sitevendas.rule=Host(`gestaocheck.tech`) || Host(`www.gestaocheck.tech`)"
+      - "traefik.http.routers.sitevendas.entrypoints=websecure"
+      - "traefik.http.routers.sitevendas.tls.certresolver=letsencrypt"
+      - "traefik.http.services.sitevendas.loadbalancer.server.port=80"
+    restart: unless-stopped

@@ -1,0 +1,6 @@
+.git/
+.claude/
+docs/
+README.md
+CLAUDE.md
+node_modules/

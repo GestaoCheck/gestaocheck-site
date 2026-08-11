@@ -115,9 +115,23 @@ Abre em `http://localhost:3000` (ou a porta que o `serve` escolher).
 
 ## Deploy
 
-Ainda não subiu no domínio principal — é o próximo passo depois da
-revisão final. Sendo HTML/CSS/JS estático, qualquer hospedagem de site
-estático serve (Hostinger, Vercel, Netlify, Nginx numa VPS própria etc.).
+Sobe na mesma VPS (Hostinger) e no mesmo Traefik que já hospeda os
+clientes do sistema principal — `Dockerfile` + `docker-compose.yml` já
+prontos neste repositório, usando o mesmo padrão de labels que já
+funciona em produção (ver `docs/DEPLOY_VPS.md` do repositório principal
+pro contexto completo do Traefik/VPS).
+
+```bash
+mkdir -p /opt/site-vendas && cd /opt/site-vendas
+git clone https://github.com/GestaoCheck/gestao-pro.git .
+docker compose up -d --build
+```
+
+Domínio configurado nas labels: `gestaocheck.tech` e `www.gestaocheck.tech`
+(ajustar em `docker-compose.yml` se o domínio real for outro). Precisa de
+um registro DNS `A` apontando pra VPS tanto na raiz (`@`) quanto em `www`
+— o registro coringa (`*`) que já existe pros clientes **não cobre** o
+domínio raiz.
 
 ---
 
