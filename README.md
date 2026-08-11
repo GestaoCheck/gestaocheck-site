@@ -29,11 +29,11 @@ estiver fechada.
 
 O mesmo time por trás do sistema:
 
-| Quem | Função |
-|---|---|
-| **Carlos Eduardo** | Desenvolvedor & Fundador |
+| Quem                      | Função                   |
+| ------------------------- | ------------------------ |
+| **Carlos Eduardo**        | Desenvolvedor & Fundador |
 | **Antonio Neto (Tonhão)** | Desenvolvedor & Fundador |
-| **Jarbas Jamysson** | Fundador & Vendas — quem primeiro sentiu o problema na prática e trouxe o primeiro cliente real |
+| **Jarbas Jamysson**       | Fundador & Vendas —      |
 
 Este site foi construído por Carlos, com Claude Code como parceiro de
 desenvolvimento — mesmo fluxo de trabalho documentado usado no sistema
