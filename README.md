@@ -33,7 +33,7 @@ O mesmo time por trás do sistema:
 | ------------------------- | ------------------------ |
 | **Carlos Eduardo**        | Desenvolvedor & Fundador |
 | **Antonio Neto (Tonhão)** | Desenvolvedor & Fundador |
-| **Jarbas Jamysson**       | Fundador & Vendas —      |
+| **Jarbas Jamysson**       | Fundador & Vendas        |
 
 Este site foi construído por Carlos, com Claude Code como parceiro de
 desenvolvimento — mesmo fluxo de trabalho documentado usado no sistema
