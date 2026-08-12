@@ -15,6 +15,37 @@ Awesome (CDN), fonte Inter (Google Fonts, CDN). Logo/ícones reais em
 sozinho, favicons circulares/quadrados em navy/branco/colorido — usar a
 variante certa pro contexto, não reaproveitar a mesma pra tudo).
 
+## Paleta: modo escuro (decisão 11/08/2026)
+
+O site foi convertido de tema claro pra **escuro** nessa data (pedido
+explícito, depois de 3 rodadas de "escurece mais"). Detalhes que quem for
+mexer na paleta depois precisa saber:
+
+- `--primary` deixou de ser o petróleo escuro e virou um **ciano claro**
+  (`#7DD3DC`) — é a cor usada como texto/ícone/acento sobre o fundo
+  escuro (títulos, `.tag`, links, chips). `--primary-dark` continua sendo
+  o petróleo escuro original (`#0a3540`) e agora serve de **âncora
+  escura** pros poucos elementos que têm texto branco em cima (CTA final,
+  faixa de destaque/`.solution-banner`, sidebar do mockup,
+  `.step-number`, `.flow-step-final`, hover do `.founder-linkedin` e do
+  `.btn-secondary`).
+- **Regra pra não quebrar de novo**: nunca usar `var(--primary)` (o ciano
+  claro) num lugar que tenha `color: white` junto — vira texto branco
+  invisível em fundo claro. Sempre que precisar de um fundo sólido com
+  texto branco, usar `var(--primary-dark)`.
+- `--bg-white`/`--bg-gray` viraram dois tons escuros (`#142B33`/
+  `#0C1E24`) — os nomes das variáveis ficaram desatualizados (ainda
+  dizem "white"/"gray") mas não foram renomeados pra não precisar
+  reescrever ~50 usos no CSS; são "card" (mais claro, elementos
+  elevados) e "página" (mais escuro, fundo das seções), nessa ordem.
+- Testado com auditoria de contraste (script JS ad-hoc, não faz parte do
+  repo) percorrendo todo texto visível da página — achou e corrigiu 2
+  problemas reais: `.step-number` (números "01-04") com contraste 1.62:1
+  (coral em cima do novo ciano claro, quase ilegível) e um bug **que já
+  existia antes do modo escuro** (`.nav-links a` sobrescrevia a cor
+  branca do botão "Solicitar demonstração" do menu por especificidade de
+  CSS - corrigido com `.nav-links a.btn-primary`).
+
 ## Estado atual (11/08/2026)
 
 Ajustado nessa data: paths de logo/favicon/og:image que apontavam pra

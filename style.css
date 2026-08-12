@@ -1,16 +1,23 @@
 :root {
-    --primary: #0F4C5C;
+    /* Modo escuro (decisão 11/08/2026) - --primary agora é o tom CLARO
+       usado como texto/ícone/acento sobre o fundo escuro (títulos, tags,
+       links); --primary-dark é a âncora escura de verdade, usada nos
+       poucos elementos que precisam continuar com texto branco em cima
+       (CTA final, faixa de destaque, sidebar do mockup) - nunca trocar
+       --primary por --primary-dark num lugar que tenha `color: white`
+       junto, ou o texto fica invisível. */
+    --primary: #7DD3DC;
     --primary-dark: #0a3540;
     --secondary: #FF6B6B;
     --secondary-dark: #e85a5a;
-    --bg-white: #FFFFFF;
-    --bg-gray: #F8FAFC;
-    --text-main: #0a2e37;
-    --text-muted: #54748a;
-    --border: #e2e8f0;
-    --shadow-sm: 0 2px 8px rgba(15, 76, 92, 0.05);
-    --shadow-md: 0 8px 24px rgba(15, 76, 92, 0.08);
-    --shadow-lg: 0 20px 50px rgba(15, 76, 92, 0.12);
+    --bg-white: #142B33;
+    --bg-gray: #0C1E24;
+    --text-main: #EAF3F5;
+    --text-muted: #9FB8C2;
+    --border: #24404b;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.45);
 }
 
 * {
@@ -87,14 +94,14 @@ h4 {
 }
 
 .btn-secondary:hover {
-    background-color: var(--primary);
+    background-color: var(--primary-dark);
     color: white;
     transform: translateY(-2px);
 }
 
 .btn-white {
-    background-color: white;
-    color: var(--primary);
+    background-color: var(--bg-white);
+    color: var(--text-main);
 }
 
 .btn-outline-white {
@@ -118,7 +125,7 @@ header {
     z-index: 1000;
     padding: 8px 0;
     transition: all 0.3s ease;
-    background: rgba(248, 250, 252, 0.8);
+    background: rgba(12, 30, 36, 0.8);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid transparent;
 }
@@ -126,7 +133,7 @@ header {
 header.scrolled {
     padding: 10px 0;
     border-bottom: 1px solid var(--border);
-    background: rgba(248, 250, 252, 0.95);
+    background: rgba(12, 30, 36, 0.95);
 }
 
 header.scrolled .logo-img {
@@ -187,6 +194,10 @@ header.scrolled .logo-img {
     transition: color 0.2s;
 }
 
+.nav-links a.btn-primary {
+    color: white;
+}
+
 .nav-links a:hover {
     color: var(--primary);
 }
@@ -209,7 +220,7 @@ header.scrolled .logo-img {
     transform: translateX(-50%);
     width: 800px;
     height: 600px;
-    background: radial-gradient(circle, rgba(15, 76, 92, 0.05) 0%, rgba(248, 250, 252, 0) 70%);
+    background: radial-gradient(circle, rgba(125, 211, 220, 0.08) 0%, rgba(12, 30, 36, 0) 70%);
     z-index: -1;
 }
 
@@ -242,7 +253,7 @@ header.scrolled .logo-img {
 .dashboard-mockup {
     max-width: 1000px;
     margin: 0 auto;
-    background: white;
+    background: var(--bg-white);
     border-radius: 16px;
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--border);
@@ -284,7 +295,7 @@ header.scrolled .logo-img {
 }
 
 .mockup-sidebar {
-    background: var(--primary);
+    background: var(--primary-dark);
     padding: 24px 16px;
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.85rem;
@@ -423,7 +434,7 @@ section {
 
 .tag {
     display: inline-block;
-    background: rgba(15, 76, 92, 0.1);
+    background: rgba(125, 211, 220, 0.15);
     color: var(--primary);
     padding: 6px 16px;
     border-radius: 100px;
@@ -438,7 +449,7 @@ section {
 /* PROBLEM SECTION */
 
 .problems {
-    background: white;
+    background: var(--bg-white);
 }
 
 .problems-grid {
@@ -483,7 +494,7 @@ section {
 }
 
 .solution-banner {
-    background: var(--primary);
+    background: var(--primary-dark);
     color: white;
     padding: 32px;
     border-radius: 16px;
@@ -506,7 +517,7 @@ section {
 }
 
 .feature-card {
-    background: white;
+    background: var(--bg-white);
     padding: 32px;
     border-radius: 16px;
     border: 1px solid var(--border);
@@ -647,7 +658,7 @@ section {
 }
 
 .compat-item {
-    background: white;
+    background: var(--bg-white);
     padding: 24px;
     border-radius: 12px;
     border: 1px solid var(--border);
@@ -664,7 +675,7 @@ section {
 /* FINAL CTA */
 
 .final-cta {
-    background: var(--primary);
+    background: var(--primary-dark);
     text-align: center;
     color: white;
     padding: 120px 0;
@@ -791,7 +802,7 @@ footer {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: white;
+    background: var(--bg-white);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 14px 16px;
@@ -810,7 +821,7 @@ footer {
 .story-highlight {
     max-width: 800px;
     margin: 0 auto;
-    background: var(--primary);
+    background: var(--primary-dark);
     color: white;
     border-radius: 16px;
     padding: 40px;
@@ -842,7 +853,7 @@ footer {
 }
 
 .purpose-card {
-    background: white;
+    background: var(--bg-white);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 40px;
@@ -945,7 +956,7 @@ footer {
 .founder-card {
     position: relative;
     z-index: 1;
-    background: white;
+    background: var(--bg-white);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 40px 24px;
@@ -1040,7 +1051,7 @@ footer {
 }
 
 .founder-card:hover .founder-linkedin {
-    background: var(--primary);
+    background: var(--primary-dark);
     color: white;
 }
 
@@ -1112,7 +1123,7 @@ footer {
 
 .contact-modal-card {
     position: relative;
-    background: white;
+    background: var(--bg-white);
     border-radius: 20px;
     padding: 32px;
     max-width: 420px;
@@ -1257,7 +1268,7 @@ footer {
 
 .module-strip {
     padding: 32px 0;
-    background: white;
+    background: var(--bg-white);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
 }
@@ -1310,7 +1321,7 @@ footer {
 .step-card {
     position: relative;
     z-index: 1;
-    background: white;
+    background: var(--bg-white);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px 24px;
@@ -1324,7 +1335,7 @@ footer {
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background: var(--primary);
+    background: var(--primary-dark);
     color: var(--secondary);
     font-weight: 800;
     font-size: 1.1rem;
@@ -1365,7 +1376,7 @@ footer {
 }
 
 .mini-mockup {
-    background: white;
+    background: var(--bg-white);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 24px;
@@ -1415,7 +1426,7 @@ footer {
 }
 
 .mini-badge-ok {
-    background: rgba(15, 76, 92, 0.1);
+    background: rgba(125, 211, 220, 0.15);
     color: var(--primary);
 }
 
@@ -1481,7 +1492,7 @@ footer {
 }
 
 .flow-step {
-    background: white;
+    background: var(--bg-white);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 14px 20px;
@@ -1492,9 +1503,9 @@ footer {
 }
 
 .flow-step-final {
-    background: var(--primary);
+    background: var(--primary-dark);
     color: white;
-    border-color: var(--primary);
+    border-color: var(--primary-dark);
 }
 
 .flow-arrow {
@@ -1518,8 +1529,8 @@ footer {
     align-items: center;
     gap: 12px;
     justify-content: center;
-    background: rgba(15, 76, 92, 0.06);
-    border: 1px solid rgba(15, 76, 92, 0.15);
+    background: rgba(125, 211, 220, 0.1);
+    border: 1px solid rgba(125, 211, 220, 0.25);
     color: var(--primary);
     padding: 16px 24px;
     border-radius: 12px;
@@ -1542,7 +1553,7 @@ footer {
 }
 
 .segment-card {
-    background: white;
+    background: var(--bg-white);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px 16px;
