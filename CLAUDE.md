@@ -96,6 +96,21 @@ do `index.html`. LinkedIn do Antonio Neto adicionado
   dá pra embutir como `<video autoplay muted loop>` na Hero ou numa seção
   própria — procurar o arquivo de vídeo antes de tentar isso.
 
+## Funcionalidades futuras mencionadas pelo Carlos (registrado 11/08/2026, nada implementado)
+
+Não anunciar essas duas no site ainda — são ideias pra versões futuras do
+sistema, não existem hoje:
+
+- **IA inteligente dentro do sistema** — já aparece como item em aberto
+  ("sem escopo definido") no `README.md`/`docs/BACKLOG.md` do repositório
+  principal; Carlos reforçou que é algo que vai vir em versão futura.
+- **DRE pra cálculo** — cuidado pra não confundir com o que já existe: o
+  CMV do sistema principal **já tem DRE de verdade** hoje (categorias de
+  venda, receita/custo/lucro), só a **exportação** do DRE que ainda é
+  placeholder ("em breve"). O que o Carlos pediu pra registrar aqui
+  parece ser uma versão mais robusta/nova do cálculo de DRE — perguntar
+  a ele o escopo exato antes de prometer algo específico no site.
+
 ## Conteúdo do site — fonte de verdade
 
 O texto/funcionalidades descritas no site (Estoque, CMV, CMO, CMC,

@@ -26,7 +26,7 @@
     <header id="header">
         <div class="container nav-content">
             <a href="#" class="logo">
-                <img src="scr/assets/logo/logo-horizontal.svg" alt="GestãoCheck" class="logo-img">
+                <img src="scr/assets/logo/logo-horizontal-claro.svg" alt="GestãoCheck" class="logo-img">
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
 <i class="fas fa-bars"></i>
@@ -117,15 +117,15 @@
     <section id="funcionalidades" class="module-strip">
         <div class="container">
             <div class="module-strip-inner reveal">
-                <span class="module-chip"><i class="fas fa-boxes-stacked"></i> Estoque</span>
-                <span class="module-chip"><i class="fas fa-percent"></i> CMV</span>
-                <span class="module-chip"><i class="fas fa-money-check-alt"></i> CMO</span>
-                <span class="module-chip"><i class="fas fa-shopping-basket"></i> CMC</span>
-                <span class="module-chip"><i class="fas fa-industry"></i> Produção</span>
-                <span class="module-chip"><i class="fas fa-exclamation-circle"></i> Ocorrências</span>
-                <span class="module-chip"><i class="fas fa-clipboard-check"></i> Checklists</span>
-                <span class="module-chip"><i class="fas fa-hand-holding"></i> Requisições</span>
-                <span class="module-chip"><i class="fas fa-file-invoice"></i> Relatórios</span>
+                <a href="#estoque" class="module-chip"><i class="fas fa-boxes-stacked"></i> Estoque</a>
+                <a href="#cmv" class="module-chip"><i class="fas fa-percent"></i> CMV</a>
+                <a href="#cmo" class="module-chip"><i class="fas fa-money-check-alt"></i> CMO</a>
+                <a href="#cmc" class="module-chip"><i class="fas fa-shopping-basket"></i> CMC</a>
+                <a href="#funcionalidades-beneficiamento" class="module-chip"><i class="fas fa-industry"></i> Produção</a>
+                <a href="#ocorrencias" class="module-chip"><i class="fas fa-exclamation-circle"></i> Ocorrências</a>
+                <a href="#checklists" class="module-chip"><i class="fas fa-clipboard-check"></i> Checklists</a>
+                <a href="#requisicoes" class="module-chip"><i class="fas fa-hand-holding"></i> Requisições</a>
+                <a href="#relatorios" class="module-chip"><i class="fas fa-file-invoice"></i> Relatórios</a>
             </div>
         </div>
     </section>
@@ -247,7 +247,7 @@
         </div>
     </section>
     <!-- CMV -->
-    <section class="bg-gray deepdive">
+    <section id="cmv" class="bg-gray deepdive">
         <div class="container">
             <div class="deepdive-grid reverse">
                 <div class="deepdive-visual reveal">
@@ -276,7 +276,7 @@
         </div>
     </section>
     <!-- CMO -->
-    <section class="bg-white deepdive">
+    <section id="cmo" class="bg-white deepdive">
         <div class="container">
             <div class="deepdive-grid">
                 <div class="deepdive-text reveal">
@@ -306,7 +306,7 @@
         </div>
     </section>
     <!-- CMC -->
-    <section class="bg-gray deepdive">
+    <section id="cmc" class="bg-gray deepdive">
         <div class="container">
             <div class="deepdive-grid reverse">
                 <div class="deepdive-visual reveal">
@@ -391,7 +391,7 @@
         </div>
     </section>
     <!-- AVARIAS E OCORRÊNCIAS -->
-    <section class="bg-white">
+    <section id="ocorrencias" class="bg-white">
         <div class="container">
             <div class="section-header reveal">
                 <span class="tag">Avarias e ocorrências</span>
@@ -401,13 +401,39 @@
                 <div class="light-card reveal"><i class="fas fa-camera"></i> Registro de avarias com foto obrigatória</div>
                 <div class="light-card reveal"><i class="fas fa-comment"></i> Comentários por ocorrência</div>
                 <div class="light-card reveal"><i class="fas fa-bell"></i> Central de ocorrências com alertas automáticos</div>
-                <div class="light-card reveal"><i class="fas fa-clipboard-check"></i> Checklist de rotina</div>
                 <div class="light-card reveal"><i class="fas fa-screwdriver-wrench"></i> Manutenção de equipamentos</div>
             </div>
         </div>
     </section>
+    <!-- CHECKLISTS -->
+    <section id="checklists" class="bg-white deepdive">
+        <div class="container">
+            <div class="deepdive-grid reverse">
+                <div class="deepdive-visual reveal">
+                    <div class="mini-mockup">
+                        <div class="mini-mockup-title">Checklist — Abertura da Cozinha</div>
+                        <div class="mini-mockup-row"><span><i class="fas fa-square-check" style="color: var(--secondary);"></i> Conferir temperatura da câmara fria</span></div>
+                        <div class="mini-mockup-row"><span><i class="fas fa-square-check" style="color: var(--secondary);"></i> Higienizar bancadas</span></div>
+                        <div class="mini-mockup-row"><span><i class="far fa-square" style="color: var(--text-muted);"></i> Testar equipamentos</span></div>
+                        <div class="mini-mockup-row mini-mockup-highlight"><span>Responsável</span><span>Maria</span></div>
+                    </div>
+                    <p class="mockup-caption">Dados demonstrativos</p>
+                </div>
+                <div class="deepdive-text reveal">
+                    <span class="tag">Checklists</span>
+                    <h2>Rotina do dia a dia, sem depender de papel ou memória.</h2>
+                    <p>Cada setor tem seus próprios checklists, com responsável definido — dá pra ver na hora o que já foi feito e o que ainda falta.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Checklist configurável por setor</li>
+                        <li><i class="fas fa-check"></i> Responsável definido por checklist</li>
+                        <li><i class="fas fa-check"></i> Acompanhamento do que já foi concluído</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- REQUISIÇÕES -->
-    <section class="bg-gray">
+    <section id="requisicoes" class="bg-gray">
         <div class="container">
             <div class="section-header reveal">
                 <span class="tag">Requisições</span>
@@ -426,7 +452,7 @@
         </div>
     </section>
     <!-- RELATÓRIOS -->
-    <section class="bg-white">
+    <section id="relatorios" class="bg-white">
         <div class="container">
             <div class="section-header reveal">
                 <span class="tag">Relatórios</span>
@@ -630,7 +656,7 @@
             </div>
             <div class="founders-grid reveal">
                 <div class="founder-card">
-                    <div class="founder-avatar"><div class="founder-initial">J</div></div>
+                    <div class="founder-avatar"><img class="founder-photo" src="scr/assets/equipe/jarbas.jpg" alt="Jarbas Jamysson"></div>
                     <div class="founder-name">Jarbas Jamysson</div>
                     <div class="founder-role">Fundador</div>
                     <div class="founder-actions">
@@ -679,7 +705,7 @@
             <div class="footer-content">
                 <div>
                     <a href="#" class="logo footer-logo">
-                        <img src="scr/assets/logo/logo-horizontal.svg" alt="GestãoCheck" class="logo-img">
+                        <img src="scr/assets/logo/logo-horizontal-claro.svg" alt="GestãoCheck" class="logo-img">
                     </a>
                     <p>Gestão e Acompanhamento de Processos.</p>
                 </div>
@@ -721,7 +747,7 @@
             <p>Escolha um dos fundadores pra tirar dúvidas ou pedir uma demonstração.</p>
             <div class="contact-modal-list">
                 <a href="https://wa.me/5585992029592?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="contact-option">
-                    <span class="contact-option-avatar"><div class="founder-initial">J</div></span>
+                    <span class="contact-option-avatar"><img src="scr/assets/equipe/jarbas.jpg" alt="Jarbas Jamysson"></span>
                     <span class="contact-option-info"><strong>Jarbas Jamysson</strong><span>Fundador — Vendas</span></span>
                     <i class="fab fa-whatsapp"></i>
                 </a>
