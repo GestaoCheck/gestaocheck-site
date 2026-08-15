@@ -122,13 +122,28 @@ módulo, está tudo consistente com o que existe de verdade (nenhuma
 funcionalidade inventada). Se adicionar/mudar alguma claim de
 funcionalidade aqui, checar antes no repo principal — não presumir.
 
-## Preço — não está no site (decisão deliberada)
+## Planos e preços — publicados no site (decisão 15/08/2026)
 
-Preço fica só em conversa (WhatsApp/demonstração), não public no site.
-Se decidir mostrar preço no futuro, o valor de referência (plano
-Essencial R$650/mês) e a estrutura completa de planos/addons de usuário
-estão em `plano_custos_gestaocheck.md` (fora deste repo, na pasta
-Downloads do Carlos — pedir pra ele se precisar consultar de novo).
+A decisão anterior de esconder os preços foi substituída. O site agora
+deve mostrar estes três planos:
+
+- **Essencial — R$ 650,00/mês, até 5 usuários**: Estoque, CMV, CMO, CMC,
+  Beneficiamento e suporte comercial.
+- **Profissional — R$ 850,00/mês, até 10 usuários**: tudo do Essencial,
+  módulos do restante da equipe e suporte comercial.
+- **Premium — R$ 1.100,00/mês, até 10 usuários**: tudo do Profissional,
+  suporte comercial e opção de atendimento noturno e aos fins de semana
+  como addon.
+
+Os botões dos planos abrem o mesmo modal de escolha de contato usado
+pelos botões de demonstração.
+
+## Fluxo Git (decisão 15/08/2026)
+
+Toda alteração deve ser feita em uma branch própria com prefixo
+`codex/`. Nunca fazer commit, merge ou push diretamente na `main`. A
+`main` só pode ser atualizada depois da aprovação explícita do Carlos de
+que o trabalho está pronto.
 
 ## Futuro — integração site ↔ sistema ↔ controle interno (ideia registrada 11/08/2026, nada implementado)
 
