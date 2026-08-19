@@ -1,82 +1,110 @@
-// Header Scroll Effect
 const header = document.getElementById('header');
+const menuToggle = document.getElementById('menuToggle');
+const mobileNav = document.getElementById('mobileNav');
+const year = document.getElementById('currentYear');
+let scrollFrame;
+
+if (year) year.textContent = new Date().getFullYear();
+
+const updateHeader = () => {
+  header?.classList.toggle('scrolled', window.scrollY > 40);
+  scrollFrame = undefined;
+};
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
+  if (scrollFrame === undefined) scrollFrame = requestAnimationFrame(updateHeader);
+}, { passive: true });
+updateHeader();
+
+const setMenu = (open) => {
+  menuToggle?.classList.toggle('open', open);
+  mobileNav?.classList.toggle('open', open);
+  menuToggle?.setAttribute('aria-expanded', String(open));
+  menuToggle?.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+};
+menuToggle?.addEventListener('click', () => setMenu(!mobileNav?.classList.contains('open')));
+mobileNav?.querySelectorAll('a, button').forEach((item) => item.addEventListener('click', () => setMenu(false)));
+window.addEventListener('resize', () => { if (window.innerWidth > 1180) setMenu(false); });
+
+const revealItems = document.querySelectorAll('.reveal');
+const dashboardThemeToggle = document.querySelector('.app-theme-toggle');
+const heroDashboard = document.querySelector('.hero-app');
+
+dashboardThemeToggle?.addEventListener('click', () => {
+  const lightMode = heroDashboard?.classList.toggle('light-mode') ?? false;
+  dashboardThemeToggle.setAttribute('aria-pressed', String(lightMode));
+  dashboardThemeToggle.setAttribute('aria-label', lightMode ? 'Ativar modo escuro' : 'Ativar modo claro');
+  const icon = dashboardThemeToggle.querySelector('i');
+  icon?.classList.toggle('fa-moon', !lightMode);
+  icon?.classList.toggle('fa-sun', lightMode);
+});
+
+if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const observer = new IntersectionObserver((entries, instance) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('active');
+      instance.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -80px' });
+  revealItems.forEach((item) => observer.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add('active'));
+}
+
+let modalTrigger;
+const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+const openModal = (id, trigger) => {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modalTrigger = trigger;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  const focusClose = () => modal.querySelector('.modal-close')?.focus();
+  setTimeout(focusClose, 30);
+  setTimeout(focusClose, 120);
+};
+const closeModal = (modal) => {
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  modalTrigger?.focus();
+  modalTrigger = undefined;
+};
+document.querySelectorAll('[data-modal-open]').forEach((trigger) => trigger.addEventListener('click', () => openModal(trigger.dataset.modalOpen, trigger)));
+document.querySelectorAll('[data-modal-close]').forEach((trigger) => trigger.addEventListener('click', () => {
+  const modal = trigger.closest('.contact-modal');
+  if (modal) closeModal(modal);
+}));
+
+document.addEventListener('keydown', (event) => {
+  const modal = document.querySelector('.contact-modal.open');
+  if (modal) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeModal(modal);
+      return;
     }
+    if (event.key === 'Tab') {
+      const items = [...modal.querySelectorAll(focusableSelector)];
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault(); last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault(); first.focus();
+      }
+    }
+    return;
+  }
+  if (event.key === 'Escape' && mobileNav?.classList.contains('open')) {
+    setMenu(false);
+    menuToggle?.focus();
+  }
 });
 
-// Reveal on Scroll Animation
-const reveals = document.querySelectorAll('.reveal');
-const revealOnScroll = () => {
-    const windowHeight = window.innerHeight;
-    const elementVisible = 100;
-    reveals.forEach((reveal) => {
-        const elementTop = reveal.getBoundingClientRect().top;
-        if (elementTop < windowHeight - elementVisible) {
-            reveal.classList.add('active');
-        }
-    });
-};
-window.addEventListener('scroll', revealOnScroll);
-// Trigger on load
-revealOnScroll();
-
-// Ano dinâmico no rodapé
-const anoAtualEl = document.getElementById('ano-atual');
-if (anoAtualEl) {
-    anoAtualEl.textContent = new Date().getFullYear();
-}
-
-// Menu Mobile (hambúrguer)
-const navToggle = document.getElementById('navToggle');
-const navLinks = document.getElementById('navLinks');
-if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => {
-        const isOpen = navLinks.classList.toggle('open');
-        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        navToggle.innerHTML = isOpen ? '<i class="fas fa-xmark"></i>' : '<i class="fas fa-bars"></i>';
-    });
-
-    // Fecha o menu ao clicar em um link
-    navLinks.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-            navToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        });
-    });
-}
-
-// Modal "com quem você quer falar" (Solicitar demonstração)
-const abrirModal = (id) => {
-    const modal = document.getElementById(id);
-    if (!modal) return;
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-};
-
-const fecharModal = (modal) => {
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-};
-
-document.querySelectorAll('[data-modal-open]').forEach((trigger) => {
-    trigger.addEventListener('click', () => abrirModal(trigger.getAttribute('data-modal-open')));
-});
-
-document.querySelectorAll('[data-modal-close]').forEach((el) => {
-    el.addEventListener('click', () => {
-        const modal = el.closest('.contact-modal');
-        if (modal) fecharModal(modal);
-    });
-});
-
-document.addEventListener('keydown', (e) => {
-    if (e.key !== 'Escape') return;
-    document.querySelectorAll('.contact-modal.open').forEach(fecharModal);
+document.addEventListener('focusin', (event) => {
+  const modal = document.querySelector('.contact-modal.open');
+  if (modal && !modal.contains(event.target)) modal.querySelector('.modal-close')?.focus();
 });
