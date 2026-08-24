@@ -6,40 +6,62 @@ falar com a gente pra conhecer de perto. Não é o sistema em si (esse é um
 projeto à parte); este repositório existe só pra apresentar o produto e
 gerar contato de venda.
 
-![Status](https://img.shields.io/badge/status-pronto%20pra%20deploy-brightgreen)
+> Conecta estoque, produção, compras, custos e operação em um só lugar —
+> pra você entender exatamente o que está acontecendo na sua empresa.
+
+![Status](https://img.shields.io/badge/status-no%20ar-brightgreen)
 ![Stack](https://img.shields.io/badge/stack-HTML%2FCSS%2FJS%20puro-F7DF1E?logo=javascript&logoColor=black)
 ![Build](https://img.shields.io/badge/build%20step-nenhum-informational)
+
+🔗 **No ar:** [gestaocheck.tech](https://gestaocheck.tech)
 
 ---
 
 ## Sobre
 
 Página única (`index.html`), pensada pra ser a porta de entrada de quem
-ouviu falar do GestãoCheck e quer entender rápido o que é, ver os módulos
-principais (Estoque, CMV, CMO, CMC, Beneficiamento e os operacionais),
-conferir a parte de segurança, entender a história por trás do produto e
-falar com um dos fundadores.
+ouviu falar do GestãoCheck e quer entender rápido o que é, conferir a
+parte de segurança, entender a história por trás do produto e falar com
+um dos fundadores.
 
-Vai subir no domínio principal da empresa assim que a revisão final
-estiver fechada.
+<!--
+  TODO (Carlos, 2026-08-24): quando o próximo sistema sob a marca
+  GestãoCheck for lançado publicamente (ex: um "Financeiro"), revisar
+  esta seção — hoje ela descreve só o Operação, mas nesse ponto o
+  GestãoCheck vira marca-mãe de vários produtos e o texto precisa deixar
+  isso claro, não só apresentar 1 sistema como se fosse o único.
+-->
 
----
+### GestãoCheck Operação
 
-## Time
+O GestãoCheck não é um sistema de estoque — o **GestãoCheck Operação** é
+uma plataforma de gestão empresarial completa, pensada pra rodar o dia a
+dia real de um negócio, não só registrar dado:
 
-O mesmo time por trás do sistema:
+- **Estoque** inteligente organizado por setor e categoria (configuráveis pelo
+  usuário, não hardcoded), com conversão automática de unidade,
+  importação de nota fiscal por PDF ou **foto via OCR**, fila de
+  verificação de item novo e fluxo de aprovação de mudança de preço.
+- **CMV, CMO e CMC** — custo real de mercadoria vendida, mão de obra e
+  compra, com ficha técnica ligada aos itens de estoque de verdade (não
+  cadastro solto), metas por período e evolução mês a mês.
+- **Beneficiamento** — produção intermediária, de matéria-prima a
+  produto final, com cálculo automático de rendimento e custo por
+  porção, suportando múltiplos níveis de produção.
+- **Rotina operacional completa** — Avarias, Ocorrências (central que
+  recebe origem automática de Avarias e Checklist), Checklists,
+  Manutenção, Requisição entre setores e Relatórios.
+- **Segurança e controle de acesso de verdade**: permissões por papel e
+  por setor, autenticação com 2FA, recuperação de senha, trilha de
+  auditoria completa (quem fez o quê e quando), sessão revogável
+  remotamente, notificações em tempo real.
+- **Multiempresa isolado por design**: cada cliente tem seu próprio
+  banco de dados — nunca dado misturado entre empresas diferentes.
+- **Exportação de relatório em CSV/PDF**, dashboard gerencial e ciclo de
+  cobrança/planos (Essencial, Profissional, Premium) já embutido.
 
-| Quem                      | Função                   |
-| ------------------------- | ------------------------ |
-| **Carlos Eduardo**        | Desenvolvedor & Fundador |
-| **Antonio Neto (Tonhão)** | Desenvolvedor & Fundador |
-| **Jarbas Jamysson**       | Fundador & Vendas        |
-
-Este site foi construído por Carlos, com Claude Code como parceiro de
-desenvolvimento — mesmo fluxo de trabalho documentado usado no sistema
-principal, adaptado pra esse projeto menor (ver [`CLAUDE.md`](CLAUDE.md)
-pra contexto técnico completo: decisões já tomadas, pendências, e a ideia
-futura de o site conversar direto com o sistema).
+Contexto técnico completo (decisões já tomadas, pendências conhecidas) em
+[`CLAUDE.md`](CLAUDE.md) — quem for mexer no projeto começa por lá.
 
 ---
 
@@ -113,39 +135,46 @@ Abre em `http://localhost:3000` (ou a porta que o `serve` escolher).
 
 ---
 
-## Deploy
-
-Sobe na mesma VPS (Hostinger) e no mesmo Traefik que já hospeda os
-clientes do sistema principal — `Dockerfile` + `docker-compose.yml` já
-prontos neste repositório, usando o mesmo padrão de labels que já
-funciona em produção (ver `docs/DEPLOY_VPS.md` do repositório principal
-pro contexto completo do Traefik/VPS).
-
-```bash
-mkdir -p /opt/site-vendas && cd /opt/site-vendas
-git clone https://github.com/GestaoCheck/gestao-pro.git .
-docker compose up -d --build
-```
-
-Domínio configurado nas labels: `gestaocheck.tech` e `www.gestaocheck.tech`
-(ajustar em `docker-compose.yml` se o domínio real for outro). Precisa de
-um registro DNS `A` apontando pra VPS tanto na raiz (`@`) quanto em `www`
-— o registro coringa (`*`) que já existe pros clientes **não cobre** o
-domínio raiz.
-
----
-
-## Documentação técnica
-
-Contexto completo — o que já foi ajustado, pendências conhecidas, e a
-ideia registrada (ainda não construída) de o site avisar automaticamente
-o sistema e um painel interno quando um cliente novo fechar — está em
-[`CLAUDE.md`](CLAUDE.md).
-
----
-
 ## Contato
 
 Quer conhecer o GestãoCheck? Fale com qualquer um dos fundadores — os
-links de WhatsApp de cada um estão na própria página, seção "Fundadores"
-e no botão "Solicitar demonstração".
+links de LinkedIn e WhatsApp de cada um estão logo abaixo, na seção
+"Time", ou direto na própria página, seção "Fundadores".
+
+---
+
+## Time
+
+O GestãoCheck é construído por 3 fundadores:
+
+<table>
+<tr>
+<td align="center" width="33%">
+<img src="scr/assets/equipe/jarbas.jpg" width="140" alt="Jarbas Jamysson"><br><br>
+<b>Jarbas Jamysson</b><br>
+Fundador — Vendas<br><br>
+<a href="https://www.linkedin.com/in/jarbas-jamysson-388a41264">LinkedIn</a> ·
+<a href="https://wa.me/5585992029592?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20sobre%20o%20GestãoCheck">WhatsApp</a>
+</td>
+<td align="center" width="33%">
+<img src="scr/assets/equipe/antonio.jpg" width="140" alt="Antonio Neto"><br><br>
+<b>Antonio Neto (Tonhão)</b><br>
+Fundador — Desenvolvedor<br><br>
+<a href="https://www.linkedin.com/in/antonio-neto-39bb72268/">LinkedIn</a> ·
+<a href="https://wa.me/5585999817221?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20sobre%20o%20GestãoCheck">WhatsApp</a> ·
+<a href="https://github.com/oliveriraneto">GitHub</a>
+</td>
+<td align="center" width="33%">
+<img src="scr/assets/equipe/carlos.jpg" width="140" alt="Carlos Eduardo"><br><br>
+<b>Carlos Eduardo</b><br>
+Fundador — Desenvolvedor<br><br>
+<a href="https://www.linkedin.com/in/carlos-eduardo-408087230">LinkedIn</a> ·
+<a href="https://wa.me/5585991799221?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20sobre%20o%20GestãoCheck">WhatsApp</a> ·
+<a href="https://github.com/carloseduardo-rocha">GitHub</a>
+</td>
+</tr>
+</table>
+
+Este site foi construído pela equipe de desenvolvimento GestãoCheck, com Claude Code como parceiro de
+desenvolvimento — mesmo fluxo de trabalho documentado usado no sistema
+principal, adaptado pra esse projeto menor.
