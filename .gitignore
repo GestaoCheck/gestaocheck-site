@@ -11,3 +11,9 @@ Thumbs.db
 
 # Caso algum dia rode algo via npm/npx que baixe dependencias localmente.
 node_modules/
+
+# Segredos e sobras de teste (nunca devem ir pro GitHub).
+.env
+.env.*
+*.zip
+_*_temp.html
