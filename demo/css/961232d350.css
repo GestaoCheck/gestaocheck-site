@@ -1,0 +1,13 @@
+
+
+.vitrine-aviso {
+    padding: 10px 16px; background: var(--accent-light); color: var(--accent);
+    border-radius: var(--radius-sm); font-size: 12.5px; font-weight: 600;
+    text-align: center;
+}
+
+.content { gap: 14px; }
+.vit-resumo { font-size: 12px; font-weight: 700; color: var(--accent); background: var(--accent-light); padding: 3px 10px; border-radius: 999px; }
+.vit-acoes { display: flex; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--borda); }
+
+    

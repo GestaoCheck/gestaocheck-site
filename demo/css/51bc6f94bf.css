@@ -1,0 +1,1032 @@
+
+/* ═══════════════════════════════════════════════════
+   CHECKLISTS.CSS — herda dashboard.css + tema-escuro.css
+   Só declara o que é exclusivo da página Checklists.
+═══════════════════════════════════════════════════ */
+
+
+/* ── Topbar extras ── */
+
+.topbar-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.page-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.page-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-top: 1px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-novo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity .15s;
+    white-space: nowrap;
+}
+
+.btn-novo:hover {
+    opacity: .88;
+}
+
+
+/* ── Métricas: mapeia "yellow" do design antigo pro laranja aprovado ── */
+
+.metrics-checklist .metric-icon.yellow {
+    background: #ffedd5;
+    color: var(--laranja);
+}
+
+.gc-demo[data-tema="escuro"] .metrics-checklist .metric-icon.yellow {
+    background: #3a230d;
+    color: var(--laranja);
+}
+
+
+/* ── Filtros ── */
+
+.filtros-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card-bg);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 0 14px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-wrap svg {
+    color: var(--texto-muted);
+    flex-shrink: 0;
+}
+
+.search-wrap input {
+    border: none;
+    outline: none;
+    background: none;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--texto);
+    padding: 10px 0;
+    width: 100%;
+}
+
+.filtro-select {
+    background: var(--card-bg);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--texto-muted);
+    cursor: pointer;
+    outline: none;
+}
+
+
+/* ── Grid de checklists ── */
+
+.checklists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+}
+
+
+/* ── Card checklist ── */
+
+.checklist-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .2s, transform .2s, border-color .2s;
+}
+
+.checklist-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
+.card-header {
+    padding: 18px 20px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.card-titulo {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.card-setor {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-top: 3px;
+    font-weight: 500;
+}
+
+.card-turno-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: var(--radius-lg);
+    background: var(--accent-light);
+    color: var(--accent);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.card-progresso {
+    padding: 0 20px 14px;
+}
+
+.progresso-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-bottom: 6px;
+}
+
+.progresso-bar {
+    height: 6px;
+    background: var(--page-bg);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progresso-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width .4s ease;
+    opacity: .6;
+}
+
+.progresso-fill.completo {
+    background: var(--verde);
+    opacity: 1;
+}
+
+.card-footer {
+    padding: 14px 20px;
+    border-top: 1px solid var(--borda);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-criador {
+    font-size: 12px;
+    color: var(--texto-muted);
+}
+
+.card-acoes {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-executar {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 7px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity .15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-executar:hover {
+    opacity: .88;
+}
+
+.btn-executar.concluido {
+    background: var(--page-bg);
+    color: var(--texto-muted);
+    cursor: default;
+}
+
+.btn-icon {
+    background: var(--page-bg);
+    border: none;
+    border-radius: var(--radius-sm);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--texto-muted);
+    transition: background .15s;
+}
+
+.btn-icon:hover {
+    background: var(--borda);
+}
+
+.btn-icon.danger:hover {
+    background: #fee2e2;
+    color: var(--vermelho);
+}
+
+.gc-demo[data-tema="escuro"] .btn-icon.danger:hover {
+    background: #341616;
+    color: var(--vermelho);
+}
+
+
+/* ── Empty state ── */
+
+.lista-carregando {
+    grid-column: 1 / -1;
+    color: var(--texto-muted);
+    font-size: 13px;
+    padding: 16px 0;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 32px;
+    gap: 12px;
+    color: var(--texto-muted);
+    text-align: center;
+}
+
+.empty-state svg {
+    stroke: var(--texto-muted);
+}
+
+.empty-state p {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.empty-state span {
+    font-size: 14px;
+}
+
+
+/* ── Modal ── */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease, visibility .2s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay.show .modal {
+    transform: scale(1);
+}
+
+.btn-add-dashed {
+    margin-top: 6px;
+    padding: 8px 12px;
+    border: 1px dashed var(--borda);
+    border-radius: var(--radius-xs);
+    background: transparent;
+    color: var(--texto-muted);
+    cursor: pointer;
+    font-size: 13px;
+    font-family: inherit;
+    transition: border-color .15s, color .15s;
+}
+
+/* .form-erro mesmo padrão já usado em abertura_de_manutencao.css, .ing-row
+   mesmo padrão já usado em beneficiamento.css (linha de campos lado a
+   lado), duplicados aqui de propósito. */
+.form-erro {
+    color: var(--vermelho);
+    font-size: 12.5px;
+    min-height: 14px;
+}
+
+.ing-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.ing-row input,
+.ing-row select {
+    padding: 8px 10px;
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-xs);
+    background: var(--card-bg);
+    color: var(--texto);
+    font-size: 13px;
+    font-family: inherit;
+}
+
+.btn-add-dashed:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.modal {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 520px;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: var(--shadow-md);
+    transform: scale(.96);
+    transition: transform .2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-executar {
+    max-width: 600px;
+}
+
+.modal-camera {
+    max-width: 480px;
+}
+
+.modal-nao {
+    max-width: 420px;
+}
+
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 22px 22px 0;
+}
+
+.modal-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--texto);
+    display: block;
+}
+
+.exec-setor {
+    font-size: 12.5px;
+    color: var(--texto-muted);
+    margin-top: 2px;
+    display: block;
+}
+
+.modal-close {
+    background: var(--page-bg);
+    border: none;
+    border-radius: var(--radius-xs);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--texto-muted);
+    flex-shrink: 0;
+}
+
+.modal-close:hover {
+    background: var(--borda);
+}
+
+.modal-body {
+    padding: 18px 22px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 16px 22px;
+    border-top: 1px solid var(--borda);
+}
+
+.btn-outline {
+    background: var(--card-bg);
+    color: var(--texto-muted);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: .15s;
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 9px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity .15s;
+}
+
+.btn-primary:hover {
+    opacity: .88;
+}
+
+.btn-primary:disabled {
+    background: var(--borda);
+    color: var(--texto-muted);
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.btn-confirmar {
+    background: var(--verde) !important;
+}
+
+
+/* ── Formulário ── */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 16px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--texto);
+    background: var(--page-bg);
+    outline: none;
+    transition: border-color .15s;
+    appearance: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--accent);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+
+/* ── Progresso modal executar ── */
+
+.exec-progresso {
+    padding: 16px 22px 0;
+}
+
+.exec-progresso-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--texto-muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.exec-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* ── Tarefas exec: SIM / NÃO ── */
+
+.exec-tarefa-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--page-bg);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    border: 1.5px solid var(--borda);
+    transition: .2s;
+}
+
+.exec-tarefa-item.sim {
+    background: var(--accent-light);
+    border-color: var(--verde);
+}
+
+.exec-tarefa-item.nao {
+    background: #fee2e2;
+    border-color: var(--vermelho);
+}
+
+.gc-demo[data-tema="escuro"] .exec-tarefa-item.nao {
+    background: #341616;
+}
+
+.exec-check {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.exec-check.ok {
+    background: var(--verde);
+    color: #fff;
+}
+
+.exec-check.no {
+    background: var(--vermelho);
+    color: #fff;
+}
+
+.exec-check.pending {
+    background: var(--borda);
+    color: var(--texto-muted);
+}
+
+.exec-tarefa-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.exec-tarefa-nome {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+
+/* Observação exibida no modo revisão (checklist ja concluído) */
+
+.exec-obs-texto {
+    font-size: 12.5px;
+    color: var(--texto-muted);
+    margin-top: 4px;
+    padding: 8px 10px;
+    background: var(--card-bg);
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--borda);
+    line-height: 1.4;
+}
+
+.exec-acoes {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.btn-sim {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--verde);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 7px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity .15s;
+}
+
+.btn-sim:hover {
+    opacity: .88;
+}
+
+.btn-nao {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #fee2e2;
+    color: var(--vermelho);
+    border: 1.5px solid var(--vermelho);
+    border-radius: var(--radius-sm);
+    padding: 7px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: .15s;
+}
+
+.btn-nao:hover {
+    background: var(--vermelho);
+    color: #fff;
+}
+
+.gc-demo[data-tema="escuro"] .btn-nao {
+    background: #341616;
+}
+
+.exec-acoes-feita {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.resp-badge {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-lg);
+}
+
+.resp-badge.sim {
+    background: var(--accent-light);
+    color: var(--verde);
+}
+
+.resp-badge.nao {
+    background: #fee2e2;
+    color: var(--vermelho);
+}
+
+.gc-demo[data-tema="escuro"] .resp-badge.nao {
+    background: #341616;
+}
+
+/* Corrigir resposta - texto discreto, não é uma ação "perigosa" como
+   excluir. */
+.btn-corrigir-tarefa {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 2px;
+    text-decoration: underline;
+}
+
+.btn-corrigir-tarefa:hover {
+    opacity: .8;
+}
+
+.foto-thumb {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-xs);
+    object-fit: cover;
+    border: 2px solid var(--verde);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+
+/* ── Modal câmera ── */
+
+.camera-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.camera-preview-wrap {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 4/3;
+    background: #000;
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+}
+
+.camera-preview-wrap video,
+.camera-preview-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.camera-instrucao {
+    font-size: 13px;
+    color: var(--texto-muted);
+    text-align: center;
+}
+
+.camera-badge-ao-vivo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(239, 68, 68, .85);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.camera-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .2;
+    }
+}
+
+
+/* ── Upload área ── */
+
+.upload-area {
+    border: 2px dashed var(--borda);
+    border-radius: var(--radius);
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: .2s;
+    background: var(--page-bg);
+    text-align: center;
+}
+
+.upload-area:hover,
+.upload-area.drag-over {
+    border-color: var(--accent);
+    background: var(--accent-light);
+}
+
+.upload-area.drag-over {
+    transform: scale(1.01);
+}
+
+.upload-icon {
+    color: var(--texto-muted);
+}
+
+.upload-area:hover .upload-icon {
+    color: var(--accent);
+}
+
+.upload-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.upload-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--accent-light);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-bottom: none;
+}
+
+.btn-limpar-arquivo {
+    background: none;
+    border: none;
+    color: var(--texto-muted);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: underline;
+}
+
+.btn-limpar-arquivo:hover {
+    color: var(--vermelho);
+}
+
+.preview-lista {
+    border: 1.5px solid var(--accent);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.preview-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--texto);
+    border-bottom: 1px solid var(--borda);
+}
+
+.preview-item:last-child {
+    border-bottom: none;
+}
+
+.preview-num {
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--page-bg);
+    color: var(--texto-muted);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.dica-formato {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: var(--page-bg);
+    border-radius: var(--radius-xs);
+    padding: 10px 12px;
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-top: 4px;
+}
+
+.dica-formato svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--texto-muted);
+}
+
+
+/* ── Modal NÃO ── */
+
+.btn-nao-confirmar {
+    background: var(--vermelho);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 9px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity .15s;
+}
+
+.btn-nao-confirmar:hover {
+    opacity: .88;
+}
+
+
+/* ── Toast ── */
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--texto);
+    color: var(--page-bg);
+    padding: 12px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 9999;
+    box-shadow: var(--shadow-md);
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all .3s ease;
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast.sucesso {
+    background: var(--verde);
+    color: #fff;
+}
+
+.toast.erro {
+    background: var(--vermelho);
+    color: #fff;
+}
+
+
+/* ── Responsivo ── */

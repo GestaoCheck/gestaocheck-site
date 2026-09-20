@@ -1,0 +1,25 @@
+
+
+.vitrine-aviso {
+    max-width: 900px; margin: 0 auto 18px; padding: 10px 16px;
+    background: var(--accent-light); color: var(--accent);
+    border-radius: var(--radius-sm); font-size: 12.5px; font-weight: 600;
+    text-align: center;
+}
+.vitrine-wrap {
+    max-width: 900px; margin: 0 auto; width: 100%;
+    display: flex; flex-direction: column; gap: 20px;
+}
+.vitrine-exec-card {
+    background: var(--card-bg); border: 1px solid var(--borda);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+.vitrine-exec-card .modal-footer { border-top: 1px solid var(--borda); }
+.vitrine-reset {
+    background: none; border: none; color: var(--texto-muted);
+    font-size: 12.5px; text-decoration: underline; cursor: pointer;
+    padding: 0;
+}
+
+    

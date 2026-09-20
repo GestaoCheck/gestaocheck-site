@@ -1,0 +1,582 @@
+
+/* ═══════════════════════════════════════════════════
+   OCORRENCIAS.CSS — herda dashboard.css + tema-escuro.css
+   Só declara o que é exclusivo da página Ocorrências.
+═══════════════════════════════════════════════════ */
+
+
+/* ── Topbar extras ── */
+
+.topbar-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.page-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.page-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-top: 1px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity .15s;
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    opacity: .88;
+}
+
+.btn-outline {
+    background: var(--card-bg);
+    color: var(--texto-muted);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: .15s;
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Variante de perigo do .btn-outline - nunca escrever style= cru pra cor
+   de perigo, ver CLAUDE.md. */
+.btn-outline.perigo {
+    color: var(--vermelho);
+    border-color: var(--vermelho);
+}
+.btn-outline.perigo:hover {
+    background: color-mix(in srgb, var(--vermelho) 12%, transparent);
+    color: var(--vermelho);
+}
+
+/* Chips de atalho "Reclamação"/"Retorno de prato" - mesmo visual de
+   .sup-chip em styles/configuracoes-suporte.css, duplicado aqui de
+   propósito (independência por página, ver CLAUDE.md). */
+.oc-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+.oc-chip {
+    background: var(--accent-light);
+    color: var(--accent);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 7px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+}
+.oc-chip:hover { background: var(--borda); }
+.oc-chip:active { transform: scale(.97); }
+
+/* ── Filtros (pills) ── */
+
+.filtros {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filtro {
+    padding: 7px 18px;
+    border-radius: var(--radius-lg);
+    border: 1.5px solid var(--borda);
+    background: var(--card-bg);
+    color: var(--texto-muted);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .15s;
+}
+
+.filtro:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.filtro.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+
+/* ── Busca ── */
+
+.busca-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.busca-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card-bg);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-lg);
+    padding: 0 16px;
+    height: 44px;
+    transition: border-color .2s;
+}
+
+.busca-wrap:focus-within {
+    border-color: var(--accent);
+}
+
+.busca-wrap svg {
+    width: 18px;
+    height: 18px;
+    color: var(--texto-muted);
+    flex-shrink: 0;
+    stroke: currentColor;
+    fill: none;
+}
+
+.busca-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--texto);
+    background: transparent;
+}
+
+.busca-wrap input::placeholder {
+    color: var(--texto-muted);
+}
+
+.filtro-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--card-bg);
+    border: 1.5px solid var(--borda);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color .2s;
+}
+
+.filtro-btn:hover {
+    border-color: var(--accent);
+}
+
+.filtro-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--texto-muted);
+    fill: none;
+}
+
+
+/* ── Lista de ocorrências ── */
+
+.lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.loading,
+.vazio,
+.erro-msg {
+    text-align: center;
+    color: var(--texto-muted);
+    font-size: 14px;
+    padding: 2rem 0;
+}
+
+.erro-msg {
+    color: var(--vermelho);
+}
+
+.oc-card {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 14px 14px 14px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: box-shadow .2s, transform .15s, border-color .2s;
+}
+
+.oc-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+    border-color: var(--accent);
+}
+
+.oc-borda {
+    width: 4px;
+    height: 56px;
+    border-radius: 0 4px 4px 0;
+    flex-shrink: 0;
+}
+
+.borda-red {
+    background: var(--vermelho);
+}
+
+.borda-yellow {
+    background: var(--laranja);
+}
+
+.borda-green {
+    background: var(--verde);
+}
+
+/* "Aguardando origem" - 4º status, exclusivo de Ocorrência espelho de
+   Avaria (origem === "avaria") enquanto a Avaria de origem não é
+   resolvida. Cor própria de propósito - é um estado de espera normal, não
+   "resolvido" (verde) nem "alerta" (vermelho/laranja) - usa
+   --accent-light/--accent (já theme-aware, dispensa override
+   [data-tema="escuro"] que as outras 3 cores precisam porque usam hex
+   fixo). */
+.borda-blue {
+    background: var(--accent);
+}
+
+.oc-icone {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.oc-icone svg {
+    width: 20px;
+    height: 20px;
+}
+
+.icone-red {
+    background: #fee2e2;
+    color: var(--vermelho);
+}
+
+.icone-yellow {
+    background: #ffedd5;
+    color: var(--laranja);
+}
+
+.icone-green {
+    background: #dcfce7;
+    color: var(--verde);
+}
+
+.icone-blue {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.gc-demo[data-tema="escuro"] .icone-red {
+    background: #341616;
+}
+
+.gc-demo[data-tema="escuro"] .icone-yellow {
+    background: #3a230d;
+}
+
+.gc-demo[data-tema="escuro"] .icone-green {
+    background: #14321f;
+}
+
+.oc-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.oc-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.oc-top strong {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-lg);
+    white-space: nowrap;
+}
+
+.badge-red {
+    background: #fee2e2;
+    color: var(--vermelho);
+}
+
+.badge-yellow {
+    background: #ffedd5;
+    color: var(--laranja);
+}
+
+.badge-green {
+    background: #dcfce7;
+    color: var(--verde);
+}
+
+.badge-blue {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.gc-demo[data-tema="escuro"] .badge-red {
+    background: #341616;
+}
+
+.gc-demo[data-tema="escuro"] .badge-yellow {
+    background: #3a230d;
+}
+
+.gc-demo[data-tema="escuro"] .badge-green {
+    background: #14321f;
+}
+
+.oc-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+}
+
+/* Aviso de ocorrência-espelho - mesma linguagem visual dos alertas
+   informativos do resto do sistema (ícone + texto num box accent-light),
+   não é erro nem sucesso, só informa onde editar de verdade. */
+.oc-aviso-espelho {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: var(--accent-light);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    font-size: 12.5px;
+    color: var(--texto);
+    line-height: 1.5;
+}
+
+.oc-aviso-espelho svg {
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.oc-aviso-espelho a {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.oc-data {
+    font-size: 12px;
+    color: var(--texto-muted);
+}
+
+.oc-seta {
+    font-size: 22px;
+    color: var(--texto-muted);
+    flex-shrink: 0;
+    padding-right: 6px;
+}
+
+
+/* ── Modal ── */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease, visibility .2s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay.show .modal {
+    transform: scale(1);
+}
+
+.modal {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 480px;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: var(--shadow-md);
+    transform: scale(.96);
+    transition: transform .2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 22px 0;
+}
+
+.modal-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.modal-close {
+    background: var(--page-bg);
+    border: none;
+    border-radius: var(--radius-xs);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--texto-muted);
+    flex-shrink: 0;
+}
+
+.modal-close:hover {
+    background: var(--borda);
+}
+
+.modal-body {
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.form-group input,
+.form-group select {
+    height: 42px;
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 0 12px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--texto);
+    background: var(--page-bg);
+    outline: none;
+    appearance: none;
+    transition: border-color .2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--accent);
+}
+
+.form-erro {
+    color: var(--vermelho);
+    font-size: 12.5px;
+    min-height: 14px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 16px 22px;
+    border-top: 1px solid var(--borda);
+}
+
+
+/* ── Responsivo ── */
+
+.oc-card { cursor: pointer; }
+.oc-card:hover { background: var(--page-bg); }
+
+.det-linha {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--borda);
+    font-size: 13px;
+}
+.det-linha:last-of-type { border-bottom: none; }
+.det-label { color: var(--texto-muted); font-weight: 600; }
+.det-valor { color: var(--texto); text-align: right; }

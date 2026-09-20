@@ -4,52 +4,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GestãoCheck — Gestão e Acompanhamento de Processos</title>
+    <title>GestãoCheck: Gestão e Acompanhamento de Processos</title>
     <meta name="description" content="GestãoCheck: controle estoque, custos, produção, compras, ocorrências e indicadores da sua empresa em um único sistema.">
     <meta name="keywords" content="gestão empresarial, software de estoque, CMV, controle de custos, gestão operacional, sistema SaaS, GestãoCheck">
+    <link rel="canonical" href="https://gestaocheck.tech/">
+    <meta name="theme-color" content="#0C1E24">
     <!-- Open Graph -->
-    <meta property="og:title" content="GestãoCheck — Gestão e Acompanhamento de Processos">
+    <meta property="og:title" content="GestãoCheck: Gestão e Acompanhamento de Processos">
     <meta property="og:description" content="Controle estoque, custos, produção, compras, ocorrências e indicadores da sua empresa em um único sistema.">
-    <meta property="og:image" content="scr/assets/logo/logo-vertical-completo.svg">
+    <meta property="og:image" content="assets/logo/logo-vertical-completo.svg">
+    <meta property="og:url" content="https://gestaocheck.tech/">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GestãoCheck: Gestão e Acompanhamento de Processos">
+    <meta name="twitter:description" content="Controle estoque, custos, produção, compras, ocorrências e indicadores da sua empresa em um único sistema.">
+    <meta name="twitter:image" content="assets/logo/logo-vertical-completo.svg">
+    <!-- Dados estruturados (JSON-LD) - ajuda o Google a entender que é
+         uma empresa de software (rich results), não muda nada visual
+         no site em si. ATENÇÃO: único script inline do site - o CSP
+         (nginx.conf) libera ele por hash exato (não por 'unsafe-inline',
+         mais seguro), então editar esse bloco (mesmo só espaço/quebra
+         de linha) quebra ele em produção até recalcular o hash - ver
+         comentário em nginx.conf com o comando pra gerar de novo. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "GestãoCheck",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Sistema de gestão operacional para restaurantes, bares, oficinas, mercados e outros negócios: estoque, CMV, CMO, CMC, produção, compras, ocorrências e indicadores em um único lugar.",
+      "url": "https://gestaocheck.tech/",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "BRL",
+        "lowPrice": "650",
+        "highPrice": "1100",
+        "offerCount": "3"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "GestãoCheck",
+        "url": "https://gestaocheck.tech/"
+      }
+    }
+    </script>
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="icon" type="image/svg+xml" href="scr/assets/logo/favicon-circulo-contorno.svg">
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon-circulo-contorno.svg">
+    <link rel="stylesheet" href="css/style.css?v=20">
 </head>
 
 <body>
+    <!-- ABERTURA (splash cinematográfico: zoom no logo ao rolar) foi
+         desativada por pedido do Carlos (13/09/2026) - "deixa como
+         atualização futura". Removida só do HTML pra não rodar (o
+         `initSplash()` em script.js já lida bem com a ausência de
+         `#splashZoneTop`, retorna sem fazer nada, e o CSS/JS inteiro
+         continua no repo intactos) - reativar é só devolver o bloco
+         removido aqui (ver histórico do git ou CLAUDE.md, seção
+         "Splash desativado"). -->
+    <div id="scroll-progress" aria-hidden="true"></div>
     <!-- HEADER -->
     <header id="header">
         <div class="container nav-content">
             <a href="#" class="logo">
-                <img src="scr/assets/logo/logo-horizontal-claro.svg" alt="GestãoCheck" class="logo-img">
+                <img src="assets/logo/logo-horizontal-claro.svg" alt="GestãoCheck" class="logo-img">
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
 <i class="fas fa-bars"></i>
 </button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#funcionalidades">Funcionalidades</a></li>
+                <li class="nav-dropdown">
+                    <button type="button" class="nav-dropdown-toggle" aria-expanded="false">Funcionalidades <i class="fas fa-chevron-down"></i></button>
+                    <div class="nav-dropdown-menu">
+                        <a href="#estoque"><i class="fas fa-boxes-stacked"></i> Estoque</a>
+                        <a href="#cmv"><i class="fas fa-percent"></i> CMV</a>
+                        <a href="#cmo"><i class="fas fa-money-check-alt"></i> CMO</a>
+                        <a href="#cmc"><i class="fas fa-shopping-basket"></i> CMC</a>
+                        <a href="#multi-ia"><i class="fas fa-robot"></i> Multi-IA</a>
+                        <a href="#funcionalidades-beneficiamento"><i class="fas fa-industry"></i> Produção</a>
+                        <a href="#ocorrencias"><i class="fas fa-exclamation-circle"></i> Ocorrências</a>
+                        <a href="#checklists"><i class="fas fa-clipboard-check"></i> Checklists</a>
+                        <a href="#caixa"><i class="fas fa-cash-register"></i> Caixa</a>
+                        <a href="#despesas"><i class="fas fa-file-invoice-dollar"></i> Despesas</a>
+                        <a href="#patrimonio"><i class="fas fa-building"></i> Patrimônio</a>
+                        <a href="#requisicoes"><i class="fas fa-hand-holding"></i> Requisições</a>
+                        <a href="#relatorios"><i class="fas fa-file-invoice"></i> Relatórios</a>
+                        <a href="#dre"><i class="fas fa-scale-balanced"></i> DRE</a>
+                        <a href="#curva-abc"><i class="fas fa-chart-line"></i> Curva ABC</a>
+                    </div>
+                </li>
                 <li><a href="#como-funciona">Como funciona</a></li>
                 <li><a href="#seguranca">Segurança</a></li>
+                <li><a href="planos.html">Planos</a></li>
                 <li><a href="#paraquem">Para quem é</a></li>
-                <li><a href="#sobre">Nossa história</a></li>
-                <li><a href="#contato" class="btn btn-primary" style="padding: 8px 20px;">Solicitar demonstração</a></li>
+                <li><a href="planos.html" class="btn btn-primary" style="padding: 8px 20px;">Solicitar demonstração</a></li>
             </ul>
         </div>
     </header>
     <!-- HERO -->
     <section class="hero">
+        <canvas id="hero-3d" aria-hidden="true"></canvas>
         <div class="container">
-            <div class="reveal active">
+            <div class="reveal">
                 <h1>Pare de perder dinheiro sem saber onde.</h1>
                 <p>O GestãoCheck conecta estoque, produção, compras, custos e operação para você entender exatamente o que está acontecendo na sua empresa.</p>
                 <div class="hero-buttons">
-                    <button type="button" class="btn btn-primary" data-modal-open="contactModal">Solicitar demonstração <i class="fas fa-arrow-right"></i></button>
-                    <a href="#funcionalidades" class="btn btn-secondary">Conhecer o GestãoCheck</a>
+                    <a href="planos.html" class="btn btn-primary">Solicitar demonstração <i class="fas fa-arrow-right"></i></a>
+                    <a href="#como-funciona" class="btn btn-secondary">Conhecer o GestãoCheck</a>
                 </div>
             </div>
             <!-- DASHBOARD MOCKUP -->
@@ -72,19 +142,19 @@
                         <div class="mockup-cards">
                             <div class="mockup-stat">
                                 <div class="mockup-stat-label">Faturamento</div>
-                                <div class="mockup-stat-value">R$ 84.500</div>
+                                <div class="mockup-stat-value" data-count="84500" data-prefix="R$ ">R$ 84.500</div>
                             </div>
                             <div class="mockup-stat">
                                 <div class="mockup-stat-label">CMV Atual</div>
-                                <div class="mockup-stat-value" style="color: var(--secondary)">28.4%</div>
+                                <div class="mockup-stat-value" style="color: var(--secondary)" data-count="28.4" data-decimals="1" data-suffix="%">28.4%</div>
                             </div>
                             <div class="mockup-stat">
                                 <div class="mockup-stat-label">Itens em Falta</div>
-                                <div class="mockup-stat-value">12</div>
+                                <div class="mockup-stat-value" data-count="12">12</div>
                             </div>
                             <div class="mockup-stat">
                                 <div class="mockup-stat-label">Avarias</div>
-                                <div class="mockup-stat-value">3</div>
+                                <div class="mockup-stat-value" data-count="3">3</div>
                             </div>
                         </div>
                         <div class="mockup-charts">
@@ -109,28 +179,19 @@
                         </div>
                     </div>
                 </div>
-                <p class="mockup-caption">Interface ilustrativa do sistema — dados demonstrativos</p>
+                <p class="mockup-caption">Interface ilustrativa do sistema, dados demonstrativos</p>
             </div>
         </div>
     </section>
-    <!-- MODULE STRIP -->
-    <section id="funcionalidades" class="module-strip">
-        <div class="container">
-            <div class="module-strip-inner reveal">
-                <a href="#estoque" class="module-chip"><i class="fas fa-boxes-stacked"></i> Estoque</a>
-                <a href="#cmv" class="module-chip"><i class="fas fa-percent"></i> CMV</a>
-                <a href="#cmo" class="module-chip"><i class="fas fa-money-check-alt"></i> CMO</a>
-                <a href="#cmc" class="module-chip"><i class="fas fa-shopping-basket"></i> CMC</a>
-                <a href="#funcionalidades-beneficiamento" class="module-chip"><i class="fas fa-industry"></i> Produção</a>
-                <a href="#ocorrencias" class="module-chip"><i class="fas fa-exclamation-circle"></i> Ocorrências</a>
-                <a href="#checklists" class="module-chip"><i class="fas fa-clipboard-check"></i> Checklists</a>
-                <a href="#requisicoes" class="module-chip"><i class="fas fa-hand-holding"></i> Requisições</a>
-                <a href="#relatorios" class="module-chip"><i class="fas fa-file-invoice"></i> Relatórios</a>
-            </div>
-        </div>
-    </section>
+    <!-- MODULE STRIP - a faixa de 15 botões que ficava aqui
+         (`#funcionalidades`) virou o dropdown "Funcionalidades" do menu
+         (14/09/2026, pedido do Carlos: "em vez de ter esses botões,
+         bota tudo em funcionalidades com do menu, se liga fica
+         melhor") - mesma lista, mesmos links, só que dentro do menu em
+         vez de ocupar uma seção inteira no meio do site. -->
     <!-- PROBLEMS -->
     <section id="problemas" class="problems">
+        <canvas id="problemas-3d" aria-hidden="true"></canvas>
         <div class="container">
             <div class="section-header reveal">
                 <span class="tag">O Problema</span>
@@ -169,7 +230,7 @@
             </div>
             <div class="arrow-down reveal"><i class="fas fa-chevron-down"></i></div>
             <div class="solution-banner reveal">
-                Centralize sua operação, acompanhe seus custos e tome decisões com informações reais — com o <span>GestãoCheck</span>.
+                Com o <span>GestãoCheck</span>, centralize sua operação, acompanhe seus custos e tome decisões com informações reais.
             </div>
         </div>
     </section>
@@ -180,23 +241,23 @@
                 <span class="tag">Como funciona</span>
                 <h2>Do cadastro à decisão, em quatro passos</h2>
             </div>
-            <div class="steps-grid reveal">
-                <div class="step-card">
+            <div class="steps-grid">
+                <div class="step-card reveal">
                     <div class="step-number">01</div>
                     <h3>Cadastre sua operação</h3>
                     <p>Setores, produtos, categorias, funcionários e permissões.</p>
                 </div>
-                <div class="step-card">
+                <div class="step-card reveal">
                     <div class="step-number">02</div>
                     <h3>Controle o estoque</h3>
                     <p>Entradas, saídas, transferências, notas fiscais, contagens e movimentações.</p>
                 </div>
-                <div class="step-card">
+                <div class="step-card reveal">
                     <div class="step-number">03</div>
                     <h3>Acompanhe seus custos</h3>
                     <p>CMV, CMO, CMC, produção e perdas.</p>
                 </div>
-                <div class="step-card">
+                <div class="step-card reveal">
                     <div class="step-number">04</div>
                     <h3>Tome decisões melhores</h3>
                     <p>Dashboards, alertas e relatórios ajudam a identificar problemas e oportunidades.</p>
@@ -204,136 +265,92 @@
             </div>
         </div>
     </section>
-    <!-- ESTOQUE INTELIGENTE -->
-    <section id="estoque" class="bg-white deepdive">
+    <!-- MÓDULOS - grid compacto com as funcionalidades secundárias.
+         Site comparado com 6 concorrentes reais (GestãoDS, Saipos,
+         Colibri, ControleNaMão, Sischef, VEX Menu) - todos usam card
+         compacto + popup/página própria pro detalhe. Reorganizado a
+         pedido do Carlos: as funcionalidades "principais" (Estoque,
+         CMV, Multi-IA, Segurança - as que já tinham tratamento rico de
+         verdade, com GIF/cena 3D) voltaram a ser seções próprias
+         (ver logo abaixo de #indicadores) - aqui ficam as outras 12 +
+         o comparador de tema, cada uma com popup no clique. -->
+    <section id="modulos" class="bg-white">
         <div class="container">
-            <div class="deepdive-grid">
-                <div class="deepdive-text reveal">
-                    <span class="tag">Estoque Inteligente</span>
-                    <h2>Seu estoque sob controle, setor por setor.</h2>
-                    <p>Chega de digitar notas manualmente. Fotografe ou envie sua nota fiscal e o GestãoCheck identifica os produtos automaticamente usando OCR — e ainda converte as unidades sozinho.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Contagem de estoque por setor, com setores e categorias configuráveis</li>
-                        <li><i class="fas fa-check"></i> Estoque principal separado dos setores, com transferência entre eles</li>
-                        <li><i class="fas fa-check"></i> Entrada, saída, origem e destino de cada movimentação</li>
-                        <li><i class="fas fa-check"></i> Importação de nota fiscal por PDF, foto ou OCR</li>
-                        <li><i class="fas fa-check"></i> Fila de verificação para novos itens e aprovação de mudança de preço</li>
-                        <li><i class="fas fa-check"></i> Foto por item e exportação em Excel/CSV</li>
-                        <li><i class="fas fa-check"></i> Identificação automática de itens faltantes</li>
-                    </ul>
-                </div>
-                <div class="deepdive-visual reveal">
-                    <div class="mini-mockup">
-                        <div class="mini-mockup-row">
-                            <span>Farinha de trigo</span>
-                            <span class="mini-badge mini-badge-warn">Estoque baixo</span>
-                        </div>
-                        <div class="mini-mockup-row">
-                            <span>Queijo muçarela</span>
-                            <span class="mini-badge">Câmara fria</span>
-                        </div>
-                        <div class="mini-mockup-row">
-                            <span>Molho de tomate</span>
-                            <span class="mini-badge">Estoque principal</span>
-                        </div>
-                        <div class="mini-mockup-row">
-                            <span>Nota fiscal #4521</span>
-                            <span class="mini-badge mini-badge-ok"><i class="fas fa-camera"></i> Lida por OCR</span>
-                        </div>
-                    </div>
-                    <p class="mockup-caption">Dados demonstrativos</p>
-                </div>
+            <div class="section-header reveal">
+                <span class="tag">Mais funcionalidades</span>
+                <h2>E ainda tem mais.</h2>
+                <p>Clique em qualquer card para ver a tela real por dentro.</p>
+                <button type="button" id="sysThemeToggle" class="sys-theme-toggle-btn" aria-pressed="false">
+                    <i class="fas fa-sun"></i> <span>Ver as telas do sistema em modo claro</span>
+                </button>
             </div>
-        </div>
-    </section>
-    <!-- CMV -->
-    <section id="cmv" class="bg-gray deepdive">
-        <div class="container">
-            <div class="deepdive-grid reverse">
-                <div class="deepdive-visual reveal">
-                    <div class="mini-mockup">
-                        <div class="mini-mockup-title">Ficha técnica — Pizza Margherita</div>
-                        <div class="mini-mockup-row"><span>Farinha, queijo, molho</span><span>R$ 9,80</span></div>
-                        <div class="mini-mockup-row"><span>Custo total</span><span>R$ 9,80</span></div>
-                        <div class="mini-mockup-row"><span>Preço de venda</span><span>R$ 39,90</span></div>
-                        <div class="mini-mockup-row mini-mockup-highlight"><span>Margem</span><span>75,4%</span></div>
-                    </div>
-                    <p class="mockup-caption">Dados demonstrativos</p>
-                </div>
-                <div class="deepdive-text reveal">
-                    <span class="tag">CMV</span>
-                    <h2>Saiba quanto realmente custa aquilo que você vende.</h2>
-                    <p>Entenda o custo real dos produtos vendidos e descubra onde sua margem está sendo perdida — com a ficha técnica ligada aos itens reais do seu estoque.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Ficha técnica ligada aos itens reais do estoque</li>
-                        <li><i class="fas fa-check"></i> Registro de vendas com baixa automática de estoque</li>
-                        <li><i class="fas fa-check"></i> Importação de vendas por nota fiscal</li>
-                        <li><i class="fas fa-check"></i> Categorias de venda e DRE</li>
-                        <li><i class="fas fa-check"></i> Evolução de faturamento e alertas de insumos faltantes</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- CMO -->
-    <section id="cmo" class="bg-white deepdive">
-        <div class="container">
-            <div class="deepdive-grid">
-                <div class="deepdive-text reveal">
-                    <span class="tag">CMO</span>
-                    <h2>Entenda quanto sua equipe representa no faturamento.</h2>
-                    <p>Defina uma meta de percentual da folha sobre o faturamento e receba alertas automáticos sempre que esse limite for ultrapassado.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Cadastro de funcionários e folha de pagamento</li>
-                        <li><i class="fas fa-check"></i> Cálculo de quanto é preciso faturar para pagar a equipe</li>
-                        <li><i class="fas fa-check"></i> Meta de percentual do faturamento</li>
-                        <li><i class="fas fa-check"></i> Alertas quando o limite é ultrapassado</li>
-                    </ul>
-                </div>
-                <div class="deepdive-visual reveal">
-                    <div class="mini-mockup">
-                        <div class="mini-mockup-title">Meta de folha</div>
-                        <div class="mini-mockup-row"><span>Meta definida</span><span>28% do faturamento</span></div>
-                        <div class="mini-mockup-row"><span>Folha atual</span><span>24,6%</span></div>
-                        <div class="mini-progress">
-                            <div class="mini-progress-bar" style="--bar-w: 24.6%"></div>
-                        </div>
-                        <div class="mini-mockup-row mini-mockup-highlight"><span>Situação</span><span>Dentro da meta</span></div>
-                    </div>
-                    <p class="mockup-caption">Dados demonstrativos</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- CMC -->
-    <section id="cmc" class="bg-gray deepdive">
-        <div class="container">
-            <div class="deepdive-grid reverse">
-                <div class="deepdive-visual reveal">
-                    <div class="mini-mockup">
-                        <div class="mini-mockup-title">Compras do mês</div>
-                        <div class="mini-mockup-row"><span>Fornecedor Distribuidora Sul</span><span>R$ 6.240</span></div>
-                        <div class="mini-mockup-row"><span>Fornecedor Laticínios MG</span><span>R$ 3.180</span></div>
-                        <div class="mini-mockup-row mini-mockup-highlight"><span>Total do período</span><span>R$ 9.420</span></div>
-                    </div>
-                    <p class="mockup-caption">Dados demonstrativos</p>
-                </div>
-                <div class="deepdive-text reveal">
-                    <span class="tag">CMC</span>
-                    <h2>Compre melhor sabendo quanto sua operação realmente está pagando.</h2>
-                    <p>Acompanhe compras e fornecedores integrados às notas já importadas no estoque, com metas e resumo por período.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Controle de compras e fornecedores</li>
-                        <li><i class="fas fa-check"></i> Categorias de compra</li>
-                        <li><i class="fas fa-check"></i> Integração com notas importadas no estoque</li>
-                        <li><i class="fas fa-check"></i> Metas e resumo por período</li>
-                    </ul>
-                </div>
+            <div class="module-grid">
+                <button type="button" class="module-card reveal" data-modal-open="modulo-cmo">
+                    <div class="module-card-icon"><i class="fas fa-money-check-alt"></i></div>
+                    <h3>CMO</h3>
+                    <p>Meta de percentual da folha sobre o faturamento, com alerta automático se passar do limite.</p>
+                </button>
+                <button type="button" class="module-card reveal" data-modal-open="modulo-cmc">
+                    <div class="module-card-icon"><i class="fas fa-shopping-basket"></i></div>
+                    <h3>CMC</h3>
+                    <p>Compras e fornecedores integrados às notas do estoque, com metas por período.</p>
+                </button>
+                <button type="button" class="module-card reveal" data-modal-open="modulo-beneficiamento">
+                    <div class="module-card-icon"><i class="fas fa-industry"></i></div>
+                    <h3>Beneficiamento</h3>
+                    <p>Matéria-prima até o produto final, com rendimento e custo por porção calculados sozinhos.</p>
+                </button>
+                <button type="button" class="module-card reveal" data-modal-open="modulo-ocorrencias">
+                    <div class="module-card-icon"><i class="fas fa-exclamation-circle"></i></div>
+                    <h3>Avarias e Ocorrências</h3>
+                    <p>Toda perda vira registro com foto obrigatória e prejuízo calculado.</p>
+                </button>
+                <button type="button" class="module-card reveal" data-modal-open="modulo-checklists">
+                    <div class="module-card-icon"><i class="fas fa-clipboard-check"></i></div>
+                    <h3>Checklists</h3>
+                    <p>Rotina por setor, com responsável definido e acompanhamento do que já foi feito.</p>
+                </button>
+                <button type="button" class="module-card reveal" data-modal-open="modulo-caixa">
+                    <div class="module-card-icon"><i class="fas fa-cash-register"></i></div>
+                    <h3>Caixa</h3>
+                    <p>Fechamento com esperado calculado automaticamente e retiradas com motivo registrado.</p>
+                </button>
+                <button type="button" class="module-card reveal" data-modal-open="modulo-despesas">
+                    <div class="module-card-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                    <h3>Despesas</h3>
+                    <p>Fixas e operacionais no mesmo lugar, entrando direto no resultado final.</p>
+                </button>
+                <button type="button" class="module-card reveal" data-modal-open="modulo-patrimonio">
+                    <div class="module-card-icon"><i class="fas fa-building"></i></div>
+                    <h3>Patrimônio</h3>
+                    <p>Investimento em equipamento separado do estoque, vinculado à manutenção.</p>
+                </button>
+                <button type="button" class="module-card reveal" data-modal-open="modulo-requisicoes">
+                    <div class="module-card-icon"><i class="fas fa-hand-holding"></i></div>
+                    <h3>Requisições</h3>
+                    <p>Setor pede, estoque atende, tudo com histórico completo.</p>
+                </button>
+                <button type="button" class="module-card reveal" data-modal-open="modulo-relatorios">
+                    <div class="module-card-icon"><i class="fas fa-file-invoice"></i></div>
+                    <h3>Relatórios</h3>
+                    <p>Visão consolidada de todos os módulos, com Prime Cost calculado automaticamente.</p>
+                </button>
+                <button type="button" class="module-card reveal" data-modal-open="modulo-dre">
+                    <div class="module-card-icon"><i class="fas fa-scale-balanced"></i></div>
+                    <h3>DRE completa</h3>
+                    <p>Receita até resultado, linha a linha, com o percentual de cada uma sobre a receita.</p>
+                </button>
+                <button type="button" class="module-card reveal" data-modal-open="modulo-curva-abc">
+                    <div class="module-card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Curva ABC</h3>
+                    <p>Classifique seus produtos por relevância de faturamento.</p>
+                </button>
             </div>
         </div>
     </section>
     <!-- CMV + CMO + CMC -->
-    <section class="bg-white">
+    <section id="indicadores" class="bg-white">
+        <canvas id="indicadores-3d" aria-hidden="true"></canvas>
         <div class="container">
             <div class="section-header reveal">
                 <span class="tag">Visão completa</span>
@@ -355,74 +372,296 @@
             </div>
         </div>
     </section>
-    <!-- BENEFICIAMENTO -->
-    <section id="funcionalidades-beneficiamento" class="bg-gray">
+
+    <!-- FUNCIONALIDADES PRINCIPAIS - voltaram a ser seção própria (não
+         card+popup) a pedido do Carlos: são as 4 que já tinham
+         tratamento rico de verdade (screenshot grande, GIF real, cena
+         3D) e ele quer isso visível direto na página, não escondido
+         atrás de clique. As outras 12 continuam compactas em #modulos
+         (acima) + popup. -->
+    <!-- ESTOQUE INTELIGENTE -->
+    <section id="estoque" class="bg-white deepdive">
         <div class="container">
-            <div class="section-header reveal">
-                <span class="tag">Beneficiamento</span>
-                <h2>Transforme matéria-prima em produção com controle de custos.</h2>
-            </div>
-            <div class="flow-row reveal">
-                <span class="flow-step">Farinha + água + fermento</span>
-                <i class="fas fa-arrow-right flow-arrow"></i>
-                <span class="flow-step">Massa pronta</span>
-                <i class="fas fa-arrow-right flow-arrow"></i>
-                <span class="flow-step">Porções</span>
-                <i class="fas fa-arrow-right flow-arrow"></i>
-                <span class="flow-step flow-step-final">Produto final</span>
-            </div>
-            <div class="features-grid" style="margin-top: 48px;">
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-boxes-stacked"></i></div>
-                    <h3>Matéria-prima real</h3>
-                    <p>O desconto dos ingredientes acontece somente na confirmação da produção, direto do estoque real.</p>
+            <div class="deepdive-grid">
+                <div class="deepdive-text reveal">
+                    <span class="tag">Estoque Inteligente</span>
+                    <h2>Seu estoque sob controle, setor por setor.</h2>
+                    <p>Chega de digitar notas manualmente. Fotografe ou envie sua nota fiscal e o GestãoCheck identifica os produtos automaticamente usando OCR, convertendo as unidades sozinho.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Contagem de estoque por setor, com setores e categorias configuráveis</li>
+                        <li><i class="fas fa-check"></i> Estoque principal separado dos setores, com transferência entre eles</li>
+                        <li><i class="fas fa-check"></i> Entrada, saída, origem e destino de cada movimentação</li>
+                        <li><i class="fas fa-check"></i> Importação de nota fiscal por PDF, foto ou OCR</li>
+                        <li><i class="fas fa-check"></i> Fila de verificação para novos itens e aprovação de mudança de preço</li>
+                        <li><i class="fas fa-check"></i> Foto por item e exportação em Excel/CSV</li>
+                        <li><i class="fas fa-check"></i> Identificação automática de itens faltantes</li>
+                    </ul>
                 </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-scale-balanced"></i></div>
-                    <h3>Rendimento e custo</h3>
-                    <p>Cálculo automático de rendimento e custo por porção produzida.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
-                    <h3>Múltiplos níveis</h3>
-                    <p>Produção em múltiplos níveis, da matéria-prima ao produto final.</p>
+                <div class="deepdive-visual reveal">
+                    <div class="screenshot-frame">
+                        <img class="sys-theme-img" src="assets/sistema/10_estoque.svg" alt="Tela de Estoque do GestãoCheck, com contagem por setor e categoria" loading="lazy" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- AVARIAS E OCORRÊNCIAS -->
-    <section id="ocorrencias" class="bg-white">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="tag">Avarias e ocorrências</span>
-                <h2>Registre perdas antes que elas desapareçam nos números.</h2>
-            </div>
-            <div class="light-grid">
-                <div class="light-card reveal"><i class="fas fa-camera"></i> Registro de avarias com foto obrigatória</div>
-                <div class="light-card reveal"><i class="fas fa-comment"></i> Comentários por ocorrência</div>
-                <div class="light-card reveal"><i class="fas fa-bell"></i> Central de ocorrências com alertas automáticos</div>
-                <div class="light-card reveal"><i class="fas fa-screwdriver-wrench"></i> Manutenção de equipamentos</div>
-            </div>
-        </div>
-    </section>
-    <!-- CHECKLISTS -->
-    <section id="checklists" class="bg-white deepdive">
+    <!-- CMV -->
+    <section id="cmv" class="bg-gray deepdive">
         <div class="container">
             <div class="deepdive-grid reverse">
                 <div class="deepdive-visual reveal">
-                    <div class="mini-mockup">
-                        <div class="mini-mockup-title">Checklist — Abertura da Cozinha</div>
-                        <div class="mini-mockup-row"><span><i class="fas fa-square-check" style="color: var(--secondary);"></i> Conferir temperatura da câmara fria</span></div>
-                        <div class="mini-mockup-row"><span><i class="fas fa-square-check" style="color: var(--secondary);"></i> Higienizar bancadas</span></div>
-                        <div class="mini-mockup-row"><span><i class="far fa-square" style="color: var(--text-muted);"></i> Testar equipamentos</span></div>
-                        <div class="mini-mockup-row mini-mockup-highlight"><span>Responsável</span><span>Maria</span></div>
+                    <div class="screenshot-frame">
+                        <img class="sys-theme-img" src="assets/sistema/11_cmv_visaogeral.svg" alt="Visão geral do CMV no GestãoCheck" loading="lazy" decoding="async">
                     </div>
-                    <p class="mockup-caption">Dados demonstrativos</p>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
                 </div>
                 <div class="deepdive-text reveal">
+                    <span class="tag">CMV</span>
+                    <h2>Saiba quanto realmente custa aquilo que você vende.</h2>
+                    <p>Entenda o custo real dos produtos vendidos e descubra onde sua margem está sendo perdida, com a ficha técnica ligada aos itens reais do seu estoque.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Ficha técnica ligada aos itens reais do estoque</li>
+                        <li><i class="fas fa-check"></i> Registro de vendas com baixa automática de estoque</li>
+                        <li><i class="fas fa-check"></i> Importação de vendas por nota fiscal</li>
+                        <li><i class="fas fa-check"></i> Categorias de venda e DRE</li>
+                        <li><i class="fas fa-check"></i> Evolução de faturamento e alertas de insumos faltantes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- MULTI-IA -->
+    <section id="multi-ia" class="bg-white ia-showcase">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag">Multi-IA</span>
+                <h2>Pergunte pro seu negócio. Ele responde.</h2>
+                <p>Um assistente que entende os números da sua operação de verdade. Sem precisar abrir relatório nenhum, é só perguntar.</p>
+            </div>
+            <div class="deepdive-grid reverse">
+                <div class="deepdive-visual reveal">
+                    <div class="screenshot-frame">
+                        <!-- SVG vetorial animado (SMIL): cursor sai do Início, navega até o
+                             Multi-IA e a cena dá zoom no balão de chat, com pergunta
+                             digitada, "pensando" e resposta. Texto real (não pixel),
+                             nítido em qualquer zoom. -->
+                        <img id="multiIaImg" class="sys-theme-img" data-anim data-src="assets/sistema/multi_ia_zoom.svg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Assistente de IA do GestãoCheck respondendo uma pergunta real sobre o negócio, com zoom no chat" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
+                </div>
+                <div class="deepdive-text reveal">
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Responde perguntas sobre os números do seu negócio em linguagem natural</li>
+                        <li><i class="fas fa-check"></i> Tira dúvida de como usar qualquer tela do sistema</li>
+                        <li><i class="fas fa-check"></i> Gera insights automáticos, sem você precisar pedir</li>
+                        <li><i class="fas fa-check"></i> Autorizado só pelo Dono do negócio, o controle nunca sai da sua mão</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ia-insights-strip reveal">
+                <div class="ia-insight-card">
+                    <span class="mini-badge mini-badge-ok">Baixa</span>
+                    <strong>Prime cost dentro da meta</strong>
+                </div>
+                <div class="ia-insight-card">
+                    <span class="mini-badge mini-badge-warn">Média</span>
+                    <strong>CMO impacta a margem</strong>
+                </div>
+                <div class="ia-insight-card">
+                    <span class="mini-badge" style="background: rgba(255,107,107,0.25); color: var(--secondary-dark);">Alta</span>
+                    <strong>Manutenção e requisições pendentes</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- VEJA POR DENTRO (conheca-o-sistema.html) - ponto de entrada
+         devolvido (18/09/2026) depois que a vitrine ganhou as 18 telas
+         interativas de verdade + o bug do 404 na tela de Início foi
+         corrigido (ver CLAUDE.md). Carlos pediu de volta pra poder
+         testar o sistema simplificado direto pelo site. -->
+    <section id="veja-por-dentro-teaser" class="plans-teaser">
+        <div class="container plans-teaser-inner">
+            <div>
+                <span class="tag">Veja por dentro</span>
+                <h2>Quer clicar você mesmo? Teste o sistema simplificado.</h2>
+            </div>
+            <a href="conheca-o-sistema.html" class="btn btn-primary">Testar o sistema <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+    <!-- SECURITY -->
+    <section id="seguranca" class="security">
+        <div class="sec-scan" aria-hidden="true"></div>
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="tag" style="background: rgba(255,107,107,0.2); color: var(--secondary);">Segurança</span>
+                <h2>Segurança pensada para proteger sua operação.</h2>
+                <p style="color: rgba(255,255,255,0.7);">Infraestrutura pensada para manter os dados da sua empresa protegidos e disponíveis.</p>
+            </div>
+            <!-- PALCO DA CHAVE (20/09/2026): o cadeado 3D (ou o SVG de reserva em
+                 celular/menos movimento) fica sozinho e grande; arrastar a chave até
+                 ele (ou tocar nela) abre o cadeado e revela a imagem abaixo. Só
+                 aparece quando o JS ativa `.sec-interactive` na seção (script.js,
+                 initSecurityLock) - sem JS, o layout de sempre: imagem + cards. -->
+            <div class="sec-stage" id="secStage">
+                <canvas id="security-3d" aria-hidden="true"></canvas>
+                <svg class="sec-lock-svg" viewBox="0 0 200 240" aria-hidden="true" focusable="false">
+                    <g class="sec-lock-shackle"><path d="M60 112V80a40 40 0 0 1 80 0v32" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round"/></g>
+                    <rect x="34" y="106" width="132" height="106" rx="18" fill="rgba(125,211,220,0.14)" stroke="currentColor" stroke-width="6"/>
+                    <circle cx="100" cy="148" r="12" fill="#ff6b6b"/>
+                    <rect x="95" y="154" width="10" height="28" rx="4" fill="#ff6b6b"/>
+                </svg>
+                <div class="sec-drop" aria-hidden="true"></div>
+                <button type="button" class="sec-key" id="secKey" aria-label="Chave. Arraste até o cadeado para destrancar, ou aperte Enter.">
+                    <span class="sec-key-icon"><i class="fas fa-key"></i></span>
+                </button>
+                <p class="sec-hint" id="secHint">Arraste a chave até o cadeado (ou toque nela)</p>
+            </div>
+            <div class="security-split">
+                <div class="security-visual">
+                    <div class="screenshot-frame">
+                        <img id="segurancaImg" class="sys-theme-img" data-anim data-src="assets/sistema/seguranca_2fa_fluxo.svg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Navegação real dentro do GestãoCheck até ativar a verificação em duas etapas (2FA)" decoding="async">
+                    </div>
+                    <p class="mockup-caption" style="color: rgba(255,255,255,0.6);">Sistema real, dados fictícios</p>
+                    <p class="sec-back-hint">Clique na imagem para trancar de novo e ver os recursos</p>
+                </div>
+                <div class="security-grid">
+                    <div class="security-card reveal"><i class="fas fa-mobile-screen-button"></i> Verificação em duas etapas (2FA)</div>
+                    <div class="security-card reveal"><i class="fas fa-lock"></i> Bloqueio progressivo de login</div>
+                    <div class="security-card reveal"><i class="fas fa-shield-alt"></i> Proteção contra padrões de ataque</div>
+                    <div class="security-card reveal"><i class="fas fa-key"></i> Políticas de senha seguras</div>
+                    <div class="security-card reveal"><i class="fas fa-laptop-house"></i> Sessão revogável remotamente</div>
+                    <div class="security-card reveal"><i class="fas fa-fingerprint"></i> Hash seguro de senha</div>
+                    <div class="security-card reveal"><i class="fas fa-bug-slash"></i> Dependências monitoradas contra vulnerabilidades conhecidas</div>
+                    <div class="security-card reveal"><i class="fas fa-database"></i> Banco de dados isolado por cliente</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POPUPS DOS MÓDULOS - um por card do grid acima. Mesmo mecanismo
+         de abrir/fechar do modal de contato (`data-modal-open`/
+         `data-modal-close`/`abrirModal()` em script.js), conteúdo
+         diferente. Imagens usam `data-src` (carregam só na primeira
+         abertura, ver `abrirModal` em script.js). -->
+    <div class="contact-modal module-modal" id="modulo-cmo" aria-hidden="true">
+        <div class="contact-modal-backdrop" data-modal-close></div>
+        <div class="contact-modal-card module-modal-card">
+            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+            <div class="module-modal-grid">
+                <div class="module-modal-visual">
+                    <div class="screenshot-frame">
+                        <img class="sys-theme-img" data-src="assets/sistema/12_cmo.svg" alt="Tela de CMO (Custo de Mão de Obra) do GestãoCheck" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
+                </div>
+                <div class="module-modal-text">
+                    <span class="tag">CMO</span>
+                    <h3>Entenda quanto sua equipe representa no faturamento.</h3>
+                    <p>Defina uma meta de percentual da folha sobre o faturamento e receba alertas automáticos sempre que esse limite for ultrapassado.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Cadastro de funcionários e folha de pagamento</li>
+                        <li><i class="fas fa-check"></i> Cálculo de quanto é preciso faturar para pagar a equipe</li>
+                        <li><i class="fas fa-check"></i> Meta de percentual do faturamento</li>
+                        <li><i class="fas fa-check"></i> Alertas quando o limite é ultrapassado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-modal module-modal" id="modulo-cmc" aria-hidden="true">
+        <div class="contact-modal-backdrop" data-modal-close></div>
+        <div class="contact-modal-card module-modal-card">
+            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+            <div class="module-modal-grid">
+                <div class="module-modal-visual">
+                    <div class="screenshot-frame">
+                        <img class="sys-theme-img" data-src="assets/sistema/13_cmc_visaogeral.svg" alt="Visão geral do CMC (Custo de Mercadoria Consumida) no GestãoCheck" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
+                </div>
+                <div class="module-modal-text">
+                    <span class="tag">CMC</span>
+                    <h3>Compre melhor sabendo quanto sua operação realmente está pagando.</h3>
+                    <p>Acompanhe compras e fornecedores integrados às notas já importadas no estoque, com metas e resumo por período.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Controle de compras e fornecedores</li>
+                        <li><i class="fas fa-check"></i> Categorias de compra</li>
+                        <li><i class="fas fa-check"></i> Integração com notas importadas no estoque</li>
+                        <li><i class="fas fa-check"></i> Metas e resumo por período</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-modal module-modal" id="modulo-beneficiamento" aria-hidden="true">
+        <div class="contact-modal-backdrop" data-modal-close></div>
+        <div class="contact-modal-card module-modal-card">
+            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+            <div class="module-modal-grid">
+                <div class="module-modal-visual">
+                    <div class="screenshot-frame">
+                        <!-- SVG vetorial animado (SMIL): a entrada do gráfico (barras e rosca
+                             crescendo). Só carrega na 1a abertura do popup (data-src),
+                             então a animação começa quando a pessoa realmente vê. O
+                             cursor (js/script.js, CURSOR_TARGET) mostra o Início por
+                             cima, clica em "Beneficiamento" e revela o SVG por baixo. -->
+                        <img class="sys-theme-img" data-anim data-src="assets/sistema/beneficiamento_entrada.svg" alt="Gráfico de Beneficiamento e Produção do GestãoCheck animando ao entrar na tela" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
+                </div>
+                <div class="module-modal-text">
+                    <span class="tag">Beneficiamento</span>
+                    <h3>Transforme matéria-prima em produção com controle de custos.</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Matéria-prima real: o desconto dos ingredientes acontece somente na confirmação da produção, direto do estoque real</li>
+                        <li><i class="fas fa-check"></i> Rendimento e custo por porção calculados automaticamente</li>
+                        <li><i class="fas fa-check"></i> Produção em múltiplos níveis, da matéria-prima ao produto final</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-modal module-modal" id="modulo-ocorrencias" aria-hidden="true">
+        <div class="contact-modal-backdrop" data-modal-close></div>
+        <div class="contact-modal-card module-modal-card">
+            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+            <div class="module-modal-grid">
+                <div class="module-modal-visual">
+                    <div class="screenshot-frame">
+                        <img class="sys-theme-img" data-src="assets/sistema/15_avarias.svg" alt="Tela de Avarias do GestãoCheck" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
+                </div>
+                <div class="module-modal-text">
+                    <span class="tag">Avarias e ocorrências</span>
+                    <h3>Registre perdas antes que elas desapareçam nos números.</h3>
+                    <p>Toda avaria vira um registro com foto obrigatória e prejuízo calculado. Nada de "sumiu e ninguém sabe por quê".</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Registro de avarias com foto obrigatória</li>
+                        <li><i class="fas fa-check"></i> Comentários por ocorrência</li>
+                        <li><i class="fas fa-check"></i> Central de ocorrências com alertas automáticos</li>
+                        <li><i class="fas fa-check"></i> Manutenção de equipamentos vinculada ao Patrimônio</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-modal module-modal" id="modulo-checklists" aria-hidden="true">
+        <div class="contact-modal-backdrop" data-modal-close></div>
+        <div class="contact-modal-card module-modal-card">
+            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+            <div class="module-modal-grid">
+                <div class="module-modal-visual">
+                    <div class="screenshot-frame">
+                        <img class="sys-theme-img" data-src="assets/sistema/17_checklists.svg" alt="Tela de Checklists do GestãoCheck" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
+                </div>
+                <div class="module-modal-text">
                     <span class="tag">Checklists</span>
-                    <h2>Rotina do dia a dia, sem depender de papel ou memória.</h2>
-                    <p>Cada setor tem seus próprios checklists, com responsável definido — dá pra ver na hora o que já foi feito e o que ainda falta.</p>
+                    <h3>Rotina do dia a dia, sem depender de papel ou memória.</h3>
+                    <p>Cada setor tem seus próprios checklists, com responsável definido. Dá pra ver na hora o que já foi feito e o que ainda falta.</p>
                     <ul class="feature-list">
                         <li><i class="fas fa-check"></i> Checklist configurável por setor</li>
                         <li><i class="fas fa-check"></i> Responsável definido por checklist</li>
@@ -431,75 +670,182 @@
                 </div>
             </div>
         </div>
-    </section>
-    <!-- REQUISIÇÕES -->
-    <section id="requisicoes" class="bg-gray">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="tag">Requisições</span>
-                <h2>Cada setor pede. O estoque atende. Tudo fica organizado.</h2>
-            </div>
-            <div class="flow-row reveal">
-                <span class="flow-step">Setor solicita</span>
-                <i class="fas fa-arrow-right flow-arrow"></i>
-                <span class="flow-step">Estoque recebe</span>
-                <i class="fas fa-arrow-right flow-arrow"></i>
-                <span class="flow-step">Atendimento</span>
-                <i class="fas fa-arrow-right flow-arrow"></i>
-                <span class="flow-step flow-step-final">Histórico</span>
-            </div>
-            <p class="flow-footnote reveal">Com comentários, edição, histórico completo e acompanhamento em tempo real.</p>
-        </div>
-    </section>
-    <!-- RELATÓRIOS -->
-    <section id="relatorios" class="bg-white">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="tag">Relatórios</span>
-                <h2>Transforme dados da operação em decisões.</h2>
-            </div>
-            <div class="mockup-cards" style="max-width: 900px; margin: 0 auto 24px;">
-                <div class="mockup-stat" style="border-radius:12px;">
-                    <div class="mockup-stat-label">Estoque</div>
-                    <div class="mockup-stat-value">Sob controle</div>
+    </div>
+    <div class="contact-modal module-modal" id="modulo-caixa" aria-hidden="true">
+        <div class="contact-modal-backdrop" data-modal-close></div>
+        <div class="contact-modal-card module-modal-card">
+            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+            <div class="module-modal-grid">
+                <div class="module-modal-visual">
+                    <div class="screenshot-frame">
+                        <img class="sys-theme-img" data-src="assets/sistema/04_caixa_fechamento.svg" alt="Tela de fechamento de Caixa do GestãoCheck" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
                 </div>
-                <div class="mockup-stat" style="border-radius:12px;">
-                    <div class="mockup-stat-label">CMV / CMO / CMC</div>
-                    <div class="mockup-stat-value" style="color: var(--secondary)">Integrados</div>
+                <div class="module-modal-text">
+                    <span class="tag">Caixa</span>
+                    <h3>Fechamento de caixa sem depender de planilha.</h3>
+                    <p>O esperado é calculado sozinho a partir do que já foi registrado no sistema. Você só confere e lança as retiradas, com o motivo de cada uma.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Esperado calculado automaticamente</li>
+                        <li><i class="fas fa-check"></i> Retiradas de caixa com motivo registrado</li>
+                        <li><i class="fas fa-check"></i> Diferença não-explicada sinalizada na hora</li>
+                        <li><i class="fas fa-check"></i> Pode ser fechado direto pelo checklist do turno</li>
+                    </ul>
                 </div>
-                <div class="mockup-stat" style="border-radius:12px;">
-                    <div class="mockup-stat-label">Faturamento</div>
-                    <div class="mockup-stat-value">Em tempo real</div>
-                </div>
-                <div class="mockup-stat" style="border-radius:12px;">
-                    <div class="mockup-stat-label">Avarias / Produção</div>
-                    <div class="mockup-stat-value">Rastreados</div>
-                </div>
-            </div>
-            <div class="evolving-note reveal">
-                <i class="fas fa-arrows-rotate"></i> Novos relatórios e gráficos estão chegando. Essa parte do GestãoCheck ainda está em evolução.
             </div>
         </div>
-    </section>
-    <!-- SECURITY -->
-    <section id="seguranca" class="security">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="tag" style="background: rgba(255,107,107,0.2); color: var(--secondary);">Segurança</span>
-                <h2>Segurança pensada para proteger sua operação.</h2>
-                <p style="color: rgba(255,255,255,0.7);">Infraestrutura pensada para manter os dados da sua empresa protegidos e disponíveis.</p>
-            </div>
-            <div class="security-grid">
-                <div class="security-card reveal"><i class="fas fa-lock"></i> Bloqueio progressivo de login</div>
-                <div class="security-card reveal"><i class="fas fa-shield-alt"></i> Proteção contra padrões de ataque</div>
-                <div class="security-card reveal"><i class="fas fa-key"></i> Políticas de senha seguras</div>
-                <div class="security-card reveal"><i class="fas fa-laptop-house"></i> Sessão revogável remotamente</div>
-                <div class="security-card reveal"><i class="fas fa-fingerprint"></i> Hash seguro de senha</div>
-                <div class="security-card reveal"><i class="fas fa-bug-slash"></i> Dependências monitoradas contra vulnerabilidades conhecidas</div>
-                <div class="security-card reveal"><i class="fas fa-database"></i> Banco de dados isolado por cliente</div>
+    </div>
+    <div class="contact-modal module-modal" id="modulo-despesas" aria-hidden="true">
+        <div class="contact-modal-backdrop" data-modal-close></div>
+        <div class="contact-modal-card module-modal-card">
+            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+            <div class="module-modal-grid">
+                <div class="module-modal-visual">
+                    <div class="screenshot-frame">
+                        <img class="sys-theme-img" data-src="assets/sistema/06_despesas.svg" alt="Tela de Despesas do GestãoCheck" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
+                </div>
+                <div class="module-modal-text">
+                    <span class="tag">Despesas</span>
+                    <h3>Despesas fixas e operacionais, dentro da mesma conta.</h3>
+                    <p>Aluguel, energia, sistema, o que for: lançado no mesmo lugar que o resto da operação, entrando direto no resultado final do seu negócio.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Despesas fixas e operacionais</li>
+                        <li><i class="fas fa-check"></i> Entram direto na DRE completa</li>
+                        <li><i class="fas fa-check"></i> Categorizadas por tipo</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+    <div class="contact-modal module-modal" id="modulo-patrimonio" aria-hidden="true">
+        <div class="contact-modal-backdrop" data-modal-close></div>
+        <div class="contact-modal-card module-modal-card">
+            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+            <div class="module-modal-grid">
+                <div class="module-modal-visual">
+                    <div class="screenshot-frame">
+                        <img class="sys-theme-img" data-src="assets/sistema/05_patrimonio.svg" alt="Tela de Patrimônio do GestãoCheck" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
+                </div>
+                <div class="module-modal-text">
+                    <span class="tag">Patrimônio</span>
+                    <h3>Quanto você já investiu em equipamento, separado do resto.</h3>
+                    <p>Equipamento e mobília ficam isolados do Estoque e do CMV. Não é mercadoria, é investimento, e o sistema trata cada coisa como o que ela é.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Registro de investimento por item, categoria e setor</li>
+                        <li><i class="fas fa-check"></i> Isolado do Estoque e do CMV</li>
+                        <li><i class="fas fa-check"></i> Vinculado à Manutenção: custo de reparo vira despesa automaticamente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-modal module-modal" id="modulo-requisicoes" aria-hidden="true">
+        <div class="contact-modal-backdrop" data-modal-close></div>
+        <div class="contact-modal-card module-modal-card">
+            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+            <div class="module-modal-grid">
+                <div class="module-modal-visual">
+                    <div class="screenshot-frame">
+                        <img class="sys-theme-img" data-src="assets/sistema/19_requisicao.svg" alt="Tela de Requisições do GestãoCheck" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
+                </div>
+                <div class="module-modal-text">
+                    <span class="tag">Requisições</span>
+                    <h3>Cada setor pede. O estoque atende. Tudo fica organizado.</h3>
+                    <p>Com comentários, edição, histórico completo e acompanhamento em tempo real.</p>
+                    <div class="flow-row flow-row-compact">
+                        <span class="flow-step">Setor solicita</span>
+                        <i class="fas fa-arrow-right flow-arrow"></i>
+                        <span class="flow-step">Estoque recebe</span>
+                        <i class="fas fa-arrow-right flow-arrow"></i>
+                        <span class="flow-step">Atendimento</span>
+                        <i class="fas fa-arrow-right flow-arrow"></i>
+                        <span class="flow-step flow-step-final">Histórico</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-modal module-modal" id="modulo-relatorios" aria-hidden="true">
+        <div class="contact-modal-backdrop" data-modal-close></div>
+        <div class="contact-modal-card module-modal-card">
+            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+            <div class="module-modal-grid">
+                <div class="module-modal-visual">
+                    <div class="screenshot-frame">
+                        <img class="sys-theme-img" data-src="assets/sistema/01_relatorio_composicao_primecost.svg" alt="Relatório de composição de faturamento e Prime Cost no GestãoCheck" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
+                </div>
+                <div class="module-modal-text">
+                    <span class="tag">Relatórios</span>
+                    <h3>Veja pra onde vai cada R$1 que entra.</h3>
+                    <p>Visão consolidada de todos os módulos num só lugar, com o gráfico de composição de faturamento e o Prime Cost calculados automaticamente. Sem precisar juntar planilha nenhuma.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Visão geral de todos os módulos integrada</li>
+                        <li><i class="fas fa-check"></i> Gráfico de composição: pra onde foi cada R$1 faturado</li>
+                        <li><i class="fas fa-check"></i> Prime Cost calculado automaticamente</li>
+                        <li><i class="fas fa-check"></i> Rupturas de estoque rastreadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-modal module-modal" id="modulo-dre" aria-hidden="true">
+        <div class="contact-modal-backdrop" data-modal-close></div>
+        <div class="contact-modal-card module-modal-card">
+            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+            <div class="module-modal-grid">
+                <div class="module-modal-visual">
+                    <div class="screenshot-frame">
+                        <img class="sys-theme-img" data-src="assets/sistema/02_dre_completa.svg" alt="DRE completa do GestãoCheck, de Receita Bruta a Resultado Operacional" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
+                </div>
+                <div class="module-modal-text">
+                    <span class="tag">DRE completa</span>
+                    <h3>Receita até resultado, linha a linha.</h3>
+                    <p>Receita Bruta → CMV → CMO → CMC → Despesas → Avarias → Resultado Operacional. O demonstrativo inteiro calculado sozinho, com o percentual de cada linha sobre a receita.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Receita, custos e resultado numa linha só cada</li>
+                        <li><i class="fas fa-check"></i> % de cada linha sobre a receita</li>
+                        <li><i class="fas fa-check"></i> Filtra por período e por setor</li>
+                        <li><i class="fas fa-check"></i> Exportável</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-modal module-modal" id="modulo-curva-abc" aria-hidden="true">
+        <div class="contact-modal-backdrop" data-modal-close></div>
+        <div class="contact-modal-card module-modal-card">
+            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+            <div class="module-modal-grid">
+                <div class="module-modal-visual">
+                    <div class="screenshot-frame">
+                        <img class="sys-theme-img" data-src="assets/sistema/03_curva_abc.svg" alt="Curva ABC de produtos do GestãoCheck" decoding="async">
+                    </div>
+                    <p class="mockup-caption">Sistema real, dados fictícios</p>
+                </div>
+                <div class="module-modal-text">
+                    <span class="tag">Curva ABC</span>
+                    <h3>Saiba quais produtos realmente sustentam seu faturamento.</h3>
+                    <p>Classificação automática por relevância (Pareto): A são os itens que já somam os primeiros 80% do faturamento, B até 95%, C o resto. Ordenado do que mais fatura pro que menos fatura.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Classificação automática A/B/C por item</li>
+                        <li><i class="fas fa-check"></i> Faturamento e quantidade vendida por item</li>
+                        <li><i class="fas fa-check"></i> Exportável</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- PARA QUEM É -->
     <section id="paraquem" class="bg-gray">
         <div class="container">
@@ -525,24 +871,29 @@
                 <span class="tag">Por que GestãoCheck?</span>
                 <h2>Mais do que um sistema, um diferencial competitivo</h2>
             </div>
-            <div class="diff-chips reveal">
-                <span class="diff-chip"><i class="fas fa-check-circle"></i> Estoque por setor</span>
-                <span class="diff-chip"><i class="fas fa-check-circle"></i> OCR de notas fiscais</span>
-                <span class="diff-chip"><i class="fas fa-check-circle"></i> Conversão automática de unidades</span>
-                <span class="diff-chip"><i class="fas fa-check-circle"></i> CMV</span>
-                <span class="diff-chip"><i class="fas fa-check-circle"></i> CMO</span>
-                <span class="diff-chip"><i class="fas fa-check-circle"></i> CMC</span>
-                <span class="diff-chip"><i class="fas fa-check-circle"></i> Beneficiamento</span>
-                <span class="diff-chip"><i class="fas fa-check-circle"></i> Ocorrências</span>
-                <span class="diff-chip"><i class="fas fa-check-circle"></i> Checklists</span>
-                <span class="diff-chip"><i class="fas fa-check-circle"></i> Requisições</span>
-                <span class="diff-chip"><i class="fas fa-check-circle"></i> Banco isolado por cliente</span>
-                <span class="diff-chip"><i class="fas fa-check-circle"></i> Dashboard gerencial</span>
+            <div class="diff-chips">
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> Estoque por setor</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> OCR de notas fiscais</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> Conversão automática de unidades</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> CMV</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> CMO</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> CMC</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> Beneficiamento</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> Ocorrências</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> Checklists</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> Requisições</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> Assistente de IA multi-provedor</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> DRE completa</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> Curva ABC</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> Patrimônio</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> Verificação em duas etapas (2FA)</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> Banco isolado por cliente</span>
+                <span class="diff-chip reveal"><i class="fas fa-check-circle"></i> Dashboard gerencial</span>
             </div>
         </div>
     </section>
     <!-- EXPERIÊNCIA MULTIDISPOSITIVO -->
-    <section class="bg-gray">
+    <section id="experiencia" class="bg-gray">
         <div class="container">
             <div class="section-header reveal">
                 <span class="tag">Experiência</span>
@@ -560,142 +911,27 @@
             </div>
         </div>
     </section>
-    <!-- SOBRE / NOSSA HISTÓRIA -->
-    <section id="sobre" class="bg-gray about-history">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="tag">Nossa história</span>
-                <h2>De uma dor real para uma solução completa</h2>
-            </div>
-            <div class="story-layout">
-                <div class="story-text reveal">
-                    <p class="story-lead">O GestãoCheck começou dentro de uma pizzaria — não em uma sala de reunião.</p>
-                    <p>Jarbas Jamysson, um dos fundadores, vivenciou na prática as dificuldades de administrar uma operação sem as ferramentas certas. A experiência se repetiu em outros lugares onde ele trabalhou, e ficou evidente que o problema não era
-                        só dele: muitos negócios enfrentam os mesmos desafios no dia a dia da gestão operacional.</p>
-                    <p>Foi a partir dessa experiência que surgiu a ideia de criar uma solução que não resolvesse apenas o problema de uma pizzaria, mas que pudesse se adaptar à realidade de diferentes empresas — de restaurantes a oficinas, mercados, distribuidoras,
-                        hotéis, cozinhas industriais e postos de combustível. O projeto passou a ser desenvolvido por <strong>Jarbas Jamysson</strong>, <strong>Antonio Neto</strong> e <strong>Carlos Eduardo</strong>.</p>
-                </div>
-                <div class="story-problems reveal">
-                    <div class="story-problem-item"><i class="fas fa-diagram-project"></i> Informações espalhadas</div>
-                    <div class="story-problem-item"><i class="fas fa-boxes-stacked"></i> Dificuldade para controlar estoque</div>
-                    <div class="story-problem-item"><i class="fas fa-droplet-slash"></i> Perdas e desperdícios</div>
-                    <div class="story-problem-item"><i class="fas fa-pen"></i> Processos manuais</div>
-                    <div class="story-problem-item"><i class="fas fa-sack-dollar"></i> Dificuldade para acompanhar custos</div>
-                    <div class="story-problem-item"><i class="fas fa-comment-slash"></i> Falta de comunicação entre setores</div>
-                    <div class="story-problem-item"><i class="fas fa-magnifying-glass"></i> Dificuldade para entender a operação</div>
-                    <div class="story-problem-item"><i class="fas fa-table-list"></i> Dependência de planilhas e anotações</div>
-                </div>
-            </div>
-            <div class="story-highlight reveal">
-                <i class="fas fa-quote-left"></i>
-                <p>O GestãoCheck nasceu de uma necessidade real. A experiência mostrou o problema, e a tecnologia se tornou o caminho para construir uma solução que pudesse ajudar outras empresas a enfrentarem o mesmo desafio.</p>
-            </div>
-        </div>
-    </section>
-    <!-- NOSSO PROPÓSITO -->
-    <section class="bg-white">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="tag">Nosso propósito</span>
-                <h2>Missão, visão e valores que guiam cada decisão</h2>
-                <p>Os princípios que orientam como construímos um sistema de gestão empresarial pensado para o dia a dia real das empresas.</p>
-            </div>
-            <div class="purpose-grid">
-                <div class="purpose-card reveal">
-                    <div class="purpose-icon"><i class="fas fa-compass"></i></div>
-                    <h3>Missão</h3>
-                    <p>Facilitar a gestão das empresas por meio de tecnologia acessível, integrada e inteligente, transformando processos complexos e controles manuais em informações organizadas que ajudam as pessoas a tomar decisões melhores.</p>
-                </div>
-                <div class="purpose-card reveal">
-                    <div class="purpose-icon"><i class="fas fa-eye"></i></div>
-                    <h3>Visão</h3>
-                    <p>Ser uma plataforma de gestão reconhecida por transformar a maneira como empresas organizam suas operações, tornando a gestão mais simples, eficiente, integrada e orientada por dados.</p>
-                </div>
-            </div>
-            <div class="values-grid">
-                <div class="value-card reveal">
-                    <div class="value-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
-                    <h4>Simplicidade</h4>
-                    <p>Transformar processos complexos em experiências simples e fáceis de entender.</p>
-                </div>
-                <div class="value-card reveal">
-                    <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h4>Inovação</h4>
-                    <p>Buscar constantemente novas formas de resolver problemas reais por meio da tecnologia.</p>
-                </div>
-                <div class="value-card reveal">
-                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
-                    <h4>Confiança</h4>
-                    <p>Construir uma plataforma na qual empresas possam confiar para organizar suas informações e operações.</p>
-                </div>
-                <div class="value-card reveal">
-                    <div class="value-icon"><i class="fas fa-bolt"></i></div>
-                    <h4>Eficiência</h4>
-                    <p>Reduzir desperdícios, retrabalho e processos desnecessários.</p>
-                </div>
-                <div class="value-card reveal">
-                    <div class="value-icon"><i class="fas fa-puzzle-piece"></i></div>
-                    <h4>Adaptabilidade</h4>
-                    <p>Entender que cada empresa possui uma realidade diferente e oferecer uma solução capaz de se adaptar a ela.</p>
-                </div>
-                <div class="value-card reveal">
-                    <div class="value-icon"><i class="fas fa-bullseye"></i></div>
-                    <h4>Foco no problema real</h4>
-                    <p>Não criar tecnologia apenas por criar. Cada recurso deve existir para resolver uma necessidade concreta.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- FUNDADORES -->
-    <section class="bg-gray">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="tag">Quem está por trás do GestãoCheck</span>
-                <h2>Três pessoas, uma ideia, uma solução.</h2>
-                <p>O GestãoCheck é construído por três pessoas que acreditam que tecnologia deve resolver problemas reais.</p>
-            </div>
-            <div class="founders-grid reveal">
-                <div class="founder-card">
-                    <div class="founder-avatar"><img class="founder-photo" src="scr/assets/equipe/jarbas.jpg" alt="Jarbas Jamysson"></div>
-                    <div class="founder-name">Jarbas Jamysson</div>
-                    <div class="founder-role">Fundador</div>
-                    <div class="founder-actions">
-                        <a href="https://wa.me/5585992029592?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="founder-whatsapp" aria-label="Falar com Jarbas no WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.linkedin.com/in/jarbas-jamysson-388a41264?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="founder-card">
-                    <div class="founder-avatar"><img class="founder-photo" src="scr/assets/equipe/antonio.jpg" alt="Antonio Neto"></div>
-                    <div class="founder-name">Antonio Neto</div>
-                    <div class="founder-role">Fundador/Desenvolvedor</div>
-                    <div class="founder-actions">
-                        <a href="https://wa.me/5585999817221?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="founder-whatsapp" aria-label="Falar com Antonio no WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.linkedin.com/in/antonio-neto-39bb72268/" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="founder-card">
-                    <div class="founder-avatar"><img class="founder-photo" src="scr/assets/equipe/carlos.jpg" alt="Carlos Eduardo"></div>
-                    <div class="founder-name">Carlos Eduardo</div>
-                    <div class="founder-role">Fundador/Desenvolvedor</div>
-                    <div class="founder-actions">
-                        <a href="https://wa.me/5585991799221?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="founder-whatsapp" aria-label="Falar com Carlos no WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.linkedin.com/in/carlos-eduardo-408087230" target="_blank" rel="noopener" class="founder-linkedin">Ver LinkedIn <i class="fas fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="closing-quote reveal">
-                <p>Uma dor real nos uniu. A tecnologia nos deu o caminho para transformá-la em solução.</p>
-            </div>
-        </div>
-    </section>
+    <!-- SOBRE/PROPOSITO/FUNDADORES viraram pagina propria
+         (quem-somos-nos.html) - o convite compacto que existia aqui
+         (`#quem-somos-teaser`) foi removido (13/09/2026): Carlos notou
+         que o link "Quem somos nós" já vive no rodapé desde a rodada
+         anterior, então repetir como seção inteira no meio do site era
+         redundante - "se já tá lá embaixo não precisa estar na tela
+         também". -->
+    <!-- PLANOS - o convite compacto que existia aqui (`#planos-teaser`)
+         foi removido (14/09/2026): agora "Solicitar demonstração" (nav/
+         Hero/CTA final) já leva direto pra `planos.html`, e o link
+         "Planos" continua no menu do topo e no rodapé - repetir mais um
+         convite aqui no meio da página tinha virado redundante. -->
     <!-- FINAL CTA -->
     <section id="contato" class="final-cta">
+        <canvas id="cta-3d" aria-hidden="true"></canvas>
         <div class="container reveal">
             <h2>Tenha uma visão completa da sua operação.</h2>
             <p class="final-cta-text">Conheça o GestãoCheck e descubra como transformar dados da sua empresa em decisões melhores.</p>
             <div class="cta-buttons">
-                <button type="button" class="btn btn-primary" style="font-size: 1.1rem; padding: 20px 40px;" data-modal-open="contactModal">Solicitar demonstração <i class="fab fa-whatsapp"></i></button>
-                <a href="#funcionalidades" class="btn btn-outline-white" style="font-size: 1.1rem; padding: 20px 40px;">Conhecer o sistema</a>
+                <a href="planos.html" class="btn btn-primary">Solicitar demonstração <i class="fas fa-arrow-right"></i></a>
+                <a href="conheca-o-sistema.html" class="btn btn-secondary">Conhecer o sistema</a>
             </div>
         </div>
     </section>
@@ -705,31 +941,47 @@
             <div class="footer-content">
                 <div>
                     <a href="#" class="logo footer-logo">
-                        <img src="scr/assets/logo/logo-horizontal-claro.svg" alt="GestãoCheck" class="logo-img">
+                        <img src="assets/logo/logo-horizontal-claro.svg" alt="GestãoCheck" class="logo-img">
                     </a>
                     <p>Gestão e Acompanhamento de Processos.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Produto</h4>
+                    <h4>Empresa</h4>
                     <ul>
-                        <li><a href="#funcionalidades">Funcionalidades</a></li>
+                        <li><a href="quem-somos-nos.html">Quem somos nós</a></li>
+                        <li><a href="#paraquem">Para quem é</a></li>
                         <li><a href="#como-funciona">Como funciona</a></li>
-                        <li><a href="#seguranca">Segurança</a></li>
+                        <li><a href="conheca-o-sistema.html">Conhecer o sistema</a></li>
                         <li><a href="#contato">Contato</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Empresa</h4>
+                <div class="footer-col footer-col-modules">
+                    <h4>Funcionalidades</h4>
                     <ul>
-                        <li><a href="#sobre">Sobre nós</a></li>
-                        <li><a href="#paraquem">Para quem é</a></li>
+                        <li><a href="planos.html">Planos</a></li>
+                        <li><a href="#estoque">Estoque</a></li>
+                        <li><a href="#cmv">CMV</a></li>
+                        <li><a href="#cmo">CMO</a></li>
+                        <li><a href="#cmc">CMC</a></li>
+                        <li><a href="#multi-ia">Multi-IA</a></li>
+                        <li><a href="#seguranca">Segurança</a></li>
+                        <li><a href="#funcionalidades-beneficiamento">Beneficiamento</a></li>
+                        <li><a href="#ocorrencias">Avarias e Ocorrências</a></li>
+                        <li><a href="#checklists">Checklists</a></li>
+                        <li><a href="#caixa">Caixa</a></li>
+                        <li><a href="#despesas">Despesas</a></li>
+                        <li><a href="#patrimonio">Patrimônio</a></li>
+                        <li><a href="#requisicoes">Requisições</a></li>
+                        <li><a href="#relatorios">Relatórios</a></li>
+                        <li><a href="#dre">DRE completa</a></li>
+                        <li><a href="#curva-abc">Curva ABC</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="#">Política de Privacidade</a></li>
-                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="privacidade.html">Política de Privacidade</a></li>
+                        <li><a href="termos.html">Termos de Uso</a></li>
                     </ul>
                 </div>
             </div>
@@ -738,33 +990,11 @@
             </div>
         </div>
     </footer>
-    <!-- MODAL DE CONTATO -->
-    <div class="contact-modal" id="contactModal" aria-hidden="true">
-        <div class="contact-modal-backdrop" data-modal-close></div>
-        <div class="contact-modal-card">
-            <button type="button" class="contact-modal-close" data-modal-close aria-label="Fechar"><i class="fas fa-xmark"></i></button>
-            <h3>Com quem você quer falar?</h3>
-            <p>Escolha um dos fundadores pra tirar dúvidas ou pedir uma demonstração.</p>
-            <div class="contact-modal-list">
-                <a href="https://wa.me/5585992029592?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="contact-option">
-                    <span class="contact-option-avatar"><img src="scr/assets/equipe/jarbas.jpg" alt="Jarbas Jamysson"></span>
-                    <span class="contact-option-info"><strong>Jarbas Jamysson</strong><span>Fundador — Vendas</span></span>
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="https://wa.me/5585999817221?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="contact-option">
-                    <span class="contact-option-avatar"><img src="scr/assets/equipe/antonio.jpg" alt="Antonio Neto"></span>
-                    <span class="contact-option-info"><strong>Antonio Neto</strong><span>Fundador — Desenvolvedor</span></span>
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="https://wa.me/5585991799221?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20demonstra%C3%A7%C3%A3o%20do%20GestãoCheck" target="_blank" rel="noopener" class="contact-option">
-                    <span class="contact-option-avatar"><img src="scr/assets/equipe/carlos.jpg" alt="Carlos Eduardo"></span>
-                    <span class="contact-option-info"><strong>Carlos Eduardo</strong><span>Fundador — Desenvolvedor</span></span>
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+    <script src="js/script.js?v=23"></script>
+    <script type="module" src="js/three-hero.js?v=11"></script>
 </body>
 
 </html>

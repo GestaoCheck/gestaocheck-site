@@ -1,0 +1,676 @@
+{
+  "default": "inicio",
+  "nav": {
+    "inicio": {
+      "screen": "inicio",
+      "group": null,
+      "label": "Início"
+    },
+    "estoque": {
+      "screen": "estoque",
+      "group": null,
+      "label": "Estoque"
+    },
+    "cmv": {
+      "screen": null,
+      "group": "cmv",
+      "label": "CMV"
+    },
+    "cmo": {
+      "screen": "cmo",
+      "group": null,
+      "label": "CMO"
+    },
+    "cmc": {
+      "screen": null,
+      "group": "cmc",
+      "label": "CMC"
+    },
+    "despesas": {
+      "screen": "despesas",
+      "group": null,
+      "label": "Despesas"
+    },
+    "beneficiamento": {
+      "screen": "beneficiamento",
+      "group": null,
+      "label": "Beneficiamento"
+    },
+    "avarias": {
+      "screen": "avarias",
+      "group": null,
+      "label": "Avarias"
+    },
+    "ocorrencias": {
+      "screen": "ocorrencias",
+      "group": null,
+      "label": "Ocorrências"
+    },
+    "checklists": {
+      "screen": "checklists",
+      "group": null,
+      "label": "Checklists"
+    },
+    "manutencao": {
+      "screen": "manutencao",
+      "group": null,
+      "label": "Manutenção"
+    },
+    "requisicao": {
+      "screen": "requisicao",
+      "group": null,
+      "label": "Requisição"
+    },
+    "patrimonio": {
+      "screen": "patrimonio",
+      "group": null,
+      "label": "Patrimônio"
+    },
+    "relatorios": {
+      "screen": null,
+      "group": "relatorios",
+      "label": "Relatórios"
+    },
+    "config": {
+      "screen": null,
+      "group": "config",
+      "label": "Configurações"
+    }
+  },
+  "groups": {
+    "cmv": {
+      "layout": "tabs",
+      "default": "cmv",
+      "items": [
+        {
+          "screen": "cmv",
+          "label": "Visão geral"
+        },
+        {
+          "screen": "cmv_vendas",
+          "label": "Vendas"
+        }
+      ]
+    },
+    "cmc": {
+      "layout": "tabs",
+      "default": "cmc",
+      "items": [
+        {
+          "screen": "cmc",
+          "label": "Visão geral"
+        },
+        {
+          "screen": "caixa",
+          "label": "Caixa"
+        }
+      ]
+    },
+    "relatorios": {
+      "layout": "tabs",
+      "default": "dre",
+      "items": [
+        {
+          "screen": "dre",
+          "label": "DRE completa"
+        },
+        {
+          "screen": "curva_abc",
+          "label": "Curva ABC"
+        },
+        {
+          "screen": "insights",
+          "label": "Insights"
+        }
+      ]
+    },
+    "config": {
+      "layout": "side",
+      "default": "config_perfil",
+      "items": [
+        {
+          "screen": "config_perfil",
+          "label": "Perfil"
+        },
+        {
+          "screen": "config_notificacoes",
+          "label": "Notificações"
+        },
+        {
+          "screen": "config_setores",
+          "label": "Setores e categorias"
+        },
+        {
+          "screen": "config_usuarios",
+          "label": "Usuários"
+        },
+        {
+          "screen": "config_ia",
+          "label": "Inteligência Artificial"
+        }
+      ]
+    }
+  },
+  "screens": {
+    "inicio": {
+      "title": "Olá, Marina! 👋",
+      "sub": "Bem-vindo de volta ao seu painel.",
+      "head": "<div>\r\n                    <p class=\"greeting\" data-gc-title>Olá, Marina! 👋</p>\r\n                    <p class=\"subgreeting\" data-gc-sub>Bem-vindo de volta ao seu painel.</p>\r\n                </div>",
+      "actions": "",
+      "group": null,
+      "label": "Olá, Marina! 👋",
+      "html": "screens/inicio.frag",
+      "js": "screens/inicio.js",
+      "css": [
+        "css/81cfb65528.css"
+      ],
+      "globals": [
+        "_vitToastTimer",
+        "vitAviso",
+        "vitMetrica",
+        "vitFecharDetalhe",
+        "vitAtalho",
+        "vitAbrirMov",
+        "vitNotif",
+        "vitFecharModal",
+        "vitLimparNotif",
+        "vitCategoria",
+        "vitSlide",
+        "vitClimaRefresh"
+      ],
+      "tail": "<div class=\"topbar-notif\" data-gc-click=\"vitNotif()\" title=\"Notificações\">\r\n                        <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9\"></path><path d=\"M13.73 21a2 2 0 0 1-3.46 0\"></path></svg>\r\n                        <span class=\"notif-dot show\"></span>\r\n                    </div>\r\n                    <button class=\"avatar-btn\" data-gc-click=\"vitAviso('Perfil e sessão ficam em Configurações.')\">\r\n                        <span>MT</span>\r\n                        <svg viewBox=\"0 0 16 16\" fill=\"none\"><path d=\"M4 6l4 4 4-4\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"></path></svg>\r\n                    </button>"
+    },
+    "estoque": {
+      "title": "Estoque",
+      "sub": "Controle de quantidade por setor",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Estoque</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Controle de quantidade por setor</p>\r\n                    </div>",
+      "actions": "",
+      "group": null,
+      "label": "Estoque",
+      "html": "screens/estoque.frag",
+      "js": "screens/estoque.js",
+      "css": [
+        "css/7b6bb48524.css",
+        "css/00519562ba.css"
+      ],
+      "globals": [
+        "vitQtdMenos",
+        "vitQtdMais"
+      ],
+      "tail": null
+    },
+    "cmv": {
+      "title": "CMV",
+      "sub": "Custo da Mercadoria Vendida",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>CMV</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Custo da Mercadoria Vendida</p>\r\n                    </div>",
+      "actions": "",
+      "group": "cmv",
+      "label": "Visão geral",
+      "html": "screens/cmv.frag",
+      "js": "screens/cmv.js",
+      "css": [
+        "css/da51e41730.css",
+        "css/7de55c2ae5.css"
+      ],
+      "globals": [
+        "vitRegistrarVenda",
+        "_vitToastTimer"
+      ],
+      "tail": null
+    },
+    "cmv_vendas": {
+      "title": "CMV",
+      "sub": "Custo da Mercadoria Vendida",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>CMV</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Custo da Mercadoria Vendida</p>\r\n                    </div>",
+      "actions": "",
+      "group": "cmv",
+      "label": "Vendas",
+      "html": "screens/cmv_vendas.frag",
+      "js": "screens/cmv_vendas.js",
+      "css": [
+        "css/da51e41730.css",
+        "css/064b42d6af.css"
+      ],
+      "globals": [
+        "_vitToastTimer",
+        "vitAviso",
+        "vitFiltrar",
+        "vitExportar",
+        "vitMascararMoeda",
+        "vitAbrirModal",
+        "vitFecharModal",
+        "vitTrocaItem",
+        "vitCalcVenda",
+        "vitSalvar",
+        "vitExcluir"
+      ],
+      "tail": null
+    },
+    "cmo": {
+      "title": "CMO",
+      "sub": "Custo com Mão de Obra",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>CMO</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Custo com Mão de Obra</p>\r\n                    </div>",
+      "actions": "<button class=\"btn btn-primary\" data-gc-click=\"vitAbrirModal()\">+ Novo Lançamento</button>",
+      "group": null,
+      "label": "CMO",
+      "html": "screens/cmo.frag",
+      "js": "screens/cmo.js",
+      "css": [
+        "css/f7e7381cdf.css",
+        "css/f7f464f107.css"
+      ],
+      "globals": [
+        "vitMascararMoeda",
+        "vitAbrirModal",
+        "vitFecharModal",
+        "vitSalvarLancamento",
+        "_vitToastTimer"
+      ],
+      "tail": null
+    },
+    "cmc": {
+      "title": "CMC",
+      "sub": "Custo com Compras",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>CMC</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Custo com Compras</p>\r\n                    </div>",
+      "actions": "<button class=\"btn btn-primary\" data-gc-click=\"vitAbrirModal()\">+ Registrar compra</button>",
+      "group": "cmc",
+      "label": "Visão geral",
+      "html": "screens/cmc.frag",
+      "js": "screens/cmc.js",
+      "css": [
+        "css/97a3824c1e.css",
+        "css/f7f464f107.css"
+      ],
+      "globals": [
+        "vitMascararMoeda",
+        "vitAbrirModal",
+        "vitFecharModal",
+        "vitSalvarCompra",
+        "_vitToastTimer"
+      ],
+      "tail": null
+    },
+    "caixa": {
+      "title": "Caixa",
+      "sub": "Fechamento de caixa por setor",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Caixa</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Fechamento de caixa por setor</p>\r\n                    </div>",
+      "actions": "",
+      "group": "cmc",
+      "label": "Caixa",
+      "html": "screens/caixa.frag",
+      "js": "screens/caixa.js",
+      "css": [
+        "css/97a3824c1e.css",
+        "css/c5089b8bdb.css"
+      ],
+      "globals": [
+        "vitMascararMoeda",
+        "vitAbrirModal",
+        "vitFecharModal",
+        "vitRegistrarFechamento",
+        "_vitToastTimer"
+      ],
+      "tail": null
+    },
+    "despesas": {
+      "title": "Despesas",
+      "sub": "Custos fixos/operacionais — aluguel, luz, água, internet, marketing...",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Despesas</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Custos fixos/operacionais — aluguel, luz, água, internet, marketing...</p>\r\n                    </div>",
+      "actions": "<button class=\"btn-novo-item\" data-gc-click=\"vitAbrirModal()\"><svg viewBox=\"0 0 24 24\" fill=\"none\" width=\"15\" height=\"15\"><line x1=\"12\" y1=\"5\" x2=\"12\" y2=\"19\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\"></line><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\"></line></svg> Nova despesa</button>",
+      "group": null,
+      "label": "Despesas",
+      "html": "screens/despesas.frag",
+      "js": "screens/despesas.js",
+      "css": [
+        "css/a4c2921fc4.css",
+        "css/94ddcf37aa.css"
+      ],
+      "globals": [
+        "vitMascararMoeda",
+        "vitSetPeriodo",
+        "vitAbrirModal",
+        "vitFecharModal",
+        "vitSalvarDespesa",
+        "vitExcluirDespesa",
+        "_vitToastTimer"
+      ],
+      "tail": null
+    },
+    "beneficiamento": {
+      "title": "Beneficiamento",
+      "sub": "Produção, perdas e aproveitamento",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Beneficiamento</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Produção, perdas e aproveitamento</p>\r\n                    </div>",
+      "actions": "<button class=\"btn-primary\" data-gc-click=\"vitAbrirModal()\"><svg viewBox=\"0 0 24 24\" fill=\"none\" width=\"15\" height=\"15\"><line x1=\"12\" y1=\"5\" x2=\"12\" y2=\"19\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\"></line><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\"></line></svg> Novo registro</button>",
+      "group": null,
+      "label": "Beneficiamento",
+      "html": "screens/beneficiamento.frag",
+      "js": "screens/beneficiamento.js",
+      "css": [
+        "css/5ded39abf9.css",
+        "css/a888dace8b.css"
+      ],
+      "globals": [
+        "_vitToastTimer",
+        "vitAviso",
+        "vitReplay",
+        "vitFiltrar",
+        "vitMotivo",
+        "vitLimparMotivo",
+        "vitExportar",
+        "vitAbrirModal",
+        "vitFecharModal",
+        "vitCalc",
+        "vitSalvar",
+        "vitConfirmar",
+        "vitExcluir"
+      ],
+      "tail": null
+    },
+    "avarias": {
+      "title": "Avarias",
+      "sub": "Registro de perdas e quebras de produtos",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Avarias</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Registro de perdas e quebras de produtos</p>\r\n                    </div>",
+      "actions": "",
+      "group": null,
+      "label": "Avarias",
+      "html": "screens/avarias.frag",
+      "js": "screens/avarias.js",
+      "css": [
+        "css/2e9f1889f1.css",
+        "css/f7f464f107.css"
+      ],
+      "globals": [
+        "vitAbrirDetalhe",
+        "vitAbrirDetalheAvaria",
+        "vitFecharDetalhe",
+        "vitMarcarResolvida",
+        "vitEnviarComentario",
+        "vitFiltrar",
+        "_vitToastTimer"
+      ],
+      "tail": null
+    },
+    "ocorrencias": {
+      "title": "Ocorrências",
+      "sub": "Registro e acompanhamento de ocorrências operacionais",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Ocorrências</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Registro e acompanhamento de ocorrências operacionais</p>\r\n                    </div>",
+      "actions": "<button class=\"btn-primary\" data-gc-click=\"return false;\"><svg viewBox=\"0 0 24 24\" fill=\"none\" width=\"15\" height=\"15\"><line x1=\"12\" y1=\"5\" x2=\"12\" y2=\"19\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\"></line><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\"></line></svg> Nova ocorrência</button>",
+      "group": null,
+      "label": "Ocorrências",
+      "html": "screens/ocorrencias.frag",
+      "js": "screens/ocorrencias.js",
+      "css": [
+        "css/e74266968a.css",
+        "css/f7f464f107.css"
+      ],
+      "globals": [
+        "vitFiltrar",
+        "vitBuscar",
+        "vitAbrirDetalhe",
+        "vitFecharDetalhe"
+      ],
+      "tail": null
+    },
+    "checklists": {
+      "title": "Checklists",
+      "sub": "Rotinas, conferencias e procedimentos por setor",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Checklists</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Rotinas, conferencias e procedimentos por setor</p>\r\n                    </div>",
+      "actions": "<button class=\"btn-novo\" data-gc-click=\"return false;\"><svg viewBox=\"0 0 24 24\" fill=\"none\" width=\"15\" height=\"15\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><polyline points=\"17,8 12,3 7,8\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></polyline><line x1=\"12\" y1=\"3\" x2=\"12\" y2=\"15\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"></line></svg> Importar checklist</button>",
+      "group": null,
+      "label": "Checklists",
+      "html": "screens/checklists.frag",
+      "js": "screens/checklists.js",
+      "css": [
+        "css/51bc6f94bf.css",
+        "css/ed8210c27f.css"
+      ],
+      "globals": [
+        "vitResponder",
+        "vitReiniciar",
+        "_vitToastTimer"
+      ],
+      "tail": null
+    },
+    "manutencao": {
+      "title": "Manutenção",
+      "sub": "Chamados de manutenção de equipamentos e estrutura",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Manutenção</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Chamados de manutenção de equipamentos e estrutura</p>\r\n                    </div>",
+      "actions": "",
+      "group": null,
+      "label": "Manutenção",
+      "html": "screens/manutencao.frag",
+      "js": "screens/manutencao.js",
+      "css": [
+        "css/dce8343409.css",
+        "css/180c32faf0.css"
+      ],
+      "globals": [
+        "vitMudarStatusManut",
+        "vitExcluirManut",
+        "vitFiltrarManut",
+        "vitToastGenericoManut",
+        "_vitToastTimer"
+      ],
+      "tail": null
+    },
+    "requisicao": {
+      "title": "Requisição",
+      "sub": "Pedidos de reposição entre setores",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Requisição</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Pedidos de reposição entre setores</p>\r\n                    </div>",
+      "actions": "",
+      "group": null,
+      "label": "Requisição",
+      "html": "screens/requisicao.frag",
+      "js": "screens/requisicao.js",
+      "css": [
+        "css/10b26ae176.css",
+        "css/94ddcf37aa.css"
+      ],
+      "globals": [
+        "vitMudarStatus",
+        "vitFiltrar",
+        "vitAbrirDetalhe",
+        "vitFecharDetalhe",
+        "vitToastGenerico",
+        "_vitToastTimer"
+      ],
+      "tail": null
+    },
+    "patrimonio": {
+      "title": "Patrimônio",
+      "sub": "Quanto você já investiu em equipamentos e produtos",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Patrimônio</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Quanto você já investiu em equipamentos e produtos</p>\r\n                    </div>",
+      "actions": "",
+      "group": null,
+      "label": "Patrimônio",
+      "html": "screens/patrimonio.frag",
+      "js": "screens/patrimonio.js",
+      "css": [
+        "css/789d3881f7.css",
+        "css/f7f464f107.css"
+      ],
+      "globals": [
+        "vitMascararMoeda",
+        "vitAbrirModal",
+        "vitFecharModal",
+        "vitSalvarItem",
+        "vitExcluirPatrimonio",
+        "vitLimparBusca",
+        "vitFiltrar",
+        "_vitToastTimer"
+      ],
+      "tail": null
+    },
+    "dre": {
+      "title": "Relatórios",
+      "sub": "DRE completa",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Relatórios</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>DRE completa</p>\r\n                    </div>",
+      "actions": "",
+      "group": "relatorios",
+      "label": "DRE completa",
+      "html": "screens/dre.frag",
+      "js": "screens/dre.js",
+      "css": [
+        "css/850d3549c7.css",
+        "css/f7f464f107.css"
+      ],
+      "globals": [
+        "vitSetPeriodo"
+      ],
+      "tail": null
+    },
+    "curva_abc": {
+      "title": "Relatórios",
+      "sub": "Curva ABC",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Relatórios</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Curva ABC</p>\r\n                    </div>",
+      "actions": "",
+      "group": "relatorios",
+      "label": "Curva ABC",
+      "html": "screens/curva_abc.frag",
+      "js": "screens/curva_abc.js",
+      "css": [
+        "css/850d3549c7.css",
+        "css/86f66fd711.css"
+      ],
+      "globals": [
+        "vitFiltrarClasse"
+      ],
+      "tail": null
+    },
+    "insights": {
+      "title": "Relatórios",
+      "sub": "Insights automáticos",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Relatórios</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Insights automáticos</p>\r\n                    </div>",
+      "actions": "",
+      "group": "relatorios",
+      "label": "Insights",
+      "html": "screens/insights.frag",
+      "js": "screens/insights.js",
+      "css": [
+        "css/850d3549c7.css",
+        "css/f7f464f107.css"
+      ],
+      "globals": [
+        "vitGerarInsights"
+      ],
+      "tail": null
+    },
+    "config_perfil": {
+      "title": "Configurações",
+      "sub": "Perfil, preferências, cadastros e acesso ao sistema",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Configurações</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Perfil, preferências, cadastros e acesso ao sistema</p>\r\n                    </div>",
+      "actions": "",
+      "group": "config",
+      "label": "Perfil",
+      "html": "screens/config_perfil.frag",
+      "js": "screens/config_perfil.js",
+      "css": [
+        "css/addb279c60.css",
+        "css/6c15c56161.css",
+        "css/65feb274ba.css"
+      ],
+      "globals": [
+        "_vitToastTimer",
+        "vitAviso",
+        "vitLimparErro",
+        "vitSalvarNome",
+        "vitCopiar",
+        "vitFecharModais",
+        "vitAbrirFoto",
+        "vitEscolherCor",
+        "vitSalvarFoto",
+        "vitAbrir2fa",
+        "vitConfirmar2fa",
+        "vitAbrirDesativar",
+        "vitDesativar2fa"
+      ],
+      "tail": null
+    },
+    "config_notificacoes": {
+      "title": "Configurações",
+      "sub": "Perfil, preferências, cadastros e acesso ao sistema",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Configurações</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Perfil, preferências, cadastros e acesso ao sistema</p>\r\n                    </div>",
+      "actions": "",
+      "group": "config",
+      "label": "Notificações",
+      "html": "screens/config_notificacoes.frag",
+      "js": "screens/config_notificacoes.js",
+      "css": [
+        "css/addb279c60.css",
+        "css/6c15c56161.css",
+        "css/961232d350.css"
+      ],
+      "globals": [
+        "_vitToastTimer",
+        "vitAviso",
+        "vitToggle",
+        "vitTodos"
+      ],
+      "tail": null
+    },
+    "config_setores": {
+      "title": "Configurações",
+      "sub": "Setores e categorias",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Configurações</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Setores e categorias</p>\r\n                    </div>",
+      "actions": "",
+      "group": "config",
+      "label": "Setores e categorias",
+      "html": "screens/config_setores.frag",
+      "js": "screens/config_setores.js",
+      "css": [
+        "css/addb279c60.css",
+        "css/dfb3b022ce.css"
+      ],
+      "globals": [
+        "_vitToastTimer",
+        "vitRenomear",
+        "vitExcluirItem",
+        "vitCriarItem"
+      ],
+      "tail": null
+    },
+    "config_usuarios": {
+      "title": "Configurações",
+      "sub": "Usuários",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Configurações</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Usuários</p>\r\n                    </div>",
+      "actions": "",
+      "group": "config",
+      "label": "Usuários",
+      "html": "screens/config_usuarios.frag",
+      "js": "screens/config_usuarios.js",
+      "css": [
+        "css/addb279c60.css",
+        "css/25579fe04d.css",
+        "css/f7f464f107.css"
+      ],
+      "globals": [
+        "_vitToastTimer",
+        "vitAbrirModal",
+        "vitFecharModal",
+        "vitSalvarUsuario",
+        "vitExcluirUsuario"
+      ],
+      "tail": null
+    },
+    "config_ia": {
+      "title": "Configurações",
+      "sub": "Inteligência Artificial",
+      "head": "<div class=\"topbar-left\">\r\n                        <h1 class=\"page-title\" data-gc-title>Configurações</h1>\r\n                        <p class=\"page-sub\" data-gc-sub>Inteligência Artificial</p>\r\n                    </div>",
+      "actions": "",
+      "group": "config",
+      "label": "Inteligência Artificial",
+      "html": "screens/config_ia.frag",
+      "js": "screens/config_ia.js",
+      "css": [
+        "css/addb279c60.css",
+        "css/06a2fc8498.css"
+      ],
+      "globals": [
+        "vitSetPeriodo",
+        "vitGerarInsights"
+      ],
+      "tail": null
+    }
+  },
+  "version": "78f7a66f13"
+}

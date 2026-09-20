@@ -1,0 +1,27 @@
+
+
+.vitrine-aviso {
+    padding: 10px 16px; background: var(--accent-light); color: var(--accent);
+    border-radius: var(--radius-sm); font-size: 12.5px; font-weight: 600;
+    text-align: center;
+}
+
+.content { gap: 14px; }
+.vit-status-2fa { font-size: 11.5px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.vit-status-2fa.off { background: var(--borda); color: var(--texto-muted); }
+.vit-status-2fa.on { background: color-mix(in srgb, var(--verde) 18%, transparent); color: var(--verde); }
+.vit-preview-wrap { display: flex; justify-content: center; margin: 4px 0 14px; }
+.vit-preview { width: 84px; height: 84px; font-size: 26px; }
+.vit-swatches { display: flex; gap: 10px; justify-content: center; margin-bottom: 16px; }
+.vit-swatch { width: 34px; height: 34px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; padding: 0; outline: 1px solid var(--borda); }
+.vit-swatch.sel { border-color: var(--card-bg); outline: 2px solid var(--accent); }
+.vit-qr-wrap { display: flex; justify-content: center; margin: 8px 0; }
+.vit-qr { width: 170px; height: 170px; background: #fff; padding: 8px; border-radius: 10px; }
+.vit-qr svg { width: 100%; height: 100%; display: block; }
+.vit-chave { text-align: center; font-size: 12px; }
+.vit-dica { color: var(--texto-muted); font-size: 12px; }
+.vit-codigo { text-align: center; letter-spacing: 8px; font-size: 20px; font-weight: 700; }
+.vit-backup { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0 16px; }
+.vit-backup span { font-family: monospace; font-size: 13.5px; text-align: center; padding: 8px; background: var(--page-bg); border: 1px solid var(--borda); border-radius: var(--radius-xs); }
+
+    

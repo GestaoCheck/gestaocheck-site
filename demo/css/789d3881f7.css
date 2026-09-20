@@ -1,0 +1,375 @@
+
+/* patrimonio.css — tela "Patrimônio". Duplicado por página de propósito
+   (ver CLAUDE.md) — vários blocos abaixo espelham
+   estoque.css/avarias.css quase 1:1, nunca centralizar. */
+
+.page-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.page-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-top: 2px;
+}
+
+/* ── Botões do topo ── */
+
+.btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity .2s;
+}
+
+.btn-primary:hover { opacity: .88; }
+
+.btn-outline {
+    background: var(--card-bg);
+    color: var(--texto-muted);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: .15s;
+    white-space: nowrap;
+}
+
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-outline.perigo:hover { border-color: var(--vermelho); color: var(--vermelho); }
+
+.btn-sm { padding: 7px 10px; font-size: 12.5px; }
+
+.btn-importar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--page-bg);
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .2s;
+}
+.btn-importar:hover { background: var(--accent-light); }
+.btn-importar svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+
+/* Mesma pílula com sombra que .btn-novo-item já é em
+   Estoque/Configurações/Usuários (ver CLAUDE.md). */
+.btn-novo-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 2px 10px color-mix(in srgb, var(--accent) 35%, transparent);
+    transition: background .2s, box-shadow .2s, transform .1s;
+}
+.btn-novo-item:hover {
+    background: color-mix(in srgb, var(--accent) 85%, black);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.btn-novo-item:active { transform: scale(.97); }
+
+.btn-exportar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--page-bg);
+    color: var(--texto-muted);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .2s;
+}
+.btn-exportar:hover { border-color: var(--accent); color: var(--accent); }
+.btn-exportar svg { width: 15px; height: 15px; stroke: currentColor; fill: none; }
+
+/* ── Resumo: total investido + composição por categoria ── */
+
+.patr-resumo {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 14px;
+}
+
+.patr-total-card {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center;
+    box-shadow: var(--shadow);
+}
+
+.patr-total-label {
+    font-size: 12px;
+    color: var(--texto-muted);
+}
+
+.patr-total-valor {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.patr-total-sub {
+    font-size: 11.5px;
+    color: var(--texto-muted);
+}
+
+.patr-categorias-card {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+}
+
+.card-titulo {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto);
+    margin-bottom: 14px;
+}
+
+.patr-cat-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 140px;
+    overflow-y: auto;
+}
+
+.patr-cat-linha { display: flex; flex-direction: column; gap: 4px; }
+
+.patr-cat-topo {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: var(--texto);
+}
+.patr-cat-topo strong { font-weight: 700; }
+
+.patr-cat-track {
+    height: 8px;
+    border-radius: var(--radius-pill);
+    background: var(--page-bg);
+    overflow: hidden;
+}
+
+.patr-cat-fill {
+    height: 100%;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #7DD3FC));
+}
+
+/* ── Filtros ── */
+
+.filtros-box {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.filtro-busca {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--page-bg);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-lg);
+    padding: 0 14px;
+    height: 38px;
+    flex: 1;
+    min-width: 180px;
+    transition: border-color .2s;
+}
+.filtro-busca:focus-within { border-color: var(--accent); }
+.filtro-busca svg { width: 16px; height: 16px; stroke: var(--texto-muted); fill: none; flex-shrink: 0; }
+.filtro-busca input {
+    flex: 1; border: none; outline: none; font-size: 13px;
+    font-family: inherit; color: var(--texto); background: transparent;
+}
+.filtro-busca input::placeholder { color: var(--texto-muted); }
+
+.filtros-box select {
+    height: 38px;
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 0 12px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--texto);
+    background: var(--page-bg);
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color .2s;
+}
+.filtros-box select:focus { border-color: var(--accent); }
+.filtros-box .btn-outline { height: 38px; padding: 0 16px; }
+
+/* ── Tabela ── */
+
+.tabela-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    overflow-x: auto;
+}
+
+.tabela {
+    width: 100%;
+    min-width: max-content;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+.tabela thead tr { background: var(--page-bg); }
+.tabela th {
+    padding: 12px 14px; text-align: left; font-size: 10.5px; font-weight: 700;
+    color: var(--texto-muted); text-transform: uppercase; letter-spacing: .5px;
+    white-space: nowrap; border-bottom: 1px solid var(--borda);
+}
+.tabela td { padding: 10px 14px; border-bottom: 1px solid var(--borda); color: var(--texto); vertical-align: middle; white-space: nowrap; }
+.tabela tbody tr:last-child td { border-bottom: none; }
+.tabela tbody tr:hover { background: var(--page-bg); }
+.tabela-vazio { text-align: center; color: var(--texto-muted); padding: 2rem !important; white-space: normal !important; }
+
+.patr-foto-mini {
+    width: 34px; height: 34px; border-radius: var(--radius-xs);
+    object-fit: cover; border: 1px solid var(--borda); cursor: pointer; display: block;
+}
+.patr-foto-vazia { background: var(--page-bg); }
+
+/* Ações da linha (editar/excluir) - par .check-acoes/.btn-check-acao que
+   Estoque já usa pra exatamente essa mesma situação (ícone 32x32 numa
+   linha de lista, ver styles/estoque.css) - nunca inventar variante nova
+   pra isso, esse já é o padrão do projeto. */
+.check-acoes { display: flex; gap: 6px; flex-shrink: 0; }
+.btn-check-acao {
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--texto-muted);
+    transition: background .15s, color .15s, border-color .15s, transform .1s;
+}
+.btn-check-acao:hover { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+.btn-check-acao:active { transform: scale(.94); }
+.btn-check-acao svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+.btn-check-acao.excluir:hover { color: var(--vermelho); border-color: var(--vermelho); background: rgba(239, 68, 68, .15); }
+
+/* ── Modal criar/editar ── */
+
+.modal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 22px 0; position: sticky; top: 0; background: var(--card-bg); z-index: 1;
+}
+.modal-title { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; color: var(--texto); }
+.modal-close {
+    background: var(--page-bg); border: none; border-radius: var(--radius-xs);
+    width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--texto-muted);
+}
+.modal-close:hover { background: var(--borda); }
+.modal-body { padding: 18px 22px; display: flex; flex-direction: column; gap: 14px; }
+.modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding: 16px 22px; border-top: 1px solid var(--borda); }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group.full { grid-column: 1 / -1; }
+.form-group label { font-size: 12.5px; font-weight: 600; color: var(--texto); }
+.form-group input, .form-group select, .form-group textarea {
+    height: 42px; border: 1.5px solid var(--borda); border-radius: var(--radius-sm);
+    padding: 0 12px; font-size: 13px; font-family: inherit; color: var(--texto);
+    background: var(--page-bg); outline: none; appearance: none;
+}
+.form-group textarea { height: auto; padding: 10px 12px; resize: vertical; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+.form-erro { color: var(--vermelho); font-size: 12.5px; min-height: 14px; }
+
+.btn-salvar {
+    height: 46px; padding: 0 20px; background: var(--accent); color: #fff; border: none;
+    border-radius: var(--radius); font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer;
+    transition: background .2s;
+}
+.btn-salvar:hover { background: color-mix(in srgb, var(--accent) 85%, black); }
+.btn-salvar:disabled { background: color-mix(in srgb, var(--accent) 35%, white); cursor: not-allowed; }
+
+/* ── Import de nota (versão simples - sem dedup/duplicata, ver
+   routes/patrimonio.py) ── */
+
+.modal-import { max-width: 620px; }
+
+.import-msg { color: var(--texto-muted); text-align: center; padding: 1rem; }
+
+.import-aviso {
+    background: rgba(249, 115, 22, .12);
+    border: 1.5px solid var(--laranja);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--texto);
+}
+.import-aviso p { margin: 0; }
+.import-aviso-ocr { background: rgba(46, 143, 227, .12); border-color: var(--accent); }
+
+#importPatrPreview table { width: 100%; border-collapse: collapse; font-size: 12.5px; max-height: 320px; }
+#importPatrPreview th {
+    text-align: left; padding: 8px 10px; font-size: 10.5px; font-weight: 700;
+    color: var(--texto-muted); text-transform: uppercase; border-bottom: 1px solid var(--borda);
+}
+#importPatrPreview td { padding: 6px 10px; border-bottom: 1px solid var(--borda); }
+#importPatrPreview input {
+    width: 100%; height: 30px; border: 1.5px solid var(--borda); border-radius: var(--radius-xs);
+    padding: 0 8px; font-size: 12.5px; font-family: inherit; color: var(--texto); background: var(--page-bg);
+}
+
+/* ── Responsivo ── */
+

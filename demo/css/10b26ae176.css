@@ -1,0 +1,794 @@
+
+/* ═══════════════════════════════════════════════════
+   REQUISICAO.CSS — herda dashboard.css + tema-escuro.css
+   Separado de abertura_de_manutencao.css (Requisição é tela própria, não
+   mais aba dividida com Manutenção).
+═══════════════════════════════════════════════════ */
+
+
+/* ── Topbar extras ── */
+
+.topbar-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.page-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.page-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-top: 1px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity .15s;
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    opacity: .88;
+}
+
+.btn-outline {
+    background: var(--card-bg);
+    color: var(--texto-muted);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: .15s;
+    white-space: nowrap;
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+
+/* ── Cards de métrica ── */
+
+.kgrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.kcard {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: var(--shadow);
+}
+
+.kcard-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kcard-icon svg {
+    width: 17px;
+    height: 17px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.kcard-val {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.kcard-lbl {
+    font-size: 11px;
+    color: var(--texto-muted);
+}
+
+.kcard-icon.purple {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.kcard-icon.orange {
+    background: #ffedd5;
+    color: var(--laranja);
+}
+
+.kcard-icon.blue {
+    background: #dbeafe;
+    color: var(--azul);
+}
+
+.kcard-icon.green {
+    background: #dcfce7;
+    color: var(--verde);
+}
+
+.gc-demo[data-tema="escuro"] .kcard-icon.orange {
+    background: #3a230d;
+}
+
+.gc-demo[data-tema="escuro"] .kcard-icon.blue {
+    background: #112a4a;
+}
+
+.gc-demo[data-tema="escuro"] .kcard-icon.green {
+    background: #14321f;
+}
+
+
+/* ── Filtros ── */
+
+.filtros-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card-bg);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 0 14px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-wrap svg {
+    color: var(--texto-muted);
+    flex-shrink: 0;
+}
+
+.search-wrap input {
+    border: none;
+    outline: none;
+    background: none;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--texto);
+    padding: 10px 0;
+    width: 100%;
+}
+
+.filtro-select {
+    background: var(--card-bg);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--texto-muted);
+    cursor: pointer;
+    outline: none;
+}
+
+
+/* ── Painel / tabela ── */
+
+.painel {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.tabela-scroll {
+    overflow-x: auto;
+}
+
+.tabela {
+    width: 100%;
+    /* min-width:max-content (mesmo motivo de cmv.css) - sem isso as
+       células espremiam e o texto quebrava feio em vez de rolar dentro
+       de .tabela-scroll. */
+    min-width: max-content;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.tabela thead tr {
+    background: var(--page-bg);
+}
+
+.tabela th {
+    padding: 11px 16px;
+    text-align: left;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--texto-muted);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--borda);
+}
+
+.tabela td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--borda);
+    color: var(--texto);
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.tabela tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela tbody tr:hover {
+    background: var(--page-bg);
+}
+
+.tabela-vazio {
+    text-align: center;
+    color: var(--texto-muted);
+    padding: 2rem !important;
+    cursor: default;
+}
+
+
+/* ── Badges de status/urgência ── */
+
+.tag-status {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-lg);
+    white-space: nowrap;
+}
+
+.tag-pendente {
+    background: #ffedd5;
+    color: var(--laranja);
+}
+
+.tag-separacao {
+    background: #dbeafe;
+    color: var(--azul);
+}
+
+.tag-entregue {
+    background: #dcfce7;
+    color: var(--verde);
+}
+
+.gc-demo[data-tema="escuro"] .tag-pendente {
+    background: #3a230d;
+}
+
+.gc-demo[data-tema="escuro"] .tag-separacao {
+    background: #112a4a;
+}
+
+.gc-demo[data-tema="escuro"] .tag-entregue {
+    background: #14321f;
+}
+
+.tag-urg {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-lg);
+    white-space: nowrap;
+}
+
+.tag-urg-baixa {
+    background: #dcfce7;
+    color: var(--verde);
+}
+
+.tag-urg-normal {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.tag-urg-alta {
+    background: #ffedd5;
+    color: var(--laranja);
+}
+
+.gc-demo[data-tema="escuro"] .tag-urg-baixa {
+    background: #14321f;
+}
+
+.gc-demo[data-tema="escuro"] .tag-urg-alta {
+    background: #3a230d;
+}
+
+
+/* ── Modal ── */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease, visibility .2s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay.show .modal {
+    transform: scale(1);
+}
+
+.modal {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 540px;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: var(--shadow-md);
+    transform: scale(.96);
+    transition: transform .2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 22px 0;
+}
+
+.modal-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.modal-close {
+    background: var(--page-bg);
+    border: none;
+    border-radius: var(--radius-xs);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--texto-muted);
+    flex-shrink: 0;
+}
+
+.modal-close:hover {
+    background: var(--borda);
+}
+
+.modal-body {
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.req-item-campo {
+    position: relative;
+}
+
+.req-item-sugestoes {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 20;
+}
+
+.req-item-sugestoes.show {
+    display: block;
+}
+
+.req-item-sugestao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background .15s;
+}
+
+.req-item-sugestao:hover {
+    background: var(--page-bg);
+}
+
+.req-item-sugestao.indisponivel {
+    color: var(--texto-muted);
+}
+
+.req-item-badge {
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    background: var(--page-bg);
+    color: var(--texto-muted);
+    white-space: nowrap;
+}
+
+.req-item-aviso {
+    padding: 9px 12px;
+    font-size: 12.5px;
+    color: var(--texto-muted);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--texto);
+    background: var(--page-bg);
+    outline: none;
+    transition: border-color .15s;
+    appearance: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--accent);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-erro {
+    color: var(--vermelho);
+    font-size: 12.5px;
+    min-height: 14px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 16px 22px;
+    border-top: 1px solid var(--borda);
+}
+
+
+/* ── Painel lateral de detalhes (mesmo padrao de avarias.css) ── */
+
+.painel-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .35);
+    display: none;
+    justify-content: flex-end;
+    z-index: 200;
+}
+
+.painel-overlay.show {
+    display: flex;
+}
+
+.painel-avaria {
+    width: 400px;
+    max-width: 100%;
+    background: var(--card-bg);
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    animation: slideIn .25s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.painel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 22px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--borda);
+}
+
+.painel-head h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.painel-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--texto-muted);
+    transition: background .15s;
+}
+
+.painel-close:hover {
+    background: var(--page-bg);
+}
+
+.painel-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.painel-secao {
+    background: var(--page-bg);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+}
+
+.painel-secao-titulo {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--texto-muted);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 10px;
+}
+
+.painel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.painel-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.painel-campo.full {
+    grid-column: 1 / -1;
+}
+
+.campo-label {
+    font-size: 11px;
+    color: var(--texto-muted);
+}
+
+.campo-valor {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.comentarios-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+    min-height: 40px;
+}
+
+.sem-comentarios {
+    font-size: 13px;
+    color: var(--texto-muted);
+}
+
+.comentario-item {
+    background: var(--card-bg);
+    border-radius: var(--radius-xs);
+    padding: 8px 10px;
+    font-size: 13px;
+    color: var(--texto);
+}
+
+.comentario-input-row {
+    display: flex;
+    gap: 8px;
+}
+
+.comentario-input-row input {
+    flex: 1;
+    height: 38px;
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 0 12px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--texto);
+    background: var(--card-bg);
+    outline: none;
+}
+
+.comentario-input-row input:focus {
+    border-color: var(--accent);
+}
+
+.comentario-input-row button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 0 14px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity .2s;
+}
+
+.comentario-input-row button:hover {
+    opacity: .85;
+}
+
+.painel-itens-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.painel-item-linha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+}
+
+.painel-item-nome {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.painel-item-qtd {
+    font-size: 11.5px;
+    color: var(--texto-muted);
+    margin-top: 1px;
+}
+
+/* Botao de excluir do painel de detalhes - mesmo padrao/classes de
+   avarias.css (.painel-acoes/.btn-acao), copiado igual pra manter a
+   convencao do projeto de duplicar por pagina em vez de compartilhar. */
+.painel-acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btn-acao {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity .2s;
+}
+
+.btn-acao svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    flex-shrink: 0;
+}
+
+.btn-acao.excluir {
+    background: #fee2e2;
+    color: var(--vermelho);
+}
+
+.gc-demo[data-tema="escuro"] .btn-acao.excluir {
+    background: #341616;
+}
+
+.btn-acao:hover {
+    opacity: .8;
+}
+
+
+/* ── Responsivo ── */
+

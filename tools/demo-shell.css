@@ -1,0 +1,123 @@
+/* ===================================================================
+   SHELL DO MINI SISTEMA (escrito à mão, entra no fim de demo/base.css)
+   Vive DENTRO do Shadow DOM de #gcDemo: nada daqui vaza pro site e o
+   CSS do site não entra aqui.
+   =================================================================== */
+
+:host {
+  /* Propriedades herdadas (color, line-height, text-align, font...) atravessam o
+     shadow boundary: sem isso o body do SITE (line-height 1.6 etc.) mudaria o
+     layout do sistema. `all: initial` corta a herança na raiz do demo. */
+  all: initial;
+  display: block;
+}
+
+/* wrapper visível: `.gc-viewport` rola na horizontal só em telas muito
+   estreitas (a escala mínima é 55%); `.gc-demo` (sistema) é desenhado em
+   ~1680px e escalado por transform - o transform também o torna o
+   containing block dos `position:fixed` (modais, toast) do sistema. */
+.gc-viewport {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px #2E4650; /* sem border: border reduz o clientWidth e gerava rolagem falsa */
+  background: #0A1216;
+}
+.gc-scaler { position: relative; margin: 0 auto; }
+.gc-demo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  /* clip (não hidden): hidden ainda deixa scrollIntoView()/focus() rolar o
+     wrapper inteiro e deslocar sidebar+topbar */
+  overflow: clip;
+}
+.gc-hint {
+  margin: 8px 0 0;
+  text-align: center;
+  font: 600 12px/1.4 'Manrope', system-ui, sans-serif;
+  color: #9DB2BA;
+}
+
+/* ---- layout: o sistema original rolava o DOCUMENTO; aqui só a área
+   de conteúdo rola (sidebar e topbar ficam fixas no wrapper) ---- */
+.gc-demo .layout { height: 100%; min-height: 0; }
+.gc-demo .sidebar { height: 100%; position: relative; }
+.gc-demo .layout { overflow: clip; }
+.gc-demo .main { height: 100%; min-height: 0; overflow: clip; }
+.gc-demo .topbar { flex-shrink: 0; }
+.gc-demo .gc-actions, .gc-demo .gc-tail { display: contents; }
+.gc-demo .gc-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable; /* igual o original (html{scrollbar-gutter}): tela curta e tela longa com a mesma largura */
+}
+.gc-demo .gc-scroll.gc-side {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  align-items: start;
+}
+.gc-demo .gc-scroll .content { min-width: 0; }
+
+/* ---- itens da sidebar sem tela interativa ---- */
+.gc-demo .nav-item.gc-locked { opacity: .5; cursor: not-allowed; }
+.gc-demo .nav-item.gc-locked:hover { background: transparent; color: var(--texto-side); }
+.gc-demo .nav-item .gc-lock { width: 13px; height: 13px; margin-left: auto; flex-shrink: 0; opacity: .8; }
+.gc-demo .sidebar.collapsed .gc-lock { display: none; }
+
+/* ---- abas (CMC/Caixa, DRE/Curva ABC/Insights) ---- */
+.gc-demo .gc-subnav {
+  display: flex;
+  gap: 4px;
+  padding: 0 28px;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--borda);
+  flex-shrink: 0;
+}
+.gc-demo .gc-subnav[hidden], .gc-demo .gc-sidemenu[hidden] { display: none; }
+.gc-demo .gc-tab {
+  appearance: none;
+  border: 0;
+  background: none;
+  font: 700 13px 'Manrope', sans-serif;
+  color: var(--texto-muted);
+  padding: 13px 16px 11px;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color .15s, border-color .15s;
+}
+.gc-demo .gc-tab:hover { color: var(--texto); }
+.gc-demo .gc-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ---- menu lateral interno (Configurações) ---- */
+.gc-demo .gc-sidemenu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px 0 24px 28px;
+  position: sticky;
+  top: 0;
+}
+.gc-demo .gc-sidebtn {
+  appearance: none;
+  border: 1px solid transparent;
+  background: none;
+  text-align: left;
+  font: 700 13px 'Manrope', sans-serif;
+  color: var(--texto-muted);
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.gc-demo .gc-sidebtn:hover { background: var(--card-bg); color: var(--texto); }
+.gc-demo .gc-sidebtn.active { background: var(--accent-light); color: var(--accent); }
+
+/* ---- botões de topbar que só existem aqui ---- */
+.gc-demo button.topbar-notif { font: inherit; padding: 0; }
+.gc-demo :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

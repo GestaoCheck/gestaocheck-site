@@ -1,0 +1,31 @@
+
+
+.vitrine-aviso {
+    padding: 10px 16px; background: var(--accent-light); color: var(--accent);
+    border-radius: var(--radius-sm); font-size: 12.5px; font-weight: 600;
+    text-align: center;
+}
+
+.vit-click { cursor: pointer; transition: border-color .15s, box-shadow .15s, transform .15s; }
+.vit-click:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.vit-click.vit-ativo { border-color: var(--accent); }
+.qa-card { cursor: pointer; }
+.vit-linha { display:flex; align-items:center; gap:12px; padding:9px 0; border-bottom:1px solid var(--borda); font-size:13px; color:var(--texto); }
+.vit-linha:last-child { border-bottom:none; }
+.vit-linha .vit-l-nome { flex:0 0 130px; font-weight:600; }
+.vit-linha .vit-l-bar { flex:1; height:8px; background:var(--borda); border-radius:99px; overflow:hidden; }
+.vit-linha .vit-l-bar i { display:block; height:100%; background:var(--accent); border-radius:99px; }
+.vit-linha .vit-l-val { font-weight:700; min-width:60px; text-align:right; }
+.vit-stat { display:flex; justify-content:space-between; padding:12px 14px; background:var(--page-bg); border-radius:var(--radius-sm); margin-bottom:8px; font-size:13px; }
+.vit-stat strong { font-size:15px; }
+.vit-modal-body { padding: 4px 22px 8px; }
+.vit-modal-nota { font-size:11.5px; color:var(--texto-muted); padding: 0 22px 18px; margin:0; }
+.vit-notif { display:flex; flex-direction:column; gap:2px; padding:10px 0; border-bottom:1px solid var(--borda); font-size:13px; color:var(--texto-muted); }
+.vit-notif strong { color:var(--texto); }
+.vit-limpar { margin: 6px 22px 18px; background:none; border:none; color:var(--accent); font-weight:600; cursor:pointer; font-family:inherit; }
+.modal-header { display:flex; align-items:center; justify-content:space-between; padding:18px 22px 10px; }
+.modal-title { font-family:'Fraunces',serif; font-size:16px; font-weight:600; color:var(--texto); }
+.legend-item:hover .legend-label { color: var(--accent); }
+.donut-svg .seg.vit-sel { stroke-width: 27; }
+
+    

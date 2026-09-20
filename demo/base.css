@@ -1,0 +1,2537 @@
+/* GERADO por tools/build-demo.js - não editar à mão (fonte do shell: tools/demo-shell.css). */
+
+/* ═══════════════════════════════════════════════════
+   DASHBOARD.CSS — tema claro/roxo, mobile-first
+═══════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Reserva o espaco da barra de rolagem sempre, mesmo em paginas cujo
+   conteudo nao precisa rolar - sem isso, uma pagina "curta" (ex:
+   Ocorrencias com poucos registros) fica alguns pixels mais larga que
+   uma pagina "longa" na mesma tela, porque so a longa reserva o espaco
+   da barra. */
+
+/* Crossfade nativo do navegador entre uma pagina e outra (Cross-Document
+   View Transitions) - a sidebar principal navega recarregando a pagina de
+   verdade (app multi-pagina, sem framework/SPA, ver CLAUDE.md), diferente
+   da sidebar interna de Configuracoes (troca de secao sem reload). Isso e
+   o mais perto que da pra chegar do "feels like Configuracoes" sem
+   reescrever a arquitetura: o navegador tira um "print" da tela antes e
+   depois da navegacao e faz um crossfade entre os dois, em vez do corte
+   seco padrao. So funciona em Chrome/Edge recentes (126+) - navegador sem
+   suporte ignora a regra e navega normal, sem quebrar nada.
+   https://developer.chrome.com/docs/web-platform/view-transitions/cross-document */
+
+.gc-demo {
+    --sidebar-bg: #1E3540;
+    --page-bg: #F2F6F7;
+    --card-bg: #CBD6DA;
+    --accent: #2E8FE3;
+    --accent-light: #D6EAFB;
+    --avatar: #E0684C;
+    --petroleo: #1E3540;
+    --texto: #16232B;
+    --texto-muted: #48606A;
+    --texto-side: #9FB4BD;
+    --borda: #B7C3C8;
+    --verde: #2C9163;
+    --vermelho: #ef4444;
+    --laranja: #f97316;
+    --azul: #5C6BC0;
+    --ciano: #06b6d4;
+    /* Dourado - cor de enriquecimento, não semântica (não confundir com
+       --laranja, que sinaliza alerta/atenção). */
+    --dourado: #C9A227;
+    --radius: 14px;
+    --radius-sm: 10px;
+    /* Tokens de raio de borda - migração mecânica dos valores exatos
+       (8px->xs, 20px->lg, 50px/99px->pill); alguns valores ficam fixos de
+       propósito, ver docs/BACKLOG_FRONT.md. */
+    --radius-xs: 8px;
+    --radius-lg: 20px;
+    --radius-pill: 999px;
+    --shadow: 0 2px 12px rgba(30, 53, 64, .10);
+    --shadow-md: 0 4px 24px rgba(30, 53, 64, .16);
+    --bottom-nav-h: 64px;
+}
+
+/* Quem pede menos movimento no SO ganha as transicoes novas (troca de tema,
+   hover) quase instantaneas, sem perder a logica visual - acessibilidade,
+   nao suporte a navegador. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-duration: .001ms !important;
+        animation-duration: .001ms !important;
+    }
+}
+
+.gc-demo {
+    font-family: 'Manrope', sans-serif;
+    background: var(--page-bg);
+    color: var(--texto);
+    transition: background-color .25s ease, color .25s ease;
+    min-height: 100%;
+}
+
+
+/* ── Layout ── */
+
+.layout {
+    display: flex;
+    min-height: 100%;
+}
+
+
+/* ── Sidebar ── */
+
+.sidebar {
+    /* .nav-item svg/.sidebar-user-avatar crescem junto, mesmo ritmo de escala. */
+    width: 216px;
+    background: var(--sidebar-bg);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+    transition: width .25s, background-color .25s ease;
+}
+
+.sidebar.collapsed,
+.gc-demo.sidebar-collapsed .sidebar {
+    width: 64px;
+}
+
+/* ── Topo da sidebar: logo + hamburguer ── */
+
+.sidebar-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 14px 10px 18px;
+    transition: padding .25s;
+}
+
+.sidebar.collapsed .sidebar-top,
+.gc-demo.sidebar-collapsed .sidebar .sidebar-top {
+    padding: 22px 8px 10px;
+    /* Com a sidebar colapsada, .sidebar-logo encolhe pra max-width:0 mas
+       ainda ocupa a ponta esquerda do space-between - centraliza pra não
+       deixar o hambúrguer "torto" puxado pra direita. */
+    justify-content: center;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 1;
+    max-width: 160px;
+    transition: opacity .15s, max-width .25s;
+}
+
+.sidebar-logo .nav-label {
+    font-family: 'Fraunces', serif;
+}
+
+.sidebar.collapsed .sidebar-logo,
+.gc-demo.sidebar-collapsed .sidebar .sidebar-logo {
+    opacity: 0;
+    max-width: 0;
+    pointer-events: none;
+}
+
+.sidebar-logo svg {
+    flex-shrink: 0;
+}
+
+.hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 6px;
+    border-radius: var(--radius-xs);
+    transition: background .15s, transform .15s;
+    flex-shrink: 0;
+}
+
+.hamburger:hover {
+    background: rgba(255, 255, 255, .08);
+}
+
+.hamburger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--texto-side);
+    border-radius: 2px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 10px;
+    gap: 2px;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, .15) transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .15);
+    border-radius: var(--radius-sm);
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 11px;
+    color: var(--texto-side);
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    transition: .15s;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Ícone de nav cresce junto com .sidebar. */
+.nav-item svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    stroke: currentColor;
+    fill: none;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, .07);
+    color: #fff;
+}
+
+.nav-item:focus-visible,
+.hamburger:focus-visible,
+.sidebar-user:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.nav-item:active,
+.hamburger:active,
+.sidebar-user:active {
+    transform: scale(.97);
+}
+
+.nav-item.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+.sidebar.collapsed .nav-label,
+.gc-demo.sidebar-collapsed .sidebar .nav-label {
+    display: none;
+}
+
+.sidebar-bottom {
+    padding: 12px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: .15s;
+}
+
+.sidebar-user:hover {
+    background: rgba(255, 255, 255, .07);
+}
+
+.sidebar-user-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-xs);
+    background: var(--avatar);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color .25s ease;
+}
+
+.sidebar-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.sidebar-user-info strong {
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sidebar-user-info span {
+    font-size: 10px;
+    color: var(--texto-side);
+}
+
+.sidebar.collapsed .sidebar-user-info,
+.gc-demo.sidebar-collapsed .sidebar .sidebar-user-info {
+    display: none;
+}
+
+/* Versão visível (ver sidebar.js _carregarVersaoVisivel) - injetado via JS
+   em toda página que tem .sidebar-bottom, não precisa de HTML por página. */
+.sidebar-versao {
+    font-size: 10.5px;
+    color: var(--texto-muted);
+    text-align: center;
+    padding: 6px 0 0;
+    opacity: .7;
+}
+
+.sidebar.collapsed .sidebar-versao,
+.gc-demo.sidebar-collapsed .sidebar .sidebar-versao {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-user,
+.gc-demo.sidebar-collapsed .sidebar .sidebar-user {
+    justify-content: center;
+    padding: 9px 0;
+}
+
+
+/* ── Main / Topbar ── */
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* flex-wrap - sem isso, uma página com vários botões no topbar-right
+       (ex: Estoque) estoura a largura da tela com a sidebar expandida;
+       com wrap, quebra pra uma segunda linha em vez de cortar/empurrar. */
+    flex-wrap: wrap;
+    row-gap: 10px;
+    padding: 18px 28px;
+    /* Altura fixa - sem isso a altura real variava 1-4px de pagina pra
+       pagina (h1 vs p, emoji no saudacao da tela inicial mudando a
+       line-height), fazendo o sino de notificacao (e outros botoes do
+       topbar) parecerem "menores"/deslocados entre telas. */
+    min-height: 84px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--borda);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color .25s ease, border-color .25s ease;
+}
+
+.greeting {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.subgreeting {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-top: 2px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Agrupa ☰ + bloco de título, pra .topbar (space-between) enxergar só 2
+   itens (grupo do título | .topbar-right) em vez de 3 soltos. */
+.topbar-titulo-grupo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+/* ☰ que abre a gaveta lateral (.menu-mobile-painel) no celular - escondido
+   por padrão, só existe em telas estreitas (ver @media(max-width:768px)). */
+.topbar-hamburguer {
+    display: none;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--texto);
+    flex-shrink: 0;
+}
+
+.topbar-hamburguer svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.topbar-notif {
+    width: 36px;
+    height: 36px;
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--texto-muted);
+    position: relative;
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.topbar-notif:hover {
+    background: var(--card-bg);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.topbar-notif svg {
+    width: 17px;
+    height: 17px;
+}
+
+/* ===== Dropdown de menu (Exportar / Mais opcoes) — compartilhado por
+   Estoque/CMV/CMO/CMC/Caixa/Beneficiamento/Relatorios, ver CLAUDE.md.
+   Estrutural (como .modal-overlay), por isso vive aqui em vez de duplicado
+   por pagina — o comportamento (abrir/fechar/z-index) precisa ser igual em
+   todo lugar, so o conteudo de dentro muda por tela. Toggle real e o
+   fechar ao clicar fora/ESC ficam em sidebar.js (toggleMenuDropdown). */
+.menu-dropdown {
+    position: relative;
+    display: inline-flex;
+}
+
+.menu-dropdown-lista {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 190px;
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    padding: 6px;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 200;
+}
+
+.menu-dropdown-lista.show {
+    display: flex;
+}
+
+/* Aplicada via JS (toggleMenuDropdown, sidebar.js) quando o alinhamento
+   padrao pela direita vazaria a borda esquerda da tela (comum em mobile,
+   quando o grupo de botoes quebra linha). */
+.menu-dropdown-lista.abre-esquerda {
+    right: auto;
+    left: 0;
+}
+
+.menu-dropdown-lista button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 9px 10px;
+    border-radius: calc(var(--radius-sm) - 3px);
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--texto);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color .15s ease;
+}
+
+.menu-dropdown-lista button:hover {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.menu-dropdown-lista button.perigo:hover {
+    background: rgba(239, 68, 68, .12);
+    color: var(--vermelho);
+}
+
+.menu-dropdown-lista button svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+    flex-shrink: 0;
+}
+
+.menu-dropdown-divisor {
+    height: 1px;
+    background: var(--borda);
+    margin: 4px 2px;
+}
+
+.menu-kebab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: none;
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    color: var(--texto-muted);
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.menu-kebab-btn:hover,
+.menu-kebab-btn.show-ativo {
+    background: var(--accent-light);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.menu-kebab-btn svg {
+    width: 17px;
+    height: 17px;
+}
+
+/* Botão rápido sol/lua da topbar (#temaToggleRapido, opcional por página) -
+   reaproveita a caixa/hover de .topbar-notif, só troca o ícone de dentro
+   (emoji ☀️/🌙, que o navegador já centraliza como glifo de texto normal).
+   Base escondida os dois por padrão, o tema certo liga display:flex
+   explícito - especificidade maior (`[data-tema="escuro"]` ancestor)
+   sempre vence a base, então a ordem no arquivo não importa. */
+#temaToggleRapido .icone-sol,
+#temaToggleRapido .icone-lua {
+    display: none;
+    font-size: 15px;
+    line-height: 1;
+}
+
+#temaToggleRapido .icone-sol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gc-demo[data-tema="escuro"] #temaToggleRapido .icone-sol {
+    display: none;
+}
+
+.gc-demo[data-tema="escuro"] #temaToggleRapido .icone-lua {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notif-dot {
+    display: none;
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    width: 7px;
+    height: 7px;
+    background: var(--vermelho);
+    border-radius: 50%;
+    border: 1.5px solid #fff;
+}
+
+.notif-dot.show {
+    display: block;
+}
+
+/* Evita mostrar sigla errada/hardcoded ("US") no instante entre o HTML
+   pintar e o script da pagina (fim do <body>) rodar - os 3 elementos de
+   avatar (#avatarLetras/#sidebarAvatar/#pAvatar) nascem com essa classe
+   e SEM texto; cada pagina.js remove a classe no mesmo passo que ja seta
+   o textContent (que roda sincrono, sem esperar rede). */
+.avatar-pending {
+    visibility: hidden;
+}
+
+.avatar-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--avatar);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 7px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color .15s ease, transform .1s;
+}
+
+.avatar-btn:hover {
+    background: color-mix(in srgb, var(--avatar) 85%, black);
+}
+
+.avatar-btn:active {
+    transform: scale(.97);
+}
+
+.avatar-btn svg {
+    width: 12px;
+    height: 12px;
+}
+
+
+/* ── Content ── */
+
+.content {
+    padding: 24px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+
+/* ── Carrossel Clima / Resumo do dia ── */
+
+.clima-carrossel {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin: 20px 0;
+    min-height: 132px;
+}
+
+.clima-slide {
+    position: absolute;
+    inset: 0;
+    padding: 16px 22px 26px;
+    box-sizing: border-box;
+    min-height: 132px;
+    opacity: 0;
+    /* pointer-events no lugar de visibility:hidden - so opacity anima
+       agora (uma propriedade so, curva continua, sem o "flip" discreto
+       que visibility faz no meio da transicao). O slide escondido
+       continua nao-clicavel/fora do tab-order via pointer-events, sem
+       precisar de um segundo valor pra coordenar com a animacao. */
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity .9s ease-in-out;
+}
+
+.clima-slide.show {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 2;
+}
+
+/* Gradiente petróleo->azul claro, mesma identidade da marca - compartilhado
+   pelos dois slides. Sempre esse gradiente, claro ou escuro. */
+.clima-slide-tempo,
+.clima-slide-resumo {
+    background: linear-gradient(120deg, #1E3540 0%, #256689 55%, #2E8FE3 100%);
+    color: #fff;
+}
+
+.clima-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.clima-local {
+    font-size: 13px;
+    font-weight: 600;
+    opacity: .9;
+}
+
+.clima-refresh {
+    background: rgba(255, 255, 255, .15);
+    border: none;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-xs);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s;
+}
+
+.clima-refresh:hover {
+    background: rgba(255, 255, 255, .28);
+}
+
+.clima-refresh svg {
+    width: 15px;
+    height: 15px;
+}
+
+.clima-principal {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+.clima-icone {
+    font-size: 40px;
+    line-height: 1;
+}
+
+.clima-temp {
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.clima-desc {
+    font-size: 13px;
+    opacity: .9;
+    max-width: 240px;
+}
+
+.clima-slide-resumo {
+    cursor: pointer;
+    /* Precisa repetir "opacity .9s ease-in-out" aqui (nao da pra so
+       adicionar "filter .15s") - transition e uma propriedade so, uma
+       declaracao nova SUBSTITUI a da .clima-slide inteira, nao soma.
+       Sem isso, so o slide de resumo perdia a transicao de entrada
+       (ficava so com filter, sem opacity na lista) - causa raiz do
+       "clima -> resumo sempre seco" que via so nesse sentido. */
+    transition: opacity .9s ease-in-out, filter .15s;
+}
+
+.clima-slide-resumo:hover {
+    filter: brightness(1.06);
+}
+
+.resumo-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.resumo-titulo {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.resumo-link {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, .85);
+}
+
+.resumo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.resumo-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.resumo-valor {
+    /* clamp em vez de valor fixo - encolhe a fonte antes de precisar
+       quebrar linha num valor de estoque real (não só "R$ 0,00" de teste). */
+    font-size: clamp(14.5px, 28.56px, 18px);
+    font-weight: 800;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.resumo-label {
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, .75);
+}
+
+/* Ambos os slides sao escuros agora (mesmo gradiente roxo) - dots sempre
+   no estilo "sobre fundo escuro", sem precisar alternar por JS. */
+.clima-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+}
+
+.clima-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, .4);
+    cursor: pointer;
+    padding: 0;
+    transition: background .2s, transform .2s;
+}
+
+.clima-dot.active {
+    background: #fff;
+    transform: scale(1.3);
+}
+
+/* Breakpoint largo de propósito - não é "modo mobile" (esse é 768px), é a
+   faixa de monitor pequeno/janela não maximizada onde a sidebar ainda
+   aparece mas o conteúdo fica apertado. min-height de .clima-carrossel/
+   .clima-slide sobe junto pra caber as 2 linhas de item do grid 2x2. */
+
+
+/* ── Métricas (4 cards) ── */
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.metric-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--borda);
+    transition: background-color .25s ease, border-color .25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.metric-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.metric-label {
+    font-size: 11.5px;
+    color: var(--texto-muted);
+    font-weight: 500;
+}
+
+.metric-value {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+/* Variante pra valores mais longos (ex: moeda), evita overflow no card */
+.metric-value-sm {
+    font-size: 20px;
+}
+
+/* Linha "0% vs ontem" — sem isso, .metric-change (que é display:flex,
+   logo vira bloco) empurra .metric-change-label pra linha de baixo */
+.metric-change-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.metric-change {
+    font-size: 11px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.metric-change.up {
+    color: var(--verde);
+}
+
+.metric-change.down {
+    color: var(--vermelho);
+}
+
+.metric-change-label {
+    font-size: 10.5px;
+    color: var(--texto-muted);
+    font-weight: 400;
+}
+
+.metric-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.metric-icon svg {
+    width: 17px;
+    height: 17px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.metric-icon.green {
+    background: #dcfce7;
+    color: var(--verde);
+}
+
+.metric-icon.red {
+    background: #fee2e2;
+    color: var(--vermelho);
+}
+
+.metric-icon.orange {
+    background: #ffedd5;
+    color: var(--laranja);
+}
+
+.metric-icon.blue {
+    background: #E4E7FA;
+    color: var(--azul);
+}
+
+.metric-icon.purple {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.metric-icon.teal {
+    background: #cffafe;
+    color: var(--ciano);
+}
+
+/* Banner de ruptura ativa na Início - só aparece quando algum item está
+   zerado agora (bannerRuptura, controlado por JS em inicial.js). Laranja é
+   "atenção"; vermelho fica reservado pra erro/perigo de verdade. */
+.banner-ruptura {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--laranja) 14%, var(--card-bg));
+    border: 1px solid color-mix(in srgb, var(--laranja) 35%, transparent);
+    color: var(--texto);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color .2s;
+}
+.banner-ruptura:hover {
+    background: color-mix(in srgb, var(--laranja) 22%, var(--card-bg));
+}
+.banner-ruptura svg {
+    color: var(--laranja);
+    flex-shrink: 0;
+}
+.banner-ruptura-link {
+    margin-left: auto;
+    color: var(--laranja);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+
+/* ── Linha inferior: movimentações + gráfico ── */
+
+.bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.section-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--borda);
+    transition: background-color .25s ease, border-color .25s ease;
+}
+
+.section-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.section-card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.section-card-link {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+}
+
+.section-card-link:hover {
+    text-decoration: underline;
+}
+
+/* Texto "Carregando..." / "Servidor offline." nos painéis */
+.placeholder-loading {
+    color: var(--texto-muted);
+    font-size: 13px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.mov-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--borda);
+}
+
+.mov-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.mov-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.mov-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.mov-icon.entrada {
+    background: #dcfce7;
+    color: var(--verde);
+}
+
+.mov-icon.saida {
+    background: #fee2e2;
+    color: var(--vermelho);
+}
+
+.mov-icon.ajuste {
+    background: #E4E7FA;
+    color: var(--azul);
+}
+
+.mov-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.mov-nome {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.mov-detalhe {
+    font-size: 11px;
+    color: var(--texto-muted);
+    margin-top: 1px;
+}
+
+.mov-valor {
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.mov-valor.positivo {
+    color: var(--verde);
+}
+
+.mov-valor.negativo {
+    color: var(--vermelho);
+}
+
+.chart-wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.donut-svg {
+    flex-shrink: 0;
+}
+
+.chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.legend-label {
+    font-size: 12px;
+    color: var(--texto-muted);
+    flex: 1;
+}
+
+.legend-value {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* ── Acesso rápido ── */
+
+.section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--texto-muted);
+    margin-bottom: -4px;
+}
+
+.quick-access {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.qa-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--texto);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--borda);
+    transition: .2s;
+    cursor: pointer;
+}
+
+.qa-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.qa-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qa-icon svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.qa-icon.purple {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.qa-icon.orange {
+    background: #ffedd5;
+    color: var(--laranja);
+}
+
+.qa-icon.red {
+    background: #fee2e2;
+    color: var(--vermelho);
+}
+
+.qa-icon.blue {
+    background: #E4E7FA;
+    color: var(--azul);
+}
+
+.qa-icon.teal {
+    background: #cffafe;
+    color: var(--ciano);
+}
+
+.qa-icon.gold {
+    background: color-mix(in srgb, var(--dourado) 18%, transparent);
+    color: var(--dourado);
+}
+
+.qa-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.qa-sub {
+    font-size: 9px;
+    color: var(--texto-muted);
+    text-align: center;
+    line-height: 1.2;
+}
+
+
+/* ══════════════════════════════════════════════
+   PERFIL (painel lateral)
+═══════════════════════════════════════════════ */
+
+.perfil-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .3);
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+
+.perfil-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.perfil-painel {
+    position: fixed;
+    top: 0;
+    right: -360px;
+    width: 320px;
+    height: 100%;
+    background: var(--card-bg);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, .12);
+    transition: right .3s ease, background-color .25s ease;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.perfil-overlay.show .perfil-painel {
+    right: 0;
+}
+
+.perfil-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 22px 18px 14px;
+    border-bottom: 1px solid var(--borda);
+}
+
+.perfil-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    background: var(--avatar);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: background-color .25s ease;
+}
+
+.perfil-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.perfil-info strong {
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.perfil-info span {
+    font-size: 11.5px;
+    color: var(--texto-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Botão "X" de fechar o painel de perfil - só pro painel ocupando a tela
+   inteira no mobile; no desktop já existe fechar clicando fora (ver
+   fecharPerfilFora em sidebar.js). */
+.perfil-painel .modal-close {
+    display: none;
+}
+
+.perfil-badge {
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: var(--radius-lg);
+    display: inline-block;
+    margin-top: 2px;
+    width: fit-content;
+}
+
+/* Cor por papel - mesma paleta de configuracoes-usuarios.css (.papel-badge
+   da lista de Usuarios), promovida pra cá pra ficar disponível em
+   qualquer tela (o badge de papel do painel de perfil existe em toda
+   página, não só em Configurações). Padrão pra qualquer badge novo de
+   papel: reaproveitar essas 4 classes, nunca inventar cor nova. */
+.papel-desenvolvedor {
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    color: var(--accent);
+}
+
+.papel-dono {
+    background: color-mix(in srgb, #f59e0b 16%, transparent);
+    color: #f59e0b;
+}
+
+.papel-gerente {
+    background: color-mix(in srgb, var(--azul) 16%, transparent);
+    color: var(--azul);
+}
+
+/* admin_operacional - ciano por ser a única cor da paleta ainda não usada
+   por nenhum dos outros 4 papéis. */
+.papel-admin_operacional {
+    background: color-mix(in srgb, var(--ciano) 16%, transparent);
+    color: var(--ciano);
+}
+
+.papel-peao {
+    background: var(--page-bg);
+    color: var(--texto-muted);
+}
+
+/* ── Área de toque ampliada ──
+   Ícones/links abaixo de 44px (mínimo recomendado de alvo de toque
+   acessível) ganham um ::after invisível garantindo pelo menos 44×44 de
+   área clicável/tocável centralizada, sem alterar nada visual.
+   `max(44px,100%)` nunca encolhe um elemento que já é maior que 44px em
+   algum eixo. Compartilhado (não duplicado por página) de propósito.
+   Ainda NÃO aplicado (fica pra discutir com o Carlos antes de estender):
+   .clima-dot (os pontinhos ficam a ~20px um do outro — um alvo de 44px
+   em cada um ia sobrepor o do vizinho e "roubar" toque do lado errado,
+   precisa de outra solução, não só ampliar) e itens de lista tipo
+   .perfil-opcao/.perfil-sair (already 40-42px, só 2-4px abaixo do
+   mínimo — aumentar a altura desses muda a linha visualmente de um
+   jeito perceptível, diferente de um ícone pequeno ganhando uma margem
+   invisível ao redor). */
+.topbar-notif,
+.perfil-settings,
+.modal-close,
+.clima-refresh,
+.avatar-btn,
+.section-card-link,
+.bnav-item,
+.topbar-hamburguer {
+    position: relative;
+}
+
+.topbar-notif::after,
+.perfil-settings::after,
+.modal-close::after,
+.clima-refresh::after,
+.avatar-btn::after,
+.section-card-link::after,
+.bnav-item::after,
+.topbar-hamburguer::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(44px, 100%);
+    height: max(44px, 100%);
+    transform: translate(-50%, -50%);
+}
+
+/* ── Modal base (compartilhado) ──
+   Mesma definição já duplicada em 10 CSS de página (Estoque, CMV, CMO,
+   CMC, Avarias, Ocorrências, Checklists, Beneficiamento, Manutenção,
+   Configurações) — promovida pra cá porque `_criarModalPerfil`
+   (sidebar.js) usa essas classes em TODA página, inclusive Início e
+   Relatório, que não têm `.modal`/`.modal-overlay` próprio. As cópias
+   por página continuam existindo de propósito (convenção do projeto) e
+   simplesmente reafirmam os mesmos valores — nenhum conflito. */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease, visibility .2s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 520px;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: var(--shadow-md);
+    transform: scale(.96);
+    transition: transform .2s ease, background-color .2s ease;
+}
+
+.modal-overlay.show .modal {
+    transform: scale(1);
+}
+
+/* ── Modal genérico do painel de perfil (sidebar.js: _criarModalPerfil) ──
+   Alterar senha / Ajuda e suporte / foto / confirmar exclusão aparecem em
+   toda página (não só numa tela específica) — por isso essas classes
+   vivem aqui, no CSS compartilhado, e não numa página só. Antes esse
+   modal era 100% inline (sem classe nenhuma), fora do padrão do resto do
+   app e sem a transição de entrada/saída que todo outro modal já tem. */
+.modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--texto-muted);
+    font-size: 20px;
+    line-height: 1;
+    transition: background .15s;
+}
+
+.modal-close:hover {
+    background: var(--page-bg);
+}
+
+.btn-modal-perfil {
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px;
+    border: none;
+    border-radius: var(--radius-xs);
+    background: var(--accent);
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s, transform .15s;
+}
+
+.btn-modal-perfil:hover {
+    background: color-mix(in srgb, var(--accent) 85%, black);
+}
+
+.btn-modal-perfil:active {
+    transform: scale(.98);
+}
+
+.btn-modal-perfil-outline {
+    padding: 9px 14px;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-xs);
+    background: transparent;
+    color: var(--texto);
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background .15s, transform .15s;
+}
+
+.btn-modal-perfil-outline:hover {
+    background: var(--page-bg);
+}
+
+.btn-modal-perfil-outline:active {
+    transform: scale(.98);
+}
+
+.btn-modal-perfil.perigo {
+    background: var(--vermelho);
+}
+
+.btn-modal-perfil.perigo:hover {
+    background: color-mix(in srgb, var(--vermelho) 85%, black);
+}
+
+/* ── Modal "Novidades" (ver inicial.js: _corpoModalNovidades) - itens
+   agrupados por tipo (O que há de novo / O que melhorou / O que foi
+   corrigido), um título por grupo. ──*/
+.novidade-intro {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--texto-muted);
+    margin: 0 0 18px;
+}
+
+.novidade-grupo {
+    margin-bottom: 18px;
+}
+
+.novidade-grupo-titulo {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 8px;
+}
+
+.novidade-grupo.novo .novidade-grupo-titulo { color: var(--verde); }
+.novidade-grupo.melhorado .novidade-grupo-titulo { color: var(--accent); }
+.novidade-grupo.fix .novidade-grupo-titulo { color: var(--laranja); }
+
+.novidade-linha {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--texto);
+    padding: 6px 0 6px 12px;
+    border-left: 2px solid var(--borda);
+    margin-bottom: 4px;
+}
+
+.novidade-emoji {
+    margin-right: 6px;
+}
+
+.novidade-grupo.novo .novidade-linha { border-left-color: color-mix(in srgb, var(--verde) 45%, transparent); }
+.novidade-grupo.melhorado .novidade-linha { border-left-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.novidade-grupo.fix .novidade-linha { border-left-color: color-mix(in srgb, var(--laranja) 45%, transparent); }
+
+.novidade-versao {
+    font-size: 11px;
+    color: var(--texto-muted);
+    text-align: right;
+    margin: 14px 0 0;
+}
+
+/* ── Painel de notificações (sidebar.js: toggleNotificacoes) ──
+   Excluir 1 ou "Limpar" tudo animava sumindo na hora (o painel inteiro era
+   destruido/reconstruido, nunca passava pela transicao do .modal-overlay
+   que ja existe) - agora cada linha encolhe/esmaece antes de sair do DOM.
+   max-height precisa ser setado via JS (scrollHeight atual) antes de
+   aplicar essa classe, senao a transicao de max-height nao tem de onde
+   partir. */
+.notif-item {
+    overflow: hidden;
+    /* JS (_excluirNotificacao/_limparNotificacoes, sidebar.js) tem os
+       mesmos números em ms - trocar aqui sem trocar lá desalinha a
+       remoção do DOM da transição visual. */
+    transition: opacity .4s ease, max-height .4s ease, margin .4s ease, padding .4s ease;
+}
+
+.notif-item-saindo {
+    opacity: 0;
+    max-height: 0 !important;
+    margin: 0;
+    padding: 0;
+}
+
+.notif-item-close {
+    flex-shrink: 0;
+    margin-top: 8px;
+    width: 22px;
+    height: 22px;
+    border: none;
+    background: none;
+    color: var(--texto-muted);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background .15s, color .15s;
+}
+
+.notif-item-close:hover {
+    background: var(--page-bg);
+    color: var(--texto);
+}
+
+.perfil-settings {
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-xs);
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--texto-muted);
+    flex-shrink: 0;
+}
+
+.perfil-settings svg {
+    width: 15px;
+    height: 15px;
+}
+
+.perfil-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 6px 0 20px;
+}
+
+.perfil-secao {
+    padding: 10px 18px;
+}
+
+.perfil-secao-titulo {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--texto-muted);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 8px;
+}
+
+/* ── Bloco "Informações da conta" (Setor/Função/Último acesso/Sessão) ── */
+
+.perfil-info-lista {
+    display: flex;
+    flex-direction: column;
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.perfil-info-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--borda);
+}
+
+.perfil-info-item:last-child {
+    border-bottom: none;
+}
+
+.perfil-info-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-xs);
+    background: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.perfil-info-icon svg {
+    width: 15px;
+    height: 15px;
+    stroke: var(--texto-muted);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.perfil-info-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.perfil-info-label {
+    font-size: 10.5px;
+    color: var(--texto-muted);
+    font-weight: 500;
+}
+
+.perfil-info-valor {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--texto);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.perfil-opcao {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 11px 18px;
+    font-family: inherit;
+    font-size: 13.5px;
+    color: var(--texto-muted);
+    cursor: pointer;
+    text-align: left;
+    font-weight: 500;
+    transition: background .15s;
+}
+
+.perfil-opcao:hover {
+    background: var(--page-bg);
+    color: var(--texto);
+}
+
+.perfil-opcao svg {
+    width: 16px;
+    height: 16px;
+}
+
+.perfil-opcao .chevron {
+    margin-left: auto;
+    width: 15px;
+    height: 15px;
+}
+
+.tema-opcoes {
+    display: flex;
+    gap: 7px;
+    padding: 0 18px 8px;
+}
+
+.tema-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background: var(--page-bg);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-xs);
+    padding: 9px 5px;
+    font-family: inherit;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--texto-muted);
+    cursor: pointer;
+    transition: .15s;
+}
+
+.tema-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.tema-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+}
+
+/* Coral isolado no icone de sol, petroleo no de lua - nunca no restante do botao */
+.tema-btn[data-valor-tema="claro"] svg {
+    color: var(--avatar);
+}
+
+.tema-btn[data-valor-tema="escuro"] svg {
+    color: var(--petroleo);
+}
+
+/* Esconde a opção "Sistema" no celular - deixa só Claro/Escuro. A lógica
+   de detectar preferência do SO (prefers-color-scheme, tema.js) continua
+   funcionando igual em qualquer tela, só o botão manual some. */
+
+.perfil-sair {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: color-mix(in srgb, var(--vermelho) 10%, transparent);
+    color: var(--vermelho);
+    border: 1px solid color-mix(in srgb, var(--vermelho) 35%, transparent);
+    border-radius: var(--radius-xs);
+    padding: 11px 14px;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: auto 18px 0;
+    transition: background .15s;
+}
+
+.perfil-sair:hover {
+    background: color-mix(in srgb, var(--vermelho) 18%, transparent);
+}
+
+.perfil-sair svg {
+    width: 17px;
+    height: 17px;
+}
+
+
+/* ── Bottom nav (mobile) ── */
+
+.bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--bottom-nav-h);
+    background: var(--sidebar-bg);
+    border-top: 1px solid rgba(255, 255, 255, .07);
+    z-index: 200;
+    padding: 0 8px;
+    padding-bottom: env(safe-area-inset-bottom);
+    transition: background-color .25s ease;
+}
+
+.bottom-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.bnav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    color: var(--texto-side);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 600;
+    flex: 1;
+    justify-content: center;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    transition: .15s;
+}
+
+.bnav-item svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.bnav-item.active {
+    color: var(--accent);
+}
+
+
+/* ── Menu mobile (painel com os módulos que a bottom-nav não tem espaço
+   pra mostrar direto - Estoque/CMV/CMO/CMC/Beneficiamento/Avarias/
+   Checklists/Manutenção/Requisição/Relatórios/Configurações) - mesmo
+   padrão visual/mecânico do .perfil-painel (overlay + painel deslizante),
+   só que abre pela ESQUERDA (perfil abre pela direita) pra não confundir
+   os dois. Populado em runtime por sidebar.js (clona os links já
+   filtrados por plano/papel de .sidebar-nav, não duplica a lista aqui). ──*/
+
+.menu-mobile-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .3);
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+
+.menu-mobile-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-mobile-painel {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100%;
+    background: var(--sidebar-bg);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, .12);
+    transition: left .3s ease, background-color .25s ease;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 18px 10px;
+}
+
+.menu-mobile-overlay.show .menu-mobile-painel {
+    left: 0;
+}
+
+.menu-mobile-titulo {
+    color: var(--texto-side);
+    opacity: .55;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    padding: 8px 12px 10px;
+}
+
+.menu-mobile-painel .nav-item {
+    padding: 11px 12px;
+    border-radius: var(--radius-sm, 10px);
+}
+
+.menu-mobile-painel .nav-item.active {
+    background: rgba(255, 255, 255, .08);
+}
+
+
+/* ── Responsivo ── */
+
+/* Alvo de toque mínimo - só os botões do dropdown de Exportar/Mais opções
+   (38px); o resto do sistema (.period-tab, .topbar-notif, etc, 36px) é um
+   padrão mais antigo, registrado em docs/BACKLOG_FRONT.md pra rodada própria. */
+
+/* ══════════════════════════════════════════════
+   TOAST (padrão global - ver mostrarToast em sidebar.js)
+═══════════════════════════════════════════════ */
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: min(420px, calc(1680px - 48px));
+    background: var(--texto);
+    color: var(--page-bg);
+    padding: 12px 14px 12px 20px;
+    border-radius: var(--radius-sm, 8px);
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 9999;
+    box-shadow: var(--shadow-md);
+    transform: translateY(80px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all .3s ease;
+}
+.toast.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.toast.sucesso { background: color-mix(in srgb, var(--verde) 55%, black); color: #fff; }
+.toast.erro { background: var(--vermelho); color: #fff; }
+/* Aviso não-bloqueante - não é erro nem sucesso, só "atenção" informativo. */
+.toast.aviso { background: var(--laranja); color: #fff; }
+.toast-fechar {
+    background: none;
+    border: none;
+    color: inherit;
+    opacity: .75;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 2px;
+}
+.toast-fechar:hover { opacity: 1; }
+/* ══════════════════════════════════════════════════
+   WIDGET DE CHAT COM A IA
+   Injetado via JS (src/scripts/ia_chat.js) em toda página do dashboard,
+   só quando GET /ia/status confirma disponível - nunca aparece
+   "morto"/desabilitado pra quem não tem acesso.
+   ══════════════════════════════════════════════════ */
+
+.ia-chat-fab {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 900;
+    transition: transform .15s, box-shadow .15s;
+}
+.ia-chat-fab:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 28px rgba(46, 143, 227, .4);
+}
+.ia-chat-fab:active {
+    transform: scale(.96);
+}
+.ia-chat-fab img {
+    width: 26px;
+    height: 26px;
+}
+
+.ia-chat-painel {
+    position: fixed;
+    right: 24px;
+    bottom: 92px;
+    width: 340px;
+    max-width: calc(1680px - 32px);
+    height: 460px;
+    max-height: calc(100% - 140px);
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px) scale(.97);
+    transition: opacity .18s ease, transform .18s ease, visibility .18s;
+}
+.ia-chat-painel.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.ia-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: var(--accent);
+    color: #fff;
+    flex-shrink: 0;
+}
+.ia-chat-header-titulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+}
+.ia-chat-fechar {
+    background: rgba(255, 255, 255, .16);
+    border: none;
+    border-radius: var(--radius-xs);
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    transition: background .15s;
+    flex-shrink: 0;
+}
+.ia-chat-fechar:hover {
+    background: rgba(255, 255, 255, .28);
+}
+
+.ia-chat-periodo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--borda);
+    flex-shrink: 0;
+}
+.ia-chat-periodo-lbl {
+    font-size: 11px;
+    color: var(--texto-muted);
+    white-space: nowrap;
+}
+/* .period-tabs/.period-tab já existem como padrão do projeto (estoque.css/
+   relatorio.css/etc, duplicado por página) - aqui é a única instância
+   que precisa viver no CSS global, já que o widget é injetado em toda
+   página (inclusive as que nunca declararam essas classes no próprio
+   CSS, ex: Configurações). */
+.ia-chat-periodo .period-tabs {
+    display: flex;
+    gap: 3px;
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 3px;
+}
+.ia-chat-periodo .period-tab {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    border-radius: var(--radius-xs);
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--texto-muted);
+    cursor: pointer;
+    font-family: inherit;
+    transition: .15s;
+}
+.ia-chat-periodo .period-tab.active {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.ia-chat-mensagens {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scrollbar-width: thin;
+}
+
+.ia-chat-msg {
+    max-width: 85%;
+    padding: 9px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.ia-chat-msg-ia {
+    align-self: flex-start;
+    background: var(--page-bg);
+    color: var(--texto);
+    border: 1px solid var(--borda);
+}
+.ia-chat-msg-usuario {
+    align-self: flex-end;
+    background: var(--accent);
+    color: #fff;
+}
+.ia-chat-msg-erro {
+    align-self: flex-start;
+    background: rgba(239, 68, 68, .12);
+    color: var(--vermelho);
+    border: 1px solid rgba(239, 68, 68, .3);
+}
+.ia-chat-carregando {
+    opacity: .7;
+    font-style: italic;
+}
+
+.ia-chat-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    border-top: 1px solid var(--borda);
+    flex-shrink: 0;
+}
+.ia-chat-input-wrap input {
+    flex: 1;
+    height: 38px;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    background: var(--page-bg);
+    color: var(--texto);
+    padding: 0 12px;
+    font-size: 13px;
+    font-family: inherit;
+}
+.ia-chat-input-wrap input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+.ia-chat-input-wrap button {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: opacity .15s;
+}
+.ia-chat-input-wrap button:hover {
+    opacity: .88;
+}
+.ia-chat-input-wrap button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* ≤768px (mesmo breakpoint da .bottom-nav) - .bottom-nav é display:none
+   por padrão hoje, não soma mais var(--bottom-nav-h) aqui, só um respiro
+   pequeno do canto pra não colar na borda da tela. */
+
+
+
+/* ═══════════════════════════════════════════════════
+   TEMA-ESCURO.CSS
+   Inclua este arquivo DEPOIS do dashboard.css em
+   todas as páginas. Ativa via [data-tema="escuro"]
+   no <html>.
+═══════════════════════════════════════════════════ */
+
+.gc-demo[data-tema="escuro"] {
+    --page-bg:      #0A1216;
+    --card-bg:      #1D303A;
+    --sidebar-bg:   #14232B;
+    --accent:       #2E8FE3;
+    --accent-light: #20415A;
+    --petroleo:     #7C97A4;
+    --texto:        #EAF1F3;
+    --texto-muted:  #9DB2BA;
+    --texto-side:   #7E96A2;
+    --borda:        #2E4650;
+    --verde:        #3FB37E;
+    --vermelho:     #f87171;
+    --laranja:      #fb923c;
+    --azul:         #7B88D9;
+    --ciano:        #22d3ee;
+    --dourado:      #D9B54A;
+    --shadow:       0 2px 12px rgba(3,8,10,.45);
+    --shadow-md:    0 4px 24px rgba(3,8,10,.65);
+}
+
+.gc-demo[data-tema="escuro"] { background: var(--page-bg); color: var(--texto); }
+
+/* ── Sidebar / topbar ── */
+.gc-demo[data-tema="escuro"] .sidebar { background: var(--sidebar-bg); }
+.gc-demo[data-tema="escuro"] .topbar  { background: var(--card-bg); border-bottom-color: var(--borda); }
+
+.gc-demo[data-tema="escuro"] .nav-item { color: var(--texto-side); }
+.gc-demo[data-tema="escuro"] .nav-item:hover { background: rgba(255,255,255,.06); color: #fff; }
+.gc-demo[data-tema="escuro"] .nav-item.active { background: var(--accent); color: #fff; }
+
+.gc-demo[data-tema="escuro"] .sidebar-user:hover { background: rgba(255,255,255,.06); }
+
+.gc-demo[data-tema="escuro"] .hamburger:hover { background: rgba(255,255,255,.08); }
+.gc-demo[data-tema="escuro"] .hamburger span { background: var(--texto-side); }
+
+.gc-demo[data-tema="escuro"] .topbar-notif { background: var(--page-bg); border-color: var(--borda); color: var(--texto-muted); }
+
+/* ── Banner ── */
+.gc-demo[data-tema="escuro"] .banner { background: linear-gradient(120deg, #4b3fb0 0%, #6657d6 60%, #7f6fe0 100%); }
+.gc-demo[data-tema="escuro"] .banner-desc { color: rgba(255,255,255,.6); }
+
+/* ── Cards (métricas / seções / acesso rápido) ── */
+.gc-demo[data-tema="escuro"] .metric-card,
+.gc-demo[data-tema="escuro"] .section-card,
+.gc-demo[data-tema="escuro"] .qa-card {
+    background: var(--card-bg);
+    border-color: var(--borda);
+}
+
+.gc-demo[data-tema="escuro"] .metric-value,
+.gc-demo[data-tema="escuro"] .section-card-title,
+.gc-demo[data-tema="escuro"] .mov-nome,
+.gc-demo[data-tema="escuro"] .qa-label,
+.gc-demo[data-tema="escuro"] .legend-value {
+    color: var(--texto);
+}
+
+.gc-demo[data-tema="escuro"] .metric-label,
+.gc-demo[data-tema="escuro"] .metric-change-label,
+.gc-demo[data-tema="escuro"] .mov-detalhe,
+.gc-demo[data-tema="escuro"] .qa-sub,
+.gc-demo[data-tema="escuro"] .legend-label,
+.gc-demo[data-tema="escuro"] .section-title,
+.gc-demo[data-tema="escuro"] .subgreeting {
+    color: var(--texto-muted);
+}
+
+.gc-demo[data-tema="escuro"] .qa-card:hover { border-color: var(--accent); }
+
+/* ── Ícones de métrica / acesso rápido ── */
+.gc-demo[data-tema="escuro"] .metric-icon.green,
+.gc-demo[data-tema="escuro"] .qa-icon.green   { background: #14321f; color: var(--verde); }
+.gc-demo[data-tema="escuro"] .metric-icon.red,
+.gc-demo[data-tema="escuro"] .qa-icon.red     { background: #341616; color: var(--vermelho); }
+.gc-demo[data-tema="escuro"] .metric-icon.orange,
+.gc-demo[data-tema="escuro"] .qa-icon.orange  { background: #3a230d; color: var(--laranja); }
+.gc-demo[data-tema="escuro"] .metric-icon.blue,
+.gc-demo[data-tema="escuro"] .qa-icon.blue    { background: #1B1E3D; color: var(--azul); }
+.gc-demo[data-tema="escuro"] .metric-icon.purple,
+.gc-demo[data-tema="escuro"] .qa-icon.purple  { background: var(--accent-light); color: var(--accent); }
+.gc-demo[data-tema="escuro"] .metric-icon.teal,
+.gc-demo[data-tema="escuro"] .qa-icon.teal    { background: #0d2e36; color: var(--ciano); }
+
+/* ── Movimentações ── */
+.gc-demo[data-tema="escuro"] .mov-item { border-bottom-color: var(--borda); }
+.gc-demo[data-tema="escuro"] .mov-icon.entrada { background: #14321f; color: var(--verde); }
+.gc-demo[data-tema="escuro"] .mov-icon.saida   { background: #341616; color: var(--vermelho); }
+.gc-demo[data-tema="escuro"] .mov-icon.ajuste  { background: #1B1E3D; color: var(--azul); }
+.gc-demo[data-tema="escuro"] .mov-valor.positivo { color: var(--verde); }
+.gc-demo[data-tema="escuro"] .mov-valor.negativo { color: var(--vermelho); }
+
+/* ── Gráfico donut ── */
+.gc-demo[data-tema="escuro"] .donut-svg circle:not(.seg) { stroke: var(--borda) !important; }
+.gc-demo[data-tema="escuro"] #donut-total { fill: var(--texto) !important; }
+.gc-demo[data-tema="escuro"] .donut-svg text:last-of-type { fill: var(--texto-muted) !important; }
+
+/* ── Painel de perfil ── */
+.gc-demo[data-tema="escuro"] .perfil-painel { background: var(--card-bg); }
+.gc-demo[data-tema="escuro"] .perfil-header { border-bottom-color: var(--borda); }
+.gc-demo[data-tema="escuro"] .perfil-info strong { color: var(--texto); }
+.gc-demo[data-tema="escuro"] .perfil-info span,
+.gc-demo[data-tema="escuro"] .perfil-secao-titulo,
+.gc-demo[data-tema="escuro"] .perfil-opcao { color: var(--texto-muted); }
+.gc-demo[data-tema="escuro"] .perfil-opcao:hover { background: rgba(255,255,255,.06); color: var(--texto); }
+.gc-demo[data-tema="escuro"] .perfil-settings { background: var(--page-bg); border-color: var(--borda); color: var(--texto-muted); }
+
+/* Badge "Administrador" no cabeçalho do perfil — usa --accent, não mais hex fixo */
+.gc-demo[data-tema="escuro"] .perfil-badge { background: var(--accent-light); color: var(--accent); }
+
+/* Achado real: [data-tema="escuro"] .perfil-badge (acima) tem especificidade
+   maior que .papel-desenvolvedor/.papel-dono/.papel-gerente/.papel-peao
+   (dashboard.css), entao no escuro TODO badge de papel virava a cor do
+   accent, perdendo a distincao por papel - bug pre-existente, so ficou
+   visivel agora. Reafirma a cor de cada papel tambem no escuro. */
+.gc-demo[data-tema="escuro"] .papel-dono { background: color-mix(in srgb, #f59e0b 16%, transparent); color: #f59e0b; }
+.gc-demo[data-tema="escuro"] .papel-gerente { background: color-mix(in srgb, var(--azul) 16%, transparent); color: var(--azul); }
+.gc-demo[data-tema="escuro"] .papel-peao { background: var(--page-bg); color: var(--texto-muted); }
+
+/* ── Bloco "Informações da conta" ── */
+.gc-demo[data-tema="escuro"] .perfil-info-lista { background: var(--page-bg); border-color: var(--borda); }
+.gc-demo[data-tema="escuro"] .perfil-info-item { border-bottom-color: var(--borda); }
+.gc-demo[data-tema="escuro"] .perfil-info-icon { background: var(--card-bg); }
+.gc-demo[data-tema="escuro"] .perfil-info-icon svg { stroke: var(--texto-muted); }
+.gc-demo[data-tema="escuro"] .perfil-info-label { color: var(--texto-muted); }
+.gc-demo[data-tema="escuro"] .perfil-info-valor { color: var(--texto); }
+
+/* Botões de tema (Claro/Escuro/Sistema) — era aqui o bug de cor:
+   o estado ativo usava um hex fixo (#a89bff) diferente do --accent
+   real do tema escuro (#7c6fff). Corrigido para usar a variável. */
+.gc-demo[data-tema="escuro"] .tema-btn { background: var(--page-bg); border-color: var(--borda); color: var(--texto-muted); }
+.gc-demo[data-tema="escuro"] .tema-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+
+/* ── Bottom nav (mobile) ── */
+.gc-demo[data-tema="escuro"] .bottom-nav { background: var(--sidebar-bg); border-top-color: var(--borda); }
+.gc-demo[data-tema="escuro"] .bnav-item { color: var(--texto-side); }
+.gc-demo[data-tema="escuro"] .bnav-item.active { color: var(--accent); }
+
+/* ── Scrollbar sutil ── */
+.gc-demo[data-tema="escuro"] * { scrollbar-color: var(--borda) transparent; scrollbar-width: thin; }
+
+/* ===================================================================
+   SHELL DO MINI SISTEMA (escrito à mão, entra no fim de demo/base.css)
+   Vive DENTRO do Shadow DOM de #gcDemo: nada daqui vaza pro site e o
+   CSS do site não entra aqui.
+   =================================================================== */
+
+:host {
+  /* Propriedades herdadas (color, line-height, text-align, font...) atravessam o
+     shadow boundary: sem isso o body do SITE (line-height 1.6 etc.) mudaria o
+     layout do sistema. `all: initial` corta a herança na raiz do demo. */
+  all: initial;
+  display: block;
+}
+
+/* wrapper visível: `.gc-viewport` rola na horizontal só em telas muito
+   estreitas (a escala mínima é 55%); `.gc-demo` (sistema) é desenhado em
+   ~1680px e escalado por transform - o transform também o torna o
+   containing block dos `position:fixed` (modais, toast) do sistema. */
+.gc-viewport {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px #2E4650; /* sem border: border reduz o clientWidth e gerava rolagem falsa */
+  background: #0A1216;
+}
+.gc-scaler { position: relative; margin: 0 auto; }
+.gc-demo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  /* clip (não hidden): hidden ainda deixa scrollIntoView()/focus() rolar o
+     wrapper inteiro e deslocar sidebar+topbar */
+  overflow: clip;
+}
+.gc-hint {
+  margin: 8px 0 0;
+  text-align: center;
+  font: 600 12px/1.4 'Manrope', system-ui, sans-serif;
+  color: #9DB2BA;
+}
+
+/* ---- layout: o sistema original rolava o DOCUMENTO; aqui só a área
+   de conteúdo rola (sidebar e topbar ficam fixas no wrapper) ---- */
+.gc-demo .layout { height: 100%; min-height: 0; }
+.gc-demo .sidebar { height: 100%; position: relative; }
+.gc-demo .layout { overflow: clip; }
+.gc-demo .main { height: 100%; min-height: 0; overflow: clip; }
+.gc-demo .topbar { flex-shrink: 0; }
+.gc-demo .gc-actions, .gc-demo .gc-tail { display: contents; }
+.gc-demo .gc-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable; /* igual o original (html{scrollbar-gutter}): tela curta e tela longa com a mesma largura */
+}
+.gc-demo .gc-scroll.gc-side {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  align-items: start;
+}
+.gc-demo .gc-scroll .content { min-width: 0; }
+
+/* ---- itens da sidebar sem tela interativa ---- */
+.gc-demo .nav-item.gc-locked { opacity: .5; cursor: not-allowed; }
+.gc-demo .nav-item.gc-locked:hover { background: transparent; color: var(--texto-side); }
+.gc-demo .nav-item .gc-lock { width: 13px; height: 13px; margin-left: auto; flex-shrink: 0; opacity: .8; }
+.gc-demo .sidebar.collapsed .gc-lock { display: none; }
+
+/* ---- abas (CMC/Caixa, DRE/Curva ABC/Insights) ---- */
+.gc-demo .gc-subnav {
+  display: flex;
+  gap: 4px;
+  padding: 0 28px;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--borda);
+  flex-shrink: 0;
+}
+.gc-demo .gc-subnav[hidden], .gc-demo .gc-sidemenu[hidden] { display: none; }
+.gc-demo .gc-tab {
+  appearance: none;
+  border: 0;
+  background: none;
+  font: 700 13px 'Manrope', sans-serif;
+  color: var(--texto-muted);
+  padding: 13px 16px 11px;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color .15s, border-color .15s;
+}
+.gc-demo .gc-tab:hover { color: var(--texto); }
+.gc-demo .gc-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ---- menu lateral interno (Configurações) ---- */
+.gc-demo .gc-sidemenu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px 0 24px 28px;
+  position: sticky;
+  top: 0;
+}
+.gc-demo .gc-sidebtn {
+  appearance: none;
+  border: 1px solid transparent;
+  background: none;
+  text-align: left;
+  font: 700 13px 'Manrope', sans-serif;
+  color: var(--texto-muted);
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.gc-demo .gc-sidebtn:hover { background: var(--card-bg); color: var(--texto); }
+.gc-demo .gc-sidebtn.active { background: var(--accent-light); color: var(--accent); }
+
+/* ---- botões de topbar que só existem aqui ---- */
+.gc-demo button.topbar-notif { font: inherit; padding: 0; }
+.gc-demo :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

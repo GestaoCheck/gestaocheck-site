@@ -1,0 +1,451 @@
+
+/* ═══════════════════════════════════════════════════
+   CMV.CSS — herda dashboard.css + tema-escuro.css
+   Não redeclara sidebar/topbar/perfil (já no base).
+═══════════════════════════════════════════════════ */
+
+/* ── Topbar do CMV — apenas extras ── */
+.topbar-left { display: flex; flex-direction: column; gap: 2px; }
+.page-title  { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: var(--texto); }
+.page-sub    { font-size: 12px; color: var(--texto-muted); margin-top: 1px; }
+
+/* ── Period tabs ── */
+.period-tabs {
+    display: flex; gap: 4px;
+    background: var(--card-bg); border: 1px solid var(--borda);
+    border-radius: var(--radius-sm); padding: 4px;
+}
+.period-tab {
+    background: none; border: none; padding: 9px 14px; border-radius: var(--radius-xs);
+    font-size: 13px; font-weight: 600; color: var(--texto-muted);
+    cursor: pointer; font-family: inherit; transition: .15s;
+}
+.period-tab.active  { background: var(--accent-light); color: var(--accent); }
+.period-tab:not(.active):hover { color: var(--texto); }
+
+/* ── Botões ── */
+.btn { display: inline-flex; align-items: center; gap: 7px; border: none; border-radius: var(--radius-sm); padding: 9px 16px; font-size: 13px; font-weight: 600; font-family: inherit; cursor: pointer; transition: .15s; white-space: nowrap; }
+.btn-outline  { background: var(--card-bg); color: var(--texto-muted); border: 1.5px solid var(--borda); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary  { background: var(--accent); color: #fff; }
+.btn-primary:hover { opacity: .88; }
+.btn-sm { padding: 7px 12px; font-size: 12.5px; }
+
+/* Botão de importar - mesmo visual de .btn-importar em styles/estoque.css
+   (chip contornado na cor do accent, com ícone), duplicado aqui de
+   propósito (independência por página, ver CLAUDE.md). */
+.btn-importar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--page-bg);
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .2s;
+    white-space: nowrap;
+}
+.btn-importar:hover { background: var(--accent-light); }
+.btn-importar svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+
+/* Variante de alerta do .btn-outline - nunca escrever style= cru pra cor
+   de alerta, ver CLAUDE.md. */
+.btn-outline-alerta {
+    color: var(--laranja);
+    border-color: var(--laranja);
+}
+.btn-outline-alerta:hover { background: color-mix(in srgb, var(--laranja) 12%, transparent); }
+
+/* ── Abas de seção (Visão / Produtos / Ficha / Vendas / Estoque / Relatorio) ── */
+/* overflow-y:hidden explícito - ver nota idêntica em cmc.css/.secao-tabs
+   (overflow-x:auto sozinho ativa scroll vertical indesejado quando o
+   conteúdo fica só 1-2px mais alto que a faixa). */
+.tabs-nav {
+    display: flex; gap: 4px; overflow-x: auto; overflow-y: hidden;
+    border-bottom: 1px solid var(--borda);
+    padding: 0 2px;
+}
+.tab {
+    background: none; border: none; border-bottom: 2.5px solid transparent;
+    padding: 12px 16px; font-family: inherit; font-size: 13.5px; font-weight: 600;
+    color: var(--texto-muted); cursor: pointer; white-space: nowrap; transition: .15s;
+}
+.tab:hover { color: var(--texto); }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ── Cards genéricos ── */
+.card {
+    background: var(--card-bg); border: 1px solid var(--borda);
+    border-radius: var(--radius); padding: 20px;
+    box-shadow: var(--shadow);
+}
+.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
+.card-title  { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; color: var(--texto); }
+.card-sub    { font-size: 12px; color: var(--texto-muted); margin-top: 2px; }
+.card-link   { font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none; background: none; border: none; font-family: inherit; cursor: pointer; }
+.card-link:hover { text-decoration: underline; }
+.card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ── Hero cards (faturamento / custo / margem) ── */
+.cmv-hero { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.cmv-hero-card {
+    background: var(--card-bg); border: 1px solid var(--borda);
+    border-radius: var(--radius); padding: 18px 20px;
+    display: flex; flex-direction: column; gap: 6px;
+    box-shadow: var(--shadow);
+}
+.cmv-hero-card .lbl  { font-size: 11.5px; color: var(--texto-muted); font-weight: 500; }
+.cmv-hero-card .val  { font-size: 26px; font-weight: 800; color: var(--texto); line-height: 1.1; }
+.cmv-hero-card .val.accent { color: var(--accent); }
+
+/* ── Estoque por setor/categoria (aba Estoque do CMV) ── */
+.setor-cards-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 14px;
+}
+.setor-card {
+    background: var(--page-bg); border: 1px solid var(--borda);
+    border-radius: var(--radius); padding: 16px 18px;
+    display: flex; flex-direction: column; gap: 6px;
+    cursor: pointer; text-align: left; font-family: inherit;
+    transition: .15s;
+}
+.setor-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.setor-card .lbl { font-size: 12.5px; font-weight: 700; color: var(--texto); }
+.setor-card .val { font-size: 20px; font-weight: 800; color: var(--accent); }
+.setor-card .sub { font-size: 11px; color: var(--texto-muted); }
+
+/* ── Card de status do CMV (ring central + meta) ── */
+.cmv-status-row { display: grid; grid-template-columns: 220px 1fr; gap: 14px; }
+.cmv-status-card {
+    background: var(--card-bg); border: 1px solid var(--borda);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+    padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
+}
+.cmv-ring-num { font-size: 22px; font-weight: 800; fill: var(--texto); }
+.cmv-status { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: var(--radius-lg); }
+.cmv-status.ok   { background: #dcfce7; color: #16a34a; }
+.cmv-status.warn { background: #ffedd5; color: #ea580c; }
+.cmv-status.bad  { background: #fee2e2; color: #dc2626; }
+.gc-demo[data-tema="escuro"] .cmv-status.ok   { background: #14321f; color: var(--verde); }
+.gc-demo[data-tema="escuro"] .cmv-status.warn { background: #3a230d; color: var(--laranja); }
+.gc-demo[data-tema="escuro"] .cmv-status.bad  { background: #341616; color: var(--vermelho); }
+.cmv-status-meta { font-size: 11.5px; color: var(--texto-muted); }
+.cmv-status-meta strong { color: var(--texto); font-weight: 700; }
+
+/* ── Metric mini-cards (linha de 6) ── */
+.metrics-cmv { display: grid; grid-template-columns: repeat(6,1fr); gap: 12px; }
+.metrics-cmv .metric-card { padding: 16px; }
+.metrics-cmv .metric-value { font-size: 19px; }
+.metric-trend { font-size: 10.5px; font-weight: 700; margin-top: 2px; }
+.metric-trend.up   { color: var(--verde); }
+.metric-trend.down { color: var(--vermelho); }
+
+/* ── Gráfico de barras (evolução mensal) ── */
+.bar-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; }
+/* Clicável (drill-down pro mês) - mesmo padrão de cmo.css/cmc.css. */
+.bar-row-btn { background: none; border: none; width: 100%; font-family: inherit; cursor: pointer; border-radius: var(--radius-sm); transition: background-color .15s; }
+.bar-row-btn:hover { background: var(--page-bg); }
+.bar-label { width: 34px; font-size: 11.5px; color: var(--texto-muted); font-weight: 600; flex-shrink: 0; text-align: left; }
+.bar-track { flex: 1; height: 9px; border-radius: var(--radius-lg); background: var(--page-bg); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: var(--radius-lg); transition: width .4s ease; }
+.bar-fill.green  { background: var(--verde); }
+.bar-fill.orange { background: var(--laranja); }
+.bar-fill.red    { background: var(--vermelho); }
+.bar-val { width: 48px; text-align: right; font-size: 12px; font-weight: 700; color: var(--texto); flex-shrink: 0; }
+
+/* ── Donut de composição de custos ── */
+.donut-wrap { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.donut-svg-sm { flex-shrink: 0; width: 130px; height: 130px; }
+.donut-legend { display: flex; flex-direction: column; gap: 9px; flex: 1; min-width: 160px; }
+.donut-leg-item { display: flex; align-items: center; gap: 8px; }
+.donut-leg-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.donut-leg-name { font-size: 12px; color: var(--texto-muted); flex: 1; }
+.donut-leg-val { font-size: 12px; font-weight: 700; color: var(--texto); }
+
+/* ── Alertas ── */
+.alert-item { display: flex; align-items: flex-start; gap: 11px; padding: 11px 0; border-bottom: 1px solid var(--borda); }
+.alert-item:last-child { border-bottom: none; padding-bottom: 0; }
+.alert-icon { width: 30px; height: 30px; border-radius: var(--radius-xs); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.alert-icon svg { width: 15px; height: 15px; }
+.alert-item.ok .alert-icon   { background: #dcfce7; color: #16a34a; }
+.alert-item.warn .alert-icon { background: #ffedd5; color: #ea580c; }
+.alert-item.bad .alert-icon  { background: #fee2e2; color: #dc2626; }
+.gc-demo[data-tema="escuro"] .alert-item.ok .alert-icon   { background: #14321f; color: var(--verde); }
+.gc-demo[data-tema="escuro"] .alert-item.warn .alert-icon { background: #3a230d; color: var(--laranja); }
+.gc-demo[data-tema="escuro"] .alert-item.bad .alert-icon  { background: #341616; color: var(--vermelho); }
+.alert-text { font-size: 13px; font-weight: 700; color: var(--texto); }
+.alert-sub  { font-size: 11.5px; color: var(--texto-muted); margin-top: 1px; }
+
+/* ── Ranking de produtos ── */
+.rank-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--borda); }
+.rank-item:last-child { border-bottom: none; padding-bottom: 0; }
+.rank-pos { width: 26px; height: 26px; border-radius: var(--radius-xs); background: var(--page-bg); color: var(--texto-muted); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.rank-pos.top { background: var(--accent-light); color: var(--accent); }
+.rank-info { flex: 1; min-width: 0; }
+.rank-name { font-size: 13px; font-weight: 700; color: var(--texto); }
+.rank-cat  { font-size: 11px; color: var(--texto-muted); margin-top: 1px; }
+.rank-val  { font-size: 13px; font-weight: 700; color: var(--texto); }
+.rank-cmv  { font-size: 11px; font-weight: 700; margin-top: 1px; }
+.rank-cmv.ok   { color: var(--verde); }
+.rank-cmv.warn { color: var(--laranja); }
+.rank-cmv.bad  { color: var(--vermelho); }
+
+/* ── Badges / tags genéricos (usados em várias tabelas) ── */
+.badge { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-lg); }
+.badge.ok   { background: #dcfce7; color: #16a34a; }
+.badge.warn { background: #ffedd5; color: #ea580c; }
+.badge.bad  { background: #fee2e2; color: #dc2626; }
+.gc-demo[data-tema="escuro"] .badge.ok   { background: #14321f; color: var(--verde); }
+.gc-demo[data-tema="escuro"] .badge.warn { background: #3a230d; color: var(--laranja); }
+.gc-demo[data-tema="escuro"] .badge.bad  { background: #341616; color: var(--vermelho); }
+
+.tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: var(--radius-lg); background: var(--page-bg); color: var(--texto-muted); border: 1px solid var(--borda); }
+
+.text-green  { color: var(--verde); font-weight: 700; }
+.text-orange { color: var(--laranja); font-weight: 700; }
+.text-red    { color: var(--vermelho); font-weight: 700; }
+
+.btn-remove {
+    background: #fee2e2; color: #dc2626; border: none; border-radius: var(--radius-xs);
+    padding: 5px 11px; cursor: pointer; font-size: 12px; font-weight: 700; font-family: inherit;
+}
+.btn-remove:hover { opacity: .85; }
+.gc-demo[data-tema="escuro"] .btn-remove { background: #341616; color: var(--vermelho); }
+
+/* ── Tabela ── */
+.table-wrap { overflow-x: auto; }
+/* min-width:max-content - width:100% sozinho impede a tabela de crescer
+   além do .table-wrap, então em vez de rolar (que é o motivo do
+   overflow-x:auto existir), as colunas espremem e o texto quebra letra a
+   letra numa coluna minúscula. min-width:max-content garante que a
+   tabela só encolhe até onde as colunas cabem confortavelmente - no
+   desktop width:100% ainda vale (100% > max-content), no mobile ela
+   cresce e o wrap rola de verdade. */
+table { width: 100%; min-width: max-content; border-collapse: collapse; font-size: 13px; }
+thead tr { background: var(--page-bg); }
+th { padding: 11px 16px; text-align: left; font-size: 10.5px; font-weight: 700; color: var(--texto-muted); text-transform: uppercase; letter-spacing: .5px; white-space: nowrap; border-bottom: 1px solid var(--borda); }
+td { padding: 12px 16px; border-bottom: 1px solid var(--borda); color: var(--texto); vertical-align: middle; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--page-bg); }
+.pct-pill { font-size: 12px; font-weight: 700; color: var(--accent); }
+
+.empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 2rem; color: var(--texto-muted); text-align: center; }
+.empty p { font-size: 13px; }
+
+/* ── Filtros (aba Produtos) ── */
+.filtros-row { display: flex; gap: 10px; flex-wrap: wrap; flex: 1; }
+.input-busca, .select-filtro {
+    height: 38px; border: 1.5px solid var(--borda); border-radius: var(--radius-xs);
+    padding: 0 12px; font-size: 13px; font-family: inherit;
+    color: var(--texto); background: var(--page-bg); outline: none; transition: border-color .2s;
+}
+.input-busca { flex: 1; min-width: 180px; }
+.input-busca:focus, .select-filtro:focus { border-color: var(--accent); }
+
+/* ── Ficha técnica ── */
+.ficha-ajuda {
+    font-size: 12.5px; color: var(--texto-muted); line-height: 1.6;
+    background: var(--page-bg); border-radius: var(--radius-sm);
+    padding: 12px 14px; margin-bottom: 16px;
+}
+.ing-row { display: flex; gap: 8px; margin-bottom: 4px; align-items: center; }
+.ing-nome-campo { flex: 2; position: relative; }
+.ing-nome  { width: 100%; }
+.ing-qtd, .ing-custo { flex: 1; }
+.ing-nome, .ing-qtd, .ing-custo {
+    height: 38px; border: 1.5px solid var(--borda); border-radius: var(--radius-xs);
+    padding: 0 11px; font-size: 13px; font-family: inherit;
+    color: var(--texto); background: var(--page-bg); outline: none; transition: border-color .2s;
+    appearance: none;
+}
+.ing-nome:focus, .ing-qtd:focus { border-color: var(--accent); }
+
+/* ── Sugestao de insumo (padrao de lista da Requisicao, ver
+   .req-item-sugestoes em styles/abertura_de_manutencao.css - clonado aqui
+   pra manter a independencia por pagina do projeto) ── */
+.ing-item-sugestoes {
+    display: none; position: absolute; top: 100%; left: 0; right: 0; margin-top: 4px;
+    background: var(--card-bg); border: 1px solid var(--borda); border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md); max-height: 220px; overflow-y: auto; z-index: 20;
+}
+.ing-item-sugestoes.show { display: block; }
+.ing-item-sugestao {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 9px 12px; font-size: 13px; cursor: pointer; transition: background .15s;
+}
+.ing-item-sugestao:hover { background: var(--page-bg); }
+.ing-item-sugestao.indisponivel { color: var(--texto-muted); }
+.ing-item-badge {
+    font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-pill);
+    background: var(--page-bg); color: var(--texto-muted); white-space: nowrap;
+}
+.ing-item-aviso { padding: 9px 12px; font-size: 12.5px; color: var(--texto-muted); }
+.ing-custo { color: var(--texto-muted); cursor: not-allowed; font-weight: 700; }
+.ing-unidade {
+    height: 38px; border: 1.5px solid var(--borda); border-radius: var(--radius-xs);
+    padding: 0 8px; font-size: 13px; font-family: inherit;
+    color: var(--texto); background: var(--page-bg); outline: none; appearance: none;
+    width: 72px; flex-shrink: 0;
+}
+.ing-aviso {
+    font-size: 11.5px; color: var(--laranja); margin: 2px 0 10px 0; line-height: 1.4;
+}
+.ficha-resumo { display: flex; gap: 24px; flex-wrap: wrap; margin: 16px 0; padding: 16px; background: var(--page-bg); border-radius: var(--radius-sm); }
+.ficha-resumo-item { display: flex; flex-direction: column; gap: 3px; }
+.ficha-resumo-item .lbl { font-size: 11px; color: var(--texto-muted); font-weight: 600; }
+.ficha-resumo-item .val { font-size: 20px; font-weight: 800; color: var(--texto); }
+
+/* ── Relatório: rings ── */
+.kpi-ring-row { display: flex; gap: 20px; flex-wrap: wrap; justify-content: space-around; }
+.kpi-ring { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.kpi-ring-label { font-size: 12px; font-weight: 600; color: var(--texto-muted); }
+
+/* ── Botões / Ações ── */
+.btn-icon-add {
+    display: inline-flex; align-items: center; gap: 6px; background: var(--accent-light);
+    color: var(--accent); border: none; border-radius: var(--radius-xs); padding: 8px 14px;
+    font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: inherit; transition: .15s;
+}
+.btn-icon-add:hover { opacity: .85; }
+
+/* ── Avisos (duplicidade / conversao de unidade) ── */
+.import-aviso {
+    background: rgba(249, 115, 22, .12);
+    border: 1.5px solid var(--laranja);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--texto);
+}
+.import-aviso p { margin-bottom: 4px; }
+.import-aviso p:last-child { margin-bottom: 0; }
+
+/* ── Preview de importacao (usado no import de vendas em lote) ── */
+.modal-import { max-width: 640px; }
+.import-preview-header {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
+}
+.import-badge {
+    background: var(--accent-light); color: var(--accent); font-size: 12px; font-weight: 600;
+    padding: 3px 10px; border-radius: var(--radius-pill);
+}
+.import-preview {
+    background: var(--page-bg); border-radius: var(--radius); padding: 12px;
+    max-height: 300px; overflow-y: auto; font-size: 13px;
+}
+.import-msg { color: var(--texto-muted); text-align: center; padding: 1rem; }
+.import-opcoes { display: flex; gap: 16px; font-size: 13px; color: var(--texto-muted); margin: 10px 0; }
+.import-opcoes label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.msg-erro { color: var(--vermelho); font-size: 13px; min-height: 16px; }
+
+/* ── Modal ── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: flex; align-items: center; justify-content: center; z-index: 300; padding: 1rem; opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility .2s ease; }
+.modal-overlay.show { opacity: 1; visibility: visible; }
+.modal { background: var(--card-bg); border-radius: var(--radius-lg); width: 100%; max-width: 540px; max-height: 90%; overflow-y: auto; box-shadow: var(--shadow-md); padding: 22px; transform: scale(.96); transition: transform .2s ease; }
+.modal-overlay.show .modal { transform: scale(1); }
+.modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.modal-title  { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; color: var(--texto); }
+.modal-close  { background: none; border: none; cursor: pointer; width: 30px; height: 30px; border-radius: var(--radius-xs); display: flex; align-items: center; justify-content: center; color: var(--texto-muted); transition: background .15s; }
+.modal-close:hover { background: var(--page-bg); }
+.modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--borda); }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+.form-group.full { grid-column: 1 / -1; }
+.form-group label { font-size: 12.5px; font-weight: 600; color: var(--texto); }
+.form-group input,
+.form-group select {
+    height: 40px; border: 1.5px solid var(--borda); border-radius: var(--radius-xs);
+    padding: 0 12px; font-size: 13px; font-family: inherit;
+    color: var(--texto); background: var(--page-bg); outline: none;
+    appearance: none; transition: border-color .2s;
+}
+.form-group input:focus,
+.form-group select:focus { border-color: var(--accent); }
+.form-group input[readonly] { color: var(--texto-muted); cursor: not-allowed; }
+
+/* ── Responsivo ── */
+
+/* Exportar CSV/PDF - mesmo visual usado em styles/estoque.css
+   (.btn-exportar), duplicado aqui de propósito. */
+.btn-exportar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 0 14px;
+    height: 38px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.btn-exportar:hover {
+    background: var(--accent-light);
+}
+
+.btn-exportar svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+}
+/* ── Botão de ação de linha (Editar/Excluir), ícone 32×32 - mesmo padrão
+   de styles/estoque.css, duplicado aqui de propósito. ── */
+.check-acoes {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.btn-check-acao {
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--texto-muted);
+    transition: background .15s, color .15s, border-color .15s, transform .1s;
+}
+
+.btn-check-acao:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-check-acao:active {
+    transform: scale(.94);
+}
+
+.btn-check-acao svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+}
+
+.btn-check-acao.excluir:hover {
+    color: var(--vermelho);
+    border-color: var(--vermelho);
+    background: rgba(239, 68, 68, .15);
+}
+

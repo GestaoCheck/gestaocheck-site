@@ -1,0 +1,13 @@
+
+
+.vitrine-aviso {
+    padding: 10px 16px; background: var(--accent-light); color: var(--accent);
+    border-radius: var(--radius-sm); font-size: 12.5px; font-weight: 600;
+    text-align: center; margin-bottom: 14px;
+}
+.config-item input.vit-rename-input {
+    font-size: 13.5px; font-family: inherit; border: 1.5px solid var(--accent);
+    border-radius: var(--radius-xs); padding: 3px 8px; background: var(--card-bg); color: var(--texto);
+}
+
+    

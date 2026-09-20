@@ -1,0 +1,2820 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema="escuro"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1E3540">
+    <title>GestãoCheck — Início (demonstração)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMi42NCIgcnk9IjExMi42NCIgZmlsbD0iIzA5Mzk0RiIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDExMC4wOCwxMjkuNzEpIHNjYWxlKDAuMjE5NDI4NTcxNDI4NTcxNDIpIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDEyMDAuMCkgc2NhbGUoMC4xLC0wLjEpIj48cGF0aCBkPSJNNTc5NSAxMDg3OSBjLTExNSAtNSAtMjUwIC0xMyAtMzAwIC0xOSAtNDkgLTYgLTEzMSAtMTUgLTE4MSAtMjANCi0xNjUgLTE3IC01NDMgLTk1IC02OTkgLTE0NSAtMjIgLTcgLTgwIC0yNSAtMTMwIC00MCAtMTA2IC0zMiAtMjAzIC02NCAtMzAwDQotMTAwIC0zOCAtMTQgLTg4IC0zMiAtMTEwIC0zOSAtOTYgLTMyIC00MDEgLTE3NiAtNTEwIC0yNDEgLTIyIC0xMyAtNDcgLTI3DQotNTUgLTMxIC0xNSAtOCAtMTU4IC05MCAtMjIwIC0xMjcgLTI3NyAtMTY1IC02NTUgLTQ2MyAtODk4IC03MDcgLTExMyAtMTEzDQotMzI5IC0zNTkgLTM4MiAtNDM0IC04IC0xMSAtNDAgLTU1IC03MSAtOTYgLTkwIC0xMjEgLTE5NiAtMjc2IC0yNjAgLTM4MCAtMTkNCi0zMCAtNDAgLTY0IC00NyAtNzUgLTcgLTExIC0xOSAtMzMgLTI4IC01MCAtOCAtMTYgLTI2IC00OCAtMzkgLTcwIC0zOSAtNjUNCi0xNjAgLTMxMyAtMjEzIC00MzcgLTEwIC0yNCAtMjYgLTU5IC0zNCAtNzggLTE1IC0zNCAtNDggLTExOCAtODggLTIyNSAtMTANCi0yNyAtMzAgLTg4IC00NSAtMTM1IC0xNSAtNDcgLTMyIC05NiAtMzcgLTExMCAtMTAgLTIzIC0xNiAtNDYgLTQ5IC0xNzAgLTYNCi0yNSAtMTkgLTcyIC0yOSAtMTA1IC0xMCAtMzMgLTIxIC04MCAtMjQgLTEwNSAtNCAtMjUgLTEzIC02NyAtMjEgLTk1IC0yMg0KLTgxIC01NCAtMjk3IC03MyAtNDkwIC0yNCAtMjUzIC0yNCAtODE3IDAgLTEwNDAgMjAgLTE3NSA1MiAtMzk1IDY5IC00NjUgNg0KLTI1IDIwIC04MSAyOSAtMTI1IDMxIC0xMzggNDYgLTE5OSA1OCAtMjM1IDYgLTE5IDI1IC04MCA0MSAtMTM1IDQ2IC0xNTIgNjENCi0xOTYgODIgLTI0MSAxMCAtMjMgMTkgLTQ1IDE5IC01MCAwIC05IDM0IC0xMDEgNTYgLTE0OSA3IC0xNiAyNSAtNTkgMzkgLTk1DQozNCAtODQgNjQgLTE1MSA3NiAtMTcwIDUgLTggMTQgLTI2IDE5IC00MCA2IC0xNCAxNCAtMzIgMTkgLTQwIDYgLTggMjYgLTQ2DQo0NiAtODUgMjAgLTM4IDQ3IC04OCA2MCAtMTEwIDEzIC0yMiAzMSAtNTMgNDEgLTcwIDUyIC05MyAzMDMgLTQ1OCAzODggLTU2NQ0KMTk2IC0yNDYgNDYyIC01MzEgNjE2IC02NTkgMzUgLTI5IDcwIC02MCA3OSAtNjkgNjIgLTYyIDUwMiAtMzk1IDU0MSAtNDEwIDgNCi0zIDM1IC0yMCA2MCAtMzcgNTEgLTM1IDI0NiAtMTQ5IDI4MSAtMTY1IDEzIC02IDQ0IC0yMiA2OSAtMzYgMjUgLTE0IDkwIC00OA0KMTQ1IC03NiA1NSAtMjcgMTA4IC01NCAxMTggLTU5IDU0IC0yOSAyNDggLTEwOSAzODUgLTE1OSAyOSAtMTEgNzYgLTI4IDEwNQ0KLTM5IDI4IC0xMiA2OCAtMjQgODcgLTI3IDE5IC00IDQzIC0xMSA1NCAtMTYgMzIgLTE3IDI1NCAtNzYgNDQxIC0xMTcgNTQ3DQotMTIxIDEwOTAgLTE0MiAxNzA1IC02NyAxNTYgMTkgNDkwIDg1IDUyNiAxMDQgMTEgNSAzOCAxMiA2MiAxNiAzOSA2IDEzMiAzMg0KMjA3IDU3IDE3IDYgNTMgMTcgODAgMjQgNjYgMTcgMjYyIDg4IDMwMCAxMDkgMTcgOSAzNiAxNiA0MyAxNiA4IDAgMjYgNiA0MA0KMTQgMTUgOCA0NyAyMyA3MiAzNCAyNSAxMSA3OSAzNiAxMjAgNTUgNDEgMTkgMTA3IDQ5IDE0NSA2NyAzOSAxOCAxMTIgNTMgMTY0DQo3OSA1MSAyNSAxMDYgNTIgMTIyIDYwIDE2IDggMjkgMTkgMjkgMjQgMCAxNCAtNDQgMyAtMTQwIC0zMyAtMjE2IC04MSAtNDE3DQotMTQ1IC00ODUgLTE1NSAtMjcgLTQgLTYwIC0xMiAtNzMgLTE2IC0xMyAtNSAtOTcgLTIwIC0xODYgLTM0IC01MjIgLTc5IC05MjANCi04NCAtMTQyMSAtMTkgLTMwMyA0MCAtNTk1IDEwNiAtNzQwIDE2OCAtMTcgOCAtNDYgMTcgLTY1IDIxIC0xOSA0IC00NCAxMw0KLTU1IDIwIC0xMSA3IC0zNCAxNiAtNTIgMjAgLTE3IDMgLTQ4IDE1IC02OSAyNiAtMjEgMTAgLTQ1IDE5IC01NCAxOSAtOSAwDQotMjQgNiAtMzUgMTQgLTExIDcgLTMxIDE3IC00NSAyMSAtMzUgMTAgLTE4OCA4MCAtMjMwIDEwNSAtOCA1IC04NyA1MCAtMTc1DQoxMDEgLTIxMyAxMjEgLTI2OSAxNTUgLTMzNyAyMDMgLTg4IDYzIC0yMTIgMTU4IC0yMjMgMTcwIC01IDYgLTY0IDU2IC0xMzANCjExMCAtMTcwIDE0MCAtNTQwIDUxNSAtNjYwIDY2OCAtMjA2IDI2MyAtMzMyIDQ0NCAtNDE2IDU5OCAtOSAxNiAtMjEgMzUgLTI3DQo0MiAtMjMgMjkgLTEyOSAyNDMgLTE5NCAzOTMgLTY1IDE1MCAtOTggMjI0IC0xMjEgMjY5IC0xMiAyNSAtNDUgMTE5IC02MSAxNzgNCi04IDI1IC0xNyA1MiAtMjEgNTggLTcgMTEgLTI4IDg4IC02MiAyMjUgLTE4IDcyIC03NSAzNTUgLTk4IDQ4MCAtOSA1MCAtMjANCjE0MCAtMjUgMjAwIC01IDYxIC0xNCAxNzEgLTIwIDI0NSAtMTIgMTM0IC04IDI1NyAyMCA1ODMgMTYgMTkyIDExMCA2MTUgMTgwDQo4MTcgNTYgMTU5IDE3MyA0MjEgMjUwIDU2MCA5NCAxNzAgMjIxIDM2NyAzMjMgNTA1IDgzIDExMCAyNzIgMzE5IDQwMSA0NDMNCjIyNiAyMTUgNTQ2IDQ0MyA3OTYgNTY2IDMwIDE1IDYyIDMxIDcwIDM2IDggNSA1MyAyNyAxMDAgNDkgNTgxIDI2NiAxMjg3IDM3Ng0KMTg4MCAyOTIgMjIxIC0zMiA0MjYgLTczIDUyNSAtMTA2IDIyIC03IDU2IC0xNyA3NSAtMjAgMzEgLTcgNzcgLTIzIDI3MCAtOTcNCjc3IC0yOSAzMzggLTE1NiAzNDUgLTE2OCAxMiAtMTkgMzYgNSAxNTIgMTQzIDY1IDc4IDEyNSAxNDkgMTMzIDE1NyA4IDggNDgNCjU2IDg5IDEwNSA0MSA1MCAxMDYgMTI2IDE0NSAxNjkgMTE2IDEzMCAxODcgMjE0IDM0NiA0MDYgMzAgMzcgNzQgODYgOTcgMTExDQoyNCAyNCA0MyA1MSA0MyA1OSAwIDQxIC02NjkgMzU3IC05MDAgNDI1IC0yNSA4IC03NiAyNiAtMTE1IDQwIC02NCAyNCAtMTE3DQo0MCAtMjc1IDgyIC0zMDcgODIgLTcyOSAxNDcgLTEwNjUgMTYzIC0xMTAgNSAtMjExIDkgLTIyNSA4IC0xNCAwIC0xMTkgLTUNCi0yMzUgLTl6IE05NDM0IDYwODggYy0zMyAtMzUgLTEwMCAtMTA4IC0xNDkgLTE2MyAtNDkgLTU1IC0xMTcgLTEyOSAtMTUwDQotMTY1IC0zMyAtMzYgLTgxIC04OCAtMTA2IC0xMTYgLTI1IC0yNyAtNzAgLTc5IC0xMDAgLTExNCAtMjkgLTM2IC0xMDUgLTEyMQ0KLTE2OSAtMTkwIC02MyAtNjkgLTE0MiAtMTU2IC0xNzUgLTE5NSAtMzIgLTM4IC04OSAtMTAyIC0xMjUgLTE0MCAtMjIxIC0yMzgNCi0yNzUgLTI5OSAtMjc1IC0zMTMgMCAtMTMgODIgLTE1IDc0MCAtMTYgbDc0MCAtMSAzIC0yMiBjMiAtMTMgLTExIC0zNiAtMzcNCi02NSAtNzkgLTg3IC0xODEgLTIwNyAtMjMzIC0yNzUgLTI5IC0zOSAtNzcgLTk5IC0xMDYgLTEzNCAtMzAgLTM1IC0xMDYgLTEyNw0KLTE3MCAtMjAzIC0yMzYgLTI4MiAtNTE5IC01ODUgLTcxMiAtNzYyIC04OSAtODEgLTMwOSAtMjU3IC00MDEgLTMxOSAtMTA1DQotNzIgLTM0NSAtMjA4IC00NjQgLTI2NCAtNDkgLTIzIC05NyAtNDYgLTEwNiAtNTEgLTE4IC05IC0xMjUgLTUyIC0xODkgLTc1DQotNTkgLTIxIC0xNzAgLTUzIC0yNDUgLTY5IC0zMyAtOCAtODAgLTE4IC0xMDUgLTI0IC0zNzkgLTkxIC04ODQgLTEyMyAtMTE4Nw0KLTc2IC01MSA4IC0xMDggMTQgLTEyNyAxNCAtMzQgMCAtMzMxIDU2IC0zNDYgNjUgLTQgMyAtMzYgMTEgLTcxIDE5IC02MiAxNA0KLTEyNyAzNCAtMTk5IDYxIC0zMzMgMTIzIC01OTIgMjUyIC04MzkgNDE5IC0xMjQgODQgLTM2MiAyNTkgLTQwMyAyOTcgLTE0IDEzDQotNTcgNTEgLTk0IDgzIC0zOCAzMyAtMTEyIDEwNCAtMTY1IDE1OCAtOTUgOTggLTEwOSAxMDkgLTEwOSA4NiAwIC0xMCAyMTQNCi0zMzQgMjczIC00MTMgMTAwIC0xMzMgMjYzIC0zMzAgMzQ5IC00MjAgMTU5IC0xNjcgNDQ5IC00MjAgNjA3IC01MzAgMTIwIC04Mw0KMjE4IC0xNDggMjUxIC0xNjYgMTkgLTExIDU4IC0zNCA4NSAtNTEgMTEzIC03MCA0NTEgLTIzMSA2MTUgLTI5MiAxOSAtOCA2MA0KLTIzIDkwIC0zNCAzMCAtMTIgNzMgLTI2IDk1IC0zMSAyMiAtNiA4NyAtMjMgMTQ1IC0zOSAzMDYgLTg1IDUxMiAtMTE5IDg2NQ0KLTE0MyAyNzggLTE5IDc0MCA1IDk5MCA1MSAzMyA2IDgzIDE1IDExMCAxOSAxMTAgMTggMjMyIDQzIDI3MCA1NiAyMiA4IDU3IDE3DQo3NyAyMCAyMCA0IDk0IDI3IDE2NSA1MiA3MCAyNSAxNTIgNTQgMTgyIDY0IDMwIDEwIDU5IDIzIDY1IDI3IDYgNSA0OSAyMyA5NQ0KNDEgNDYgMTggOTEgMzYgMTAwIDQxIDkgNSA2MyAzMiAxMjEgNjEgMTExIDU2IDE1MCA3NyAyMTUgMTE1IDIyIDEzIDU0IDMxIDcwDQo0MCAzNCAxOSAxOTUgMTI2IDI3MCAxODAgNzkgNTcgMjM1IDE4MyAyOTQgMjM4IDExOSAxMTIgMzk0IDM5NyA0NzMgNDkxIDEwNg0KMTI2IDM0OCA0MzEgMzcxIDQ2OCAxMSAxNyAyNiAyNyA0MiAyNyBsMjUgMCAwIC05MzkgYzAgLTU1OSA0IC05NDIgOSAtOTQ1IDUNCi00IDc4IDQ4IDE2MyAxMTQgMTg1IDE0NiA1NjUgNDQ0IDU5MyA0NjUgMTEgOCAxMjUgOTcgMjUyIDE5NyAxMjggMTAxIDI3Mw0KMjE0IDMyMiAyNTIgNDkgMzggOTkgNzggMTEwIDkwIGwyMSAyMiAwIDE3MzAgYzAgOTUxIDAgMTczNSAwIDE3NDIgMCA5IC0yNzENCjEyIC0xMzIzIDEyIGwtMTMyMyAwIC02MCAtNjJ6IiBmaWxsPSIjRkZGRkZGIi8+PHBhdGggZD0iTTEyMzA1IDExNzIwIGMtMTEgLTQgLTQ5IC0xNiAtODUgLTI1IC0zNiAtMTAgLTkyIC0yNSAtMTI1IC0zNSAtMzMNCi0xMCAtMTA1IC0yOCAtMTYwIC00MCAtNTUgLTEzIC0xMjcgLTI5IC0xNjAgLTM3IC0zMyAtOCAtODggLTIxIC0xMjIgLTI4IC0zNA0KLTggLTcwIC0xOCAtODAgLTIzIC0xMCAtNSAtMzggLTEyIC02MyAtMTYgLTI1IC00IC02NyAtMTMgLTk1IC0yMSAtNTkgLTE3DQotMTU2IC00MiAtMjQwIC02MSAtMzMgLTcgLTk2IC0yMiAtMTQwIC0zMyAtNDQgLTExIC0xMDkgLTI3IC0xNDUgLTM2IC0zNiAtOA0KLTkwIC0yMSAtMTIwIC0yOSAtMzAgLTggLTkyIC0yMyAtMTM4IC0zNSAtNDUgLTExIC0xMTggLTI5IC0xNjIgLTQwIC00NCAtMTENCi0xMTYgLTI5IC0xNjAgLTQwIC00NCAtMTEgLTExNiAtMjkgLTE2MCAtNDAgLTQ0IC0xMSAtMTE1IC0yOSAtMTU4IC00MSAtNDINCi0xMSAtOTkgLTI0IC0xMjcgLTI5IC01OSAtMTIgLTE3MiAtNDAgLTMwNSAtNzUgLTUyIC0xNCAtMTA0IC0yNyAtMTE1IC0zMA0KLTEwNyAtMjkgLTQzNiAtMTA2IC00NDggLTEwNiAtOSAwIC0yMCAtOCAtMjUgLTE3IC0xMyAtMjIgNjQgLTEwMCA0MTkgLTQyMw0KNTcgLTUyIDE2NiAtMTU2IDI0MiAtMjMwIDc2IC03NCAxNDUgLTEzOSAxNTMgLTE0MyAyNCAtMTQgMTYgLTM4IC0yOCAtODYgLTI0DQotMjYgLTYzIC02OSAtODcgLTk2IC0zNiAtNDEgLTE4MyAtMjAzIC0yNDEgLTI2NSAtOCAtOSAtNjQgLTcyIC0xMjUgLTE0MCAtNjANCi02OSAtMTMwIC0xNDcgLTE1NiAtMTc1IC0yNiAtMjcgLTYyIC02OCAtODAgLTkwIC0xOSAtMjIgLTg0IC05NCAtMTQ1IC0xNjANCi02MSAtNjYgLTE4OSAtMjA4IC0yODQgLTMxNSAtMTc1IC0xOTcgLTMwNCAtMzQwIC00MTYgLTQ2MCAtMzMgLTM2IC0xNDkgLTE2NA0KLTI1NyAtMjg1IC0yMzggLTI2NyAtNDE1IC00NjUgLTQ3MSAtNTI1IC00OCAtNTIgLTIxOSAtMjQxIC0yNTcgLTI4NSAtODEgLTkyDQotMjEzIC0yNDEgLTIxOSAtMjQ1IC02IC01IC0yMjQgLTI1MCAtMjk1IC0zMzIgLTUzIC02MSAtMzMzIC0zNzIgLTM4MCAtNDIyDQotMTEgLTEyIC0xNjkgLTE4OSAtMjE5IC0yNDYgLTEyNyAtMTQ0IC0yMTEgLTIzMCAtMjI1IC0yMjkgLTkgMCAtNDUgMzQgLTgxDQo3NCAtMTczIDE5NiAtNjI1IDcwMSAtNjM0IDcxMCAtMTggMTYgLTE3NiAxOTMgLTI1MCAyODAgLTM4IDQ0IC0xMDEgMTE2IC0xNDENCjE2MCAtNDAgNDQgLTEyNSAxNDAgLTE5MCAyMTMgLTgzIDk0IC0xMjMgMTMyIC0xMzYgMTMwIC0yNSAtNCAtMTA1OSAtMTAzNw0KLTEwNTkgLTEwNTcgMCAtMTYgMTcgLTM2IDIyMCAtMjUzIDY0IC02OCAxMzEgLTE0MSAxNDkgLTE2MyAyNyAtMzIgMTkxIC0yMTINCjIzNiAtMjU5IDYgLTYgNjkgLTc2IDE0MCAtMTU2IDcxIC04MCAxODEgLTIwMSAyNDUgLTI3MCA2MyAtNzAgMTU2IC0xNzMgMjA2DQotMjMwIDEwNSAtMTIwIDExMyAtMTI5IDI0OSAtMjc2IDExNCAtMTI0IDE5MyAtMjEwIDIxNSAtMjM0IDggLTkgNDAgLTQzIDcwDQotNzYgMzEgLTMyIDk2IC0xMDYgMTQ1IC0xNjQgNTAgLTU4IDEyOSAtMTQ1IDE3NiAtMTk1IDQ3IC00OSAxNDIgLTE1MiAyMTANCi0yMjggNjggLTc3IDE0OCAtMTY0IDE3NyAtMTk1IGw1MiAtNTcgMjggMzEgYzE1IDE3IDkwIDEwMiAxNjcgMTkwIDc3IDg3IDE0Nw0KMTY2IDE1NSAxNzUgOCA4IDQwIDQyIDcwIDc1IDMwIDMzIDg3IDkzIDEyNSAxMzUgOTAgOTcgMTk1IDIxNCAyNzYgMzA5IDM1IDQxDQoxMDcgMTIwIDE1OSAxNzUgNTIgNTYgMTI1IDEzNCAxNjEgMTc1IDM3IDQxIDEwNyAxMjAgMTU2IDE3NSA0OCA1NSAxMTMgMTI3DQoxNDMgMTU5IDMxMSAzMzggNDExIDQ0OSA0NjYgNTE2IDM4IDQ3IDE5MiAyMTggMjc1IDMwNSAzNiAzOSAxMDcgMTE4IDE1NyAxNzYNCjUwIDU4IDEzMSAxNDggMTgwIDIwMCA0OCA1MiAxMTUgMTIzIDE0NyAxNTkgMzIgMzYgMTA0IDExNSAxNjAgMTc1IDU2IDYxIDE0Mw0KMTU3IDE5NCAyMTUgMTMxIDE0OCAxNzYgMTk3IDQ4MSA1MzAgNjkgNzUgMTM5IDE1MiAxNTUgMTcxIDEyMiAxMzcgMzU0IDM5NA0KNDE1IDQ1OSA4IDggNTUgNjAgMTA0IDExNSAxMzUgMTUxIDIzNyAyNjQgMjc1IDMwNCAxOCAyMCA2NSA3NCAxMDQgMTIxIDM5IDQ3DQoxMjUgMTQxIDE5MiAyMTAgNjYgNjkgMTQ4IDE1NiAxODIgMTk0IDM0IDM3IDY2IDY3IDcxIDY1IDkgLTQgMTY2IC0xNTAgNDA3DQotMzgwIDU1IC01MiAxMzIgLTEyNCAxNzAgLTE2MCAzOSAtMzUgMTIyIC0xMTEgMTg0IC0xNjkgNjMgLTU4IDEyMSAtMTA1IDEyOQ0KLTEwNSAyMCAwIDQwIDc0IDQ4IDE3NSAzIDQxIDEyIDEwMCAxOSAxMzAgNyAzMCAxNiA4NyAyMCAxMjUgMyAzOSAxMiA5NSAyMA0KMTI1IDcgMzAgMTYgODQgMTkgMTIwIDQgMzYgMTMgOTcgMjEgMTM1IDE2IDc0IDQyIDIzMSA1NiAzMzAgNCAzMyAxNSAxMDEgMjQNCjE1MCAzOSAyMjMgNDggMjc2IDYxIDM3MCA3IDU1IDE4IDExOCAyNCAxNDAgNiAyMiAxNCA4MCAyMCAxMjggNSA0OCAxMiA5MiAxNQ0KOTcgMyA1IDEyIDU3IDIwIDExNyAxNiAxMjMgNDAgMjcyIDU2IDM1MyA2IDMwIDE3IDkzIDI0IDE0MCAyOSAxOTMgNDYgMjk5IDYwDQozNjAgOCAzNiAxNyA5OSAyMCAxNDAgNCA0MSAxMiA5OCAyMCAxMjUgNyAyOCAxOCA5NyAyNCAxNTUgMTAgOTUgMTAgMTA2IC02DQoxMTcgLTE5IDE1IC0yMSAxNSAtNDggM3oiIGZpbGw9IiNGRkZGRkYiLz48L2c+PC9nPjwvc3ZnPg==">
+    <style>
+/* ═══════════════════════════════════════════════════
+   DASHBOARD.CSS — tema claro/roxo, mobile-first
+═══════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Reserva o espaco da barra de rolagem sempre, mesmo em paginas cujo
+   conteudo nao precisa rolar - sem isso, uma pagina "curta" (ex:
+   Ocorrencias com poucos registros) fica alguns pixels mais larga que
+   uma pagina "longa" na mesma tela, porque so a longa reserva o espaco
+   da barra. */
+html {
+    scrollbar-gutter: stable;
+}
+
+/* Crossfade nativo do navegador entre uma pagina e outra (Cross-Document
+   View Transitions) - a sidebar principal navega recarregando a pagina de
+   verdade (app multi-pagina, sem framework/SPA, ver CLAUDE.md), diferente
+   da sidebar interna de Configuracoes (troca de secao sem reload). Isso e
+   o mais perto que da pra chegar do "feels like Configuracoes" sem
+   reescrever a arquitetura: o navegador tira um "print" da tela antes e
+   depois da navegacao e faz um crossfade entre os dois, em vez do corte
+   seco padrao. So funciona em Chrome/Edge recentes (126+) - navegador sem
+   suporte ignora a regra e navega normal, sem quebrar nada.
+   https://developer.chrome.com/docs/web-platform/view-transitions/cross-document */
+@view-transition {
+    navigation: auto;
+}
+
+:root {
+    --sidebar-bg: #1E3540;
+    --page-bg: #F2F6F7;
+    --card-bg: #CBD6DA;
+    --accent: #2E8FE3;
+    --accent-light: #D6EAFB;
+    --avatar: #E0684C;
+    --petroleo: #1E3540;
+    --texto: #16232B;
+    --texto-muted: #48606A;
+    --texto-side: #9FB4BD;
+    --borda: #B7C3C8;
+    --verde: #2C9163;
+    --vermelho: #ef4444;
+    --laranja: #f97316;
+    --azul: #5C6BC0;
+    --ciano: #06b6d4;
+    /* Dourado - cor de enriquecimento, não semântica (não confundir com
+       --laranja, que sinaliza alerta/atenção). */
+    --dourado: #C9A227;
+    --radius: 14px;
+    --radius-sm: 10px;
+    /* Tokens de raio de borda - migração mecânica dos valores exatos
+       (8px->xs, 20px->lg, 50px/99px->pill); alguns valores ficam fixos de
+       propósito, ver docs/BACKLOG_FRONT.md. */
+    --radius-xs: 8px;
+    --radius-lg: 20px;
+    --radius-pill: 999px;
+    --shadow: 0 2px 12px rgba(30, 53, 64, .10);
+    --shadow-md: 0 4px 24px rgba(30, 53, 64, .16);
+    --bottom-nav-h: 64px;
+}
+
+/* Quem pede menos movimento no SO ganha as transicoes novas (troca de tema,
+   hover) quase instantaneas, sem perder a logica visual - acessibilidade,
+   nao suporte a navegador. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-duration: .001ms !important;
+        animation-duration: .001ms !important;
+    }
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--page-bg);
+    color: var(--texto);
+    transition: background-color .25s ease, color .25s ease;
+    min-height: 100vh;
+}
+
+
+/* ── Layout ── */
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* ── Sidebar ── */
+
+.sidebar {
+    /* .nav-item svg/.sidebar-user-avatar crescem junto, mesmo ritmo de escala. */
+    width: 216px;
+    background: var(--sidebar-bg);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    transition: width .25s, background-color .25s ease;
+}
+
+.sidebar.collapsed,
+html.sidebar-collapsed .sidebar {
+    width: 64px;
+}
+
+/* ── Topo da sidebar: logo + hamburguer ── */
+
+.sidebar-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 14px 10px 18px;
+    transition: padding .25s;
+}
+
+.sidebar.collapsed .sidebar-top,
+html.sidebar-collapsed .sidebar .sidebar-top {
+    padding: 22px 8px 10px;
+    /* Com a sidebar colapsada, .sidebar-logo encolhe pra max-width:0 mas
+       ainda ocupa a ponta esquerda do space-between - centraliza pra não
+       deixar o hambúrguer "torto" puxado pra direita. */
+    justify-content: center;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 1;
+    max-width: 160px;
+    transition: opacity .15s, max-width .25s;
+}
+
+.sidebar-logo .nav-label {
+    font-family: 'Fraunces', serif;
+}
+
+.sidebar.collapsed .sidebar-logo,
+html.sidebar-collapsed .sidebar .sidebar-logo {
+    opacity: 0;
+    max-width: 0;
+    pointer-events: none;
+}
+
+.sidebar-logo svg {
+    flex-shrink: 0;
+}
+
+.hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 6px;
+    border-radius: var(--radius-xs);
+    transition: background .15s, transform .15s;
+    flex-shrink: 0;
+}
+
+.hamburger:hover {
+    background: rgba(255, 255, 255, .08);
+}
+
+.hamburger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--texto-side);
+    border-radius: 2px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 10px;
+    gap: 2px;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, .15) transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .15);
+    border-radius: var(--radius-sm);
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 11px;
+    color: var(--texto-side);
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    transition: .15s;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Ícone de nav cresce junto com .sidebar. */
+.nav-item svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    stroke: currentColor;
+    fill: none;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, .07);
+    color: #fff;
+}
+
+.nav-item:focus-visible,
+.hamburger:focus-visible,
+.sidebar-user:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.nav-item:active,
+.hamburger:active,
+.sidebar-user:active {
+    transform: scale(.97);
+}
+
+.nav-item.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+.sidebar.collapsed .nav-label,
+html.sidebar-collapsed .sidebar .nav-label {
+    display: none;
+}
+
+.sidebar-bottom {
+    padding: 12px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: .15s;
+}
+
+.sidebar-user:hover {
+    background: rgba(255, 255, 255, .07);
+}
+
+.sidebar-user-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-xs);
+    background: var(--avatar);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color .25s ease;
+}
+
+.sidebar-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.sidebar-user-info strong {
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sidebar-user-info span {
+    font-size: 10px;
+    color: var(--texto-side);
+}
+
+.sidebar.collapsed .sidebar-user-info,
+html.sidebar-collapsed .sidebar .sidebar-user-info {
+    display: none;
+}
+
+/* Versão visível (ver sidebar.js _carregarVersaoVisivel) - injetado via JS
+   em toda página que tem .sidebar-bottom, não precisa de HTML por página. */
+.sidebar-versao {
+    font-size: 10.5px;
+    color: var(--texto-muted);
+    text-align: center;
+    padding: 6px 0 0;
+    opacity: .7;
+}
+
+.sidebar.collapsed .sidebar-versao,
+html.sidebar-collapsed .sidebar .sidebar-versao {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-user,
+html.sidebar-collapsed .sidebar .sidebar-user {
+    justify-content: center;
+    padding: 9px 0;
+}
+
+
+/* ── Main / Topbar ── */
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* flex-wrap - sem isso, uma página com vários botões no topbar-right
+       (ex: Estoque) estoura a largura da tela com a sidebar expandida;
+       com wrap, quebra pra uma segunda linha em vez de cortar/empurrar. */
+    flex-wrap: wrap;
+    row-gap: 10px;
+    padding: 18px 28px;
+    /* Altura fixa - sem isso a altura real variava 1-4px de pagina pra
+       pagina (h1 vs p, emoji no saudacao da tela inicial mudando a
+       line-height), fazendo o sino de notificacao (e outros botoes do
+       topbar) parecerem "menores"/deslocados entre telas. */
+    min-height: 84px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--borda);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color .25s ease, border-color .25s ease;
+}
+
+.greeting {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.subgreeting {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-top: 2px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Agrupa ☰ + bloco de título, pra .topbar (space-between) enxergar só 2
+   itens (grupo do título | .topbar-right) em vez de 3 soltos. */
+.topbar-titulo-grupo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+/* ☰ que abre a gaveta lateral (.menu-mobile-painel) no celular - escondido
+   por padrão, só existe em telas estreitas (ver @media(max-width:768px)). */
+.topbar-hamburguer {
+    display: none;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--texto);
+    flex-shrink: 0;
+}
+
+.topbar-hamburguer svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.topbar-notif {
+    width: 36px;
+    height: 36px;
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--texto-muted);
+    position: relative;
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.topbar-notif:hover {
+    background: var(--card-bg);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.topbar-notif svg {
+    width: 17px;
+    height: 17px;
+}
+
+/* ===== Dropdown de menu (Exportar / Mais opcoes) — compartilhado por
+   Estoque/CMV/CMO/CMC/Caixa/Beneficiamento/Relatorios, ver CLAUDE.md.
+   Estrutural (como .modal-overlay), por isso vive aqui em vez de duplicado
+   por pagina — o comportamento (abrir/fechar/z-index) precisa ser igual em
+   todo lugar, so o conteudo de dentro muda por tela. Toggle real e o
+   fechar ao clicar fora/ESC ficam em sidebar.js (toggleMenuDropdown). */
+.menu-dropdown {
+    position: relative;
+    display: inline-flex;
+}
+
+.menu-dropdown-lista {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 190px;
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    padding: 6px;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 200;
+}
+
+.menu-dropdown-lista.show {
+    display: flex;
+}
+
+/* Aplicada via JS (toggleMenuDropdown, sidebar.js) quando o alinhamento
+   padrao pela direita vazaria a borda esquerda da tela (comum em mobile,
+   quando o grupo de botoes quebra linha). */
+.menu-dropdown-lista.abre-esquerda {
+    right: auto;
+    left: 0;
+}
+
+.menu-dropdown-lista button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 9px 10px;
+    border-radius: calc(var(--radius-sm) - 3px);
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--texto);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color .15s ease;
+}
+
+.menu-dropdown-lista button:hover {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.menu-dropdown-lista button.perigo:hover {
+    background: rgba(239, 68, 68, .12);
+    color: var(--vermelho);
+}
+
+.menu-dropdown-lista button svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+    flex-shrink: 0;
+}
+
+.menu-dropdown-divisor {
+    height: 1px;
+    background: var(--borda);
+    margin: 4px 2px;
+}
+
+.menu-kebab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: none;
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    color: var(--texto-muted);
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.menu-kebab-btn:hover,
+.menu-kebab-btn.show-ativo {
+    background: var(--accent-light);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.menu-kebab-btn svg {
+    width: 17px;
+    height: 17px;
+}
+
+/* Botão rápido sol/lua da topbar (#temaToggleRapido, opcional por página) -
+   reaproveita a caixa/hover de .topbar-notif, só troca o ícone de dentro
+   (emoji ☀️/🌙, que o navegador já centraliza como glifo de texto normal).
+   Base escondida os dois por padrão, o tema certo liga display:flex
+   explícito - especificidade maior (`[data-tema="escuro"]` ancestor)
+   sempre vence a base, então a ordem no arquivo não importa. */
+#temaToggleRapido .icone-sol,
+#temaToggleRapido .icone-lua {
+    display: none;
+    font-size: 15px;
+    line-height: 1;
+}
+
+#temaToggleRapido .icone-sol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+[data-tema="escuro"] #temaToggleRapido .icone-sol {
+    display: none;
+}
+
+[data-tema="escuro"] #temaToggleRapido .icone-lua {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notif-dot {
+    display: none;
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    width: 7px;
+    height: 7px;
+    background: var(--vermelho);
+    border-radius: 50%;
+    border: 1.5px solid #fff;
+}
+
+.notif-dot.show {
+    display: block;
+}
+
+/* Evita mostrar sigla errada/hardcoded ("US") no instante entre o HTML
+   pintar e o script da pagina (fim do <body>) rodar - os 3 elementos de
+   avatar (#avatarLetras/#sidebarAvatar/#pAvatar) nascem com essa classe
+   e SEM texto; cada pagina.js remove a classe no mesmo passo que ja seta
+   o textContent (que roda sincrono, sem esperar rede). */
+.avatar-pending {
+    visibility: hidden;
+}
+
+.avatar-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--avatar);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 7px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color .15s ease, transform .1s;
+}
+
+.avatar-btn:hover {
+    background: color-mix(in srgb, var(--avatar) 85%, black);
+}
+
+.avatar-btn:active {
+    transform: scale(.97);
+}
+
+.avatar-btn svg {
+    width: 12px;
+    height: 12px;
+}
+
+
+/* ── Content ── */
+
+.content {
+    padding: 24px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+
+/* ── Carrossel Clima / Resumo do dia ── */
+
+.clima-carrossel {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin: 20px 0;
+    min-height: 132px;
+}
+
+.clima-slide {
+    position: absolute;
+    inset: 0;
+    padding: 16px 22px 26px;
+    box-sizing: border-box;
+    min-height: 132px;
+    opacity: 0;
+    /* pointer-events no lugar de visibility:hidden - so opacity anima
+       agora (uma propriedade so, curva continua, sem o "flip" discreto
+       que visibility faz no meio da transicao). O slide escondido
+       continua nao-clicavel/fora do tab-order via pointer-events, sem
+       precisar de um segundo valor pra coordenar com a animacao. */
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity .9s ease-in-out;
+}
+
+.clima-slide.show {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 2;
+}
+
+/* Gradiente petróleo->azul claro, mesma identidade da marca - compartilhado
+   pelos dois slides. Sempre esse gradiente, claro ou escuro. */
+.clima-slide-tempo,
+.clima-slide-resumo {
+    background: linear-gradient(120deg, #1E3540 0%, #256689 55%, #2E8FE3 100%);
+    color: #fff;
+}
+
+.clima-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.clima-local {
+    font-size: 13px;
+    font-weight: 600;
+    opacity: .9;
+}
+
+.clima-refresh {
+    background: rgba(255, 255, 255, .15);
+    border: none;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-xs);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s;
+}
+
+.clima-refresh:hover {
+    background: rgba(255, 255, 255, .28);
+}
+
+.clima-refresh svg {
+    width: 15px;
+    height: 15px;
+}
+
+.clima-principal {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+.clima-icone {
+    font-size: 40px;
+    line-height: 1;
+}
+
+.clima-temp {
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.clima-desc {
+    font-size: 13px;
+    opacity: .9;
+    max-width: 240px;
+}
+
+.clima-slide-resumo {
+    cursor: pointer;
+    /* Precisa repetir "opacity .9s ease-in-out" aqui (nao da pra so
+       adicionar "filter .15s") - transition e uma propriedade so, uma
+       declaracao nova SUBSTITUI a da .clima-slide inteira, nao soma.
+       Sem isso, so o slide de resumo perdia a transicao de entrada
+       (ficava so com filter, sem opacity na lista) - causa raiz do
+       "clima -> resumo sempre seco" que via so nesse sentido. */
+    transition: opacity .9s ease-in-out, filter .15s;
+}
+
+.clima-slide-resumo:hover {
+    filter: brightness(1.06);
+}
+
+.resumo-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.resumo-titulo {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.resumo-link {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, .85);
+}
+
+.resumo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.resumo-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.resumo-valor {
+    /* clamp em vez de valor fixo - encolhe a fonte antes de precisar
+       quebrar linha num valor de estoque real (não só "R$ 0,00" de teste). */
+    font-size: clamp(14.5px, 1.7vw, 18px);
+    font-weight: 800;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.resumo-label {
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, .75);
+}
+
+/* Ambos os slides sao escuros agora (mesmo gradiente roxo) - dots sempre
+   no estilo "sobre fundo escuro", sem precisar alternar por JS. */
+.clima-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+}
+
+.clima-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, .4);
+    cursor: pointer;
+    padding: 0;
+    transition: background .2s, transform .2s;
+}
+
+.clima-dot.active {
+    background: #fff;
+    transform: scale(1.3);
+}
+
+/* Breakpoint largo de propósito - não é "modo mobile" (esse é 768px), é a
+   faixa de monitor pequeno/janela não maximizada onde a sidebar ainda
+   aparece mas o conteúdo fica apertado. min-height de .clima-carrossel/
+   .clima-slide sobe junto pra caber as 2 linhas de item do grid 2x2. */
+@media (max-width: 900px) {
+    .clima-carrossel,
+    .clima-slide {
+        min-height: 172px;
+    }
+
+    .resumo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 14px;
+    }
+}
+
+
+/* ── Métricas (4 cards) ── */
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.metric-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--borda);
+    transition: background-color .25s ease, border-color .25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.metric-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.metric-label {
+    font-size: 11.5px;
+    color: var(--texto-muted);
+    font-weight: 500;
+}
+
+.metric-value {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+/* Variante pra valores mais longos (ex: moeda), evita overflow no card */
+.metric-value-sm {
+    font-size: 20px;
+}
+
+/* Linha "0% vs ontem" — sem isso, .metric-change (que é display:flex,
+   logo vira bloco) empurra .metric-change-label pra linha de baixo */
+.metric-change-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.metric-change {
+    font-size: 11px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.metric-change.up {
+    color: var(--verde);
+}
+
+.metric-change.down {
+    color: var(--vermelho);
+}
+
+.metric-change-label {
+    font-size: 10.5px;
+    color: var(--texto-muted);
+    font-weight: 400;
+}
+
+.metric-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.metric-icon svg {
+    width: 17px;
+    height: 17px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.metric-icon.green {
+    background: #dcfce7;
+    color: var(--verde);
+}
+
+.metric-icon.red {
+    background: #fee2e2;
+    color: var(--vermelho);
+}
+
+.metric-icon.orange {
+    background: #ffedd5;
+    color: var(--laranja);
+}
+
+.metric-icon.blue {
+    background: #E4E7FA;
+    color: var(--azul);
+}
+
+.metric-icon.purple {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.metric-icon.teal {
+    background: #cffafe;
+    color: var(--ciano);
+}
+
+/* Banner de ruptura ativa na Início - só aparece quando algum item está
+   zerado agora (bannerRuptura, controlado por JS em inicial.js). Laranja é
+   "atenção"; vermelho fica reservado pra erro/perigo de verdade. */
+.banner-ruptura {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--laranja) 14%, var(--card-bg));
+    border: 1px solid color-mix(in srgb, var(--laranja) 35%, transparent);
+    color: var(--texto);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color .2s;
+}
+.banner-ruptura:hover {
+    background: color-mix(in srgb, var(--laranja) 22%, var(--card-bg));
+}
+.banner-ruptura svg {
+    color: var(--laranja);
+    flex-shrink: 0;
+}
+.banner-ruptura-link {
+    margin-left: auto;
+    color: var(--laranja);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+
+/* ── Linha inferior: movimentações + gráfico ── */
+
+.bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.section-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--borda);
+    transition: background-color .25s ease, border-color .25s ease;
+}
+
+.section-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.section-card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.section-card-link {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+}
+
+.section-card-link:hover {
+    text-decoration: underline;
+}
+
+/* Texto "Carregando..." / "Servidor offline." nos painéis */
+.placeholder-loading {
+    color: var(--texto-muted);
+    font-size: 13px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.mov-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--borda);
+}
+
+.mov-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.mov-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.mov-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.mov-icon.entrada {
+    background: #dcfce7;
+    color: var(--verde);
+}
+
+.mov-icon.saida {
+    background: #fee2e2;
+    color: var(--vermelho);
+}
+
+.mov-icon.ajuste {
+    background: #E4E7FA;
+    color: var(--azul);
+}
+
+.mov-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.mov-nome {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.mov-detalhe {
+    font-size: 11px;
+    color: var(--texto-muted);
+    margin-top: 1px;
+}
+
+.mov-valor {
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.mov-valor.positivo {
+    color: var(--verde);
+}
+
+.mov-valor.negativo {
+    color: var(--vermelho);
+}
+
+.chart-wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.donut-svg {
+    flex-shrink: 0;
+}
+
+.chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.legend-label {
+    font-size: 12px;
+    color: var(--texto-muted);
+    flex: 1;
+}
+
+.legend-value {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* ── Acesso rápido ── */
+
+.section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--texto-muted);
+    margin-bottom: -4px;
+}
+
+.quick-access {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.qa-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--texto);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--borda);
+    transition: .2s;
+    cursor: pointer;
+}
+
+.qa-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.qa-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qa-icon svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.qa-icon.purple {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.qa-icon.orange {
+    background: #ffedd5;
+    color: var(--laranja);
+}
+
+.qa-icon.red {
+    background: #fee2e2;
+    color: var(--vermelho);
+}
+
+.qa-icon.blue {
+    background: #E4E7FA;
+    color: var(--azul);
+}
+
+.qa-icon.teal {
+    background: #cffafe;
+    color: var(--ciano);
+}
+
+.qa-icon.gold {
+    background: color-mix(in srgb, var(--dourado) 18%, transparent);
+    color: var(--dourado);
+}
+
+.qa-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.qa-sub {
+    font-size: 9px;
+    color: var(--texto-muted);
+    text-align: center;
+    line-height: 1.2;
+}
+
+
+/* ══════════════════════════════════════════════
+   PERFIL (painel lateral)
+═══════════════════════════════════════════════ */
+
+.perfil-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .3);
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+
+.perfil-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.perfil-painel {
+    position: fixed;
+    top: 0;
+    right: -360px;
+    width: 320px;
+    height: 100vh;
+    background: var(--card-bg);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, .12);
+    transition: right .3s ease, background-color .25s ease;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.perfil-overlay.show .perfil-painel {
+    right: 0;
+}
+
+.perfil-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 22px 18px 14px;
+    border-bottom: 1px solid var(--borda);
+}
+
+.perfil-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    background: var(--avatar);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: background-color .25s ease;
+}
+
+.perfil-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.perfil-info strong {
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.perfil-info span {
+    font-size: 11.5px;
+    color: var(--texto-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Botão "X" de fechar o painel de perfil - só pro painel ocupando a tela
+   inteira no mobile; no desktop já existe fechar clicando fora (ver
+   fecharPerfilFora em sidebar.js). */
+.perfil-painel .modal-close {
+    display: none;
+}
+
+.perfil-badge {
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: var(--radius-lg);
+    display: inline-block;
+    margin-top: 2px;
+    width: fit-content;
+}
+
+/* Cor por papel - mesma paleta de configuracoes-usuarios.css (.papel-badge
+   da lista de Usuarios), promovida pra cá pra ficar disponível em
+   qualquer tela (o badge de papel do painel de perfil existe em toda
+   página, não só em Configurações). Padrão pra qualquer badge novo de
+   papel: reaproveitar essas 4 classes, nunca inventar cor nova. */
+.papel-desenvolvedor {
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    color: var(--accent);
+}
+
+.papel-dono {
+    background: color-mix(in srgb, #f59e0b 16%, transparent);
+    color: #f59e0b;
+}
+
+.papel-gerente {
+    background: color-mix(in srgb, var(--azul) 16%, transparent);
+    color: var(--azul);
+}
+
+/* admin_operacional - ciano por ser a única cor da paleta ainda não usada
+   por nenhum dos outros 4 papéis. */
+.papel-admin_operacional {
+    background: color-mix(in srgb, var(--ciano) 16%, transparent);
+    color: var(--ciano);
+}
+
+.papel-peao {
+    background: var(--page-bg);
+    color: var(--texto-muted);
+}
+
+/* ── Área de toque ampliada ──
+   Ícones/links abaixo de 44px (mínimo recomendado de alvo de toque
+   acessível) ganham um ::after invisível garantindo pelo menos 44×44 de
+   área clicável/tocável centralizada, sem alterar nada visual.
+   `max(44px,100%)` nunca encolhe um elemento que já é maior que 44px em
+   algum eixo. Compartilhado (não duplicado por página) de propósito.
+   Ainda NÃO aplicado (fica pra discutir com o Carlos antes de estender):
+   .clima-dot (os pontinhos ficam a ~20px um do outro — um alvo de 44px
+   em cada um ia sobrepor o do vizinho e "roubar" toque do lado errado,
+   precisa de outra solução, não só ampliar) e itens de lista tipo
+   .perfil-opcao/.perfil-sair (already 40-42px, só 2-4px abaixo do
+   mínimo — aumentar a altura desses muda a linha visualmente de um
+   jeito perceptível, diferente de um ícone pequeno ganhando uma margem
+   invisível ao redor). */
+.topbar-notif,
+.perfil-settings,
+.modal-close,
+.clima-refresh,
+.avatar-btn,
+.section-card-link,
+.bnav-item,
+.topbar-hamburguer {
+    position: relative;
+}
+
+.topbar-notif::after,
+.perfil-settings::after,
+.modal-close::after,
+.clima-refresh::after,
+.avatar-btn::after,
+.section-card-link::after,
+.bnav-item::after,
+.topbar-hamburguer::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(44px, 100%);
+    height: max(44px, 100%);
+    transform: translate(-50%, -50%);
+}
+
+/* ── Modal base (compartilhado) ──
+   Mesma definição já duplicada em 10 CSS de página (Estoque, CMV, CMO,
+   CMC, Avarias, Ocorrências, Checklists, Beneficiamento, Manutenção,
+   Configurações) — promovida pra cá porque `_criarModalPerfil`
+   (sidebar.js) usa essas classes em TODA página, inclusive Início e
+   Relatório, que não têm `.modal`/`.modal-overlay` próprio. As cópias
+   por página continuam existindo de propósito (convenção do projeto) e
+   simplesmente reafirmam os mesmos valores — nenhum conflito. */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease, visibility .2s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-md);
+    transform: scale(.96);
+    transition: transform .2s ease, background-color .2s ease;
+}
+
+.modal-overlay.show .modal {
+    transform: scale(1);
+}
+
+/* ── Modal genérico do painel de perfil (sidebar.js: _criarModalPerfil) ──
+   Alterar senha / Ajuda e suporte / foto / confirmar exclusão aparecem em
+   toda página (não só numa tela específica) — por isso essas classes
+   vivem aqui, no CSS compartilhado, e não numa página só. Antes esse
+   modal era 100% inline (sem classe nenhuma), fora do padrão do resto do
+   app e sem a transição de entrada/saída que todo outro modal já tem. */
+.modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--texto-muted);
+    font-size: 20px;
+    line-height: 1;
+    transition: background .15s;
+}
+
+.modal-close:hover {
+    background: var(--page-bg);
+}
+
+.btn-modal-perfil {
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px;
+    border: none;
+    border-radius: var(--radius-xs);
+    background: var(--accent);
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s, transform .15s;
+}
+
+.btn-modal-perfil:hover {
+    background: color-mix(in srgb, var(--accent) 85%, black);
+}
+
+.btn-modal-perfil:active {
+    transform: scale(.98);
+}
+
+.btn-modal-perfil-outline {
+    padding: 9px 14px;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-xs);
+    background: transparent;
+    color: var(--texto);
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background .15s, transform .15s;
+}
+
+.btn-modal-perfil-outline:hover {
+    background: var(--page-bg);
+}
+
+.btn-modal-perfil-outline:active {
+    transform: scale(.98);
+}
+
+.btn-modal-perfil.perigo {
+    background: var(--vermelho);
+}
+
+.btn-modal-perfil.perigo:hover {
+    background: color-mix(in srgb, var(--vermelho) 85%, black);
+}
+
+/* ── Modal "Novidades" (ver inicial.js: _corpoModalNovidades) - itens
+   agrupados por tipo (O que há de novo / O que melhorou / O que foi
+   corrigido), um título por grupo. ──*/
+.novidade-intro {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--texto-muted);
+    margin: 0 0 18px;
+}
+
+.novidade-grupo {
+    margin-bottom: 18px;
+}
+
+.novidade-grupo-titulo {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 8px;
+}
+
+.novidade-grupo.novo .novidade-grupo-titulo { color: var(--verde); }
+.novidade-grupo.melhorado .novidade-grupo-titulo { color: var(--accent); }
+.novidade-grupo.fix .novidade-grupo-titulo { color: var(--laranja); }
+
+.novidade-linha {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--texto);
+    padding: 6px 0 6px 12px;
+    border-left: 2px solid var(--borda);
+    margin-bottom: 4px;
+}
+
+.novidade-emoji {
+    margin-right: 6px;
+}
+
+.novidade-grupo.novo .novidade-linha { border-left-color: color-mix(in srgb, var(--verde) 45%, transparent); }
+.novidade-grupo.melhorado .novidade-linha { border-left-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.novidade-grupo.fix .novidade-linha { border-left-color: color-mix(in srgb, var(--laranja) 45%, transparent); }
+
+.novidade-versao {
+    font-size: 11px;
+    color: var(--texto-muted);
+    text-align: right;
+    margin: 14px 0 0;
+}
+
+/* ── Painel de notificações (sidebar.js: toggleNotificacoes) ──
+   Excluir 1 ou "Limpar" tudo animava sumindo na hora (o painel inteiro era
+   destruido/reconstruido, nunca passava pela transicao do .modal-overlay
+   que ja existe) - agora cada linha encolhe/esmaece antes de sair do DOM.
+   max-height precisa ser setado via JS (scrollHeight atual) antes de
+   aplicar essa classe, senao a transicao de max-height nao tem de onde
+   partir. */
+.notif-item {
+    overflow: hidden;
+    /* JS (_excluirNotificacao/_limparNotificacoes, sidebar.js) tem os
+       mesmos números em ms - trocar aqui sem trocar lá desalinha a
+       remoção do DOM da transição visual. */
+    transition: opacity .4s ease, max-height .4s ease, margin .4s ease, padding .4s ease;
+}
+
+.notif-item-saindo {
+    opacity: 0;
+    max-height: 0 !important;
+    margin: 0;
+    padding: 0;
+}
+
+.notif-item-close {
+    flex-shrink: 0;
+    margin-top: 8px;
+    width: 22px;
+    height: 22px;
+    border: none;
+    background: none;
+    color: var(--texto-muted);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background .15s, color .15s;
+}
+
+.notif-item-close:hover {
+    background: var(--page-bg);
+    color: var(--texto);
+}
+
+.perfil-settings {
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-xs);
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--texto-muted);
+    flex-shrink: 0;
+}
+
+.perfil-settings svg {
+    width: 15px;
+    height: 15px;
+}
+
+.perfil-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 6px 0 20px;
+}
+
+.perfil-secao {
+    padding: 10px 18px;
+}
+
+.perfil-secao-titulo {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--texto-muted);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 8px;
+}
+
+/* ── Bloco "Informações da conta" (Setor/Função/Último acesso/Sessão) ── */
+
+.perfil-info-lista {
+    display: flex;
+    flex-direction: column;
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.perfil-info-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--borda);
+}
+
+.perfil-info-item:last-child {
+    border-bottom: none;
+}
+
+.perfil-info-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-xs);
+    background: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.perfil-info-icon svg {
+    width: 15px;
+    height: 15px;
+    stroke: var(--texto-muted);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.perfil-info-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.perfil-info-label {
+    font-size: 10.5px;
+    color: var(--texto-muted);
+    font-weight: 500;
+}
+
+.perfil-info-valor {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--texto);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.perfil-opcao {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 11px 18px;
+    font-family: inherit;
+    font-size: 13.5px;
+    color: var(--texto-muted);
+    cursor: pointer;
+    text-align: left;
+    font-weight: 500;
+    transition: background .15s;
+}
+
+.perfil-opcao:hover {
+    background: var(--page-bg);
+    color: var(--texto);
+}
+
+.perfil-opcao svg {
+    width: 16px;
+    height: 16px;
+}
+
+.perfil-opcao .chevron {
+    margin-left: auto;
+    width: 15px;
+    height: 15px;
+}
+
+.tema-opcoes {
+    display: flex;
+    gap: 7px;
+    padding: 0 18px 8px;
+}
+
+.tema-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background: var(--page-bg);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-xs);
+    padding: 9px 5px;
+    font-family: inherit;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--texto-muted);
+    cursor: pointer;
+    transition: .15s;
+}
+
+.tema-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.tema-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+}
+
+/* Coral isolado no icone de sol, petroleo no de lua - nunca no restante do botao */
+.tema-btn[data-valor-tema="claro"] svg {
+    color: var(--avatar);
+}
+
+.tema-btn[data-valor-tema="escuro"] svg {
+    color: var(--petroleo);
+}
+
+/* Esconde a opção "Sistema" no celular - deixa só Claro/Escuro. A lógica
+   de detectar preferência do SO (prefers-color-scheme, tema.js) continua
+   funcionando igual em qualquer tela, só o botão manual some. */
+@media (max-width: 768px) {
+    .tema-btn[data-valor-tema="sistema"] {
+        display: none;
+    }
+}
+
+.perfil-sair {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: color-mix(in srgb, var(--vermelho) 10%, transparent);
+    color: var(--vermelho);
+    border: 1px solid color-mix(in srgb, var(--vermelho) 35%, transparent);
+    border-radius: var(--radius-xs);
+    padding: 11px 14px;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: auto 18px 0;
+    transition: background .15s;
+}
+
+.perfil-sair:hover {
+    background: color-mix(in srgb, var(--vermelho) 18%, transparent);
+}
+
+.perfil-sair svg {
+    width: 17px;
+    height: 17px;
+}
+
+
+/* ── Bottom nav (mobile) ── */
+
+.bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--bottom-nav-h);
+    background: var(--sidebar-bg);
+    border-top: 1px solid rgba(255, 255, 255, .07);
+    z-index: 200;
+    padding: 0 8px;
+    padding-bottom: env(safe-area-inset-bottom);
+    transition: background-color .25s ease;
+}
+
+.bottom-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.bnav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    color: var(--texto-side);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 600;
+    flex: 1;
+    justify-content: center;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    transition: .15s;
+}
+
+.bnav-item svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.bnav-item.active {
+    color: var(--accent);
+}
+
+
+/* ── Menu mobile (painel com os módulos que a bottom-nav não tem espaço
+   pra mostrar direto - Estoque/CMV/CMO/CMC/Beneficiamento/Avarias/
+   Checklists/Manutenção/Requisição/Relatórios/Configurações) - mesmo
+   padrão visual/mecânico do .perfil-painel (overlay + painel deslizante),
+   só que abre pela ESQUERDA (perfil abre pela direita) pra não confundir
+   os dois. Populado em runtime por sidebar.js (clona os links já
+   filtrados por plano/papel de .sidebar-nav, não duplica a lista aqui). ──*/
+
+.menu-mobile-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .3);
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+
+.menu-mobile-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-mobile-painel {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100vh;
+    background: var(--sidebar-bg);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, .12);
+    transition: left .3s ease, background-color .25s ease;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 18px 10px;
+}
+
+.menu-mobile-overlay.show .menu-mobile-painel {
+    left: 0;
+}
+
+.menu-mobile-titulo {
+    color: var(--texto-side);
+    opacity: .55;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    padding: 8px 12px 10px;
+}
+
+.menu-mobile-painel .nav-item {
+    padding: 11px 12px;
+    border-radius: var(--radius-sm, 10px);
+}
+
+.menu-mobile-painel .nav-item.active {
+    background: rgba(255, 255, 255, .08);
+}
+
+
+/* ── Responsivo ── */
+
+@media (max-width: 1100px) {
+    .metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .quick-access {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .bottom-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+    /* Rodapé (.bottom-nav) trocado pelo ☰ no topo abrindo a gaveta lateral
+       (.menu-mobile-painel). .bottom-nav continua no HTML de cada página
+       (não removido) de propósito - volta a aparecer sozinho se um dia
+       isso for revertido numa tela específica, é só tirar essa regra. */
+    .topbar-hamburguer {
+        display: flex;
+    }
+    .topbar {
+        padding: 13px 16px;
+    }
+    .greeting {
+        font-size: 17px;
+    }
+    .subgreeting {
+        display: none;
+    }
+    .content {
+        padding: 14px;
+        gap: 14px;
+    }
+    .metrics {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .quick-access {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .perfil-painel {
+        width: 100%;
+        right: -100%;
+    }
+    .perfil-painel .modal-close {
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .metrics {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+    .quick-access {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .content {
+        padding: 12px;
+        gap: 12px;
+    }
+}
+
+/* Alvo de toque mínimo - só os botões do dropdown de Exportar/Mais opções
+   (38px); o resto do sistema (.period-tab, .topbar-notif, etc, 36px) é um
+   padrão mais antigo, registrado em docs/BACKLOG_FRONT.md pra rodada própria. */
+@media (max-width: 768px) {
+    .menu-kebab-btn,
+    .btn-exportar {
+        min-height: 44px;
+    }
+}
+
+/* ══════════════════════════════════════════════
+   TOAST (padrão global - ver mostrarToast em sidebar.js)
+═══════════════════════════════════════════════ */
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: min(420px, calc(100vw - 48px));
+    background: var(--texto);
+    color: var(--page-bg);
+    padding: 12px 14px 12px 20px;
+    border-radius: var(--radius-sm, 8px);
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 9999;
+    box-shadow: var(--shadow-md);
+    transform: translateY(80px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all .3s ease;
+}
+.toast.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.toast.sucesso { background: color-mix(in srgb, var(--verde) 55%, black); color: #fff; }
+.toast.erro { background: var(--vermelho); color: #fff; }
+/* Aviso não-bloqueante - não é erro nem sucesso, só "atenção" informativo. */
+.toast.aviso { background: var(--laranja); color: #fff; }
+.toast-fechar {
+    background: none;
+    border: none;
+    color: inherit;
+    opacity: .75;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 2px;
+}
+.toast-fechar:hover { opacity: 1; }
+/* ══════════════════════════════════════════════════
+   WIDGET DE CHAT COM A IA
+   Injetado via JS (src/scripts/ia_chat.js) em toda página do dashboard,
+   só quando GET /ia/status confirma disponível - nunca aparece
+   "morto"/desabilitado pra quem não tem acesso.
+   ══════════════════════════════════════════════════ */
+
+.ia-chat-fab {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 900;
+    transition: transform .15s, box-shadow .15s;
+}
+.ia-chat-fab:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 28px rgba(46, 143, 227, .4);
+}
+.ia-chat-fab:active {
+    transform: scale(.96);
+}
+.ia-chat-fab img {
+    width: 26px;
+    height: 26px;
+}
+
+.ia-chat-painel {
+    position: fixed;
+    right: 24px;
+    bottom: 92px;
+    width: 340px;
+    max-width: calc(100vw - 32px);
+    height: 460px;
+    max-height: calc(100vh - 140px);
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px) scale(.97);
+    transition: opacity .18s ease, transform .18s ease, visibility .18s;
+}
+.ia-chat-painel.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.ia-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: var(--accent);
+    color: #fff;
+    flex-shrink: 0;
+}
+.ia-chat-header-titulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+}
+.ia-chat-fechar {
+    background: rgba(255, 255, 255, .16);
+    border: none;
+    border-radius: var(--radius-xs);
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    transition: background .15s;
+    flex-shrink: 0;
+}
+.ia-chat-fechar:hover {
+    background: rgba(255, 255, 255, .28);
+}
+
+.ia-chat-periodo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--borda);
+    flex-shrink: 0;
+}
+.ia-chat-periodo-lbl {
+    font-size: 11px;
+    color: var(--texto-muted);
+    white-space: nowrap;
+}
+/* .period-tabs/.period-tab já existem como padrão do projeto (estoque.css/
+   relatorio.css/etc, duplicado por página) - aqui é a única instância
+   que precisa viver no CSS global, já que o widget é injetado em toda
+   página (inclusive as que nunca declararam essas classes no próprio
+   CSS, ex: Configurações). */
+.ia-chat-periodo .period-tabs {
+    display: flex;
+    gap: 3px;
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 3px;
+}
+.ia-chat-periodo .period-tab {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    border-radius: var(--radius-xs);
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--texto-muted);
+    cursor: pointer;
+    font-family: inherit;
+    transition: .15s;
+}
+.ia-chat-periodo .period-tab.active {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.ia-chat-mensagens {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scrollbar-width: thin;
+}
+
+.ia-chat-msg {
+    max-width: 85%;
+    padding: 9px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.ia-chat-msg-ia {
+    align-self: flex-start;
+    background: var(--page-bg);
+    color: var(--texto);
+    border: 1px solid var(--borda);
+}
+.ia-chat-msg-usuario {
+    align-self: flex-end;
+    background: var(--accent);
+    color: #fff;
+}
+.ia-chat-msg-erro {
+    align-self: flex-start;
+    background: rgba(239, 68, 68, .12);
+    color: var(--vermelho);
+    border: 1px solid rgba(239, 68, 68, .3);
+}
+.ia-chat-carregando {
+    opacity: .7;
+    font-style: italic;
+}
+
+.ia-chat-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    border-top: 1px solid var(--borda);
+    flex-shrink: 0;
+}
+.ia-chat-input-wrap input {
+    flex: 1;
+    height: 38px;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    background: var(--page-bg);
+    color: var(--texto);
+    padding: 0 12px;
+    font-size: 13px;
+    font-family: inherit;
+}
+.ia-chat-input-wrap input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+.ia-chat-input-wrap button {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: opacity .15s;
+}
+.ia-chat-input-wrap button:hover {
+    opacity: .88;
+}
+.ia-chat-input-wrap button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* ≤768px (mesmo breakpoint da .bottom-nav) - .bottom-nav é display:none
+   por padrão hoje, não soma mais var(--bottom-nav-h) aqui, só um respiro
+   pequeno do canto pra não colar na borda da tela. */
+@media (max-width: 768px) {
+    .ia-chat-fab {
+        right: 16px;
+        bottom: 16px;
+    }
+    .ia-chat-painel {
+        right: 12px;
+        left: 12px;
+        width: auto;
+        bottom: 84px;
+    }
+}
+
+</style>
+    <style>
+/* ═══════════════════════════════════════════════════
+   TEMA-ESCURO.CSS
+   Inclua este arquivo DEPOIS do dashboard.css em
+   todas as páginas. Ativa via [data-tema="escuro"]
+   no <html>.
+═══════════════════════════════════════════════════ */
+
+[data-tema="escuro"] {
+    --page-bg:      #0A1216;
+    --card-bg:      #1D303A;
+    --sidebar-bg:   #14232B;
+    --accent:       #2E8FE3;
+    --accent-light: #20415A;
+    --petroleo:     #7C97A4;
+    --texto:        #EAF1F3;
+    --texto-muted:  #9DB2BA;
+    --texto-side:   #7E96A2;
+    --borda:        #2E4650;
+    --verde:        #3FB37E;
+    --vermelho:     #f87171;
+    --laranja:      #fb923c;
+    --azul:         #7B88D9;
+    --ciano:        #22d3ee;
+    --dourado:      #D9B54A;
+    --shadow:       0 2px 12px rgba(3,8,10,.45);
+    --shadow-md:    0 4px 24px rgba(3,8,10,.65);
+}
+
+[data-tema="escuro"] body { background: var(--page-bg); color: var(--texto); }
+
+/* ── Sidebar / topbar ── */
+[data-tema="escuro"] .sidebar { background: var(--sidebar-bg); }
+[data-tema="escuro"] .topbar  { background: var(--card-bg); border-bottom-color: var(--borda); }
+
+[data-tema="escuro"] .nav-item { color: var(--texto-side); }
+[data-tema="escuro"] .nav-item:hover { background: rgba(255,255,255,.06); color: #fff; }
+[data-tema="escuro"] .nav-item.active { background: var(--accent); color: #fff; }
+
+[data-tema="escuro"] .sidebar-user:hover { background: rgba(255,255,255,.06); }
+
+[data-tema="escuro"] .hamburger:hover { background: rgba(255,255,255,.08); }
+[data-tema="escuro"] .hamburger span { background: var(--texto-side); }
+
+[data-tema="escuro"] .topbar-notif { background: var(--page-bg); border-color: var(--borda); color: var(--texto-muted); }
+
+/* ── Banner ── */
+[data-tema="escuro"] .banner { background: linear-gradient(120deg, #4b3fb0 0%, #6657d6 60%, #7f6fe0 100%); }
+[data-tema="escuro"] .banner-desc { color: rgba(255,255,255,.6); }
+
+/* ── Cards (métricas / seções / acesso rápido) ── */
+[data-tema="escuro"] .metric-card,
+[data-tema="escuro"] .section-card,
+[data-tema="escuro"] .qa-card {
+    background: var(--card-bg);
+    border-color: var(--borda);
+}
+
+[data-tema="escuro"] .metric-value,
+[data-tema="escuro"] .section-card-title,
+[data-tema="escuro"] .mov-nome,
+[data-tema="escuro"] .qa-label,
+[data-tema="escuro"] .legend-value {
+    color: var(--texto);
+}
+
+[data-tema="escuro"] .metric-label,
+[data-tema="escuro"] .metric-change-label,
+[data-tema="escuro"] .mov-detalhe,
+[data-tema="escuro"] .qa-sub,
+[data-tema="escuro"] .legend-label,
+[data-tema="escuro"] .section-title,
+[data-tema="escuro"] .subgreeting {
+    color: var(--texto-muted);
+}
+
+[data-tema="escuro"] .qa-card:hover { border-color: var(--accent); }
+
+/* ── Ícones de métrica / acesso rápido ── */
+[data-tema="escuro"] .metric-icon.green,
+[data-tema="escuro"] .qa-icon.green   { background: #14321f; color: var(--verde); }
+[data-tema="escuro"] .metric-icon.red,
+[data-tema="escuro"] .qa-icon.red     { background: #341616; color: var(--vermelho); }
+[data-tema="escuro"] .metric-icon.orange,
+[data-tema="escuro"] .qa-icon.orange  { background: #3a230d; color: var(--laranja); }
+[data-tema="escuro"] .metric-icon.blue,
+[data-tema="escuro"] .qa-icon.blue    { background: #1B1E3D; color: var(--azul); }
+[data-tema="escuro"] .metric-icon.purple,
+[data-tema="escuro"] .qa-icon.purple  { background: var(--accent-light); color: var(--accent); }
+[data-tema="escuro"] .metric-icon.teal,
+[data-tema="escuro"] .qa-icon.teal    { background: #0d2e36; color: var(--ciano); }
+
+/* ── Movimentações ── */
+[data-tema="escuro"] .mov-item { border-bottom-color: var(--borda); }
+[data-tema="escuro"] .mov-icon.entrada { background: #14321f; color: var(--verde); }
+[data-tema="escuro"] .mov-icon.saida   { background: #341616; color: var(--vermelho); }
+[data-tema="escuro"] .mov-icon.ajuste  { background: #1B1E3D; color: var(--azul); }
+[data-tema="escuro"] .mov-valor.positivo { color: var(--verde); }
+[data-tema="escuro"] .mov-valor.negativo { color: var(--vermelho); }
+
+/* ── Gráfico donut ── */
+[data-tema="escuro"] .donut-svg circle:not(.seg) { stroke: var(--borda) !important; }
+[data-tema="escuro"] #donut-total { fill: var(--texto) !important; }
+[data-tema="escuro"] .donut-svg text:last-of-type { fill: var(--texto-muted) !important; }
+
+/* ── Painel de perfil ── */
+[data-tema="escuro"] .perfil-painel { background: var(--card-bg); }
+[data-tema="escuro"] .perfil-header { border-bottom-color: var(--borda); }
+[data-tema="escuro"] .perfil-info strong { color: var(--texto); }
+[data-tema="escuro"] .perfil-info span,
+[data-tema="escuro"] .perfil-secao-titulo,
+[data-tema="escuro"] .perfil-opcao { color: var(--texto-muted); }
+[data-tema="escuro"] .perfil-opcao:hover { background: rgba(255,255,255,.06); color: var(--texto); }
+[data-tema="escuro"] .perfil-settings { background: var(--page-bg); border-color: var(--borda); color: var(--texto-muted); }
+
+/* Badge "Administrador" no cabeçalho do perfil — usa --accent, não mais hex fixo */
+[data-tema="escuro"] .perfil-badge { background: var(--accent-light); color: var(--accent); }
+
+/* Achado real: [data-tema="escuro"] .perfil-badge (acima) tem especificidade
+   maior que .papel-desenvolvedor/.papel-dono/.papel-gerente/.papel-peao
+   (dashboard.css), entao no escuro TODO badge de papel virava a cor do
+   accent, perdendo a distincao por papel - bug pre-existente, so ficou
+   visivel agora. Reafirma a cor de cada papel tambem no escuro. */
+[data-tema="escuro"] .papel-dono { background: color-mix(in srgb, #f59e0b 16%, transparent); color: #f59e0b; }
+[data-tema="escuro"] .papel-gerente { background: color-mix(in srgb, var(--azul) 16%, transparent); color: var(--azul); }
+[data-tema="escuro"] .papel-peao { background: var(--page-bg); color: var(--texto-muted); }
+
+/* ── Bloco "Informações da conta" ── */
+[data-tema="escuro"] .perfil-info-lista { background: var(--page-bg); border-color: var(--borda); }
+[data-tema="escuro"] .perfil-info-item { border-bottom-color: var(--borda); }
+[data-tema="escuro"] .perfil-info-icon { background: var(--card-bg); }
+[data-tema="escuro"] .perfil-info-icon svg { stroke: var(--texto-muted); }
+[data-tema="escuro"] .perfil-info-label { color: var(--texto-muted); }
+[data-tema="escuro"] .perfil-info-valor { color: var(--texto); }
+
+/* Botões de tema (Claro/Escuro/Sistema) — era aqui o bug de cor:
+   o estado ativo usava um hex fixo (#a89bff) diferente do --accent
+   real do tema escuro (#7c6fff). Corrigido para usar a variável. */
+[data-tema="escuro"] .tema-btn { background: var(--page-bg); border-color: var(--borda); color: var(--texto-muted); }
+[data-tema="escuro"] .tema-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+
+/* ── Bottom nav (mobile) ── */
+[data-tema="escuro"] .bottom-nav { background: var(--sidebar-bg); border-top-color: var(--borda); }
+[data-tema="escuro"] .bnav-item { color: var(--texto-side); }
+[data-tema="escuro"] .bnav-item.active { color: var(--accent); }
+
+/* ── Scrollbar sutil ── */
+[data-tema="escuro"] * { scrollbar-color: var(--borda) transparent; scrollbar-width: thin; }
+</style>
+    
+    <style>
+
+.vitrine-aviso {
+    padding: 10px 16px; background: var(--accent-light); color: var(--accent);
+    border-radius: var(--radius-sm); font-size: 12.5px; font-weight: 600;
+    text-align: center;
+}
+
+.vit-click { cursor: pointer; transition: border-color .15s, box-shadow .15s, transform .15s; }
+.vit-click:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.vit-click.vit-ativo { border-color: var(--accent); }
+.qa-card { cursor: pointer; }
+.vit-linha { display:flex; align-items:center; gap:12px; padding:9px 0; border-bottom:1px solid var(--borda); font-size:13px; color:var(--texto); }
+.vit-linha:last-child { border-bottom:none; }
+.vit-linha .vit-l-nome { flex:0 0 130px; font-weight:600; }
+.vit-linha .vit-l-bar { flex:1; height:8px; background:var(--borda); border-radius:99px; overflow:hidden; }
+.vit-linha .vit-l-bar i { display:block; height:100%; background:var(--accent); border-radius:99px; }
+.vit-linha .vit-l-val { font-weight:700; min-width:60px; text-align:right; }
+.vit-stat { display:flex; justify-content:space-between; padding:12px 14px; background:var(--page-bg); border-radius:var(--radius-sm); margin-bottom:8px; font-size:13px; }
+.vit-stat strong { font-size:15px; }
+.vit-modal-body { padding: 4px 22px 8px; }
+.vit-modal-nota { font-size:11.5px; color:var(--texto-muted); padding: 0 22px 18px; margin:0; }
+.vit-notif { display:flex; flex-direction:column; gap:2px; padding:10px 0; border-bottom:1px solid var(--borda); font-size:13px; color:var(--texto-muted); }
+.vit-notif strong { color:var(--texto); }
+.vit-limpar { margin: 6px 22px 18px; background:none; border:none; color:var(--accent); font-weight:600; cursor:pointer; font-family:inherit; }
+.modal-header { display:flex; align-items:center; justify-content:space-between; padding:18px 22px 10px; }
+.modal-title { font-family:'Fraunces',serif; font-size:16px; font-weight:600; color:var(--texto); }
+.legend-item:hover .legend-label { color: var(--accent); }
+.donut-svg .seg.vit-sel { stroke-width: 27; }
+
+    </style>
+</head>
+<body>
+    <div class="layout">
+        
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0zNS4wMSAtMjQuNDUgMTQwMCAxMjAwIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApIHNjYWxlKDEuMCkiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMTIwMC4wKSBzY2FsZSgwLjEsLTAuMSkiPjxwYXRoIGQ9Ik01Nzk1IDEwODc5IGMtMTE1IC01IC0yNTAgLTEzIC0zMDAgLTE5IC00OSAtNiAtMTMxIC0xNSAtMTgxIC0yMA0KLTE2NSAtMTcgLTU0MyAtOTUgLTY5OSAtMTQ1IC0yMiAtNyAtODAgLTI1IC0xMzAgLTQwIC0xMDYgLTMyIC0yMDMgLTY0IC0zMDANCi0xMDAgLTM4IC0xNCAtODggLTMyIC0xMTAgLTM5IC05NiAtMzIgLTQwMSAtMTc2IC01MTAgLTI0MSAtMjIgLTEzIC00NyAtMjcNCi01NSAtMzEgLTE1IC04IC0xNTggLTkwIC0yMjAgLTEyNyAtMjc3IC0xNjUgLTY1NSAtNDYzIC04OTggLTcwNyAtMTEzIC0xMTMNCi0zMjkgLTM1OSAtMzgyIC00MzQgLTggLTExIC00MCAtNTUgLTcxIC05NiAtOTAgLTEyMSAtMTk2IC0yNzYgLTI2MCAtMzgwIC0xOQ0KLTMwIC00MCAtNjQgLTQ3IC03NSAtNyAtMTEgLTE5IC0zMyAtMjggLTUwIC04IC0xNiAtMjYgLTQ4IC0zOSAtNzAgLTM5IC02NQ0KLTE2MCAtMzEzIC0yMTMgLTQzNyAtMTAgLTI0IC0yNiAtNTkgLTM0IC03OCAtMTUgLTM0IC00OCAtMTE4IC04OCAtMjI1IC0xMA0KLTI3IC0zMCAtODggLTQ1IC0xMzUgLTE1IC00NyAtMzIgLTk2IC0zNyAtMTEwIC0xMCAtMjMgLTE2IC00NiAtNDkgLTE3MCAtNg0KLTI1IC0xOSAtNzIgLTI5IC0xMDUgLTEwIC0zMyAtMjEgLTgwIC0yNCAtMTA1IC00IC0yNSAtMTMgLTY3IC0yMSAtOTUgLTIyDQotODEgLTU0IC0yOTcgLTczIC00OTAgLTI0IC0yNTMgLTI0IC04MTcgMCAtMTA0MCAyMCAtMTc1IDUyIC0zOTUgNjkgLTQ2NSA2DQotMjUgMjAgLTgxIDI5IC0xMjUgMzEgLTEzOCA0NiAtMTk5IDU4IC0yMzUgNiAtMTkgMjUgLTgwIDQxIC0xMzUgNDYgLTE1MiA2MQ0KLTE5NiA4MiAtMjQxIDEwIC0yMyAxOSAtNDUgMTkgLTUwIDAgLTkgMzQgLTEwMSA1NiAtMTQ5IDcgLTE2IDI1IC01OSAzOSAtOTUNCjM0IC04NCA2NCAtMTUxIDc2IC0xNzAgNSAtOCAxNCAtMjYgMTkgLTQwIDYgLTE0IDE0IC0zMiAxOSAtNDAgNiAtOCAyNiAtNDYNCjQ2IC04NSAyMCAtMzggNDcgLTg4IDYwIC0xMTAgMTMgLTIyIDMxIC01MyA0MSAtNzAgNTIgLTkzIDMwMyAtNDU4IDM4OCAtNTY1DQoxOTYgLTI0NiA0NjIgLTUzMSA2MTYgLTY1OSAzNSAtMjkgNzAgLTYwIDc5IC02OSA2MiAtNjIgNTAyIC0zOTUgNTQxIC00MTAgOA0KLTMgMzUgLTIwIDYwIC0zNyA1MSAtMzUgMjQ2IC0xNDkgMjgxIC0xNjUgMTMgLTYgNDQgLTIyIDY5IC0zNiAyNSAtMTQgOTAgLTQ4DQoxNDUgLTc2IDU1IC0yNyAxMDggLTU0IDExOCAtNTkgNTQgLTI5IDI0OCAtMTA5IDM4NSAtMTU5IDI5IC0xMSA3NiAtMjggMTA1DQotMzkgMjggLTEyIDY4IC0yNCA4NyAtMjcgMTkgLTQgNDMgLTExIDU0IC0xNiAzMiAtMTcgMjU0IC03NiA0NDEgLTExNyA1NDcNCi0xMjEgMTA5MCAtMTQyIDE3MDUgLTY3IDE1NiAxOSA0OTAgODUgNTI2IDEwNCAxMSA1IDM4IDEyIDYyIDE2IDM5IDYgMTMyIDMyDQoyMDcgNTcgMTcgNiA1MyAxNyA4MCAyNCA2NiAxNyAyNjIgODggMzAwIDEwOSAxNyA5IDM2IDE2IDQzIDE2IDggMCAyNiA2IDQwDQoxNCAxNSA4IDQ3IDIzIDcyIDM0IDI1IDExIDc5IDM2IDEyMCA1NSA0MSAxOSAxMDcgNDkgMTQ1IDY3IDM5IDE4IDExMiA1MyAxNjQNCjc5IDUxIDI1IDEwNiA1MiAxMjIgNjAgMTYgOCAyOSAxOSAyOSAyNCAwIDE0IC00NCAzIC0xNDAgLTMzIC0yMTYgLTgxIC00MTcNCi0xNDUgLTQ4NSAtMTU1IC0yNyAtNCAtNjAgLTEyIC03MyAtMTYgLTEzIC01IC05NyAtMjAgLTE4NiAtMzQgLTUyMiAtNzkgLTkyMA0KLTg0IC0xNDIxIC0xOSAtMzAzIDQwIC01OTUgMTA2IC03NDAgMTY4IC0xNyA4IC00NiAxNyAtNjUgMjEgLTE5IDQgLTQ0IDEzDQotNTUgMjAgLTExIDcgLTM0IDE2IC01MiAyMCAtMTcgMyAtNDggMTUgLTY5IDI2IC0yMSAxMCAtNDUgMTkgLTU0IDE5IC05IDANCi0yNCA2IC0zNSAxNCAtMTEgNyAtMzEgMTcgLTQ1IDIxIC0zNSAxMCAtMTg4IDgwIC0yMzAgMTA1IC04IDUgLTg3IDUwIC0xNzUNCjEwMSAtMjEzIDEyMSAtMjY5IDE1NSAtMzM3IDIwMyAtODggNjMgLTIxMiAxNTggLTIyMyAxNzAgLTUgNiAtNjQgNTYgLTEzMA0KMTEwIC0xNzAgMTQwIC01NDAgNTE1IC02NjAgNjY4IC0yMDYgMjYzIC0zMzIgNDQ0IC00MTYgNTk4IC05IDE2IC0yMSAzNSAtMjcNCjQyIC0yMyAyOSAtMTI5IDI0MyAtMTk0IDM5MyAtNjUgMTUwIC05OCAyMjQgLTEyMSAyNjkgLTEyIDI1IC00NSAxMTkgLTYxIDE3OA0KLTggMjUgLTE3IDUyIC0yMSA1OCAtNyAxMSAtMjggODggLTYyIDIyNSAtMTggNzIgLTc1IDM1NSAtOTggNDgwIC05IDUwIC0yMA0KMTQwIC0yNSAyMDAgLTUgNjEgLTE0IDE3MSAtMjAgMjQ1IC0xMiAxMzQgLTggMjU3IDIwIDU4MyAxNiAxOTIgMTEwIDYxNSAxODANCjgxNyA1NiAxNTkgMTczIDQyMSAyNTAgNTYwIDk0IDE3MCAyMjEgMzY3IDMyMyA1MDUgODMgMTEwIDI3MiAzMTkgNDAxIDQ0Mw0KMjI2IDIxNSA1NDYgNDQzIDc5NiA1NjYgMzAgMTUgNjIgMzEgNzAgMzYgOCA1IDUzIDI3IDEwMCA0OSA1ODEgMjY2IDEyODcgMzc2DQoxODgwIDI5MiAyMjEgLTMyIDQyNiAtNzMgNTI1IC0xMDYgMjIgLTcgNTYgLTE3IDc1IC0yMCAzMSAtNyA3NyAtMjMgMjcwIC05Nw0KNzcgLTI5IDMzOCAtMTU2IDM0NSAtMTY4IDEyIC0xOSAzNiA1IDE1MiAxNDMgNjUgNzggMTI1IDE0OSAxMzMgMTU3IDggOCA0OA0KNTYgODkgMTA1IDQxIDUwIDEwNiAxMjYgMTQ1IDE2OSAxMTYgMTMwIDE4NyAyMTQgMzQ2IDQwNiAzMCAzNyA3NCA4NiA5NyAxMTENCjI0IDI0IDQzIDUxIDQzIDU5IDAgNDEgLTY2OSAzNTcgLTkwMCA0MjUgLTI1IDggLTc2IDI2IC0xMTUgNDAgLTY0IDI0IC0xMTcNCjQwIC0yNzUgODIgLTMwNyA4MiAtNzI5IDE0NyAtMTA2NSAxNjMgLTExMCA1IC0yMTEgOSAtMjI1IDggLTE0IDAgLTExOSAtNQ0KLTIzNSAtOXogTTk0MzQgNjA4OCBjLTMzIC0zNSAtMTAwIC0xMDggLTE0OSAtMTYzIC00OSAtNTUgLTExNyAtMTI5IC0xNTANCi0xNjUgLTMzIC0zNiAtODEgLTg4IC0xMDYgLTExNiAtMjUgLTI3IC03MCAtNzkgLTEwMCAtMTE0IC0yOSAtMzYgLTEwNSAtMTIxDQotMTY5IC0xOTAgLTYzIC02OSAtMTQyIC0xNTYgLTE3NSAtMTk1IC0zMiAtMzggLTg5IC0xMDIgLTEyNSAtMTQwIC0yMjEgLTIzOA0KLTI3NSAtMjk5IC0yNzUgLTMxMyAwIC0xMyA4MiAtMTUgNzQwIC0xNiBsNzQwIC0xIDMgLTIyIGMyIC0xMyAtMTEgLTM2IC0zNw0KLTY1IC03OSAtODcgLTE4MSAtMjA3IC0yMzMgLTI3NSAtMjkgLTM5IC03NyAtOTkgLTEwNiAtMTM0IC0zMCAtMzUgLTEwNiAtMTI3DQotMTcwIC0yMDMgLTIzNiAtMjgyIC01MTkgLTU4NSAtNzEyIC03NjIgLTg5IC04MSAtMzA5IC0yNTcgLTQwMSAtMzE5IC0xMDUNCi03MiAtMzQ1IC0yMDggLTQ2NCAtMjY0IC00OSAtMjMgLTk3IC00NiAtMTA2IC01MSAtMTggLTkgLTEyNSAtNTIgLTE4OSAtNzUNCi01OSAtMjEgLTE3MCAtNTMgLTI0NSAtNjkgLTMzIC04IC04MCAtMTggLTEwNSAtMjQgLTM3OSAtOTEgLTg4NCAtMTIzIC0xMTg3DQotNzYgLTUxIDggLTEwOCAxNCAtMTI3IDE0IC0zNCAwIC0zMzEgNTYgLTM0NiA2NSAtNCAzIC0zNiAxMSAtNzEgMTkgLTYyIDE0DQotMTI3IDM0IC0xOTkgNjEgLTMzMyAxMjMgLTU5MiAyNTIgLTgzOSA0MTkgLTEyNCA4NCAtMzYyIDI1OSAtNDAzIDI5NyAtMTQgMTMNCi01NyA1MSAtOTQgODMgLTM4IDMzIC0xMTIgMTA0IC0xNjUgMTU4IC05NSA5OCAtMTA5IDEwOSAtMTA5IDg2IDAgLTEwIDIxNA0KLTMzNCAyNzMgLTQxMyAxMDAgLTEzMyAyNjMgLTMzMCAzNDkgLTQyMCAxNTkgLTE2NyA0NDkgLTQyMCA2MDcgLTUzMCAxMjAgLTgzDQoyMTggLTE0OCAyNTEgLTE2NiAxOSAtMTEgNTggLTM0IDg1IC01MSAxMTMgLTcwIDQ1MSAtMjMxIDYxNSAtMjkyIDE5IC04IDYwDQotMjMgOTAgLTM0IDMwIC0xMiA3MyAtMjYgOTUgLTMxIDIyIC02IDg3IC0yMyAxNDUgLTM5IDMwNiAtODUgNTEyIC0xMTkgODY1DQotMTQzIDI3OCAtMTkgNzQwIDUgOTkwIDUxIDMzIDYgODMgMTUgMTEwIDE5IDExMCAxOCAyMzIgNDMgMjcwIDU2IDIyIDggNTcgMTcNCjc3IDIwIDIwIDQgOTQgMjcgMTY1IDUyIDcwIDI1IDE1MiA1NCAxODIgNjQgMzAgMTAgNTkgMjMgNjUgMjcgNiA1IDQ5IDIzIDk1DQo0MSA0NiAxOCA5MSAzNiAxMDAgNDEgOSA1IDYzIDMyIDEyMSA2MSAxMTEgNTYgMTUwIDc3IDIxNSAxMTUgMjIgMTMgNTQgMzEgNzANCjQwIDM0IDE5IDE5NSAxMjYgMjcwIDE4MCA3OSA1NyAyMzUgMTgzIDI5NCAyMzggMTE5IDExMiAzOTQgMzk3IDQ3MyA0OTEgMTA2DQoxMjYgMzQ4IDQzMSAzNzEgNDY4IDExIDE3IDI2IDI3IDQyIDI3IGwyNSAwIDAgLTkzOSBjMCAtNTU5IDQgLTk0MiA5IC05NDUgNQ0KLTQgNzggNDggMTYzIDExNCAxODUgMTQ2IDU2NSA0NDQgNTkzIDQ2NSAxMSA4IDEyNSA5NyAyNTIgMTk3IDEyOCAxMDEgMjczDQoyMTQgMzIyIDI1MiA0OSAzOCA5OSA3OCAxMTAgOTAgbDIxIDIyIDAgMTczMCBjMCA5NTEgMCAxNzM1IDAgMTc0MiAwIDkgLTI3MQ0KMTIgLTEzMjMgMTIgbC0xMzIzIDAgLTYwIC02MnoiIGZpbGw9IiNGRkZGRkYiLz48cGF0aCBkPSJNMTIzMDUgMTE3MjAgYy0xMSAtNCAtNDkgLTE2IC04NSAtMjUgLTM2IC0xMCAtOTIgLTI1IC0xMjUgLTM1IC0zMw0KLTEwIC0xMDUgLTI4IC0xNjAgLTQwIC01NSAtMTMgLTEyNyAtMjkgLTE2MCAtMzcgLTMzIC04IC04OCAtMjEgLTEyMiAtMjggLTM0DQotOCAtNzAgLTE4IC04MCAtMjMgLTEwIC01IC0zOCAtMTIgLTYzIC0xNiAtMjUgLTQgLTY3IC0xMyAtOTUgLTIxIC01OSAtMTcNCi0xNTYgLTQyIC0yNDAgLTYxIC0zMyAtNyAtOTYgLTIyIC0xNDAgLTMzIC00NCAtMTEgLTEwOSAtMjcgLTE0NSAtMzYgLTM2IC04DQotOTAgLTIxIC0xMjAgLTI5IC0zMCAtOCAtOTIgLTIzIC0xMzggLTM1IC00NSAtMTEgLTExOCAtMjkgLTE2MiAtNDAgLTQ0IC0xMQ0KLTExNiAtMjkgLTE2MCAtNDAgLTQ0IC0xMSAtMTE2IC0yOSAtMTYwIC00MCAtNDQgLTExIC0xMTUgLTI5IC0xNTggLTQxIC00Mg0KLTExIC05OSAtMjQgLTEyNyAtMjkgLTU5IC0xMiAtMTcyIC00MCAtMzA1IC03NSAtNTIgLTE0IC0xMDQgLTI3IC0xMTUgLTMwDQotMTA3IC0yOSAtNDM2IC0xMDYgLTQ0OCAtMTA2IC05IDAgLTIwIC04IC0yNSAtMTcgLTEzIC0yMiA2NCAtMTAwIDQxOSAtNDIzDQo1NyAtNTIgMTY2IC0xNTYgMjQyIC0yMzAgNzYgLTc0IDE0NSAtMTM5IDE1MyAtMTQzIDI0IC0xNCAxNiAtMzggLTI4IC04NiAtMjQNCi0yNiAtNjMgLTY5IC04NyAtOTYgLTM2IC00MSAtMTgzIC0yMDMgLTI0MSAtMjY1IC04IC05IC02NCAtNzIgLTEyNSAtMTQwIC02MA0KLTY5IC0xMzAgLTE0NyAtMTU2IC0xNzUgLTI2IC0yNyAtNjIgLTY4IC04MCAtOTAgLTE5IC0yMiAtODQgLTk0IC0xNDUgLTE2MA0KLTYxIC02NiAtMTg5IC0yMDggLTI4NCAtMzE1IC0xNzUgLTE5NyAtMzA0IC0zNDAgLTQxNiAtNDYwIC0zMyAtMzYgLTE0OSAtMTY0DQotMjU3IC0yODUgLTIzOCAtMjY3IC00MTUgLTQ2NSAtNDcxIC01MjUgLTQ4IC01MiAtMjE5IC0yNDEgLTI1NyAtMjg1IC04MSAtOTINCi0yMTMgLTI0MSAtMjE5IC0yNDUgLTYgLTUgLTIyNCAtMjUwIC0yOTUgLTMzMiAtNTMgLTYxIC0zMzMgLTM3MiAtMzgwIC00MjINCi0xMSAtMTIgLTE2OSAtMTg5IC0yMTkgLTI0NiAtMTI3IC0xNDQgLTIxMSAtMjMwIC0yMjUgLTIyOSAtOSAwIC00NSAzNCAtODENCjc0IC0xNzMgMTk2IC02MjUgNzAxIC02MzQgNzEwIC0xOCAxNiAtMTc2IDE5MyAtMjUwIDI4MCAtMzggNDQgLTEwMSAxMTYgLTE0MQ0KMTYwIC00MCA0NCAtMTI1IDE0MCAtMTkwIDIxMyAtODMgOTQgLTEyMyAxMzIgLTEzNiAxMzAgLTI1IC00IC0xMDU5IC0xMDM3DQotMTA1OSAtMTA1NyAwIC0xNiAxNyAtMzYgMjIwIC0yNTMgNjQgLTY4IDEzMSAtMTQxIDE0OSAtMTYzIDI3IC0zMiAxOTEgLTIxMg0KMjM2IC0yNTkgNiAtNiA2OSAtNzYgMTQwIC0xNTYgNzEgLTgwIDE4MSAtMjAxIDI0NSAtMjcwIDYzIC03MCAxNTYgLTE3MyAyMDYNCi0yMzAgMTA1IC0xMjAgMTEzIC0xMjkgMjQ5IC0yNzYgMTE0IC0xMjQgMTkzIC0yMTAgMjE1IC0yMzQgOCAtOSA0MCAtNDMgNzANCi03NiAzMSAtMzIgOTYgLTEwNiAxNDUgLTE2NCA1MCAtNTggMTI5IC0xNDUgMTc2IC0xOTUgNDcgLTQ5IDE0MiAtMTUyIDIxMA0KLTIyOCA2OCAtNzcgMTQ4IC0xNjQgMTc3IC0xOTUgbDUyIC01NyAyOCAzMSBjMTUgMTcgOTAgMTAyIDE2NyAxOTAgNzcgODcgMTQ3DQoxNjYgMTU1IDE3NSA4IDggNDAgNDIgNzAgNzUgMzAgMzMgODcgOTMgMTI1IDEzNSA5MCA5NyAxOTUgMjE0IDI3NiAzMDkgMzUgNDENCjEwNyAxMjAgMTU5IDE3NSA1MiA1NiAxMjUgMTM0IDE2MSAxNzUgMzcgNDEgMTA3IDEyMCAxNTYgMTc1IDQ4IDU1IDExMyAxMjcNCjE0MyAxNTkgMzExIDMzOCA0MTEgNDQ5IDQ2NiA1MTYgMzggNDcgMTkyIDIxOCAyNzUgMzA1IDM2IDM5IDEwNyAxMTggMTU3IDE3Ng0KNTAgNTggMTMxIDE0OCAxODAgMjAwIDQ4IDUyIDExNSAxMjMgMTQ3IDE1OSAzMiAzNiAxMDQgMTE1IDE2MCAxNzUgNTYgNjEgMTQzDQoxNTcgMTk0IDIxNSAxMzEgMTQ4IDE3NiAxOTcgNDgxIDUzMCA2OSA3NSAxMzkgMTUyIDE1NSAxNzEgMTIyIDEzNyAzNTQgMzk0DQo0MTUgNDU5IDggOCA1NSA2MCAxMDQgMTE1IDEzNSAxNTEgMjM3IDI2NCAyNzUgMzA0IDE4IDIwIDY1IDc0IDEwNCAxMjEgMzkgNDcNCjEyNSAxNDEgMTkyIDIxMCA2NiA2OSAxNDggMTU2IDE4MiAxOTQgMzQgMzcgNjYgNjcgNzEgNjUgOSAtNCAxNjYgLTE1MCA0MDcNCi0zODAgNTUgLTUyIDEzMiAtMTI0IDE3MCAtMTYwIDM5IC0zNSAxMjIgLTExMSAxODQgLTE2OSA2MyAtNTggMTIxIC0xMDUgMTI5DQotMTA1IDIwIDAgNDAgNzQgNDggMTc1IDMgNDEgMTIgMTAwIDE5IDEzMCA3IDMwIDE2IDg3IDIwIDEyNSAzIDM5IDEyIDk1IDIwDQoxMjUgNyAzMCAxNiA4NCAxOSAxMjAgNCAzNiAxMyA5NyAyMSAxMzUgMTYgNzQgNDIgMjMxIDU2IDMzMCA0IDMzIDE1IDEwMSAyNA0KMTUwIDM5IDIyMyA0OCAyNzYgNjEgMzcwIDcgNTUgMTggMTE4IDI0IDE0MCA2IDIyIDE0IDgwIDIwIDEyOCA1IDQ4IDEyIDkyIDE1DQo5NyAzIDUgMTIgNTcgMjAgMTE3IDE2IDEyMyA0MCAyNzIgNTYgMzUzIDYgMzAgMTcgOTMgMjQgMTQwIDI5IDE5MyA0NiAyOTkgNjANCjM2MCA4IDM2IDE3IDk5IDIwIDE0MCA0IDQxIDEyIDk4IDIwIDEyNSA3IDI4IDE4IDk3IDI0IDE1NSAxMCA5NSAxMCAxMDYgLTYNCjExNyAtMTkgMTUgLTIxIDE1IC00OCAzeiIgZmlsbD0iI0ZGRkZGRiIvPjwvZz48L2c+PC9zdmc+" width="28" height="28" alt="GestãoCheck">
+                    <span class="nav-label">GestãoCheck</span>
+                </div>
+                <button class="hamburger" onclick="document.getElementById('sidebar').classList.toggle('collapsed')">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" title="Início" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke-width="1.8"></rect><rect x="14" y="3" width="7" height="7" rx="1.5" stroke-width="1.8"></rect><rect x="3" y="14" width="7" height="7" rx="1.5" stroke-width="1.8"></rect><rect x="14" y="14" width="7" height="7" rx="1.5" stroke-width="1.8"></rect></svg><span class="nav-label">Início</span></a>
+                <a href="#" class="nav-item" title="Estoque" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73L13 2.27a2 2 0 0 0-2 0L4 6.27A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27,6.96 12,12.01 20.73,6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg><span class="nav-label">Estoque</span></a>
+                <a href="#" class="nav-item" title="CMV" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23" stroke-width="1.8" stroke-linecap="round"></line><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6" stroke-width="1.8" stroke-linecap="round"></path></svg><span class="nav-label">CMV</span></a>
+                <a href="#" class="nav-item" title="CMO" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="1.8" stroke-linecap="round"></path><circle cx="9" cy="7" r="4" stroke-width="1.8"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-width="1.8" stroke-linecap="round"></path></svg><span class="nav-label">CMO</span></a>
+                <a href="#" class="nav-item" title="CMC" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" stroke-width="1.8"></rect><line x1="8" y1="21" x2="16" y2="21" stroke-width="1.8" stroke-linecap="round"></line><line x1="12" y1="17" x2="12" y2="21" stroke-width="1.8" stroke-linecap="round"></line></svg><span class="nav-label">CMC</span></a>
+                <a href="#" class="nav-item" title="Despesas" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="7" y1="14" x2="13" y2="14"></line></svg><span class="nav-label">Despesas</span></a>
+                <a href="#" class="nav-item" title="Beneficiamento" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2.1l4 4-4 4"></path><path d="M3 12.7V12a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l1-1.2"></path><path d="M7 21.9l-4-4 4-4"></path><path d="M21 11.3V12a9 9 0 0 1-9 9 9 9 0 0 1-6-2.3l-1 1.2"></path></svg><span class="nav-label">Beneficiamento</span></a>
+                <a href="#" class="nav-item" title="Avarias" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke-width="1.8" stroke-linecap="round"></path><line x1="12" y1="9" x2="12" y2="13" stroke-width="1.8" stroke-linecap="round"></line><line x1="12" y1="17" x2="12.01" y2="17" stroke-width="2.4" stroke-linecap="round"></line></svg><span class="nav-label">Avarias</span></a>
+                <a href="#" class="nav-item" title="Ocorrências" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="12" x2="12" y2="16"></line><line x1="12" y1="18" x2="12.01" y2="18"></line></svg><span class="nav-label">Ocorrências</span></a>
+                <a href="#" class="nav-item" title="Checklists" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 9h6M9 12h6M9 15h4"></path></svg><span class="nav-label">Checklists</span></a>
+                <a href="#" class="nav-item" title="Manutenção" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg><span class="nav-label">Manutenção</span></a>
+                <a href="#" class="nav-item" title="Requisição" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 9h6M9 12h6M9 15h4"></path></svg><span class="nav-label">Requisição</span></a>
+                <a href="#" class="nav-item" title="Patrimônio" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M4 21V10l8-6 8 6v11"></path><path d="M9 21v-6h6v6"></path></svg><span class="nav-label">Patrimônio</span></a>
+                <a href="#" class="nav-item" title="Relatórios" onclick="return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10" stroke-width="1.8" stroke-linecap="round"></line><line x1="12" y1="20" x2="12" y2="4" stroke-width="1.8" stroke-linecap="round"></line><line x1="6" y1="20" x2="6" y2="14" stroke-width="1.8" stroke-linecap="round"></line></svg><span class="nav-label">Relatórios</span></a>
+            </nav>
+            <div class="sidebar-bottom">
+                <a href="#" class="nav-item" title="Configurações" onclick="return false;">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" stroke-width="1.8"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke-width="1.8"></path></svg>
+                    <span class="nav-label">Configurações</span>
+                </a>
+                <div class="sidebar-user">
+                    <div class="sidebar-user-avatar">MT</div>
+                    <div class="sidebar-user-info">
+                        <strong>Marina</strong>
+                        <span>Administrador</span>
+                    </div>
+                </div>
+                <div class="sidebar-versao">Demonstração</div>
+            </div>
+        </aside>
+        <main class="main">
+            
+            <header class="topbar">
+                <div class="topbar-titulo-grupo">
+                <div>
+                    <p class="greeting">Olá, Marina! 👋</p>
+                    <p class="subgreeting">Bem-vindo de volta ao seu painel.</p>
+                </div>
+                </div>
+                <div class="topbar-right">
+                    <div class="topbar-notif" onclick="vitNotif()" title="Notificações">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                        <span class="notif-dot show"></span>
+                    </div>
+                    <button class="avatar-btn" onclick="vitAviso('Perfil e sessão ficam em Configurações.')">
+                        <span>MT</span>
+                        <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+                    </button>
+                </div>
+            </header>
+            <div class="content">
+                
+<div class="vitrine-aviso">Demonstração interativa — clique numa métrica pra ver o detalhe, num atalho pra uma prévia, em "Ver todas", ou numa fatia da rosca.</div>
+
+<div class="clima-carrossel" id="vitClima">
+    <div class="clima-slide clima-slide-tempo show" id="vitSlide0">
+        <div class="clima-topo"><span class="clima-local">Clima agora · São Paulo</span>
+            <button class="clima-refresh" onclick="vitClimaRefresh()" title="Atualizar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-2.6-6.4" stroke-linecap="round"></path><polyline points="21 3 21 9 15 9" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></button>
+        </div>
+        <div class="clima-principal"><span class="clima-icone" id="vitClimaIcone">🌤️</span><span class="clima-temp" id="vitClimaTemp">24°C</span><span class="clima-desc" id="vitClimaDesc">Parcialmente nublado — dia bom pra movimento no salão.</span></div>
+    </div>
+    <div class="clima-slide clima-slide-resumo" id="vitSlide1" onclick="vitAviso('Os relatórios completos ficam na tela Relatórios.')">
+        <div class="resumo-topo"><span class="resumo-titulo">Resumo do dia</span><span class="resumo-link">Ver relatório completo →</span></div>
+        <div class="resumo-grid">
+            <div class="resumo-item"><span class="resumo-valor">20</span><span class="resumo-label">Contagens</span></div>
+            <div class="resumo-item"><span class="resumo-valor">1</span><span class="resumo-label">Ocorrências abertas</span></div>
+            <div class="resumo-item"><span class="resumo-valor">0</span><span class="resumo-label">Avarias pendentes</span></div>
+            <div class="resumo-item"><span class="resumo-valor">R$ 7.694,00</span><span class="resumo-label">Em estoque</span></div>
+        </div>
+    </div>
+    <div class="clima-dots"><button class="clima-dot active" id="vitDot0" onclick="vitSlide(0)"></button><button class="clima-dot" id="vitDot1" onclick="vitSlide(1)"></button></div>
+</div>
+
+<div class="metrics"><div class="metric-card vit-click" id="vitM_contagens" onclick="vitMetrica('contagens')"><div class="metric-card-top"><span class="metric-label">Contagens realizadas</span><div class="metric-icon green"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.8"></rect><polyline points="9,12 11,14 15,10" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></div></div><span class="metric-value">20</span><div class="metric-change-row"><span class="metric-change up"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><polyline points="18 15 12 9 6 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></polyline></svg> +4</span><span class="metric-change-label">vs ontem</span></div></div><div class="metric-card vit-click" id="vitM_ocorrencias" onclick="vitMetrica('ocorrencias')"><div class="metric-card-top"><span class="metric-label">Ocorrências abertas</span><div class="metric-icon red"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke-width="1.8" stroke-linecap="round"></path><line x1="12" y1="9" x2="12" y2="13" stroke-width="1.8" stroke-linecap="round"></line></svg></div></div><span class="metric-value">1</span><div class="metric-change-row"><span class="metric-change down"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></polyline></svg> -2</span><span class="metric-change-label">vs ontem</span></div></div><div class="metric-card vit-click" id="vitM_avarias" onclick="vitMetrica('avarias')"><div class="metric-card-top"><span class="metric-label">Itens com avaria</span><div class="metric-icon orange"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="1.8"></circle><line x1="12" y1="8" x2="12" y2="12" stroke-width="1.8" stroke-linecap="round"></line><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2.4" stroke-linecap="round"></line></svg></div></div><span class="metric-value">0</span><div class="metric-change-row"><span class="metric-change up">R$ 0,00</span><span class="metric-change-label">em prejuízo pendente</span></div></div><div class="metric-card vit-click" id="vitM_estoque" onclick="vitMetrica('estoque')"><div class="metric-card-top"><span class="metric-label">Valor total em estoque</span><div class="metric-icon blue"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" stroke-width="1.8"></rect><line x1="1" y1="10" x2="23" y2="10" stroke-width="1.8"></line></svg></div></div><span class="metric-value metric-value-sm">R$ 7.694,00</span><div class="metric-change-row"><span class="metric-change up"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><polyline points="18 15 12 9 6 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></polyline></svg> 2,1%</span><span class="metric-change-label">vs ontem</span></div></div><div class="metric-card vit-click" id="vitM_reclamacoes" onclick="vitMetrica('reclamacoes')"><div class="metric-card-top"><span class="metric-label">Reclamações abertas</span><div class="metric-icon purple"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div></div><span class="metric-value">0</span><div class="metric-change-row"><span class="metric-change-label">no momento</span></div></div><div class="metric-card vit-click" id="vitM_retornos" onclick="vitMetrica('retornos')"><div class="metric-card-top"><span class="metric-label">Retornos de prato abertos</span><div class="metric-icon teal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="1.8"></circle><path d="M8 12a4 4 0 0 1 8 0" stroke-width="1.8" stroke-linecap="round"></path></svg></div></div><span class="metric-value">0</span><div class="metric-change-row"><span class="metric-change-label">no momento</span></div></div></div>
+
+<div class="section-card" id="vitDetalhe" style="display:none">
+    <div class="section-card-header"><span class="section-card-title" id="vitDetTitulo">—</span>
+        <button class="section-card-link" onclick="vitFecharDetalhe()">Fechar</button></div>
+    <div id="vitDetCorpo"></div>
+</div>
+
+<div class="quick-access"><div class="qa-card" role="button" onclick="vitAtalho('cmv')"><div class="qa-icon purple"><svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="1" x2="12" y2="23" stroke-width="1.8" stroke-linecap="round"></line><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6" stroke-width="1.8" stroke-linecap="round"></path></svg></div><span class="qa-label">CMV</span><span class="qa-sub">R$ 120.176,59 este mês</span></div><div class="qa-card" role="button" onclick="vitAtalho('contagem')"><div class="qa-icon teal"><svg viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73L13 2.27a2 2 0 0 0-2 0L4 6.27A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="3.27,6.96 12,12.01 20.73,6.96" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline><line x1="12" y1="22.08" x2="12" y2="12" stroke-width="1.8" stroke-linecap="round"></line></svg></div><span class="qa-label">Contagem</span><span class="qa-sub">Registrar contagem de itens</span></div><div class="qa-card" role="button" onclick="vitAtalho('cmo')"><div class="qa-icon orange"><svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="1.8" stroke-linecap="round"></path><circle cx="9" cy="7" r="4" stroke-width="1.8"></circle></svg></div><span class="qa-label">CMO</span><span class="qa-sub">Custo de Mão de Obra</span></div><div class="qa-card" role="button" onclick="vitAtalho('caixa')"><div class="qa-icon gold"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke-width="1.8"></rect><path d="M16 7V5a4 4 0 0 0-8 0v2" stroke-width="1.8" stroke-linecap="round"></path><line x1="2" y1="13" x2="22" y2="13" stroke-width="1.8"></line></svg></div><span class="qa-label">Caixa</span><span class="qa-sub">Fechamento de caixa</span></div><div class="qa-card" role="button" onclick="vitAtalho('avarias')"><div class="qa-icon red"><svg viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke-width="1.8" stroke-linecap="round"></path><line x1="12" y1="9" x2="12" y2="13" stroke-width="1.8" stroke-linecap="round"></line></svg></div><span class="qa-label">Avarias</span><span class="qa-sub">Itens com avaria</span></div><div class="qa-card" role="button" onclick="vitAtalho('cmc')"><div class="qa-icon blue"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke-width="1.8"></rect><line x1="8" y1="21" x2="16" y2="21" stroke-width="1.8" stroke-linecap="round"></line><line x1="12" y1="17" x2="12" y2="21" stroke-width="1.8" stroke-linecap="round"></line></svg></div><span class="qa-label">CMC</span><span class="qa-sub">Custo Médio de Compra</span></div><div class="qa-card" role="button" onclick="vitAtalho('relatorios')"><div class="qa-icon teal"><svg viewBox="0 0 24 24" fill="none"><line x1="18" y1="20" x2="18" y2="10" stroke-width="1.8" stroke-linecap="round"></line><line x1="12" y1="20" x2="12" y2="4" stroke-width="1.8" stroke-linecap="round"></line><line x1="6" y1="20" x2="6" y2="14" stroke-width="1.8" stroke-linecap="round"></line></svg></div><span class="qa-label">Relatórios</span><span class="qa-sub">Visualizar relatórios</span></div></div>
+
+<div class="bottom-row">
+    <div class="section-card">
+        <div class="section-card-header"><span class="section-card-title">Movimentações recentes</span>
+            <button class="section-card-link" onclick="vitAbrirMov()">Ver todas</button></div>
+        <div id="vitListaMov"><div class="mov-item"><div class="mov-icon entrada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="7,10 12,15 17,10" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="15" x2="12" y2="3" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Cachaça Artesanal</div><div class="mov-detalhe">Bebidas · L</div></div><span class="mov-valor positivo">+ R$ 32,00</span></div><div class="mov-item"><div class="mov-icon entrada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="7,10 12,15 17,10" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="15" x2="12" y2="3" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Vinho Tinto Reserva</div><div class="mov-detalhe">Bebidas · Garrafa</div></div><span class="mov-valor positivo">+ R$ 45,00</span></div><div class="mov-item"><div class="mov-icon entrada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="7,10 12,15 17,10" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="15" x2="12" y2="3" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Filé Mignon</div><div class="mov-detalhe">Carnes · Kg</div></div><span class="mov-valor positivo">+ R$ 68,00</span></div><div class="mov-item"><div class="mov-icon entrada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="7,10 12,15 17,10" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="15" x2="12" y2="3" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Guardanapos</div><div class="mov-detalhe">Descartáveis · Pacote</div></div><span class="mov-valor positivo">+ R$ 8,00</span></div></div>
+    </div>
+    <div class="section-card">
+        <div class="section-card-header"><span class="section-card-title">Estoque por categoria</span></div>
+        <div class="chart-wrap"><svg class="donut-svg" width="130" height="130" viewBox="0 0 130 130"><circle cx="65" cy="65" r="50" fill="none" style="stroke:var(--borda)" stroke-width="22"></circle><circle class="seg" id="vitSeg0" cx="65" cy="65" r="50" fill="none" stroke="var(--accent)" stroke-width="22" stroke-dasharray="31.416 314.159" stroke-dashoffset="-0.000" transform="rotate(-90 65 65)" style="cursor:pointer;transition:stroke-width .2s" onclick="vitCategoria(0)"></circle><circle class="seg" id="vitSeg1" cx="65" cy="65" r="50" fill="none" stroke="var(--verde)" stroke-width="22" stroke-dasharray="15.708 314.159" stroke-dashoffset="-31.416" transform="rotate(-90 65 65)" style="cursor:pointer;transition:stroke-width .2s" onclick="vitCategoria(1)"></circle><circle class="seg" id="vitSeg2" cx="65" cy="65" r="50" fill="none" stroke="var(--laranja)" stroke-width="22" stroke-dasharray="31.416 314.159" stroke-dashoffset="-47.124" transform="rotate(-90 65 65)" style="cursor:pointer;transition:stroke-width .2s" onclick="vitCategoria(2)"></circle><circle class="seg" id="vitSeg3" cx="65" cy="65" r="50" fill="none" stroke="var(--ciano)" stroke-width="22" stroke-dasharray="15.708 314.159" stroke-dashoffset="-78.540" transform="rotate(-90 65 65)" style="cursor:pointer;transition:stroke-width .2s" onclick="vitCategoria(3)"></circle><circle class="seg" id="vitSeg4" cx="65" cy="65" r="50" fill="none" stroke="var(--azul)" stroke-width="22" stroke-dasharray="31.416 314.159" stroke-dashoffset="-94.248" transform="rotate(-90 65 65)" style="cursor:pointer;transition:stroke-width .2s" onclick="vitCategoria(4)"></circle><circle class="seg" id="vitSeg5" cx="65" cy="65" r="50" fill="none" stroke="var(--texto-muted)" stroke-width="22" stroke-dasharray="188.496 314.159" stroke-dashoffset="-125.664" transform="rotate(-90 65 65)" style="cursor:pointer;transition:stroke-width .2s" onclick="vitCategoria(5)"></circle><text x="65" y="66" text-anchor="middle" font-size="18" font-weight="800" style="fill:var(--texto)" id="vitDonutTotal">20</text><text x="65" y="82" text-anchor="middle" font-size="10" style="fill:var(--texto-muted)" id="vitDonutLabel">itens</text></svg><div class="chart-legend"><div class="legend-item" style="cursor:pointer" onclick="vitCategoria(0)"><div class="legend-dot" style="background:var(--accent)"></div><span class="legend-label">Bebidas</span><span class="legend-value">10%</span></div><div class="legend-item" style="cursor:pointer" onclick="vitCategoria(1)"><div class="legend-dot" style="background:var(--verde)"></div><span class="legend-label">Carnes</span><span class="legend-value">5%</span></div><div class="legend-item" style="cursor:pointer" onclick="vitCategoria(2)"><div class="legend-dot" style="background:var(--laranja)"></div><span class="legend-label">Descartáveis</span><span class="legend-value">10%</span></div><div class="legend-item" style="cursor:pointer" onclick="vitCategoria(3)"><div class="legend-dot" style="background:var(--ciano)"></div><span class="legend-label">Frutos do Mar</span><span class="legend-value">5%</span></div><div class="legend-item" style="cursor:pointer" onclick="vitCategoria(4)"><div class="legend-dot" style="background:var(--azul)"></div><span class="legend-label">Grãos</span><span class="legend-value">10%</span></div><div class="legend-item" style="cursor:pointer" onclick="vitCategoria(5)"><div class="legend-dot" style="background:var(--texto-muted)"></div><span class="legend-label">Outros</span><span class="legend-value">60%</span></div></div></div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="vitModalAtalho" onclick="if(event.target===this) vitFecharModal()">
+    <div class="modal">
+        <div class="modal-header"><span class="modal-title" id="vitAtTitulo">—</span>
+            <button class="modal-close" onclick="vitFecharModal()"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line></svg></button></div>
+        <div class="vit-modal-body" id="vitAtCorpo"></div>
+        <p class="vit-modal-nota">Prévia rápida. Na demonstração, abra a tela completa pelo menu lateral.</p>
+    </div>
+</div>
+
+<div class="modal-overlay" id="vitModalMov" onclick="if(event.target===this) vitFecharModal()">
+    <div class="modal">
+        <div class="modal-header"><span class="modal-title">Movimentações recentes</span>
+            <button class="modal-close" onclick="vitFecharModal()"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line></svg></button></div>
+        <div class="vit-modal-body" style="max-height:420px;overflow-y:auto"><div class="mov-item"><div class="mov-icon entrada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="7,10 12,15 17,10" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="15" x2="12" y2="3" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Cachaça Artesanal</div><div class="mov-detalhe">Bebidas · L</div></div><span class="mov-valor positivo">+ R$ 32,00</span></div><div class="mov-item"><div class="mov-icon entrada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="7,10 12,15 17,10" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="15" x2="12" y2="3" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Vinho Tinto Reserva</div><div class="mov-detalhe">Bebidas · Garrafa</div></div><span class="mov-valor positivo">+ R$ 45,00</span></div><div class="mov-item"><div class="mov-icon entrada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="7,10 12,15 17,10" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="15" x2="12" y2="3" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Filé Mignon</div><div class="mov-detalhe">Carnes · Kg</div></div><span class="mov-valor positivo">+ R$ 68,00</span></div><div class="mov-item"><div class="mov-icon entrada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="7,10 12,15 17,10" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="15" x2="12" y2="3" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Guardanapos</div><div class="mov-detalhe">Descartáveis · Pacote</div></div><span class="mov-valor positivo">+ R$ 8,00</span></div><div class="mov-item"><div class="mov-icon saida"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="17,8 12,3 7,8" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="3" x2="12" y2="15" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Tomate</div><div class="mov-detalhe">Hortifruti · Kg</div></div><span class="mov-valor negativo">- R$ 21,60</span></div><div class="mov-item"><div class="mov-icon saida"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="17,8 12,3 7,8" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="3" x2="12" y2="15" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Camarão Congelado</div><div class="mov-detalhe">Frutos do Mar · Kg</div></div><span class="mov-valor negativo">- R$ 93,00</span></div><div class="mov-item"><div class="mov-icon entrada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="7,10 12,15 17,10" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="15" x2="12" y2="3" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Azeite Extra Virgem</div><div class="mov-detalhe">Mercearia · L</div></div><span class="mov-valor positivo">+ R$ 76,00</span></div><div class="mov-item"><div class="mov-icon ajuste"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="17,1 21,5 17,9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14" stroke-width="1.8" stroke-linecap="round"></path><polyline points="7,23 3,19 7,15" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3" stroke-width="1.8" stroke-linecap="round"></path></svg></div><div class="mov-info"><div class="mov-nome">Arroz Arbóreo</div><div class="mov-detalhe">Grãos · Kg</div></div><span class="mov-valor positivo">± R$ 4,00</span></div><div class="mov-item"><div class="mov-icon saida"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="17,8 12,3 7,8" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="3" x2="12" y2="15" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Detergente</div><div class="mov-detalhe">Limpeza · Un</div></div><span class="mov-valor negativo">- R$ 9,80</span></div><div class="mov-item"><div class="mov-icon entrada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="7,10 12,15 17,10" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="15" x2="12" y2="3" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Queijo Mascarpone</div><div class="mov-detalhe">Laticínios · Kg</div></div><span class="mov-valor positivo">+ R$ 90,00</span></div><div class="mov-item"><div class="mov-icon saida"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="17,8 12,3 7,8" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="3" x2="12" y2="15" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Salmão Fresco</div><div class="mov-detalhe">Peixes · Kg</div></div><span class="mov-valor negativo">- R$ 110,00</span></div><div class="mov-item"><div class="mov-icon entrada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="7,10 12,15 17,10" stroke-width="1.8" stroke-linecap="round"></polyline><line x1="12" y1="15" x2="12" y2="3" stroke-width="1.8" stroke-linecap="round"></line></svg></div><div class="mov-info"><div class="mov-nome">Farinha de Trigo</div><div class="mov-detalhe">Mercearia · Kg</div></div><span class="mov-valor positivo">+ R$ 34,00</span></div></div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="vitModalNotif" onclick="if(event.target===this) vitFecharModal()">
+    <div class="modal">
+        <div class="modal-header"><span class="modal-title">Notificações</span>
+            <button class="modal-close" onclick="vitFecharModal()"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line></svg></button></div>
+        <div class="vit-modal-body" id="vitNotifCorpo">
+            <div class="vit-notif"><strong>Ocorrência aberta</strong><span>Checklist "Abertura da Cozinha": tomates vencidos encontrados.</span></div>
+            <div class="vit-notif"><strong>Preço pendente de aprovação</strong><span>Filé Mignon: R$ 68,00 → R$ 72,50.</span></div>
+        </div>
+        <button class="vit-limpar" onclick="vitLimparNotif()">Limpar</button>
+    </div>
+</div>
+<div class="toast" id="vitToast"><span id="vitToastMsg"></span><button class="toast-fechar" onclick="document.getElementById('vitToast').classList.remove('show')">&times;</button></div>
+
+            </div>
+        </main>
+    </div>
+    <script>
+
+(function () {
+
+    function vitToast(msg, tipo) {
+        var t = document.getElementById('vitToast');
+        document.getElementById('vitToastMsg').textContent = msg;
+        t.className = 'toast show ' + (tipo || 'sucesso');
+        clearTimeout(window._vitToastTimer);
+        window._vitToastTimer = setTimeout(function () { t.classList.remove('show'); }, 3400);
+    }
+    window.vitAviso = function (msg) { vitToast(msg, 'aviso'); };
+
+    var DET = {
+        contagens: {t: '20 contagens realizadas hoje', linhas: [['Cozinha', 9], ['Bar', 6], ['Salão', 3], ['Almoxarifado', 2]], max: 9, un: ''},
+        ocorrencias: {t: '1 ocorrência aberta', texto: 'Checklist "Abertura da Cozinha": tomates vencidos encontrados (2 caixas). Setor Cozinha, aberta às 19:04. Aguardando ação do gerente.'},
+        avarias: {t: 'Nenhum item com avaria hoje', texto: 'Sem prejuízo pendente. Quando uma avaria é registrada, o valor perdido aparece aqui na hora.'},
+        estoque: {t: 'R$ 7.694,00 em estoque', linhas: [['Carnes', 1700], ['Peixes', 660], ['Bebidas', 1180], ['Mercearia', 443]], max: 1700, un: 'R$ '},
+        reclamacoes: {t: 'Nenhuma reclamação aberta', texto: 'Reclamações de clientes registradas como ocorrência aparecem aqui até serem resolvidas.'},
+        retornos: {t: 'Nenhum retorno de prato aberto', texto: 'Quando um prato volta pra cozinha, o registro fica aqui com a mesa e o motivo.'}
+    };
+    var ativo = null;
+
+    window.vitMetrica = function (chave) {
+        var painel = document.getElementById('vitDetalhe');
+        document.querySelectorAll('.metric-card').forEach(function (c) { c.classList.remove('vit-ativo'); });
+        if (ativo === chave) { painel.style.display = 'none'; ativo = null; return; }
+        ativo = chave;
+        document.getElementById('vitM_' + chave).classList.add('vit-ativo');
+        var d = DET[chave];
+        document.getElementById('vitDetTitulo').textContent = d.t;
+        var corpo = document.getElementById('vitDetCorpo');
+        if (d.linhas) {
+            corpo.innerHTML = d.linhas.map(function (l) {
+                var pct = Math.round(l[1] / d.max * 100);
+                return '<div class="vit-linha"><span class="vit-l-nome">' + l[0] + '</span><span class="vit-l-bar"><i style="width:' + pct + '%"></i></span><span class="vit-l-val">' + d.un + l[1].toLocaleString('pt-BR') + '</span></div>';
+            }).join('');
+        } else {
+            corpo.innerHTML = '<p style="font-size:13px;color:var(--texto-muted);margin:0;line-height:1.6">' + d.texto + '</p>';
+        }
+        painel.style.display = 'block';
+    };
+    window.vitFecharDetalhe = function () {
+        document.getElementById('vitDetalhe').style.display = 'none';
+        document.querySelectorAll('.metric-card').forEach(function (c) { c.classList.remove('vit-ativo'); });
+        ativo = null;
+    };
+
+    var ATALHOS = {
+        cmv: ['CMV do mês', [['Faturamento', 'R$ 120.176,59'], ['CMV atual', '34,9%'], ['Meta', '30%']]],
+        contagem: ['Contagem de itens', [['Itens contados hoje', '20'], ['Divergências', '2'], ['Última contagem', '19:04']]],
+        cmo: ['Custo de Mão de Obra', [['CMO do período', 'R$ 78.538,35'], ['% do faturamento', '11,7%'], ['Colaboradores', '5']]],
+        caixa: ['Fechamento de caixa', [['Esperado hoje', 'R$ 780,00'], ['Último fechamento', 'R$ 15,50 de diferença'], ['Setores fechados', '1 de 3']]],
+        avarias: ['Avarias', [['Registradas no período', '4'], ['Valor perdido', 'R$ 424,00'], ['Pendentes', '0']]],
+        cmc: ['Custo Médio de Compra', [['Total de compras', 'R$ 35.579,31'], ['Fornecedores', '4'], ['Ticket médio', 'R$ 1.617,24']]],
+        relatorios: ['Relatórios', [['Prime Cost', '46,6%'], ['Resultado operacional', '39,7%'], ['Insights novos', '5']]]
+    };
+    window.vitAtalho = function (k) {
+        var a = ATALHOS[k];
+        document.getElementById('vitAtTitulo').textContent = a[0];
+        document.getElementById('vitAtCorpo').innerHTML = a[1].map(function (s) {
+            return '<div class="vit-stat"><span>' + s[0] + '</span><strong>' + s[1] + '</strong></div>';
+        }).join('');
+        document.getElementById('vitModalAtalho').classList.add('show');
+    };
+    window.vitAbrirMov = function () { document.getElementById('vitModalMov').classList.add('show'); };
+    window.vitNotif = function () { document.getElementById('vitModalNotif').classList.add('show'); };
+    window.vitFecharModal = function () {
+        document.querySelectorAll('.modal-overlay').forEach(function (m) { m.classList.remove('show'); });
+    };
+    window.vitLimparNotif = function () {
+        document.getElementById('vitNotifCorpo').innerHTML = '<p style="font-size:13px;color:var(--texto-muted);padding:10px 0">Nenhuma notificação.</p>';
+        var dot = document.querySelector('.notif-dot');
+        if (dot) dot.classList.remove('show');
+    };
+
+    var CATS = [["Bebidas", 2], ["Carnes", 1], ["Descartáveis", 2], ["Frutos do Mar", 1], ["Grãos", 2], ["Outros", 12]];
+    var catAtiva = null;
+    window.vitCategoria = function (i) {
+        document.querySelectorAll('.donut-svg .seg').forEach(function (s) { s.classList.remove('vit-sel'); });
+        var total = document.getElementById('vitDonutTotal');
+        var lab = document.getElementById('vitDonutLabel');
+        if (catAtiva === i) {
+            catAtiva = null; total.textContent = '20'; lab.textContent = 'itens'; return;
+        }
+        catAtiva = i;
+        document.getElementById('vitSeg' + i).classList.add('vit-sel');
+        total.textContent = CATS[i][1];
+        lab.textContent = CATS[i][0];
+    };
+
+    var slideAtual = 0;
+    window.vitSlide = function (n) {
+        slideAtual = n;
+        document.getElementById('vitSlide0').classList.toggle('show', n === 0);
+        document.getElementById('vitSlide1').classList.toggle('show', n === 1);
+        document.getElementById('vitDot0').classList.toggle('active', n === 0);
+        document.getElementById('vitDot1').classList.toggle('active', n === 1);
+    };
+    var CLIMAS = [['🌤️', '24°C', 'Parcialmente nublado — dia bom pra movimento no salão.'], ['☀️', '29°C', 'Ensolarado — a área externa deve encher no almoço.'], ['🌧️', '19°C', 'Chuva a caminho — bom momento pra reforçar o delivery.']];
+    var climaIdx = 0;
+    window.vitClimaRefresh = function () {
+        climaIdx = (climaIdx + 1) % CLIMAS.length;
+        document.getElementById('vitClimaIcone').textContent = CLIMAS[climaIdx][0];
+        document.getElementById('vitClimaTemp').textContent = CLIMAS[climaIdx][1];
+        document.getElementById('vitClimaDesc').textContent = CLIMAS[climaIdx][2];
+    };
+    // limpo pelo site ao sair da tela
+    setInterval(function () { vitSlide(slideAtual === 0 ? 1 : 0); }, 7000);
+})();
+
+    </script>
+</body>
+</html>

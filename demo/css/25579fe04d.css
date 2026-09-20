@@ -1,0 +1,329 @@
+
+/* ═══════════════════════════════════════════════════
+   CONFIGURACOES-USUARIOS.CSS — seção "Usuários" da tela de Configurações.
+   Bloco genérico (modal/form-group/msg-erro/btn-salvar/btn-novo-item)
+   vive só em configuracoes.css — aqui só o que é exclusivo desta seção.
+═══════════════════════════════════════════════════ */
+
+.usuarios-sem-permissao {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--texto-muted);
+    font-size: 14px;
+}
+
+.usuarios-bloco {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 20px;
+}
+
+.usuarios-bloco-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.usuarios-bloco-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.usuarios-bloco-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin: 0 0 16px;
+}
+
+.usuarios-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.usuario-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 14px 12px;
+    border-radius: var(--radius-sm);
+    transition: background .15s;
+}
+
+.usuario-item:hover {
+    background: var(--page-bg);
+}
+
+.usuario-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    background: var(--avatar);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.usuario-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+    flex: 1;
+}
+
+/* Nome em destaque; e-mail e setor/função vêm pequenos embaixo. */
+.usuario-nome {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--texto);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.35;
+}
+
+.usuario-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.usuario-sub-meta {
+    font-size: 11px;
+}
+
+.usuario-tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.btn-editar-usuario {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--borda);
+    background: var(--page-bg);
+    color: var(--texto-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s, color .15s, border-color .15s, transform .1s;
+}
+
+.btn-editar-usuario svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+}
+
+.btn-editar-usuario:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-editar-usuario:active {
+    transform: scale(.94);
+}
+
+/* Mesma forma/tamanho de .btn-salvar (configuracoes.css - botao
+   dominante dos forms desta pagina), so em variante outline/aviso em vez
+   de solido - mesmo criterio de .btn-modal-perfil-outline/.perigo
+   (dashboard.css) pra diferenciar "acao secundaria de cautela" da acao
+   primaria, sem inventar uma forma nova. */
+.btn-encerrar-sessoes {
+    width: 100%;
+    height: 48px;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--laranja);
+    background: transparent;
+    color: var(--laranja);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+}
+
+.btn-encerrar-sessoes:hover {
+    background: color-mix(in srgb, var(--laranja) 12%, transparent);
+}
+
+.btn-encerrar-sessoes:active {
+    transform: scale(.98);
+}
+
+.btn-excluir-usuario:hover {
+    background: color-mix(in srgb, var(--vermelho) 14%, transparent);
+    border-color: var(--vermelho);
+    color: var(--vermelho);
+}
+
+.papel-badge {
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+}
+
+.papel-desenvolvedor {
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    color: var(--accent);
+}
+
+.papel-dono {
+    background: color-mix(in srgb, #f59e0b 16%, transparent);
+    color: #f59e0b;
+}
+
+.papel-gerente {
+    background: color-mix(in srgb, var(--azul) 16%, transparent);
+    color: var(--azul);
+}
+
+.papel-peao {
+    background: var(--page-bg);
+    color: var(--texto-muted);
+}
+
+.usuario-pendente {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--vermelho);
+}
+
+.usuarios-vazio {
+    font-size: 13px;
+    color: var(--texto-muted);
+    padding: 12px 0;
+}
+
+.usuarios-senha-padrao {
+    font-size: 12px;
+    color: var(--texto-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ── Modal "Permissões extras" (explicação) — nomes amigáveis, cards,
+   respiro. Modal aberto com { largura: 520 } (ver
+   abrirExplicacaoPermissoesExtras / _criarModalPerfil). ── */
+.perm-explica-intro {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--texto);
+    margin: 0 0 16px;
+}
+
+.perm-explica-rotulo {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--texto-muted);
+    margin: 16px 0 8px;
+}
+
+.perm-hierarquia {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.perm-hierarquia .nivel {
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-pill);
+    padding: 4px 11px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.perm-hierarquia .seta {
+    color: var(--texto-muted);
+    font-weight: 700;
+}
+
+.perm-explica-nota-hier {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--texto-muted);
+    margin: 8px 0 0;
+}
+
+.perm-explica-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.perm-explica-item {
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+}
+
+.perm-explica-item-topo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.perm-explica-nome {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.perm-explica-sensivel {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--laranja) 16%, transparent);
+    color: var(--laranja);
+}
+
+.perm-explica-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--texto-muted);
+    margin-top: 3px;
+}
+
+.perm-explica-nota {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--texto);
+    margin: 16px 0 0;
+}
+
+.perm-explica-nota-fraca {
+    color: var(--texto-muted);
+}
+

@@ -1,0 +1,7 @@
+{
+  "name": "gestaocheck-demo-tools",
+  "private": true,
+  "description": "Gera demo/ (mini sistema da vitrine) a partir das telas em demo-src/. Rodar: npm install && npm run build",
+  "scripts": { "build": "node build-demo.js" },
+  "devDependencies": { "postcss": "^8.4.47" }
+}

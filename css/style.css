@@ -1,0 +1,3596 @@
+:root {
+    /* Modo escuro (decisão 11/08/2026) - --primary agora é o tom CLARO
+       usado como texto/ícone/acento sobre o fundo escuro (títulos, tags,
+       links); --primary-dark é a âncora escura de verdade, usada nos
+       poucos elementos que precisam continuar com texto branco em cima
+       (CTA final, faixa de destaque, sidebar do mockup) - nunca trocar
+       --primary por --primary-dark num lugar que tenha `color: white`
+       junto, ou o texto fica invisível. */
+    --primary: #7DD3DC;
+    --primary-dark: #0a3540;
+    --secondary: #FF6B6B;
+    --secondary-dark: #e85a5a;
+    --bg-white: #142B33;
+    --bg-gray: #0C1E24;
+    --text-main: #EAF3F5;
+    --text-muted: #9FB8C2;
+    --border: #24404b;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    /* NÃO usar scroll-behavior:smooth aqui - bug real achado: o Lenis
+       (scroll suave via JS) e o smooth-scroll nativo do navegador
+       brigavam pelo controle da posição de scroll ao clicar num link
+       de âncora (nav/logo) - o nativo anima `scrollTop` direto, o
+       Lenis mantém seu próprio alvo interno sem saber disso, e os dois
+       ficam se corrigindo um contra o outro. Sintoma real reportado:
+       clicar na logo pra voltar ao topo "travava" o site numa posição
+       de scroll errada, quebrando a matemática da abertura (mostrava
+       uma mistura de cores travada, nem o site nem a abertura direito).
+       Removido - o Lenis já suaviza sozinho, e os cliques de âncora
+       agora passam por `lenis.scrollTo()` (script.js) em vez do
+       comportamento nativo. */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-gray);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--primary);
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+}
+
+
+/* BUTTONS */
+
+/* Padding reduzido (era 16px 32px) - Carlos achou o botão "Solicitar
+   demonstração" exagerado, mesmo raciocínio de compactar caixa/texto
+   das rodadas anteriores. */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 26px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.btn-primary {
+    background-color: var(--secondary);
+    color: white;
+    box-shadow: 0 4px 14px rgba(255, 107, 107, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-dark);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-white {
+    background-color: var(--bg-white);
+    color: var(--text-main);
+}
+
+.btn-outline-white {
+    background-color: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline-white:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/* BARRA DE PROGRESSO DE SCROLL */
+
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--secondary), var(--primary));
+    z-index: 1100;
+    pointer-events: none;
+}
+
+
+/* HEADER */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 8px 0;
+    transition: all 0.3s ease;
+    background: rgba(12, 30, 36, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+}
+
+header.scrolled {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    background: rgba(12, 30, 36, 0.95);
+}
+
+header.scrolled .logo-img {
+    height: 46px;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--primary);
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--primary);
+    color: var(--secondary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.logo-img {
+    height: 64px;
+    width: auto;
+    max-width: 260px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+    transition: height 0.3s ease;
+}
+
+.footer-logo .logo-img {
+    height: 58px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    list-style: none;
+    flex: 1;
+    min-width: 0;
+}
+
+.nav-links li:last-child {
+    margin-left: auto;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a.btn-primary {
+    color: white;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+/* DROPDOWN "FUNCIONALIDADES" no menu (14/09/2026) - a faixa de 15
+   botões que ficava no meio do site (`#funcionalidades`) virou esse
+   dropdown, mesma lista de sempre, só que dentro do menu (igual a
+   coluna "Funcionalidades" que já existe no rodapé desde uma rodada
+   anterior - "com do menu se liga fica melhor", pedido do Carlos).
+   Interação por clique (não hover) em toda largura - mais previsível
+   que hover em mega-menu, e funciona igual em mouse/touch sem
+   precisar de duas lógicas diferentes. */
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.nav-dropdown-toggle:hover,
+.nav-dropdown.open .nav-dropdown-toggle {
+    color: var(--primary);
+}
+
+.nav-dropdown-toggle i {
+    font-size: 0.65rem;
+    transition: transform 0.2s;
+}
+
+.nav-dropdown.open .nav-dropdown-toggle i {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 16px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    padding: 14px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    width: 560px;
+    z-index: 10;
+}
+
+.nav-dropdown.open .nav-dropdown-menu {
+    display: grid;
+}
+
+.nav-dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+}
+
+.nav-dropdown-menu a i {
+    color: var(--primary);
+    width: 16px;
+    text-align: center;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.nav-dropdown-menu a:hover {
+    background: var(--bg-gray);
+    color: var(--primary);
+}
+
+
+/* ABERTURA (splash) - zoom no logo ao rolar, revela o Hero por baixo;
+   no fim da página, fecha de novo "se afastando" no mesmo logo (loop
+   natural de scroll bidirecional). CSS + JS puro (sem GSAP/Lenis) -
+   roda mesmo se as libs de animação externas falharem, já que não
+   depende de CDN nenhum. Rascunho aprovado pelo Carlos ("v4: Zoom no
+   Scroll") antes de virar código de produção aqui. */
+
+/* Altura reduzida de propósito (era 350vh) - o Carlos apontou que a
+   abertura estava "parecendo uma seção" em vez de um efeito que
+   aparece e some: com 350vh (250vh de scroll real, já descontado o
+   1 viewport da `.splash-sticky`), o usuário passava mais de 2 telas
+   inteiras de scroll "dentro" da animação antes do Hero aparecer -
+   tempo suficiente pra parecer conteúdo de verdade, não uma
+   transição. 200vh (100vh de scroll real) dá o mesmo arco de
+   zoom+escurece+clareia, só que em cerca de 1 tela de scroll - lê como
+   flash rápido, não como seção pra "visitar". */
+.splash-zone {
+    height: 200vh;
+    position: relative;
+    z-index: 1200;
+}
+
+.splash-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-gray);
+}
+
+.splash-bg {
+    position: absolute;
+    inset: 0;
+}
+
+/* Glow suave nos 4 cantos - a rede de nós/anéis fica concentrada no
+   centro (onde o logo está), deixando os cantos da tela vazios/escuros
+   demais, principalmente em monitor largo. Preenche com cor de marca
+   bem sutil, sem WebGL nenhum (sempre funciona). */
+.splash-corners {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 0% 0%, rgba(125, 211, 220, 0.14), transparent 42%),
+        radial-gradient(circle at 100% 0%, rgba(255, 107, 107, 0.11), transparent 42%),
+        radial-gradient(circle at 0% 100%, rgba(255, 107, 107, 0.11), transparent 42%),
+        radial-gradient(circle at 100% 100%, rgba(125, 211, 220, 0.14), transparent 42%);
+}
+
+/* "Starfield" - pontinhos pequenos espalhados pela tela INTEIRA
+   (0-100% em x e y, ao contrário de `.splash-dot`/rede 3D que ficam
+   concentrados perto do centro) - preenche os cantos/bordas que
+   ficavam vazios, com um leve piscar (twinkle) pra dar vida sem
+   competir com o logo/rede principal. */
+.splash-star {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--primary);
+    animation: splashTwinkle ease-in-out infinite;
+}
+
+.splash-star.coral {
+    background: var(--secondary);
+}
+
+@keyframes splashTwinkle {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .splash-star {
+        animation: none;
+        opacity: 0.4;
+    }
+}
+
+/* Rede de nós 3D (Three.js, mesma técnica/qualidade da cena da
+   Segurança) por cima dos pontos 2D - os pontos 2D continuam existindo
+   por baixo como rede de segurança (nunca ficam vazios se o Three.js
+   falhar em carregar), o canvas é só uma camada extra por cima quando
+   carrega. `initNodeNetwork` já não inicializa o WebGL em
+   mobile/reduced-motion, mas o `display:none` aqui também é
+   necessário - sem ele o `<canvas>` vazio ainda ocupa/aparece
+   (mesmo padrão de #hero-3d/#cta-3d/#security-3d). */
+.splash-3d {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .splash-3d {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .splash-3d {
+        display: none;
+    }
+}
+
+.splash-dot {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--primary);
+    opacity: 0.6;
+}
+
+.splash-dot.coral {
+    background: var(--secondary);
+}
+
+.splash-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.splash-lines line {
+    stroke: var(--primary);
+    stroke-width: 1;
+    opacity: 0.15;
+    /* Mesmo bug de sempre (achado antes em Segurança/CMV/CMO) - o
+       viewBox quadrado (0 0 100 100) esticado sem manter proporção
+       pra caber numa área bem mais alta que larga (a tela toda, 100vh)
+       engrossa o traço. Esqueci de copiar o fix pra cá quando criei a
+       abertura - `.bg-dot-lines`/`.bg-flow-line`/`.bg-topo-line` já
+       tinham isso, `.splash-lines` não. */
+    vector-effect: non-scaling-stroke;
+}
+
+@keyframes splashDrift1 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(18px, -14px); } }
+@keyframes splashDrift2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-16px, 16px); } }
+@keyframes splashDrift3 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(14px, 18px); } }
+
+/* Anéis de "pulso" (tipo sonar/radar) irradiando do logo - camada
+   extra por cima da rede 3D, sempre CSS puro (nunca falha) - mescla
+   com a cena 3D igual o pedido ("faz uma mesclagem igual a da
+   Segurança", mas com um efeito novo, não repetido). 3 anéis
+   defasados pra nunca ficar só um sozinho na tela. */
+.splash-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 160px;
+    height: 160px;
+    margin: -80px 0 0 -80px;
+    border-radius: 50%;
+    border: 1.5px solid var(--primary);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    animation: splashPulse 3.6s ease-out infinite;
+}
+
+.splash-pulse-2 {
+    border-color: var(--secondary);
+    animation-delay: 1.2s;
+}
+
+.splash-pulse-3 {
+    animation-delay: 2.4s;
+}
+
+@keyframes splashPulse {
+    0% { transform: scale(0.55); opacity: 0.8; }
+    100% { transform: scale(3.4); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .splash-pulse {
+        animation: none;
+        display: none;
+    }
+}
+
+.splash-logo-stage {
+    position: relative;
+    z-index: 2;
+    will-change: transform, filter;
+}
+
+.splash-logo-stage::before {
+    /* Glow pulsante atrás do logo - sem isso ele ficava "chapado"
+       demais parado na tela antes do usuário começar a rolar. */
+    content: '';
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(circle, rgba(125, 211, 220, 0.35), rgba(255, 107, 107, 0.12) 55%, transparent 75%);
+    filter: blur(30px);
+    z-index: -1;
+    animation: splashGlowPulse 4s ease-in-out infinite;
+}
+
+@keyframes splashGlowPulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.12); }
+}
+
+.splash-logo-stage img {
+    width: min(30vw, 260px);
+    display: block;
+    filter: drop-shadow(0 10px 60px rgba(125, 211, 220, 0.45)) drop-shadow(0 0 90px rgba(255, 107, 107, 0.2));
+}
+
+/* Envolve tudo que NÃO é o preto (pontos, canvas 3D, pulsos, cantos,
+   starfield, logo) - script.js some com essa camada inteira (opacity)
+   perto do fim da zona, SEM afetar `.splash-blackout` (que fica FORA
+   dela, irmã direta dentro de `.splash-sticky`). Bug real corrigido:
+   antes o fade de "some tudo" era aplicado direto no `.splash-sticky`
+   (pai de tudo, incluindo o preto) - como opacity multiplica em
+   cascata, o preto (que já tinha a própria conta de opacity) ficava
+   com a opacidade final MULTIPLICADA pela do pai, esvaziando o
+   "segura preto sólido" bem antes da hora (ficava só uma lavagem fraca
+   em vez de preto de verdade) - exatamente o "buga"/tela vazia que o
+   Carlos via ao rolar de volta pro topo e passar por essa zona.
+   `position:absolute;inset:0` pra continuar cobrindo a `.splash-sticky`
+   inteira mesmo com um nível a mais de aninhamento, e o próprio
+   flex/center que antes estava na `.splash-sticky` migrou pra cá (a
+   logo precisa ficar centralizada dentro dessa camada). */
+.splash-decor {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* `position:fixed` (não `absolute`) de propósito - o pai
+   (`.splash-sticky`) solta de ser "sticky" assim que o scroll passa da
+   altura da `.splash-zone`, e nesse instante o Hero já estaria
+   "deslizando" pra cima por trás - ficava parecendo scroll normal em
+   vez de "aparecer magicamente". Fixo cobre a tela inteira até a curva
+   em script.js mandar clarear, independente de onde o sticky já soltou
+   ou não. */
+.splash-blackout {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    opacity: 0;
+    z-index: 1250;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .splash-logo-stage::before {
+        animation: none;
+    }
+}
+
+.splash-hint {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1300;
+    background: rgba(10, 46, 55, 0.85);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    pointer-events: none;
+    text-align: center;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+}
+
+/* O header fixo some enquanto o zoom da abertura está no auge (fica
+   estranho um menu de navegação por cima de uma tela cheia de logo) -
+   volta assim que o Hero é revelado. Classe alternada no <html> a cada
+   scroll. */
+.intro-active header {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .splash-hint {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .splash-hint {
+        font-size: 0.72rem;
+        padding: 7px 14px;
+        white-space: normal;
+        max-width: 88vw;
+        text-align: center;
+    }
+}
+
+
+/* HERO SECTION */
+
+.hero {
+    padding: 160px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Opacidade aumentada (era 0.55) - Carlos adorou a cena nova (o check
+   3D) mas achou que não dava pra ver ela direito por trás do texto do
+   Hero - mais visível ajuda a "vazar" nas bordas/entrelinhas mesmo com
+   o texto por cima. */
+#hero-3d {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    #hero-3d {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #hero-3d {
+        display: none;
+    }
+}
+
+#cta-3d {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    #cta-3d {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #cta-3d {
+        display: none;
+    }
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(125, 211, 220, 0.08) 0%, rgba(12, 30, 36, 0) 70%);
+    z-index: -1;
+}
+
+/* Reduzido (era clamp(2.5rem, 5vw, 4.5rem) = até 72px) - comparado
+   com os concorrentes pesquisados, nenhum chega perto desse tamanho de
+   título no Hero, mesmo sendo a maior letra da página inteira. */
+.hero h1 {
+    font-size: clamp(2.1rem, 4vw, 3.4rem);
+    margin-bottom: 24px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.split-word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
+}
+
+.split-word-inner {
+    display: inline-block;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 64px;
+    flex-wrap: wrap;
+}
+
+
+/* DASHBOARD MOCKUP */
+
+.dashboard-mockup {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--bg-white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+}
+
+.mockup-topbar {
+    background: var(--bg-gray);
+    padding: 12px 20px;
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.mockup-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #cbd5e1;
+}
+
+.mockup-dot:nth-child(1) {
+    background: #FF6B6B;
+}
+
+.mockup-dot:nth-child(2) {
+    background: #FCD34D;
+}
+
+.mockup-dot:nth-child(3) {
+    background: #10B981;
+}
+
+/* SCREENSHOT FRAME (telas reais do sistema, dados fictícios) */
+
+.screenshot-frame {
+    max-width: 100%;
+    background: var(--bg-white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+}
+
+.screenshot-frame img {
+    width: 100%;
+    display: block;
+    /* Reserva o espaço certo (proporção real de toda screenshot,
+       1680x1050) antes da imagem carregar - sem isso, como são todas
+       `loading="lazy"`, o frame colapsava pra praticamente 0px de
+       altura até a imagem entrar em vista e carregar, dando um "pulo"
+       de layout feio ao rolar (e bagunçando a posição calculada dos
+       ScrollTrigger de seções mais abaixo, que dependem da altura da
+       página já estar certa). Vale pro `<video>` do Multi-IA também
+       (14/09/2026, era `<img src="....gif">` - virou vídeo, ver
+       comentário na tag em `index.html`). */
+    aspect-ratio: 1680 / 1050;
+    object-fit: cover;
+    /* SVGs de tela cheia são mais altos que 1050 (a página inteira) - mostra
+       o topo, igual as capturas antigas de 1680x1050 mostravam. */
+    object-position: top;
+}
+
+/* Cursor de demonstração (percorre a screenshot ao entrar na tela) */
+
+/* Tela "antes" que cobre a tela de verdade e desaparece (crossfade)
+   junto do clique do cursor - dá a sensação de "veio de outra tela",
+   (ver `CURSOR_TARGET`/`attachDemoCursor` em script.js). É um `<img>` de
+   SVG por cima da tela de verdade. */
+.screenshot-frame .demo-cursor-before {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+}
+
+.demo-cursor {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    pointer-events: none;
+    z-index: 4;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
+    transform: translate(-3px, -2px);
+}
+
+.demo-cursor svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.demo-cursor-ring {
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--secondary);
+    opacity: 0;
+}
+
+.mockup-content {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    height: 500px;
+}
+
+.mockup-sidebar {
+    background: var(--primary-dark);
+    padding: 24px 16px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}
+
+.mockup-sidebar-item {
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mockup-sidebar-item.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.mockup-main {
+    padding: 24px;
+    text-align: left;
+}
+
+.mockup-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.mockup-stat {
+    background: var(--bg-gray);
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.mockup-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.mockup-stat-value {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.mockup-charts {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    height: 300px;
+}
+
+.mockup-chart {
+    background: var(--bg-gray);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    padding: 16px;
+    position: relative;
+}
+
+.chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    height: 200px;
+    margin-top: 16px;
+}
+
+.chart-bar {
+    width: 100%;
+    height: 0;
+    background: var(--primary);
+    opacity: 0.2;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+}
+
+.chart-bar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: var(--secondary);
+    border-radius: 4px 4px 0 0;
+}
+
+
+/* SECTIONS GENERIC */
+
+/* Reduzido de 100px pra 72px numa rodada, depois 72px pra 56px nesta
+   (pedido do Carlos, 2x: comparando com os concorrentes pesquisados,
+   letra/espaçamento deles é visivelmente mais compacto) - menos
+   respiro vertical por seção, site lê mais denso/objetivo sem cortar
+   conteúdo nenhum. */
+section {
+    padding: 56px 0;
+    position: relative;
+}
+
+/* Camada decorativa de fundo (injetada via JS em toda <section>) - dá
+   vida ao fundo mesmo fora do Hero, sem competir com o conteúdo (fica
+   atrás do .container, que tem z-index:1). */
+
+.section-bg-fx {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bg-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.14;
+}
+
+.bg-blob-1 {
+    width: 380px;
+    height: 380px;
+    background: var(--primary);
+    top: -140px;
+    left: -100px;
+    animation: bgDrift1 28s ease-in-out infinite;
+}
+
+.bg-blob-2 {
+    width: 320px;
+    height: 320px;
+    background: var(--secondary);
+    bottom: -120px;
+    right: -80px;
+    animation: bgDrift2 34s ease-in-out infinite;
+}
+
+@keyframes bgDrift1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(70px, 50px) scale(1.15); }
+}
+
+@keyframes bgDrift2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-60px, -40px) scale(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bg-blob {
+        animation: none;
+    }
+}
+
+/* Variantes de fundo animado pras seções de destaque (Segurança,
+   Experiência, Requisições, Diferenciais) - cada uma com um estilo
+   diferente, escolhidos pelo Carlos entre as opções mostradas. */
+
+/* AURORA / GRADIENTE MESH (Experiência) */
+.bg-blob-3 {
+    width: 300px;
+    height: 300px;
+    background: #9B7DDC;
+    top: 30%;
+    right: 20%;
+    animation: bgDrift3 22s ease-in-out infinite;
+}
+
+@keyframes bgDrift3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(40px, -50px) scale(0.9); }
+}
+
+.bg-fx-aurora .bg-blob {
+    filter: blur(80px);
+    opacity: 0.18;
+}
+
+/* GRADE TÉCNICA (Diferenciais) */
+.bg-fx-grid .bg-grid-lines {
+    position: absolute;
+    inset: -2px;
+    background-image:
+        linear-gradient(rgba(125, 211, 220, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(125, 211, 220, 0.1) 1px, transparent 1px);
+    background-size: 42px 42px;
+    animation: bgGridPan 12s linear infinite;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+@keyframes bgGridPan {
+    from { background-position: 0 0, 0 0; }
+    to { background-position: 42px 42px, 42px 42px; }
+}
+
+.bg-fx-grid .bg-grid-glow {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(125, 211, 220, 0.16), transparent 70%);
+    top: 15%;
+    left: 15%;
+    animation: bgGlowMove 16s ease-in-out infinite;
+}
+
+@keyframes bgGlowMove {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(60%, 40%); }
+}
+
+/* ONDAS SUAVES */
+.bg-fx-waves .bg-wave {
+    position: absolute;
+    bottom: -20px;
+    width: 220%;
+    height: 90px;
+    opacity: 0.22;
+}
+
+.bg-fx-waves .bg-wave-1 {
+    animation: bgWaveMove 16s linear infinite;
+}
+
+.bg-fx-waves .bg-wave-2 {
+    bottom: -35px;
+    opacity: 0.14;
+    animation: bgWaveMove 22s linear infinite reverse;
+}
+
+@keyframes bgWaveMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ÍCONES FLUTUANTES - cada ícone já nasce numa posição vertical (`top`)
+   própria (ver buildIconsFx em script.js), espalhada por toda a altura
+   da seção, e só balança/pisca no lugar - antes todos nasciam do
+   `bottom: -30px` e só subiam 320px, então em seção alta (ex: Nosso
+   Propósito, com 2 grids empilhados) eles nunca chegavam nem perto do
+   topo, deixando a parte de cima da seção sem nenhuma animação. */
+.bg-fx-icons .bg-icon {
+    position: absolute;
+    opacity: 0;
+    font-size: 1.2rem;
+    animation: bgIconFloat ease-in-out infinite;
+}
+
+@keyframes bgIconFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    15% { opacity: 0.4; }
+    50% { transform: translateY(-36px) rotate(10deg); opacity: 0.3; }
+    85% { opacity: 0.15; }
+}
+
+/* FLOW FIELD (linhas fluidas) */
+.bg-fx-flow .bg-flow-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.bg-fx-flow .bg-flow-line {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    opacity: 0.16;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 340;
+    animation: bgFlowDash linear infinite;
+}
+
+.bg-fx-flow .bg-flow-line.coral {
+    stroke: var(--secondary);
+}
+
+@keyframes bgFlowDash {
+    to { stroke-dashoffset: -680; }
+}
+
+/* CONTORNO TOPOGRÁFICO */
+.bg-fx-topo .bg-topo-wrap {
+    position: absolute;
+    inset: 0;
+    animation: bgTopoShift 20s ease-in-out infinite;
+}
+
+.bg-fx-topo .bg-topo-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.bg-fx-topo .bg-topo-line {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 1;
+    opacity: 0.14;
+    vector-effect: non-scaling-stroke;
+}
+
+.bg-fx-topo .bg-topo-line:nth-child(even) {
+    stroke: var(--secondary);
+    opacity: 0.09;
+}
+
+@keyframes bgTopoShift {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+}
+
+/* PALAVRAS-FANTASMA (termos do próprio módulo, bem apagados) */
+.bg-fx-ghost .bg-ghost-word {
+    position: absolute;
+    font-weight: 800;
+    color: var(--primary);
+    opacity: 0.045;
+    white-space: nowrap;
+    font-family: Georgia, serif;
+    animation: bgGhostDrift linear infinite alternate;
+}
+
+.bg-fx-ghost .bg-ghost-word.coral {
+    color: var(--secondary);
+}
+
+@keyframes bgGhostDrift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-30px, -16px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bg-fx-grid .bg-grid-lines,
+    .bg-fx-grid .bg-grid-glow,
+    .bg-fx-waves .bg-wave,
+    .bg-fx-icons .bg-icon,
+    .bg-fx-flow .bg-flow-line,
+    .bg-fx-topo .bg-topo-wrap,
+    .bg-fx-ghost .bg-ghost-word,
+    .bg-blob-3 {
+        animation: none;
+    }
+}
+
+.bg-gray {
+    background-color: var(--bg-gray);
+}
+
+.bg-white {
+    background-color: var(--bg-white);
+}
+
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 64px;
+}
+
+/* Reduzido em 2 rodadas (era clamp(2rem, 4vw, 3rem), depois
+   clamp(1.7rem, 3.2vw, 2.4rem)) - comparado com os concorrentes,
+   título de seção deles fica bem menor que o nosso. */
+.section-header h2 {
+    font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+    margin-bottom: 12px;
+}
+
+.section-header p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* Botão de alternar claro/escuro nas telas do sistema embutidas -
+   todos os SVGs já têm as duas versões (`X.svg`/`X-branco.svg`),
+   o JS troca o `src`/`data-src` de toda `img.sys-theme-img` do site
+   pela contraparte certa (script.js, `applySysTheme`).
+   Só as TELAS trocam de tema - o site continua sempre escuro por fora. */
+.sys-theme-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(125, 211, 220, 0.3);
+    background: rgba(125, 211, 220, 0.08);
+    color: var(--primary);
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.sys-theme-toggle-btn:hover {
+    background: rgba(125, 211, 220, 0.16);
+    border-color: rgba(125, 211, 220, 0.5);
+    transform: translateY(-1px);
+}
+
+.sys-theme-toggle-btn i {
+    font-size: 0.95rem;
+}
+
+.tag {
+    display: inline-block;
+    background: rgba(125, 211, 220, 0.15);
+    color: var(--primary);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+/* PROBLEM SECTION */
+
+.problems {
+    background: var(--bg-white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Cena 3D "fragmentos desconectados" (13/09/2026) - substitui o fundo
+   2D genérico que essa seção usava antes (agora fora do mapeamento
+   genérico em BG_FX_VARIANTS, mesma lógica de Hero/CTA/Segurança:
+   seção com cena 3D própria não ganha fundo genérico em cima). */
+#problemas-3d {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    #problemas-3d {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #problemas-3d {
+        display: none;
+    }
+}
+
+#indicadores {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Cena 3D "núcleos estáveis" (13/09/2026) - contraste proposital com
+   #problemas-3d: 3 núcleos pequenos ligados por linhas sólidas, girando
+   juntos (ordem), em vez de fragmentos soltos piscando (caos). Seção
+   pequena (só 3 cards) - cena mais discreta que Problema/Segurança de
+   propósito, sem competir com o conteúdo. */
+#indicadores-3d {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    #indicadores-3d {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #indicadores-3d {
+        display: none;
+    }
+}
+
+#sobre {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Cena 3D do check da marca (14/09/2026) - `#sobre`
+   (quem-somos-nos.html) usava a constelação 2D genérica
+   (`buildShootFx`), mas numa seção bem alta com título grande, as
+   linhas retas/pontas esparsas cruzavam direto por cima do texto e
+   ficavam "muito feias" (Carlos) - bem abaixo do nível das cenas 3D
+   que o resto do site já tem (Hero/CTA/Segurança/Problema/
+   Indicadores). Trocado pela mesma cena do Hero/CTA
+   (`initShowcaseScene`, o check da marca) - reaproveita a função já
+   pronta em `three-hero.js`, sem escrever cena nova, e dá o mesmo
+   acabamento "de abertura" pra essa página que o Hero dá no site
+   principal (faz sentido, `#sobre` é o título/topo desta página). */
+#sobre-3d {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    #sobre-3d {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #sobre-3d {
+        display: none;
+    }
+}
+
+.problems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.problem-card {
+    background: var(--bg-gray);
+    padding: 32px;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: transform 0.3s;
+}
+
+.problem-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--secondary);
+}
+
+.problem-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 107, 107, 0.1);
+    color: var(--secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 16px;
+}
+
+.arrow-down {
+    text-align: center;
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 32px;
+}
+
+.solution-banner {
+    background: var(--primary-dark);
+    color: white;
+    padding: 32px;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.solution-banner span {
+    color: var(--secondary);
+}
+
+
+/* FEATURES SECTION */
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+}
+
+/* Padding reduzido (era 32px) - pedido do Carlos pra deixar caixa/
+   texto mais compactos, mantendo as imagens grandes como estão. */
+.feature-card {
+    background: var(--bg-white);
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.feature-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--bg-gray);
+    color: var(--primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+}
+
+.feature-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-bottom: 16px;
+}
+
+.feature-list {
+    list-style: none;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    margin-bottom: 8px;
+}
+
+.feature-list i {
+    color: var(--secondary);
+    font-size: 0.8rem;
+}
+
+
+/* SEGURANÇA - cena 3D + scan-line + grid de recursos (o resto do
+   `.security` - fundo escuro, section-header branco - está mais acima,
+   perto de .deepdive-grid, já que voltou a ser seção própria). */
+
+/* PALCO DA CHAVE (20/09/2026) - o cadeado 3D antes era fundo da seção
+   inteira, atrás de texto e cards ("não dá pra ver a animação do cadeado").
+   Agora ele mora num palco próprio: a chave (arrastável) destranca o
+   cadeado e revela a imagem; clicar na imagem tranca de novo e volta aos
+   cards. Estados na <section>: `.sec-interactive` (JS ligou o modo chave:
+   palco + cards) e `.sec-open` (imagem aberta, sem palco/cards). Sem JS
+   nada disso aparece - fica a imagem + cards de sempre. */
+.sec-stage {
+    display: none;
+    position: relative;
+    z-index: 1;
+    height: 480px;
+    max-width: 1000px;
+    margin: 0 auto 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(125, 211, 220, 0.2);
+    background: radial-gradient(ellipse at 50% 55%, rgba(125, 211, 220, 0.14), rgba(10, 24, 30, 0.55) 70%);
+    --near: 0;
+}
+
+.security.sec-interactive .sec-stage {
+    display: block;
+}
+
+.security.sec-interactive .security-visual {
+    display: none;
+}
+
+.security.sec-open .security-visual {
+    display: block;
+}
+
+.security.sec-open .sec-stage,
+.security.sec-open .security-grid {
+    display: none;
+}
+
+#security-3d {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Cadeado 2D de reserva (celular / menos movimento / sem WebGL) - o 3D
+   só some com ele quando sobe (classe .has-3d, three-hero.js). */
+.sec-lock-svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(190px, 42%);
+    transform: translate(-50%, -52%);
+    color: var(--primary);
+    overflow: visible;
+    filter: drop-shadow(0 0 18px rgba(125, 211, 220, 0.35));
+    pointer-events: none;
+}
+
+.sec-stage.has-3d .sec-lock-svg {
+    display: none;
+}
+
+.sec-lock-shackle {
+    transform-origin: 60px 112px;
+    transition: transform 0.6s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+.sec-stage.is-open .sec-lock-shackle {
+    transform: translateY(-20px) rotate(-32deg);
+}
+
+/* Alvo da chave: anel tracejado no centro; acende conforme a chave chega
+   perto (--near, 0..1, escrito pelo JS durante o arrasto). */
+.sec-drop {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 230px;
+    height: 230px;
+    margin: -115px 0 0 -115px;
+    border-radius: 50%;
+    border: 2px dashed rgba(125, 211, 220, calc(0.16 + var(--near) * 0.64));
+    box-shadow: 0 0 calc(var(--near) * 55px) rgba(125, 211, 220, calc(var(--near) * 0.55));
+    pointer-events: none;
+    z-index: 1;
+    animation: secDropSpin 26s linear infinite;
+}
+
+@keyframes secDropSpin {
+    to { transform: rotate(360deg); }
+}
+
+.sec-stage.is-open .sec-drop {
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.sec-key {
+    position: absolute;
+    left: 9%;
+    top: 50%;
+    width: 76px;
+    height: 76px;
+    margin-top: -38px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 107, 107, 0.6);
+    background: radial-gradient(circle at 35% 30%, rgba(255, 107, 107, 0.38), rgba(10, 24, 30, 0.9));
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    z-index: 3;
+    will-change: transform;
+    transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.25), opacity 0.3s;
+    animation: secKeyPulse 2.4s ease-out infinite;
+}
+
+.sec-key:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+}
+
+.sec-key-icon {
+    display: inline-block;
+    font-size: 1.9rem;
+    animation: secKeyBob 3s ease-in-out infinite;
+}
+
+/* Segurando a chave: ela "vira animação" (balança, brilha e solta faíscas) */
+.sec-key.is-dragging {
+    cursor: grabbing;
+    transition: none;
+    animation: none;
+    box-shadow: 0 0 34px rgba(255, 107, 107, 0.75);
+}
+
+.sec-key.is-dragging .sec-key-icon {
+    animation: secKeyWiggle 0.32s ease-in-out infinite;
+}
+
+.sec-key.is-flying {
+    transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.3s;
+    animation: none;
+}
+
+.sec-key.is-used {
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.35s 0.3s;
+}
+
+.sec-spark {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    border-radius: 50%;
+    background: var(--secondary);
+    box-shadow: 0 0 10px var(--secondary);
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes secKeyPulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.5); }
+    70%, 100% { box-shadow: 0 0 0 20px rgba(255, 107, 107, 0); }
+}
+
+@keyframes secKeyBob {
+    0%, 100% { transform: translateY(-4px) rotate(-8deg); }
+    50% { transform: translateY(4px) rotate(8deg); }
+}
+
+@keyframes secKeyWiggle {
+    0%, 100% { transform: rotate(-16deg) scale(1.12); }
+    50% { transform: rotate(16deg) scale(1.12); }
+}
+
+.sec-hint {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 22px;
+    margin: 0;
+    padding: 0 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Imagem aberta: clicar nela tranca de novo (volta aos cards) */
+.security.sec-interactive .security-visual .screenshot-frame {
+    cursor: pointer;
+    transition: box-shadow 0.25s;
+}
+
+.security.sec-interactive .security-visual .screenshot-frame:hover,
+.security.sec-interactive .security-visual .screenshot-frame:focus-visible {
+    box-shadow: 0 0 0 2px rgba(125, 211, 220, 0.55), 0 0 40px rgba(125, 211, 220, 0.25);
+    outline: none;
+}
+
+.sec-back-hint {
+    display: none;
+}
+
+.security.sec-interactive .sec-back-hint {
+    display: block;
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 768px) {
+    .sec-stage {
+        height: 400px;
+    }
+    .sec-key {
+        left: 6%;
+        width: 64px;
+        height: 64px;
+        margin-top: -32px;
+    }
+    .sec-drop {
+        width: 200px;
+        height: 200px;
+        margin: -100px 0 0 -100px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sec-key,
+    .sec-key-icon,
+    .sec-drop {
+        animation: none;
+    }
+    .sec-lock-shackle,
+    .sec-key,
+    .sec-key.is-flying,
+    .sec-key.is-used {
+        transition: none;
+    }
+}
+
+@media (max-width: 768px) {
+    #security-3d {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #security-3d {
+        display: none;
+    }
+}
+
+/* Linha de "escaneamento" varrendo a seção de cima a baixo, em loop -
+   reforça a sensação de scanner de segurança, em cima da cena 3D.
+   CSS puro (não depende do GSAP), então nunca fica travado se o
+   WebGL/Three.js falhar em algum navegador. */
+.sec-scan {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 140px;
+    background: linear-gradient(to bottom, transparent, rgba(125, 211, 220, 0.16), transparent);
+    z-index: 0;
+    pointer-events: none;
+    animation: secScanMove 6s ease-in-out infinite;
+}
+
+@keyframes secScanMove {
+    0% { top: -140px; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sec-scan {
+        animation: none;
+        display: none;
+    }
+}
+
+/* Virou pilha vertical (18/09/2026) - Carlos pediu o vídeo maior/mais
+   legível ("tem que estar em HD full definição e maior pra poder
+   ler") e deu liberdade pra mover os cards de lugar. O vídeo já é
+   gravado em 3360x2100 nativo (bem acima de Full HD) - o problema não
+   era a gravação, era o espaço que ela tinha pra aparecer: espremida
+   numa coluna de `1fr` ao lado dos 8 cards, nunca passava de ~640px de
+   largura. Vídeo virou o elemento de destaque no topo, em tamanho bem
+   maior, e os cards (que não precisam de leitura fina) viraram um grid
+   normal por baixo. */
+.security-split {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.security-visual .screenshot-frame {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.security-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.security-card {
+    /* Mais opaco que antes (era 0.05) + leve blur no que tem atrás -
+       com a cena 3D bem mais "cheia" (várias linhas cruzando), o card
+       quase transparente deixava o texto competindo direto com o
+       wireframe atrás, lendo como "tudo misturado". */
+    background: rgba(10, 24, 30, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 24px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.security-card i {
+    color: var(--secondary);
+    font-size: 1.5rem;
+}
+
+
+/* LIGHT CARD GRID (Avarias / Ocorrências) */
+
+.light-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.light-card {
+    background: var(--bg-gray);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 24px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-weight: 500;
+}
+
+.light-card i {
+    color: var(--secondary);
+    font-size: 1.5rem;
+}
+
+
+/* COMPATIBILITY & TIMELINE */
+
+.compatibility-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 24px;
+    text-align: center;
+}
+
+.compat-item {
+    background: var(--bg-white);
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.compat-item i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 12px;
+    display: block;
+}
+
+
+/* FINAL CTA */
+
+.final-cta {
+    background: var(--primary-dark);
+    text-align: center;
+    color: white;
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.final-cta h2 {
+    color: white;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    margin-bottom: 32px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+/* FOOTER */
+
+footer {
+    background: #051920;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 60px 0 30px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-col-modules {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Coluna "Funcionalidades" do rodapé (13/09/2026) - 17 links (os 12
+   que viraram popup em #modulos + os 4 que continuam seção própria +
+   tema claro/escuro), inspirado no rodapé de concorrentes pesquisados
+   (GestãoDS) que listam toda funcionalidade ali em vez de só no menu.
+   Lista longa numa coluna só ficava exageradamente alta - balanceada
+   em 2 colunas internas via CSS multi-column (sem JS, sem precisar
+   dividir a lista manualmente em 2 arrays). No mobile a coluna vira
+   largura cheia (ver acima) pra cada sub-coluna não ficar espremida. */
+.footer-col-modules ul {
+    column-count: 2;
+    column-gap: 24px;
+}
+
+.footer-col-modules ul li {
+    break-inside: avoid;
+}
+
+.footer-logo {
+    color: white;
+    margin-bottom: 16px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.footer-logo span {
+    color: var(--secondary);
+}
+
+.footer-col h4 {
+    color: white;
+    margin-bottom: 16px;
+    font-size: 1rem;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 8px;
+}
+
+.footer-col a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-col a:hover {
+    color: var(--secondary);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+
+/* ABOUT / NOSSA HISTÓRIA */
+
+.story-layout {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+    align-items: start;
+    margin-bottom: 40px;
+}
+
+.story-lead {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.story-text p {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.story-text p:last-child {
+    margin-bottom: 0;
+}
+
+.story-text strong {
+    color: var(--primary);
+}
+
+.story-problems {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    align-content: start;
+}
+
+.story-problem-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+    box-shadow: var(--shadow-sm);
+}
+
+.story-problem-item i {
+    color: var(--secondary);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.story-highlight {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--primary-dark);
+    color: white;
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+}
+
+.story-highlight i {
+    color: var(--secondary);
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
+.story-highlight p {
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+
+/* NOSSO PROPÓSITO */
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.value-card {
+    background: var(--bg-gray);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--secondary);
+}
+
+.value-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 107, 107, 0.1);
+    color: var(--secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+}
+
+.value-card h4 {
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+}
+
+.value-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+
+/* FUNDADORES */
+
+.founders-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+    margin-bottom: 56px;
+}
+
+.founders-grid::before {
+    content: '';
+    position: absolute;
+    top: 64px;
+    left: 12%;
+    right: 12%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent);
+    z-index: 0;
+}
+
+.founder-card {
+    position: relative;
+    z-index: 1;
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 24px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.founder-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.founder-avatar {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 20px;
+    border-radius: 22px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, border-radius 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.founder-avatar::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 2px solid var(--border);
+    border-radius: 26px;
+    z-index: -1;
+}
+
+.founder-card:hover .founder-avatar {
+    transform: scale(1.06) rotate(-3deg);
+    border-radius: 30%;
+}
+
+.founder-initial {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.founder-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 22%;
+    display: block;
+}
+
+.founder-name {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    transition: color 0.2s ease;
+}
+
+.founder-card:hover .founder-name {
+    color: var(--secondary);
+}
+
+.founder-role {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+}
+
+.founder-linkedin {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 100px;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.founder-card:hover .founder-linkedin {
+    background: var(--primary-dark);
+    color: white;
+}
+
+.founder-linkedin-pending {
+    border-color: var(--border);
+    color: var(--text-muted);
+    cursor: default;
+}
+
+.founder-card:hover .founder-linkedin-pending {
+    background: none;
+    color: var(--text-muted);
+}
+
+.founder-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.founder-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--secondary);
+    color: white;
+    text-decoration: none;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.founder-whatsapp:hover {
+    background: var(--secondary-dark);
+    transform: translateY(-2px);
+}
+
+
+/* PLANOS - preço público de verdade (decisão do Carlos, 13/09/2026).
+   Cartão do meio sem destaque nenhum injustificado (não temos dado de
+   "mais popular" pra afirmar isso) - só o Máximo ganha uma tag, porque
+   "mais completo" é fato, não opinião. */
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    align-items: stretch;
+}
+
+.plan-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.plan-card-highlight {
+    border-color: var(--secondary);
+    box-shadow: var(--shadow-md);
+}
+
+.plan-badge {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 5px 16px;
+    border-radius: 100px;
+}
+
+.plan-card-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.plan-card-header h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.plan-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+}
+
+.plan-price-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.plan-price-period {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.plan-users {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.plan-includes {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.plan-feature-list {
+    flex: 1;
+    margin-bottom: 24px;
+}
+
+.plan-feature-list li {
+    font-size: 0.9rem;
+}
+
+.plan-cta {
+    width: 100%;
+    justify-content: center;
+}
+
+.plans-addons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 20px;
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.plans-addons-label {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.plans-addon-item {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 14px;
+}
+
+@media (max-width: 900px) {
+    .plans-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Convite compacto pra `planos.html` (a seção de planos completa virou
+   página própria) - banner baixo, não a altura de seção padrão. */
+.plans-teaser {
+    padding: 48px 0;
+}
+
+.plans-teaser-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.plans-teaser-inner h2 {
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    margin: 4px 0 0;
+}
+
+@media (max-width: 640px) {
+    .plans-teaser-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .plans-teaser-inner .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+/* MODAL DE CONTATO */
+
+.contact-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.contact-modal.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.contact-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 46, 55, 0.55);
+    backdrop-filter: blur(2px);
+}
+
+.contact-modal-card {
+    position: relative;
+    background: var(--bg-white);
+    border-radius: 20px;
+    padding: 32px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(16px) scale(0.97);
+    transition: transform 0.25s ease;
+}
+
+.contact-modal.open .contact-modal-card {
+    transform: translateY(0) scale(1);
+}
+
+.contact-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bg-gray);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.contact-modal-close:hover {
+    background: var(--border);
+}
+
+.contact-modal-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    padding-right: 24px;
+}
+
+.contact-modal-card > p {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+}
+
+.contact-modal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+}
+
+.contact-option:hover {
+    border-color: var(--secondary);
+    background: var(--bg-gray);
+    transform: translateY(-2px);
+}
+
+.contact-option-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.contact-option-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 22%;
+    display: block;
+}
+
+.contact-option-avatar .founder-initial {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    font-size: 1.1rem;
+}
+
+.contact-option-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.contact-option-info strong {
+    color: var(--primary);
+    font-size: 0.95rem;
+}
+
+.contact-option-info span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.contact-option > i.fa-whatsapp {
+    color: var(--secondary);
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+/* POPUPS DE MÓDULO - reaproveita `.contact-modal`/`.contact-modal-card`
+   (mesmo backdrop, mesma transição de abrir/fechar, mesmo botão de
+   fechar) só com um card mais largo e conteúdo em 2 colunas em vez da
+   lista de contato. A imagem é a prioridade aqui (é o que o cliente
+   realmente olha pra entender a tela) - card bem mais largo e a coluna
+   da imagem bem maior que a do texto, mesma lógica do `.deepdive-grid`
+   (0.55fr texto / 1.45fr imagem). Carlos: "a imagem tá tão pequena que
+   nem dá pra ver, quero igual de todas as partes" - o card era limitado
+   a 1100px (imagem renderizando ~730px), bem menor que a screenshot das
+   4 seções que ficaram inline (Estoque/CMV/Multi-IA/Segurança, essas
+   chegam a ~850-1060px via `.deepdive-grid`). Aumentado pra 1500px
+   (mesmo teto do breakout de `.deepdive-grid` em monitor grande, ver
+   abaixo) - a imagem passa a renderizar bem mais perto do tamanho das
+   outras, sem mudar a proporção 0.55/1.45 (`.contact-modal` já tem
+   `padding:24px` ao redor pra nunca estourar viewport pequeno, o card
+   só usa esse teto de verdade em tela grande o bastante). */
+.module-modal-card {
+    max-width: 1500px;
+    max-height: 88vh;
+    overflow-y: auto;
+}
+
+.module-modal-grid {
+    display: grid;
+    /* Bug real achado testando o aumento de tamanho pedido pelo Carlos:
+       ao contrário do `.deepdive-grid` (onde o texto vem primeiro no
+       HTML nas seções normais), aqui `.module-modal-visual` é SEMPRE o
+       primeiro filho em todo popup - com "0.55fr 1.45fr" a imagem
+       caía na coluna PEQUENA e o texto ficava com a coluna grande,
+       exatamente ao contrário do que o comentário acima sempre disse
+       que fazia ("imagem bem maior que o texto") - por isso a imagem
+       sempre renderizou pequena demais nos popups, não só por causa do
+       `max-width` do card. Corrigido invertendo a ordem das frações. */
+    grid-template-columns: 1.45fr 0.55fr;
+    gap: 32px;
+    align-items: center;
+}
+
+.module-modal-text .tag {
+    margin-bottom: 12px;
+}
+
+.module-modal-text h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.module-modal-text p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-bottom: 14px;
+}
+
+.module-modal-text .feature-list li {
+    font-size: 0.88rem;
+}
+
+/* Beneficiamento/Requisições não têm screenshot (a tela real deles na
+   vitrine "Veja por dentro" já cobre isso) - o "visual" é o fluxo em
+   texto, centralizado pra não ficar solto colado no topo da coluna. */
+.module-modal-visual-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.module-modal-visual-flow .flow-row {
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .module-modal-grid {
+        grid-template-columns: 1fr;
+    }
+    /* Tela do sistema (SVG) fica pequena em qualquer moldura de
+       celular, por mais que a moldura cresça - é uma interface desenhada
+       pra monitor (1680px), não tem como caber "legível de longe" numa
+       tela de 375px. Ganho real de espaço aqui (menos padding ao redor
+       do popup em telas pequenas) ajuda um pouco, mas o que realmente
+       resolve é dar zoom (o conteúdo é HTML/texto de verdade, fica
+       nítido em qualquer zoom - ver `.screenshot-frame + .mockup-caption`
+       abaixo, que avisa disso pro visitante no mobile). */
+    .contact-modal {
+        padding: 12px;
+    }
+    .module-modal-card {
+        padding: 20px;
+    }
+}
+
+.closing-quote {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.closing-quote p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.4;
+}
+
+
+/* MOCKUP CAPTION */
+
+.mockup-caption {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 12px;
+}
+
+/* Aviso só no mobile (16/09/2026): a tela do sistema é uma
+   interface desenhada pra monitor, então no celular ela sempre renderiza
+   pequena - mas como agora é vetor com texto de verdade (não mais print), dar
+   zoom mantém tudo nítido, diferente de uma screenshot que ficaria
+   borrada. O aviso deixa isso claro pro visitante em vez dele achar que
+   "ficou ruim"/quebrado. Seletor `.screenshot-frame + .mockup-caption`
+   (irmã adjacente) pra não pegar a legenda do mockup CSS do Hero
+   ("Interface ilustrativa..."), que não é imagem do sistema e não se
+   beneficia de zoom nenhum. */
+@media (max-width: 768px) {
+    .screenshot-frame + .mockup-caption::after {
+        content: " — dê zoom pra ver os detalhes";
+    }
+}
+
+
+/* PÁGINAS LEGAIS (privacidade.html / termos.html) - texto corrido,
+   sem header/hero cheio de animação. `padding-top` generoso porque o
+   header é `position:fixed` e essas páginas não têm a zona de abertura
+   antes (só o index.html tem) pra empurrar o conteúdo pra baixo dele. */
+.legal-page {
+    padding: 150px 0 100px;
+}
+
+.legal-content {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.legal-content h1 {
+    margin: 16px 0 8px;
+    font-size: 2.2rem;
+}
+
+.legal-updated {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+}
+
+.legal-content h2 {
+    font-size: 1.3rem;
+    margin-top: 40px;
+    margin-bottom: 12px;
+}
+
+.legal-content p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.legal-content code {
+    background: var(--bg-gray);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.legal-content .feature-list {
+    margin-bottom: 24px;
+}
+
+
+
+
+/* STEPS / COMO FUNCIONA */
+
+.steps-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.steps-grid::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 8%;
+    right: 8%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent);
+    z-index: 0;
+}
+
+.step-card {
+    position: relative;
+    z-index: 1;
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 18px;
+    box-shadow: var(--shadow-sm);
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--primary-dark);
+    color: var(--secondary);
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+}
+
+.step-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.step-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+
+/* DEEP DIVE SECTIONS - voltaram a existir pras 4 funcionalidades
+   "principais" (Estoque, CMV, Multi-IA, Segurança - ver .security mais
+   abaixo), a pedido do Carlos. As outras 12 continuam compactas em
+   #modulos, ver bloco logo abaixo. */
+
+.deepdive-grid {
+    display: grid;
+    /* texto (coluna 1, menor) | imagem (coluna 2, maior) - a imagem é
+       sempre a coluna maior, então esse par troca de lado em .reverse
+       (ver abaixo), não só a ordem visual dos itens. */
+    grid-template-columns: 0.55fr 1.45fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.deepdive-grid.reverse {
+    grid-template-columns: 1.45fr 0.55fr;
+}
+
+/* Telas de desktop maiores (não laptop comum) ganham mais espaço:
+   a screenshot "quebra" pra fora do .container padrão (1200px) de
+   forma simétrica, sem risco de overflow - o max-width aqui é sempre
+   menor que o min-width da media query, então nunca estoura a
+   viewport, só ganha respiro além do container em monitor grande. */
+@media (min-width: 1600px) {
+    .deepdive-grid,
+    .deepdive-grid.reverse {
+        max-width: 1500px;
+        margin-left: calc((100% - 1500px) / 2);
+        margin-right: calc((100% - 1500px) / 2);
+    }
+}
+
+.deepdive-grid.reverse .deepdive-text {
+    order: 2;
+}
+
+.deepdive-grid.reverse .deepdive-visual {
+    order: 1;
+}
+
+.deepdive-text p {
+    color: var(--text-muted);
+    margin: 16px 0 24px;
+}
+
+/* MULTI-IA - imagem maior que o padrão .deepdive-grid (é a seção de
+   destaque) e tira de insights */
+
+#multi-ia.ia-showcase {
+    padding: 64px 0;
+}
+
+#multi-ia .section-header {
+    margin-bottom: 32px;
+}
+
+/* Gravação nova (18/09/2026) é um zoom vertical dedicado só no balão de
+   chat (760x1008, retrato) - bem diferente da proporção 1680x1050
+   (paisagem) de toda outra screenshot do site. Com a regra genérica
+   (aspect-ratio:1680/1050 + object-fit:cover), um vídeo bem mais alto
+   que largo ficaria cortado quase pela metade pra caber numa moldura
+   larga - perderia justamente o texto que o zoom existe pra deixar
+   legível. Moldura própria, no formato real do vídeo, sem cortar nada. */
+#multi-ia .screenshot-frame {
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+#multi-ia .screenshot-frame img {
+    aspect-ratio: 760 / 1008;
+    object-fit: contain;
+    object-position: center;
+}
+
+@media (max-width: 768px) {
+    .deepdive-grid,
+    .deepdive-grid.reverse {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .deepdive-grid.reverse .deepdive-text,
+    .deepdive-grid.reverse .deepdive-visual {
+        order: initial;
+    }
+}
+
+
+/* SEGURANÇA - voltou a ser seção própria (não popup) a pedido do
+   Carlos, exatamente como era antes da rodada de condensação. */
+
+.security {
+    background: var(--primary-dark);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Bug real de camadas (já resolvido antes, mantido): `.section-header`
+   normalmente não é posicionado (static), e um elemento static entra
+   na ordem de pintura ANTES de qualquer elemento com position+z-index
+   (mesmo z-index:0, caso do canvas/scan-line) - isso fazia o título da
+   seção pintar POR BAIXO da cena 3D. `.security-split` já tinha
+   z-index:1 - só faltava no header. */
+.security .section-header {
+    position: relative;
+    z-index: 1;
+}
+
+.security .section-header h2,
+.security .section-header p {
+    color: white;
+}
+
+
+/* MÓDULOS - grid compacto (mesma linguagem visual do .feature-card,
+   só menor/mais denso) com as funcionalidades secundárias. Os popups
+   em si (`.module-modal-*`) ficam mais abaixo, perto de
+   `.contact-modal`, já que reaproveitam o mecanismo de abrir/fechar de
+   lá. */
+
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.module-card {
+    background: var(--bg-white);
+    padding: 18px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.module-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.module-card-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--bg-gray);
+    color: var(--primary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+}
+
+.module-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+}
+
+.module-card p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin: 0;
+}
+
+.ia-insights-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 28px;
+}
+
+.ia-insight-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-gray);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 10px 20px 10px 14px;
+    font-size: 0.9rem;
+}
+
+.mini-badge {
+    background: var(--bg-gray);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+}
+
+.mini-badge-warn {
+    background: rgba(255, 107, 107, 0.12);
+    color: var(--secondary-dark);
+}
+
+.mini-badge-ok {
+    background: rgba(125, 211, 220, 0.15);
+    color: var(--primary);
+}
+
+.mini-progress {
+    height: 8px;
+    background: var(--bg-gray);
+    border-radius: 100px;
+    overflow: hidden;
+    margin: 8px 0;
+}
+
+.mini-progress-bar {
+    height: 100%;
+    width: 0;
+    background: var(--secondary);
+    border-radius: 100px;
+}
+
+
+/* THREE INDICATORS */
+
+.indicators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.indicator-card {
+    background: var(--bg-gray);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+}
+
+.indicator-letter {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.indicator-card p {
+    color: var(--text-muted);
+}
+
+
+/* FLOW DIAGRAM (Beneficiamento / Requisições) */
+
+.flow-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.flow-step {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.flow-step-final {
+    background: var(--primary-dark);
+    color: white;
+    border-color: var(--primary-dark);
+}
+
+.flow-arrow {
+    color: var(--secondary);
+    font-size: 1.1rem;
+}
+
+.flow-footnote {
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 24px;
+}
+
+/* Variante compacta - Requisições voltou a mostrar o fluxo de setas
+   (Carlos pediu de volta depois da tela real substituir o diagrama),
+   mas agora encaixado na coluna de TEXTO do popup, ao lado da tela real
+   (não mais como o visual principal sozinho). Vertical (de cima pra
+   baixo), não mais em linha - Carlos: "fica mais cheio a tela, mais
+   organizado" - a coluna de texto é estreita, empilhado usa o espaço
+   melhor que tentar caber tudo numa linha só. A seta (`.flow-arrow`)
+   gira 90° pra apontar pra baixo em vez de pra direita, sem precisar
+   trocar o ícone. */
+.flow-row-compact {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.flow-row-compact .flow-step {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+.flow-row-compact .flow-arrow {
+    font-size: 0.85rem;
+    transform: rotate(90deg);
+    margin-left: 20px;
+}
+
+
+/* RELATÓRIOS - EVOLVING NOTE */
+
+.evolving-note {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    background: rgba(125, 211, 220, 0.1);
+    border: 1px solid rgba(125, 211, 220, 0.25);
+    color: var(--primary);
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.evolving-note i {
+    color: var(--secondary);
+}
+
+
+/* PARA QUEM É - SEGMENTS */
+
+.segments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.segment-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 14px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary);
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.segment-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--secondary);
+}
+
+.segment-emoji {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+
+/* DIFFERENTIALS - CHIPS */
+
+.diff-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.diff-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-gray);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.diff-chip i {
+    color: var(--secondary);
+}
+
+
+/* FINAL CTA TEXT */
+
+.final-cta-text {
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 600px;
+    margin: -16px auto 32px;
+    font-size: 1.1rem;
+}
+
+
+/* ANIMATIONS */
+
+/* Visível por padrão - só some se o body confirmar (via JS) que o GSAP
+   carregou e vai animar. Se o script falhar/for bloqueado, o conteúdo
+   nunca fica escondido pra sempre. */
+.reveal {
+    opacity: 1;
+}
+
+body.js-anim-ready .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+
+/* RESPONSIVE NAV */
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--primary);
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+/* Menu do header vira hambúrguer bem antes do resto virar "mobile"
+   (1100px, não 768px) - com 5 links + botão CTA, o menu horizontal só
+   cabia sem cortar a partir de ~1050px; entre 769-1049px o botão
+   "Solicitar demonstração" ficava parcialmente fora da tela (a barra
+   fixa não gera scroll horizontal na página, então o corte não
+   aparecia como bug óbvio, só como botão cortado/sumindo na borda). */
+@media (max-width: 1100px) {
+    .nav-toggle {
+        display: block;
+    }
+    .nav-content {
+        position: relative;
+        justify-content: space-between;
+    }
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        background: var(--bg-white);
+        box-shadow: var(--shadow-md);
+        border-radius: 12px;
+        padding: 16px 20px;
+        gap: 12px;
+        border: 1px solid var(--border);
+    }
+    .nav-links.open {
+        display: flex;
+    }
+    .nav-links li {
+        width: 100%;
+    }
+    .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 8px 0;
+    }
+    .nav-links li .btn {
+        width: 100%;
+    }
+    .nav-dropdown-toggle {
+        width: 100%;
+        justify-content: space-between;
+        padding: 8px 0;
+    }
+    .nav-dropdown-menu {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        padding: 4px 0 4px 12px;
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 0;
+    }
+    .nav-dropdown-menu a {
+        padding: 8px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 120px 0 60px;
+    }
+    .mockup-content {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    .mockup-sidebar {
+        display: none;
+    }
+    .mockup-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .mockup-charts {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    .security-grid,
+    .light-grid {
+        grid-template-columns: 1fr;
+    }
+    .compatibility-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .story-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .story-problems {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .founders-grid {
+        grid-template-columns: 1fr;
+        max-width: 340px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .founders-grid::before {
+        display: none;
+    }
+    .steps-grid::before {
+        display: none;
+    }
+    .flow-row {
+        flex-direction: column;
+    }
+    .flow-arrow {
+        transform: rotate(90deg);
+    }
+    .logo-img {
+        height: 42px;
+        max-width: 170px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+    section {
+        padding: 64px 0;
+    }
+    .hero {
+        padding: 100px 0 40px;
+    }
+    .mockup-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .mockup-stat {
+        padding: 10px;
+    }
+    .btn {
+        padding: 14px 22px;
+        font-size: 0.9rem;
+    }
+    .final-cta {
+        padding: 80px 0;
+    }
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .story-problems {
+        grid-template-columns: 1fr;
+    }
+    .story-highlight {
+        padding: 28px 24px;
+    }
+    .closing-quote p {
+        font-size: 1.2rem;
+    }
+    .segments-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .mini-mockup {
+        padding: 18px;
+    }
+}
+
+/* ══════════════════════════════════════════════
+   VEJA POR DENTRO - "modo app" (conheca-o-sistema.html)
+   O mini sistema em si (sidebar/telas) NÃO tem CSS aqui: vive num
+   Shadow DOM montado por js/demo.js, com o CSS gerado em demo/base.css
+   (build: tools/build-demo.js). Aqui só a moldura da página.
+   ══════════════════════════════════════════════ */
+
+/* O `.container` normal do site (1200px) deixava o demo pequeno demais:
+   js/demo.js escala o sistema (desenhado em ~1680px) pra largura do
+   host, e quanto mais perto de 1:1, mais nítido o texto. `width:auto`
+   limita sozinho ao viewport, sem overflow em tela menor. */
+.app-mode .container {
+    max-width: 1800px;
+    padding: 0 16px;
+}
+
+/* "MODO APP" (conheca-o-sistema.html) - pedido do Carlos: quando
+   clica em "Conhecer o sistema", deve parecer que abriu uma aplicação
+   de verdade, não "mais uma página do site". `.app-topbar` substitui o
+   header cheio (sem menu) e `.app-mode` deixa a vitrine ocupar quase a
+   tela inteira assim que a página abre, com só uma legenda fininha em
+   vez do título/parágrafo grande de antes. */
+.app-topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app-topbar-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.app-topbar-back:hover {
+    color: var(--primary);
+}
+
+.app-topbar-logo {
+    height: 26px;
+}
+
+.app-mode {
+    padding: 84px 0 32px;
+}
+
+.app-mode-label {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+    .app-mode {
+        padding-top: 76px;
+    }
+}
+
+/* Host do mini sistema (o conteúdo é Shadow DOM, ver js/demo.js).
+   Antes de montar, reserva altura pra página não pular. */
+.gc-demo-host {
+    display: block;
+    min-height: 60vh;
+}
+/* Estado "carregando": estilo só aqui, NUNCA no host em si (color/
+   text-align do host herdam pra dentro do Shadow DOM e estragariam o
+   layout do sistema; `:host{all:initial}` em demo/base.css também
+   protege, mas fica mais seguro nem depender disso). */
+.gc-demo-host:not([data-ready]) {
+    border-radius: 14px;
+    border: 1px solid #2E4650;
+    background: #0A1216;
+}
+.gc-demo-host:not([data-ready])::before {
+    content: 'Carregando a demonstração...';
+    display: block;
+    padding: 24px;
+    text-align: center;
+    color: #9DB2BA;
+    font-size: 0.9rem;
+}
+.gc-demo-host[data-ready] {
+    min-height: 0;
+}
+.gc-demo-wrap .mockup-caption {
+    margin-top: 12px;
+}
+
+/* Cursor de demonstração: enquanto os SVGs (tela e "antes") não terminaram de
+   carregar/decodificar, as imagens ficam escondidas - senão a tela de destino
+   aparece em branco ou "pipoca" por cima do Início no meio da transição
+   (ver `attachDemoCursor` em script.js, `whenReady`). */
+.screenshot-frame.demo-loading img {
+    visibility: hidden;
+}
+.screenshot-frame .demo-cursor-before {
+    will-change: opacity;
+}

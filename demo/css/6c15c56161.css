@@ -1,0 +1,350 @@
+
+/* ═══════════════════════════════════════════════════
+   CONFIGURACOES-SUPORTE.CSS — seção "Suporte" da tela de Configurações.
+   Bloco genérico (modal/form-group/msg-erro/btn-salvar/btn-novo-item)
+   vive só em configuracoes.css — aqui só o que é exclusivo desta seção,
+   incluindo as 6 abas internas (.secao-tabs/.tab-panel, ver nota de
+   colisão em src/scripts/configuracoes-suporte.js).
+   ═══════════════════════════════════════════════════ */
+
+/* ── Tabs de seção (Abrir chamado / Meus chamados / Fila / Histórico /
+      Dashboard / Base de conhecimento) ── */
+
+/* overflow-y:hidden explícito - ver nota idêntica em cmc.css:
+   overflow-x:auto sozinho ativa scroll vertical indesejado quando o
+   conteúdo fica só 1-2px mais alto que a faixa. */
+.secao-tabs { display: flex; border-bottom: 2px solid var(--borda); gap: 0; margin-bottom: 16px; overflow-x: auto; overflow-y: hidden; }
+.secao-tab {
+    background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -2px;
+    padding: 10px 18px; font-size: 14px; font-weight: 600; font-family: inherit;
+    color: var(--texto-muted); cursor: pointer; transition: .15s; white-space: nowrap;
+}
+.secao-tab:hover { color: var(--texto); }
+.secao-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ── Fora do horário de atendimento — substitui o formulário de "Abrir
+      chamado" novo, não esconde nada de já aberto ── */
+.sup-fora-horario {
+    background: rgba(249, 115, 22, .12);
+    border: 1.5px solid var(--laranja);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--texto);
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+
+/* ── Tabs de período (Semanal / Mensal / Anual, dashboard) ── */
+
+.period-tabs {
+    display: flex; gap: 4px;
+    background: var(--card-bg); border: 1px solid var(--borda);
+    border-radius: var(--radius-sm); padding: 4px; width: fit-content; margin-bottom: 16px;
+}
+.period-tab {
+    background: none; border: none; padding: 9px 14px; border-radius: var(--radius-xs);
+    font-size: 13px; font-weight: 600; color: var(--texto-muted);
+    cursor: pointer; font-family: inherit; transition: .15s;
+}
+.period-tab.active { background: var(--accent-light); color: var(--accent); }
+.period-tab:not(.active):hover { color: var(--texto); }
+
+
+/* ── Blocos genéricos (formulário, listas) ── */
+
+.sup-bloco {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.sup-bloco-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.sup-bloco-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.sup-bloco-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin: 0 0 16px;
+}
+
+.sup-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sup-vazio {
+    font-size: 13px;
+    color: var(--texto-muted);
+    padding: 12px 0;
+}
+
+
+/* ── Chips de sugestão rápida (abrir chamado) ── */
+
+.sup-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.sup-chip {
+    background: var(--accent-light);
+    color: var(--accent);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 7px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+}
+
+.sup-chip:hover { background: var(--borda); }
+.sup-chip:active { transform: scale(.97); }
+
+
+/* ── Item de chamado ── */
+
+.sup-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    transition: background .15s;
+}
+
+.sup-item:hover { background: var(--page-bg); }
+
+.sup-item-topo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.sup-item-titulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.sup-item-mensagem {
+    font-size: 13.5px;
+    color: var(--texto);
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.sup-item-meta {
+    font-size: 11.5px;
+    color: var(--texto-muted);
+}
+
+.sup-item-resposta {
+    font-size: 13px;
+    color: var(--texto);
+    background: var(--page-bg);
+    border-radius: var(--radius-xs);
+    padding: 10px 12px;
+    margin-top: 4px;
+    white-space: pre-wrap;
+}
+
+.sup-item-acoes {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.sup-item.tem-resposta-nova {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+}
+
+
+/* ── Badges (status, módulo, tipo, SLA) ── */
+
+.sup-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+}
+
+.sup-badge-modulo {
+    background: var(--page-bg);
+    color: var(--texto-muted);
+}
+
+.sup-badge-status-aberto { background: color-mix(in srgb, var(--vermelho) 16%, transparent); color: var(--vermelho); }
+.sup-badge-status-em_andamento { background: color-mix(in srgb, var(--azul) 16%, transparent); color: var(--azul); }
+.sup-badge-status-resolvido { background: color-mix(in srgb, var(--verde) 16%, transparent); color: var(--verde); }
+
+.sup-badge-sla-ok { background: color-mix(in srgb, var(--verde) 16%, transparent); color: var(--verde); }
+.sup-badge-sla-atencao { background: color-mix(in srgb, #f59e0b 16%, transparent); color: #f59e0b; }
+.sup-badge-sla-estourado { background: color-mix(in srgb, var(--vermelho) 16%, transparent); color: var(--vermelho); }
+
+.sup-badge-nova {
+    background: var(--accent);
+    color: #fff;
+}
+
+
+/* ── Botões pequenos de ação (assumir, arquivar, excluir...) ── */
+
+.sup-btn-acao {
+    background: var(--page-bg);
+    color: var(--texto);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-xs);
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, color .15s;
+}
+
+.sup-btn-acao:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.sup-btn-acao.perigo:hover {
+    background: color-mix(in srgb, var(--vermelho) 14%, transparent);
+    border-color: var(--vermelho);
+    color: var(--vermelho);
+}
+
+
+/* ── Dashboard: painel, ranking em barra, colunas por período ── */
+
+.painel {
+    background: var(--card-bg); border: 1px solid var(--borda); border-radius: var(--radius, 14px);
+    padding: 18px 20px; box-shadow: var(--shadow); margin-bottom: 16px;
+}
+.painel-titulo { font-size: 14px; font-weight: 700; color: var(--texto); margin-bottom: 14px; }
+
+.sup-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; }
+.sup-bar-label { width: 130px; color: var(--texto-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex-shrink: 0; }
+.sup-bar-track { flex: 1; height: 8px; background: var(--page-bg); border-radius: var(--radius-pill); overflow: hidden; }
+.sup-bar-fill { height: 100%; border-radius: var(--radius-pill); background: var(--accent); }
+.sup-bar-val { width: 40px; text-align: right; font-weight: 700; color: var(--texto); flex-shrink: 0; }
+
+.sup-colunas {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 160px;
+    padding-top: 10px;
+}
+
+.sup-coluna-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+    justify-content: flex-end;
+}
+
+.sup-coluna-barra {
+    width: 100%;
+    max-width: 36px;
+    background: var(--accent);
+    border-radius: 6px 6px 0 0;
+    min-height: 2px;
+}
+
+.sup-coluna-valor { font-size: 11px; font-weight: 700; color: var(--texto); }
+.sup-coluna-rotulo { font-size: 10.5px; color: var(--texto-muted); text-align: center; }
+
+
+/* ── Base de conhecimento ── */
+
+.sup-kb-card {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 10px;
+}
+
+.sup-kb-titulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto);
+    margin-bottom: 6px;
+}
+
+.sup-kb-secao-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--texto-muted);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    margin: 8px 0 3px;
+}
+
+.sup-kb-texto { font-size: 13px; color: var(--texto); line-height: 1.5; white-space: pre-wrap; }
+
+
+/* ── Toast local desta seção (mostrarToast em configuracoes-suporte.js) -
+      mesmo padrão de beneficiamento.js/checklists.js. Referência oficial
+      pra quando o padrão for promovido a global em sidebar.js/
+      dashboard.css - só mover este bloco pra lá, nada muda de estrutura. ── */
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--texto);
+    color: var(--page-bg);
+    padding: 12px 20px;
+    border-radius: var(--radius-sm, 8px);
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 9999;
+    box-shadow: var(--shadow-md);
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all .3s ease;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.sucesso { background: var(--verde); color: #fff; }
+.toast.erro { background: var(--vermelho); color: #fff; }
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conheça o Sistema — GestãoCheck</title>
+    <meta name="description" content="Navegue pela interface do GestãoCheck: veja como funciona o Estoque, CMV, CMO, CMC, Despesas e mais, com dados fictícios.">
+    <link rel="canonical" href="https://gestaocheck.tech/conheca-o-sistema.html">
+    <meta name="theme-color" content="#0C1E24">
+    <meta property="og:title" content="Conheça o Sistema — GestãoCheck">
+    <meta property="og:description" content="Navegue pela interface do GestãoCheck: veja como funciona o Estoque, CMV, CMO, CMC, Despesas e mais, com dados fictícios.">
+    <meta property="og:image" content="assets/logo/logo-vertical-completo.svg">
+    <meta property="og:url" content="https://gestaocheck.tech/conheca-o-sistema.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Conheça o Sistema — GestãoCheck">
+    <meta name="twitter:description" content="Navegue pela interface do GestãoCheck: veja como funciona o Estoque, CMV, CMO, CMC, Despesas e mais, com dados fictícios.">
+    <meta name="twitter:image" content="assets/logo/logo-vertical-completo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <!-- Manrope + Fraunces: as fontes do sistema. Carregadas UMA vez aqui, o @font-face vale dentro do Shadow DOM do demo. -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Fraunces:opsz,wght@9..144,600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon-circulo-contorno.svg">
+    <link rel="stylesheet" href="css/style.css?v=20">
+</head>
+
+<body>
+    <div id="scroll-progress" aria-hidden="true"></div>
+    <!-- TOPO "MODO APP" - de propósito bem mais fino que o header
+         normal do site (sem menu, sem "Solicitar demonstração") -
+         pedido do Carlos: essa página deve parecer que abriu uma
+         aplicação de verdade, não "mais uma página do site". Só logo +
+         link de voltar. `id="header"` mantido (script.js usa esse id
+         pro efeito de scroll, `.scrolled`), o visual muda todo via
+         `.app-topbar` (style.css). -->
+    <header id="header" class="app-topbar scrolled">
+        <div class="container app-topbar-inner">
+            <a href="index.html" class="app-topbar-back"><i class="fas fa-arrow-left"></i> Voltar ao site</a>
+            <a href="index.html" class="logo">
+                <img src="assets/logo/icone-branco.svg" alt="GestãoCheck" class="app-topbar-logo">
+            </a>
+        </div>
+    </header>
+
+    <!-- VEJA POR DENTRO — vitrine interativa: sidebar real do sistema
+         (própria, hand-built, sempre foi assim) navegando entre 15
+         telas. Virou página própria (13/09/2026, pedido do Carlos), e
+         ganhou o "modo app" (texto de apresentação enxuto, vitrine
+         ocupando quase a tela inteira, sem rodapé - ver `.app-mode` no
+         style.css). 16/09/2026: as 15 telas deixaram de ser HTML/CSS
+         reconstruído à mão e viraram DOM congelado de verdade (`.sys-
+         embed-crop`, ver comentário em style.css/script.js) - cada uma
+         é o próprio sistema real renderizado num iframe, cortando só a
+         sidebar embutida dele (a vitrine já tem a própria ao lado). -->
+    <section id="veja-por-dentro" class="bg-white app-mode">
+        <div class="container">
+            <p class="app-mode-label reveal">Veja por dentro, dados fictícios - a vitrine abaixo é o sistema real, simplificado.</p>
+            <div class="gc-demo-wrap">
+                <!-- Mini sistema (Shadow DOM, sem iframe): js/demo.js monta o shell
+                     e cada tela sob demanda a partir de demo/ (gerado por
+                     tools/build-demo.js). Ver CLAUDE.md, seção mais nova. -->
+                <div id="gcDemo" class="gc-demo-host" data-src="demo/" role="application" aria-label="Demonstração interativa do GestãoCheck"></div>
+                <noscript><p class="mockup-caption">Ative o JavaScript para navegar pela demonstração.</p></noscript>
+                <p class="mockup-caption">Apresentação simplificada, com dados fictícios. Não é o sistema completo, e nada do que você fizer aqui fica salvo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sem rodapé/modal de contato de propósito - "modo app": a única
+         saída é o "Voltar ao site" no topo, sem CTA de venda aqui
+         dentro. Também sem GSAP/ScrollTrigger/Lenis (não tinha
+         `data-modal-open` nenhum nesta página pra precisar do modal, e
+         o card-switching da vitrine já é só troca de classe, não
+         depende de nenhuma lib) - menos 3 arquivos de CDN pra
+         carregar, página abre mais rápido, mais "leve" como pedido. -->
+    <script src="js/script.js?v=23"></script>
+    <script src="js/demo.js?v=5"></script>
+</body>
+
+</html>

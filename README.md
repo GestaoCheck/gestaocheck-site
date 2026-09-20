@@ -76,19 +76,41 @@ filosofia de simplicidade do sistema principal. Ícones via Font Awesome
 ## Estrutura
 
 ```
-gestao-pro/
+gestaocheck-site/
 │
-├── index.html              (página única, todas as seções)
-├── style.css                 (todo o CSS do site)
-├── script.js                   (scroll reveal, menu mobile, modal de contato)
+├── index.html                 (página inicial)
+├── planos.html                (planos e preços)
+├── quem-somos-nos.html        (história, missão/visão/valores, fundadores)
+├── conheca-o-sistema.html     (vitrine interativa "modo app")
+├── privacidade.html           (Política de Privacidade)
+├── termos.html                (Termos de Uso)
 │
-├── scr/assets/logo/              (logo/ícone em várias variantes — horizontal,
-│                                   vertical, favicon circular/quadrado, etc.)
-├── scr/assets/equipe/              (fotos dos fundadores)
+├── css/
+│   └── style.css              (todo o CSS do site)
+├── js/
+│   ├── script.js              (scroll reveal, menu, dropdown, modais, popups)
+│   ├── three-hero.js          (cenas 3D via Three.js, ES module)
+│   └── demo.js                (runtime do mini sistema da vitrine, Shadow DOM)
 │
-├── CLAUDE.md                         (contexto técnico completo pra quem
-│                                       for mexer no projeto)
-└── README.md                           (este arquivo)
+├── demo/                      (GERADO por tools/build-demo.js: shell, CSS e as
+│                                23 telas do mini sistema - não editar à mão)
+├── tools/                     (build do demo: postcss + telas de origem em
+│                                demo-src/; fica fora da imagem Docker)
+│
+├── assets/
+│   ├── logo/                  (logo/ícone em várias variantes — horizontal,
+│   │                            vertical, favicon circular/quadrado, etc.)
+│   ├── equipe/                (fotos dos fundadores)
+│   └── sistema/                (telas do sistema em SVG vetorial - importadas
+│                                 por tools/import-svgs.js - antigo: vídeo do
+│                                 Multi-IA, cada PNG/JPG com um .webp irmão)
+│
+├── robots.txt / sitemap.xml   (SEO técnico)
+├── Dockerfile / docker-compose.yml / nginx.conf   (deploy)
+│
+├── CLAUDE.md                  (contexto técnico completo pra quem
+│                                for mexer no projeto)
+└── README.md                  (este arquivo)
 ```
 
 ---
@@ -123,7 +145,7 @@ pro contexto completo do Traefik/VPS).
 
 ```bash
 mkdir -p /opt/site-vendas && cd /opt/site-vendas
-git clone https://github.com/GestaoCheck/gestao-pro.git .
+git clone https://github.com/GestaoCheck/gestaocheck-site.git .
 docker compose up -d --build
 ```
 

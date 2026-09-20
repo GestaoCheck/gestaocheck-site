@@ -1,0 +1,623 @@
+
+/* ═══════════════════════════════════════════════════
+   RELATORIO.CSS — herda dashboard.css + tema-escuro.css
+   Só declara o que é exclusivo da página Relatório.
+═══════════════════════════════════════════════════ */
+
+/* ── Abas por módulo - mesmo padrão de .tabs-nav/.tab do CMV/Estoque,
+   clonado aqui pra manter a independência por página. ── */
+.tabs-nav {
+    display: flex; gap: 4px; overflow-x: auto; overflow-y: hidden;
+    border-bottom: 1px solid var(--borda);
+    padding: 0 2px;
+    margin-bottom: 4px;
+}
+.tab {
+    background: none; border: none; border-bottom: 2.5px solid transparent;
+    padding: 12px 16px; font-family: inherit; font-size: 13.5px; font-weight: 600;
+    color: var(--texto-muted); cursor: pointer; white-space: nowrap; transition: .15s;
+    display: flex; align-items: center; gap: 6px;
+}
+.tab:hover { color: var(--texto); }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-conteudo { display: flex; flex-direction: column; gap: 16px; }
+
+/* ── Grafico de barra horizontal (ranking) - mesmo padrao do dashboard
+   de Suporte (configuracoes-suporte.css), clonado aqui de proposito. ── */
+.sup-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; }
+.sup-bar-label { width: 130px; color: var(--texto-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex-shrink: 0; }
+.sup-bar-track { flex: 1; height: 8px; background: var(--page-bg); border-radius: var(--radius-pill); overflow: hidden; }
+.sup-bar-fill { height: 100%; border-radius: var(--radius-pill); background: var(--accent); }
+.sup-bar-val { min-width: 70px; text-align: right; font-weight: 700; color: var(--texto); flex-shrink: 0; }
+
+.rel-permissao-aviso {
+    padding: 30px 20px;
+    text-align: center;
+    color: var(--texto-muted);
+    font-size: 13.5px;
+}
+
+/* ── Coluna vertical (tendencia) - mesmo padrao do dashboard de Suporte,
+   clonado aqui de proposito (CSS duplicado por pagina, convencao do
+   projeto). ── */
+.sup-colunas {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 160px;
+    padding-top: 10px;
+}
+.sup-coluna-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+    justify-content: flex-end;
+}
+.sup-coluna-barra {
+    width: 100%;
+    max-width: 36px;
+    background: var(--accent);
+    border-radius: 6px 6px 0 0;
+    min-height: 2px;
+    transition: height .3s ease;
+}
+.sup-coluna-valor { font-size: 11px; font-weight: 700; color: var(--texto); }
+.sup-coluna-rotulo { font-size: 10.5px; color: var(--texto-muted); text-align: center; }
+
+/* ── Painel com titulo + grafico lado a lado (2 colunas em telas largas) ── */
+.rel-charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* ── Gauge de meta (ex: CMO gasto vs teto) - barra horizontal com
+   marcador de limite, mais direto que um donut pra "quanto falta pra
+   estourar a meta". ── */
+.rel-gauge-track {
+    position: relative;
+    height: 14px;
+    background: var(--page-bg);
+    border-radius: var(--radius-pill);
+    overflow: visible;
+    margin: 10px 0 6px;
+}
+.rel-gauge-fill {
+    height: 100%;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+    transition: width .4s ease;
+}
+.rel-gauge-fill.acima-meta { background: var(--vermelho); }
+.rel-gauge-marcador {
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    width: 2px;
+    background: var(--texto);
+}
+.rel-gauge-legenda {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    color: var(--texto-muted);
+}
+
+
+/* ── Topbar extras ── */
+
+.topbar-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.page-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.page-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-top: 1px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* ── Filtros: período + setor ── */
+
+.filtros-rel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.period-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 4px;
+}
+
+.period-tab {
+    background: none;
+    border: none;
+    padding: 9px 14px;
+    border-radius: var(--radius-xs);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texto-muted);
+    cursor: pointer;
+    font-family: inherit;
+    transition: .15s;
+}
+
+.period-tab.active {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.period-tab:not(.active):hover {
+    color: var(--texto);
+}
+
+.filtro-select {
+    background: var(--card-bg);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 9px 14px;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--texto);
+    cursor: pointer;
+    outline: none;
+    transition: border-color .15s;
+}
+
+.filtro-select:focus {
+    border-color: var(--accent);
+}
+
+
+/* ── Título de seção com nota ── */
+
+.secao-titulo-linha {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.secao-titulo {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.secao-nota {
+    font-size: 12px;
+    color: var(--texto-muted);
+}
+
+
+/* ── Grid de métricas financeiras (4 cards) ── */
+
+.kgrid {
+    display: grid;
+    gap: 14px;
+}
+
+.kgrid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Só pro grid Financeiro (3 cards, CMV%/CMO%/Prime Cost% viraram a barra
+   de composição, ver .rel-composicao abaixo) - .kgrid-4 continua igual
+   pros outros grids da página, nunca reusar essa classe neles. */
+.kgrid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.kcard {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: var(--shadow);
+}
+
+/* kcard clicável - os 3 kcards de Financeiro viram link pra CMV/CMO/CMC;
+   mesmo hover de elevação de .rel-card-clicavel / .qa-card (dashboard.css). */
+a.kcard-link {
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+a.kcard-link:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.kcard-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kcard-icon svg {
+    width: 17px;
+    height: 17px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.kcard-val {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.kcard-lbl {
+    font-size: 11px;
+    color: var(--texto-muted);
+}
+
+/* Barra de composição do faturamento - CMV/CMO/margem numa única barra em
+   vez de 3 kcards de %, mesma técnica de .sup-bar-track já usada nesta
+   página, só com múltiplos segmentos lado a lado em vez de 1 fill só.
+   Cores reaproveitadas dos tokens que já existem (laranja/dourado/verde). */
+.rel-composicao {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+.rel-composicao-topo {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.rel-composicao-titulo {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.rel-composicao-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+}
+.rel-composicao-sub strong {
+    color: var(--texto);
+}
+
+.rel-composicao-bar {
+    display: flex;
+    height: 34px;
+    width: 100%;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.rel-composicao-seg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11.5px;
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width .4s cubic-bezier(.4, 0, .2, 1);
+}
+
+.rel-composicao-seg.cmv { background: var(--laranja); color: #fff; }
+.rel-composicao-seg.cmo { background: var(--dourado); color: #1A1400; }
+.rel-composicao-seg.margem { background: var(--verde); color: #fff; }
+
+.rel-composicao-vazio {
+    margin: 0;
+    padding: 10px 0;
+    font-size: 13px;
+    color: var(--texto-muted);
+    text-align: center;
+}
+
+.rel-composicao-legenda {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.rel-legenda-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    color: var(--texto-muted);
+}
+
+.rel-legenda-item .sw {
+    width: 9px;
+    height: 9px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+.rel-legenda-item .sw.cmv { background: var(--laranja); }
+.rel-legenda-item .sw.cmo { background: var(--dourado); }
+.rel-legenda-item .sw.margem { background: var(--verde); }
+
+.kcard-icon.green {
+    background: #dcfce7;
+    color: var(--verde);
+}
+
+.kcard-icon.orange {
+    background: #ffedd5;
+    color: var(--laranja);
+}
+
+.kcard-icon.purple {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.kcard-icon.blue {
+    background: #dbeafe;
+    color: var(--azul);
+}
+
+.gc-demo[data-tema="escuro"] .kcard-icon.green {
+    background: #14321f;
+}
+
+.gc-demo[data-tema="escuro"] .kcard-icon.orange {
+    background: #3a230d;
+}
+
+.gc-demo[data-tema="escuro"] .kcard-icon.blue {
+    background: #112a4a;
+}
+
+
+/* ── Grid de cards por módulo (operacional) ── */
+
+.rel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.rel-card {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+}
+
+/* Card inteiro clicável - reset de <a> + mesmo hover de elevação de
+   .qa-card (dashboard.css), duplicado aqui de propósito em vez de
+   combinar as 2 classes - .qa-card tem display:flex/flex-direction:column
+   que quebraria o layout de .rel-card-header/.rel-card-body. */
+.rel-card-clicavel {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.rel-card-clicavel:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.rel-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.rel-card-titulo {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.rel-card-link {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color .15s;
+}
+
+.rel-card-link:hover {
+    text-decoration: underline;
+}
+
+.rel-card-body {
+    display: flex;
+    gap: 20px;
+}
+
+.rel-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.rel-stat-val {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--texto);
+    line-height: 1.1;
+}
+
+.rel-stat-lbl {
+    font-size: 11px;
+    color: var(--texto-muted);
+}
+
+
+/* ── Responsivo ── */
+
+/* Exportar CSV/PDF - mesmo visual usado em styles/estoque.css
+   (.btn-exportar), duplicado aqui de propósito. */
+.btn-exportar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 0 14px;
+    height: 38px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.btn-exportar:hover {
+    background: var(--accent-light);
+}
+
+.btn-exportar svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+}
+
+/* Cumprimento por colaborador - tabela + cabeçalho com título+ações,
+   mesmo padrão já usado em styles/cmc.css, duplicado aqui de propósito. */
+.painel-titulo-linha {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 10px; margin-bottom: 14px;
+}
+
+.tabela-scroll { overflow-x: auto; }
+/* min-width:max-content (mesmo motivo de cmv.css) - sem isso as células
+   espremiam e o texto quebrava feio em vez de rolar dentro de
+   .tabela-scroll. */
+.tabela { width: 100%; min-width: max-content; border-collapse: collapse; font-size: 13px; }
+.tabela thead tr { background: var(--page-bg); }
+.tabela th {
+    padding: 10px 14px; text-align: left; font-size: 10.5px; font-weight: 700;
+    color: var(--texto-muted); text-transform: uppercase; letter-spacing: .5px;
+    border-bottom: 1px solid var(--borda); white-space: nowrap;
+}
+.tabela td { padding: 11px 14px; border-bottom: 1px solid var(--borda); color: var(--texto); vertical-align: middle; }
+.tabela tbody tr:last-child td { border-bottom: none; }
+.tabela tbody tr:hover { background: var(--page-bg); }
+
+/* Badge de status na tabela de Rupturas - mesmo visual de
+   .badge/.badge-red/.badge-green em styles/ocorrencias.css, duplicado
+   aqui de propósito. */
+.badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-lg);
+    white-space: nowrap;
+}
+.badge-red { background: #fee2e2; color: var(--vermelho); }
+.badge-green { background: #dcfce7; color: var(--verde); }
+.gc-demo[data-tema="escuro"] .badge-red { background: #341616; }
+.gc-demo[data-tema="escuro"] .badge-green { background: #14321f; }
+/* Classe B da Curva ABC - A/C reaproveitam .badge-green/.badge-red
+   acima, faltava um meio-termo. */
+.badge-orange { background: #ffedd5; color: #c2620a; }
+.gc-demo[data-tema="escuro"] .badge-orange { background: #3a2510; color: #fb923c; }
+/* Severidade "Crítica" dos Insights de IA - único dos 4 níveis sem badge
+   existente (Baixa/Média/Alta reaproveitam green/orange/red acima) -
+   fundo sólido de propósito, precisa destoar mais forte que .badge-red
+   (Alta) pra ficar visualmente acima dela. */
+.badge-critico { background: var(--vermelho); color: #fff; }
+.tabela-vazio { text-align: center; color: var(--texto-muted); padding: 2rem !important; }
+
+/* Botão "Gerar insights" - mesmo visual de .btn-exportar (pílula com
+   borda), mas classe própria de propósito: reusar .btn-exportar
+   confundiria o passo "Exportar" do tutorial (ver PASSOS_TUTORIAL_RELATORIO,
+   seletor '.btn-exportar' - não é ação de exportação, não devia estar
+   nesse mesmo grupo de seletor). */
+.btn-gerar-insights {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 0 14px;
+    height: 38px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .2s;
+}
+.btn-gerar-insights:hover { background: var(--accent-light); }
+.btn-gerar-insights:disabled { opacity: .5; cursor: not-allowed; }
+.btn-gerar-insights svg { width: 14px; height: 14px; }
+
+/* ── Insights de IA: grid de cards ── */
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+}
+.insight-card {
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.insight-card-titulo {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--texto);
+}
+.insight-card-texto {
+    font-size: 12.5px;
+    color: var(--texto-muted);
+    line-height: 1.5;
+}

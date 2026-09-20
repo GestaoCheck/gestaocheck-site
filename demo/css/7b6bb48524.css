@@ -1,0 +1,1324 @@
+
+/* ═══════════════════════════════════════════════════
+   ESTOQUE.CSS — exclusivo da tela de Contagem.
+   Sidebar, topbar base, bottom-nav e painel de perfil
+   vêm de dashboard.css / tema-escuro.css. Não duplicar
+   aqui.
+═══════════════════════════════════════════════════ */
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+
+/* ── Título da página (padrão pras telas internas) ── */
+
+.page-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.page-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-top: 2px;
+}
+
+/* Chip "Seu setor: X" - peão/gerente veem a qual setor a conta está
+   presa. Pílula discreta, lê como indicador de status e não se confunde
+   com o .page-sub logo acima. Só aparece pra quem tem setor (ver
+   popularSetorAtualInfo() em estoque.js). */
+.setor-atual-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 6px;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.setor-atual-chip svg { stroke: currentColor; flex-shrink: 0; }
+.setor-atual-chip strong { font-weight: 700; }
+
+
+/* ── Botões da topbar exclusivos desta tela ── */
+
+.btn-importar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--page-bg);
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.btn-importar:hover {
+    background: var(--accent-light);
+}
+
+.badge-faltantes {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: var(--radius-pill);
+    background: var(--vermelho);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    margin-left: 2px;
+}
+
+.faltantes-grupo-titulo {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--texto-muted);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    padding: 10px 4px 6px;
+}
+
+.btn-importar svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+}
+
+.btn-novo-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 2px 10px color-mix(in srgb, var(--accent) 35%, transparent);
+    transition: background .2s, box-shadow .2s, transform .1s;
+}
+
+.btn-novo-item:hover {
+    background: color-mix(in srgb, var(--accent) 85%, black);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.btn-novo-item:active {
+    transform: scale(.97);
+}
+
+
+/* ── Resumo (cards) ── */
+
+/* Telas internas (Geral/Movimentação/Faltantes/Preços) - mesmo padrão de
+   abas do CMV (.tabs-nav/.tab em cmv.css), clonado aqui pra manter a
+   independência por página. overflow-y:hidden explícito - ver nota
+   idêntica em cmc.css/.secao-tabs (overflow-x:auto sozinho ativa scroll
+   vertical indesejado quando o conteúdo fica só 1-2px mais alto que a
+   faixa). */
+.tabs-nav {
+    display: flex; gap: 4px; overflow-x: auto; overflow-y: hidden;
+    border-bottom: 1px solid var(--borda);
+    padding: 0 2px;
+    margin: 0 1.5rem;
+}
+.tab {
+    background: none; border: none; border-bottom: 2.5px solid transparent;
+    padding: 12px 16px; font-family: inherit; font-size: 13.5px; font-weight: 600;
+    color: var(--texto-muted); cursor: pointer; white-space: nowrap; transition: .15s;
+    display: flex; align-items: center; gap: 6px;
+}
+.tab:hover { color: var(--texto); }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Cards de resumo, barra de progresso e filtros são filhos de #tab-geral
+   (não filhos diretos de .content, que tem display:flex;gap:20px em
+   dashboard.css) - por isso não herdam gap nenhum, restaura o mesmo
+   gap:20px aqui dentro de cada aba interna. flex-direction:column
+   também precisa ficar explícito aqui - sem isso essas abas caem no
+   default "row" e jogam o conteúdo lado a lado em vez de empilhado. */
+#tab-geral, #tab-estoque, #tab-verificacao, #tab-movimentacao, #tab-faltantes, #tab-precos, #tab-historico {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Cards genericos usados dentro das telas de Movimentacao/Faltantes/Precos
+   (mesmo padrao .card/.card-header/.card-title/.card-sub do CMV). */
+.card {
+    background: var(--card-bg); border: 1px solid var(--borda);
+    border-radius: var(--radius); padding: 20px; margin-bottom: 1rem;
+    box-shadow: var(--shadow);
+}
+.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.card-title { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; color: var(--texto); }
+.card-sub { font-size: 12px; color: var(--texto-muted); }
+
+/* ── Movimentação: layout 2 colunas - formulário à esquerda, preview do
+      item selecionado à direita preenchendo o espaço com informação de
+      verdade (em vez de um card de 520px sozinho, perdido na lateral).
+      Empilha em telas estreitas. ── */
+.mov-layout {
+    display: grid;
+    grid-template-columns: minmax(320px, 480px) 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.mov-preview { min-height: 280px; display: flex; flex-direction: column; }
+.mov-preview-vazio {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 10px; color: var(--texto-muted);
+    text-align: center; padding: 30px 20px;
+}
+.mov-preview-vazio p { font-size: 13px; max-width: 220px; }
+
+.mov-preview-topo { display: flex; align-items: center; gap: 14px; margin: 14px 0 18px; }
+.mov-preview-foto {
+    width: 56px; height: 56px; border-radius: var(--radius); object-fit: cover;
+    border: 1px solid var(--borda); flex-shrink: 0;
+}
+.mov-preview-foto-vazia {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--page-bg); color: var(--texto-muted);
+}
+.mov-preview-nome { font-size: 15px; font-weight: 700; color: var(--texto); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mov-preview-sub { font-size: 12px; color: var(--texto-muted); margin-top: 2px; }
+
+.mov-preview-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    padding-top: 16px; border-top: 1px solid var(--borda);
+}
+.mov-preview-item { display: flex; flex-direction: column; gap: 4px; }
+.mov-preview-label { font-size: 11px; color: var(--texto-muted); text-transform: uppercase; letter-spacing: .3px; }
+.mov-preview-valor { font-size: 15px; font-weight: 700; color: var(--texto); }
+
+.resumo-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.resumo-card {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--shadow);
+}
+
+.resumo-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.resumo-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.resumo-icon.blue {
+    background: rgba(59, 130, 246, .15);
+    color: var(--azul);
+}
+
+.resumo-icon.green {
+    background: rgba(34, 197, 94, .15);
+    color: var(--verde);
+}
+
+.resumo-icon.red {
+    background: rgba(239, 68, 68, .15);
+    color: var(--vermelho);
+}
+
+.resumo-icon.orange {
+    background: rgba(249, 115, 22, .15);
+    color: var(--laranja);
+}
+
+.resumo-label {
+    display: block;
+    font-size: 11px;
+    color: var(--texto-muted);
+    margin-bottom: 3px;
+}
+
+.resumo-valor {
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--texto);
+    line-height: 1.1;
+}
+
+
+/* ── Barra de progresso ── */
+
+.progresso-box {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 1rem 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.progresso-topo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.progresso-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.progresso-pct {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.progresso-barra {
+    height: 10px;
+    background: var(--page-bg);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+}
+
+.progresso-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: var(--radius-pill);
+    transition: width .4s ease;
+}
+
+
+/* ── Filtros ── */
+
+.filtros-box {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: .9rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.filtro-busca {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--page-bg);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-pill);
+    padding: 0 14px;
+    height: 38px;
+    flex: 1;
+    min-width: 180px;
+    transition: border-color .2s;
+}
+
+.filtro-busca:focus-within {
+    border-color: var(--accent);
+}
+
+.filtro-busca svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--texto-muted);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    flex-shrink: 0;
+}
+
+.filtro-busca input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--texto);
+    background: transparent;
+}
+
+.filtro-busca input::placeholder {
+    color: var(--texto-muted);
+}
+
+.filtros-box select {
+    height: 38px;
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 0 12px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--texto);
+    background: var(--page-bg);
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color .2s;
+}
+
+.filtros-box select:focus {
+    border-color: var(--accent);
+}
+
+.btn-limpar {
+    background: none;
+    color: var(--texto-muted);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 0 14px;
+    height: 38px;
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.btn-limpar:hover {
+    border-color: var(--vermelho);
+    color: var(--vermelho);
+}
+
+.btn-exportar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 0 14px;
+    height: 38px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+/* .btn-outline/.btn-sm - mesmo padrão usado em cmv.css/cmc.css/cmo.css/
+   avarias.css/etc. */
+.btn-outline {
+    background: var(--card-bg);
+    color: var(--texto-muted);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: .15s;
+    white-space: nowrap;
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-sm {
+    padding: 7px 12px;
+    font-size: 12.5px;
+}
+
+.btn-exportar:hover {
+    background: var(--accent-light);
+}
+
+.btn-exportar svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+}
+
+
+/* ── Tabs de categoria ── */
+
+.categorias-tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.cat-tab {
+    padding: 6px 16px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--borda);
+    background: var(--card-bg);
+    color: var(--texto-muted);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .15s;
+    white-space: nowrap;
+}
+
+.cat-tab:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.cat-tab.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+
+/* ── Lista do checklist ── */
+
+.checklist-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.checklist-vazio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 3rem;
+    color: var(--texto-muted);
+    text-align: center;
+}
+
+.checklist-vazio svg {
+    stroke: var(--texto-muted);
+}
+
+.checklist-vazio p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.grupo-categoria {
+    border-bottom: 1px solid var(--borda);
+}
+
+.grupo-categoria:last-child {
+    border-bottom: none;
+}
+
+.grupo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: var(--page-bg);
+    cursor: pointer;
+    user-select: none;
+    transition: background .15s;
+}
+
+.grupo-header:hover {
+    background: var(--accent-light);
+}
+
+.grupo-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.grupo-nome {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.grupo-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    background: var(--borda);
+    color: var(--texto-muted);
+}
+
+.grupo-progresso {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.grupo-chevron {
+    width: 16px;
+    height: 16px;
+    stroke: var(--texto-muted);
+    fill: none;
+    stroke-width: 1.8;
+    transition: transform .2s;
+}
+
+.grupo-chevron.open {
+    transform: rotate(180deg);
+}
+
+.grupo-itens {
+    display: none;
+}
+
+.grupo-itens.open {
+    display: block;
+}
+
+.check-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--borda);
+    transition: background .15s;
+}
+
+.check-item:last-child {
+    border-bottom: none;
+}
+
+.check-item:hover {
+    background: var(--accent-light);
+}
+
+.check-item.status-ok {
+    border-left: 3px solid var(--verde);
+}
+
+.check-item.status-divergencia {
+    border-left: 3px solid var(--laranja);
+}
+
+.check-item.status-ausente {
+    border-left: 3px solid var(--vermelho);
+}
+
+.check-item.status-pendente {
+    border-left: 3px solid var(--borda);
+}
+
+.check-foto-thumb {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-xs);
+    object-fit: cover;
+    cursor: pointer;
+    flex-shrink: 0;
+    border: 1px solid var(--borda);
+}
+
+.check-selecionar {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: var(--accent);
+}
+
+/* ── Sugestao de item (padrao de lista da Requisicao, ver
+   .req-item-sugestoes em styles/abertura_de_manutencao.css - clonado aqui
+   pra manter a independencia por pagina do projeto), usado no modal de
+   Movimentacao ── */
+.ing-item-sugestoes {
+    display: none; position: absolute; top: 100%; left: 0; right: 0; margin-top: 4px;
+    background: var(--card-bg); border: 1px solid var(--borda); border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md); max-height: 220px; overflow-y: auto; z-index: 20;
+}
+.ing-item-sugestoes.show { display: block; }
+.ing-item-sugestao {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 9px 12px; font-size: 13px; cursor: pointer; transition: background .15s;
+}
+.ing-item-sugestao:hover { background: var(--page-bg); }
+.ing-item-badge {
+    font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-pill);
+    background: var(--page-bg); color: var(--texto-muted); white-space: nowrap;
+}
+.ing-item-aviso { padding: 9px 12px; font-size: 12.5px; color: var(--texto-muted); }
+
+.barra-selecao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--accent-light);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 10px 16px;
+    margin-bottom: 12px;
+}
+
+.barra-selecao-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-excluir-lote {
+    background: var(--vermelho);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: background .2s, transform .1s;
+}
+
+.btn-excluir-lote:hover {
+    background: color-mix(in srgb, var(--vermelho) 85%, black);
+}
+
+.btn-excluir-lote:active {
+    transform: scale(.97);
+}
+
+.check-checkbox {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--borda);
+    background: var(--card-bg);
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .15s;
+}
+
+.check-checkbox.checked {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.check-checkbox svg {
+    width: 13px;
+    height: 13px;
+    stroke: #fff;
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.check-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.check-nome {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.check-codigo {
+    font-size: 11px;
+    color: var(--texto-muted);
+    background: var(--page-bg);
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+
+.check-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-top: 2px;
+}
+
+.check-conteudo-total {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.check-setor {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 1px 8px;
+    border-radius: var(--radius-pill);
+}
+
+.check-valor-total {
+    color: var(--verde);
+    font-weight: 600;
+}
+
+.check-qtd-grupo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.check-qtd-label {
+    font-size: 11px;
+    color: var(--texto-muted);
+}
+
+.check-qtd-input {
+    width: 70px;
+    height: 34px;
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-xs);
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--texto);
+    background: var(--page-bg);
+    outline: none;
+    text-align: center;
+    transition: border-color .2s;
+}
+
+.check-qtd-input:focus {
+    border-color: var(--accent);
+}
+
+.check-qtd-esperada {
+    font-size: 12px;
+    color: var(--texto-muted);
+}
+
+.check-status-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.badge-ok {
+    background: rgba(34, 197, 94, .15);
+    color: var(--verde);
+}
+
+.badge-divergencia {
+    background: rgba(249, 115, 22, .15);
+    color: var(--laranja);
+}
+
+.badge-ausente {
+    background: rgba(239, 68, 68, .15);
+    color: var(--vermelho);
+}
+
+.badge-pendente {
+    background: var(--page-bg);
+    color: var(--texto-muted);
+}
+
+.check-acoes {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.btn-check-acao {
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--texto-muted);
+    transition: background .15s, color .15s, border-color .15s, transform .1s;
+}
+
+.btn-check-acao:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-check-acao:active {
+    transform: scale(.94);
+}
+
+.btn-check-acao svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+}
+
+.btn-check-acao.excluir:hover {
+    color: var(--vermelho);
+    border-color: var(--vermelho);
+    background: rgba(239, 68, 68, .15);
+}
+
+
+/* ── Modal (novo item / editar / importar) ── */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease, visibility .2s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 520px;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: var(--shadow-md);
+    transform: scale(.96);
+    transition: transform .2s ease;
+}
+
+.modal-overlay.show .modal {
+    transform: scale(1);
+}
+
+.modal-import {
+    max-width: 640px;
+}
+
+.modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--borda);
+    position: sticky;
+    top: 0;
+    background: var(--card-bg);
+    z-index: 1;
+}
+
+.modal-head h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--texto-muted);
+    transition: background .15s;
+}
+
+.modal-close:hover {
+    background: var(--page-bg);
+}
+
+.modal-close svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.modal-body {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.mfield {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.mfield.full {
+    grid-column: 1/-1;
+}
+
+.mfield label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.mfield input,
+.mfield select {
+    height: 44px;
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 0 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--texto);
+    background: var(--page-bg);
+    outline: none;
+    appearance: none;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.mfield input:focus,
+.mfield select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.msg-erro {
+    color: var(--vermelho);
+    font-size: 13px;
+    min-height: 16px;
+}
+
+.btn-salvar {
+    width: 100%;
+    height: 50px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.btn-salvar:hover {
+    background: color-mix(in srgb, var(--accent) 85%, black);
+}
+
+.btn-salvar:disabled {
+    background: color-mix(in srgb, var(--accent) 35%, white);
+    cursor: not-allowed;
+}
+
+/* Variante de perigo do .btn-salvar - nunca escrever style= cru pra cor
+   de fundo vermelha, ver CLAUDE.md. */
+.btn-salvar.perigo { background: var(--vermelho); }
+.btn-salvar.perigo:hover { background: color-mix(in srgb, var(--vermelho) 85%, black); }
+
+/* Par confirmar/cancelar pra modal simples de formulário. .btn-cancelar
+   reaproveita a mesma forma de .btn-salvar (altura/radius/fonte), só em
+   contorno em vez de sólido. Os dois dentro de .modal-acoes-par ficam
+   lado a lado, cada um metade da largura que .btn-salvar sozinho ocupava. */
+.modal-acoes-par {
+    display: flex;
+    gap: 10px;
+}
+.modal-acoes-par .btn-salvar,
+.modal-acoes-par .btn-cancelar {
+    flex: 1;
+    width: auto;
+}
+.btn-cancelar {
+    height: 50px;
+    background: transparent;
+    color: var(--texto-muted);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .2s, border-color .2s, color .2s;
+}
+.btn-cancelar:hover {
+    border-color: var(--texto-muted);
+    color: var(--texto);
+}
+
+
+/* ── Conteúdo por unidade (Caminho 1: conversão compra -> consumo) ── */
+
+.grupo-conteudo {
+    background: var(--page-bg);
+    border: 1.5px dashed var(--borda);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.grupo-conteudo-titulo {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.grupo-conteudo-titulo span {
+    font-weight: 500;
+    color: var(--texto-muted);
+}
+
+.grupo-conteudo-ajuda {
+    font-size: 12px;
+    color: var(--texto-muted);
+    line-height: 1.5;
+}
+
+.grupo-conteudo .modal-grid {
+    gap: 12px;
+}
+
+.grupo-conteudo .mfield input,
+.grupo-conteudo .mfield select {
+    background: var(--card-bg);
+}
+
+
+/* ── Preview de importação ── */
+
+.import-preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.import-badge {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+}
+
+.import-preview {
+    background: var(--page-bg);
+    border-radius: var(--radius);
+    padding: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: auto;
+    font-size: 13px;
+}
+
+.import-preview table {
+    width: 100%;
+    min-width: max-content;
+    border-collapse: collapse;
+}
+
+.import-preview th {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--texto-muted);
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--borda);
+    text-align: left;
+}
+
+.import-preview td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--borda);
+    color: var(--texto);
+}
+
+.import-preview tr:last-child td {
+    border-bottom: none;
+}
+
+.import-msg {
+    color: var(--texto-muted);
+    text-align: center;
+    padding: 1rem;
+}
+
+.import-opcoes {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--texto-muted);
+}
+
+.import-opcoes label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+
+/* ── Responsivo ── */
+
+/* ── Avisos de importacao (duplicidade) ── */
+
+.import-aviso {
+    background: rgba(249, 115, 22, .12);
+    border: 1.5px solid var(--laranja);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--texto);
+}
+
+.import-aviso p {
+    margin-bottom: 8px;
+}
+
+.import-aviso label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Preços pendentes - card próprio, empilhado verticalmente. */
+.preco-pendente-card {
+    padding: 12px 0;
+    border-top: 1px solid var(--borda);
+}
+.preco-pendente-card:first-of-type { border-top: none; }
+.preco-pendente-nome { font-weight: 700; font-size: 14px; color: var(--texto); }
+.preco-pendente-valores { margin: 6px 0; font-size: 13px; color: var(--texto); }
+.preco-pendente-sugerido { font-size: 12px; color: var(--texto-muted); margin-bottom: 10px; }
+.preco-pendente-acoes { display: flex; gap: 8px; }
+.preco-pendente-acoes button {
+    flex: 1;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+}
+.preco-pendente-acoes button:active { transform: scale(.97); }
+.btn-preco-aprovar {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+}
+.btn-preco-aprovar:hover { background: color-mix(in srgb, var(--accent) 85%, black); }
+.btn-preco-rejeitar {
+    background: transparent;
+    color: var(--vermelho);
+    border: 1.5px solid var(--vermelho);
+}
+.btn-preco-rejeitar:hover { background: color-mix(in srgb, var(--vermelho) 12%, transparent); }
+
+.precos-pendentes-intro { font-size: 12px; color: var(--texto-muted); margin: 0 0 12px; }
+
+.import-dup-grupo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 6px 0;
+    border-top: 1px solid rgba(249, 115, 22, .25);
+}
+
+.import-dup-grupo:first-of-type {
+    border-top: none;
+}
+
+.import-aviso-ocr {
+    background: rgba(59, 130, 246, .12);
+    border-color: var(--azul);
+}
+
+.import-dup-grupo select {
+    height: 32px;
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-xs);
+    padding: 0 8px;
+    font-size: 12.5px;
+    font-family: inherit;
+    color: var(--texto);
+    background: var(--page-bg);
+}
+/* Badge de preco pendente de aprovacao (docs/PERMISSOES.md 7.3) - mesmo
+   padrao visual do .tag-pendente ja usado no CMC. */
+.tag-status { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--radius-lg); margin-left: 6px; }
+.tag-pendente { background: var(--accent-light); color: var(--accent); }
+

@@ -1,0 +1,1106 @@
+
+/* ═══════════════════════════════════════════════════
+   CONFIGURACOES.CSS — herda dashboard.css + tema-escuro.css
+   Só declara o que é exclusivo desta página.
+═══════════════════════════════════════════════════ */
+
+/* .page-title/.page-sub nunca tinham sido declarados aqui - essa página
+   renderizava o <h1>/<p> do topbar com o tamanho padrão (bem maior) do
+   navegador em vez do padrão compacto usado nas outras telas (mesmos
+   valores replicados de styles/estoque.css e outras 9 páginas). */
+.page-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.page-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-top: 2px;
+}
+
+/* Breadcrumb "Configurações › <seção>" - preenche o vão visual da
+   topbar-right (só sino+avatar aqui, diferente das outras telas) sem
+   inventar um botão decorativo sem função real. */
+.page-breadcrumb {
+    color: var(--texto-muted);
+    font-weight: 600;
+}
+
+.config-secoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.config-bloco {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 20px;
+}
+
+.config-bloco-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.btn-novo-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 2px 10px color-mix(in srgb, var(--accent) 35%, transparent);
+    transition: background .2s, box-shadow .2s, transform .1s;
+}
+
+.btn-novo-item:hover {
+    background: color-mix(in srgb, var(--accent) 85%, black);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.btn-novo-item:active {
+    transform: scale(.97);
+}
+
+.config-bloco-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Botao "Exportar" da Auditoria (mesmo estilo de styles/cmc.css/cmo.css/
+   cmv.css/estoque.css/beneficiamento.css (.btn-exportar), duplicado aqui
+   de proposito - independencia por pagina, ver CLAUDE.md). */
+.btn-exportar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 0 14px;
+    height: 38px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.btn-exportar:hover {
+    background: var(--accent-light);
+}
+
+.btn-exportar svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+}
+
+.config-bloco-sub {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin: 0 0 16px;
+}
+
+/* Pagamentos - item 17 do plano, so design (estilo painel de billing) */
+.cfg-plano-card {
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    background: var(--accent-light);
+}
+
+.cfg-plano-card-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.cfg-plano-nome {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--texto);
+}
+
+.cfg-plano-tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--verde);
+    color: #fff;
+}
+
+/* Variantes de cor por status_cobranca (auth.status_cobranca) - default
+   (sem classe extra) e verde/"em dia", ver configuracoes.js. */
+.cfg-plano-tag.laranja {
+    background: var(--laranja);
+}
+
+.cfg-plano-tag.vermelho {
+    background: var(--vermelho);
+}
+
+.cfg-plano-tag.cinza {
+    background: var(--texto-muted);
+}
+
+/* Barra de uso de usuarios (Pagamentos) - mesmo padrao visual de
+   .progresso-barra/.progresso-fill (styles/estoque.css), duplicado aqui de
+   proposito - independencia por pagina, ver CLAUDE.md. */
+.progresso-box-pag {
+    margin-top: 4px;
+}
+
+.progresso-barra-pag {
+    height: 10px;
+    background: var(--page-bg);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+}
+
+.progresso-fill-pag {
+    height: 100%;
+    background: var(--accent);
+    border-radius: var(--radius-pill);
+    transition: width .4s ease;
+}
+
+.progresso-fill-pag.laranja {
+    background: var(--laranja);
+}
+
+.progresso-fill-pag.vermelho {
+    background: var(--vermelho);
+}
+
+.cfg-plano-preco {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--texto);
+    margin: 0 0 12px;
+}
+
+.cfg-plano-preco span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto-muted);
+}
+
+.cfg-plano-lista {
+    margin: 0;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cfg-plano-lista li {
+    font-size: 13px;
+    color: var(--texto);
+}
+
+/* Pagamentos - .alerta-reativacao já existe como classe em
+   configuracoes-auditoria.css (reaproveitada direto no HTML pro aviso de
+   cobrança vermelho) - só o desconto ganha variante própria aqui, cor
+   accent em vez de vermelho/laranja porque é neutro/informativo, não
+   alerta. */
+.alerta-desconto {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--accent-light);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: var(--texto);
+    line-height: 1.5;
+}
+
+.alerta-desconto svg {
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.aviso-upsell-pag {
+    margin-top: 12px;
+    font-size: 12.5px;
+    color: var(--texto-muted);
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+}
+
+/* Botao "Ver quem está usando" (Pagamentos) - achado real: usava classes
+   .btn-outline/.btn-sm que nunca foram declaradas em NENHUM CSS que esta
+   pagina carrega (existem só em cmv.css/cmc.css/etc, não em
+   configuracoes*.css) - renderizava sem estilo nenhum, botão cinza cru
+   do navegador. Visual espelha .btn-exportar (mesma familia "outline"
+   já usada nesta página), só menor/sem largura fixa de ícone. */
+.btn-outline-pag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 12px;
+    background: none;
+    color: var(--accent);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 8px 16px;
+    font-size: 12.5px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.btn-outline-pag:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+}
+
+.btn-outline-pag:active {
+    transform: scale(.97);
+}
+
+/* "Método de pagamento / histórico de cobranças" - ainda não existem
+   (sem gateway). Bloco único e discreto sinalizando que é intencional,
+   não uma tela quebrada. */
+.pag-embreve {
+    background: var(--page-bg);
+}
+
+.pag-embreve-topo {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.pag-embreve-topo svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    opacity: .55;
+    color: var(--texto-muted);
+}
+
+.pag-embreve-topo strong {
+    display: block;
+    font-size: 13.5px;
+    color: var(--texto);
+    margin-bottom: 3px;
+}
+
+.pag-embreve-topo span {
+    font-size: 12.5px;
+    color: var(--texto-muted);
+    line-height: 1.5;
+}
+
+/* Lista "quem está usando o plano" (Pagamentos) - mesma cara da lista de
+   Usuários de verdade, reaproveita .usuario-item &cia de
+   configuracoes-usuarios.css, só agrupada por papel e sem ações. */
+.pag-usuarios-grupo {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--texto-muted);
+    margin: 14px 0 4px;
+}
+.pag-usuarios-grupo:first-child {
+    margin-top: 4px;
+}
+
+.usuario-item--pag {
+    padding: 8px 8px;
+    gap: 11px;
+}
+.usuario-item--pag:hover {
+    background: none;
+}
+.usuario-item--pag .usuario-avatar {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+}
+.usuario-item--pag .usuario-nome {
+    font-size: 13.5px;
+}
+
+.btn-novo-item:disabled,
+.btn-novo-item:disabled:hover {
+    opacity: .5;
+    cursor: not-allowed;
+    box-shadow: none;
+    background: var(--accent);
+    transform: none;
+}
+
+.config-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.config-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: var(--radius-xs);
+    transition: background .15s;
+}
+
+.config-item:hover {
+    background: var(--page-bg);
+}
+
+.config-item-nome {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Categoria marcada "fora do CMV" (campo fora_do_cmv em /categorias).
+   Mesma cor de aviso já usada em outras tags amarelas do projeto
+   (--laranja + color-mix), não inventa paleta. */
+.config-item-tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    color: var(--laranja);
+    background: color-mix(in srgb, var(--laranja) 16%, transparent);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.config-item-acoes {
+    display: flex;
+    gap: 4px;
+}
+
+.btn-config-acao {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--borda);
+    background: var(--page-bg);
+    color: var(--texto-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s, color .15s, border-color .15s, transform .1s;
+}
+
+.btn-config-acao:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-config-acao:active {
+    transform: scale(.94);
+}
+
+.btn-config-acao.excluir:hover {
+    background: color-mix(in srgb, var(--vermelho) 14%, transparent);
+    border-color: var(--vermelho);
+    color: var(--vermelho);
+}
+
+.config-vazio {
+    font-size: 13px;
+    color: var(--texto-muted);
+    padding: 12px 0;
+}
+
+/* ── Modal (renomear / excluir) ── */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease, visibility .2s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lista-carregando {
+    color: var(--texto-muted);
+    font-size: 13px;
+    padding: 16px 0;
+}
+
+.modal {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 480px;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: var(--shadow-md);
+    transform: scale(.96);
+    transition: transform .2s ease;
+}
+
+.modal-overlay.show .modal {
+    transform: scale(1);
+}
+
+.modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--borda);
+    position: sticky;
+    top: 0;
+    background: var(--card-bg);
+    z-index: 1;
+}
+
+.modal-head h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--texto-muted);
+    transition: background .15s;
+    flex-shrink: 0;
+}
+
+.modal-close:hover {
+    background: var(--page-bg);
+}
+
+.modal-close svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.modal-body {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.modal-body p {
+    font-size: 13px;
+    color: var(--texto-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.form-group input,
+.form-group select {
+    height: 44px;
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 0 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--texto);
+    background: var(--page-bg);
+    outline: none;
+    appearance: none;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.form-group select:disabled {
+    opacity: .7;
+    cursor: not-allowed;
+}
+
+.msg-erro {
+    color: var(--vermelho);
+    font-size: 13px;
+    min-height: 16px;
+}
+
+.btn-salvar {
+    width: 100%;
+    height: 48px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.btn-salvar:hover {
+    background: color-mix(in srgb, var(--accent) 85%, black);
+}
+
+/* Variante de perigo do .btn-salvar - nunca escrever style= cru pra cor
+   de fundo vermelha, ver CLAUDE.md. */
+.btn-salvar.perigo { background: var(--vermelho); }
+.btn-salvar.perigo:hover { background: color-mix(in srgb, var(--vermelho) 85%, black); }
+
+/* Variante outline do .btn-salvar - mesma forma/altura do .btn-salvar, só
+   outline. */
+.btn-salvar-outline {
+    width: 100%;
+    height: 48px;
+    background: transparent;
+    color: var(--texto);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .2s, border-color .2s;
+}
+.btn-salvar-outline:hover {
+    background: var(--page-bg);
+    border-color: var(--texto-muted);
+}
+
+
+/* ── Notificações (toggle de preferência pessoal) ──
+   .config-item-texto/.config-switch* reaproveitam a base de .config-item
+   acima (display/align/justify/transition); so o padding/gap mudam aqui
+   pra nao ficar igual a uma linha de lista de setor/categoria (que tem
+   hover de fundo, essa nao precisa). Antes essas duas declaracoes de
+   .config-item tinham o MESMO nome e a segunda (essa) vencia por vir
+   depois - mudava o padding das linhas de Setores/Categorias sem
+   ninguem ter pedido. Corrigido pra classe propria. */
+
+.config-item--pref {
+    gap: 16px;
+    padding: 8px 0;
+}
+
+.config-item-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.config-item-texto strong {
+    font-size: 13.5px;
+    color: var(--texto);
+}
+
+.config-item-texto span {
+    font-size: 12px;
+    color: var(--texto-muted);
+}
+
+/* ── Tutorial — grid de cards com ícone (mesmo svg da .sidebar-nav
+   daquele módulo) + status visual (check verde/bolinha cinza), e um
+   banner de destaque pra "Tela de boas-vindas" (é uma ação diferente das
+   telas de baixo, merece separação visual). ── */
+
+.tutorial-boas-vindas {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    background: var(--accent-light);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    border-radius: var(--radius-sm, 10px);
+}
+
+.tutorial-boas-vindas-icone {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tutorial-boas-vindas-icone svg {
+    width: 22px;
+    height: 22px;
+}
+
+.tutorial-boas-vindas-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.tutorial-boas-vindas-texto strong {
+    font-size: 13.5px;
+    color: var(--texto);
+}
+
+.tutorial-boas-vindas-texto span {
+    font-size: 12px;
+    color: var(--texto-muted);
+}
+
+.tutorial-grid-titulo {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--texto-muted);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin: 0 0 10px;
+}
+
+.tutorial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+}
+
+.tutorial-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm, 10px);
+    background: var(--page-bg);
+    transition: border-color .15s, transform .15s, box-shadow .15s;
+}
+
+.tutorial-card--visto {
+    border-color: color-mix(in srgb, var(--verde) 35%, var(--borda));
+}
+
+.tutorial-card-icone {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-xs);
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tutorial-card-icone svg {
+    width: 19px;
+    height: 19px;
+    stroke-width: 1.8;
+}
+
+.tutorial-card-corpo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tutorial-card-corpo strong {
+    font-size: 13.5px;
+    color: var(--texto);
+}
+
+.tutorial-card-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    color: var(--texto-muted);
+}
+
+.tutorial-card--visto .tutorial-card-status {
+    color: var(--verde);
+    font-weight: 600;
+}
+
+.tutorial-card-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--texto-muted);
+    opacity: .5;
+}
+
+.tutorial-card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--card-bg);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--borda));
+    border-radius: var(--radius-sm, 8px);
+    padding: 8px 14px;
+    font-size: 12.5px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, transform .1s;
+}
+
+.tutorial-card-btn:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.tutorial-card-btn:active {
+    transform: scale(.97);
+}
+
+.config-switch {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 24px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.config-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.config-switch-track {
+    position: absolute;
+    inset: 0;
+    background: var(--borda);
+    border-radius: var(--radius-pill);
+    transition: background .2s;
+}
+
+.config-switch-track::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform .2s;
+}
+
+.config-switch input:checked + .config-switch-track {
+    background: var(--accent);
+}
+
+.config-switch input:checked + .config-switch-track::before {
+    transform: translateX(18px);
+}
+
+
+/* ── Sidebar interna da tela de Configurações (estilo Google/Chrome
+      Settings) — prefixo cfg-, distinto de .sidebar* (sidebar principal
+      do app) e de .config-* (cards de conteúdo desta página). Mecanismo
+      de troca é o mesmo já usado em Suporte (display:none + .active),
+      só que vertical — classe própria obrigatória (nunca .tab-panel/
+      .secao-tab), ver CLAUDE.md sobre a colisão que isso evitaria. ── */
+
+.cfg-layout {
+    display: grid;
+    grid-template-columns: 236px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.cfg-nav {
+    position: sticky;
+    /* 84px = altura da .topbar (também sticky, top:0, z-index:100 -
+       dashboard.css) + 16px de folga - sem isso o nav gruda atrás da
+       topbar opaca, escondendo os primeiros itens. */
+    top: 100px;
+    /* Scroll próprio, independente do conteúdo (.cfg-paineis) - se a
+       lista de seções crescer mais do que a altura disponível da tela,
+       o nav ganha sua própria barra de rolagem em vez de estourar por
+       baixo da viewport (mesmo espírito da sidebar principal - ver
+       .sidebar-nav em dashboard.css). */
+    max-height: calc(100% - 124px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--page-bg);
+}
+
+.cfg-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 40px;
+    flex-shrink: 0;
+    padding: 0 14px;
+    border: none;
+    background: none;
+    border-radius: 0 99px 99px 0;
+    font-family: inherit;
+    font-size: 13.5px;
+    color: var(--texto-muted);
+    cursor: pointer;
+    text-align: left;
+    transition: background .15s, color .15s;
+}
+
+.cfg-nav-item svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.cfg-nav-item:hover {
+    background: var(--page-bg);
+}
+
+.cfg-nav-item.active {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.cfg-paineis {
+    min-width: 0;
+}
+
+.cfg-painel {
+    display: none;
+}
+
+.cfg-painel.active {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+/* ── Seção Perfil ── */
+
+.cfg-perfil-foto-linha {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.cfg-perfil-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.cfg-perfil-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--avatar);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.cfg-perfil-lapis {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    color: var(--texto-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .15s, color .15s, border-color .15s;
+}
+
+.cfg-perfil-lapis svg {
+    width: 13px;
+    height: 13px;
+}
+
+.cfg-perfil-lapis:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.cfg-perfil-email-linha {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 0 14px;
+    background: var(--page-bg);
+}
+
+.cfg-perfil-email-linha span {
+    flex: 1;
+    font-size: 14px;
+    color: var(--texto);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── Insights automáticos de IA ──
+   .period-tabs/.period-tab duplicado aqui de propósito (mesmo padrão já
+   usado em estoque.css/relatorio.css/etc) - só essa seção da tela usa
+   filtro de período. */
+.period-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-sm);
+    padding: 4px;
+}
+
+.period-tab {
+    background: none;
+    border: none;
+    padding: 8px 13px;
+    border-radius: var(--radius-xs);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--texto-muted);
+    cursor: pointer;
+    font-family: inherit;
+    transition: .15s;
+}
+
+.period-tab.active {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.period-tab:not(.active):hover {
+    color: var(--texto);
+}
+
+/* Card de insight - severidade reaproveita o vocabulário de
+   utils.SEVERIDADE_OCORRENCIA ("Baixa"/"Média"/"Alta"/"Crítica"), não
+   existia ainda uma escala de cor pra essas 4 palavras em lugar nenhum
+   do projeto - criada aqui, primeira tela a precisar disso. */
+.ia-insight-card {
+    background: var(--page-bg);
+    border: 1px solid var(--borda);
+    border-left: 3px solid var(--texto-muted);
+    border-radius: var(--radius-xs);
+    padding: 12px 14px;
+}
+
+.ia-insight-card.sev-baixa { border-left-color: var(--verde); }
+.ia-insight-card.sev-media { border-left-color: var(--accent); }
+.ia-insight-card.sev-alta { border-left-color: var(--laranja); }
+.ia-insight-card.sev-critica { border-left-color: var(--vermelho); }
+
+.ia-insight-titulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--texto);
+    margin-bottom: 4px;
+}
+
+.ia-insight-badge {
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    letter-spacing: .02em;
+}
+
+.sev-baixa .ia-insight-badge { color: var(--verde); background: color-mix(in srgb, var(--verde) 16%, transparent); }
+.sev-media .ia-insight-badge { color: var(--accent); background: var(--accent-light); }
+.sev-alta .ia-insight-badge { color: var(--laranja); background: color-mix(in srgb, var(--laranja) 16%, transparent); }
+.sev-critica .ia-insight-badge { color: var(--vermelho); background: color-mix(in srgb, var(--vermelho) 16%, transparent); }
+
+.ia-insight-texto {
+    font-size: 13px;
+    color: var(--texto-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
